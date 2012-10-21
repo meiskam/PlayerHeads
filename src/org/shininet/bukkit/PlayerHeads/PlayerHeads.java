@@ -44,7 +44,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 						if (args[1].equalsIgnoreCase("get") || args[1].equalsIgnoreCase("view")) {
 							if (sender.hasPermission("playerheads.config.get")) {
 								if (args.length == 2) {
-									sender.sendMessage("["+label+":config:get] Config variables: DropRate, PKOnly");
+									sender.sendMessage("["+label+":config:get] Config variables: DropRate, PKOnly, HookBreak");
 								} else if (args.length == 3) {
 									sender.sendMessage("["+label+":config:get] "+args[2].toLowerCase()+": "+getConfig().get(args[2].toLowerCase()));
 								} else {
@@ -56,15 +56,25 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 						} else if (args[1].equalsIgnoreCase("set")) {
 							if (sender.hasPermission("playerheads.config.set")) {
 								if (args.length == 2 || args.length == 3) {
-									sender.sendMessage("["+label+":config:set] Config variables: DropRate, PKOnly");
+									sender.sendMessage("["+label+":config:set] Config variables: DropRate, PKOnly, HookBreak");
 								} else if (args.length == 4) {
 									if (args[2].equalsIgnoreCase("droprate")) {
-										getConfig().set("droprate", Double.parseDouble(args[3]));
+										try {
+											getConfig().set("droprate", Double.parseDouble(args[3]));
+										} catch (NumberFormatException e) {
+											sender.sendMessage("["+label+":config:set] ERROR: Can not convert "+args[3]+" to a number");
+										}
 									} else if (args[2].equalsIgnoreCase("pkonly")) {
 										if (args[3].equalsIgnoreCase("false") || args[3].equalsIgnoreCase("no") || args[3].equalsIgnoreCase("0")) {
 											getConfig().set("pkonly", false);
 										} else {
 											getConfig().set("pkonly", true);
+										}
+									} else if (args[2].equalsIgnoreCase("HookBreak")) {
+										if (args[3].equalsIgnoreCase("false") || args[3].equalsIgnoreCase("no") || args[3].equalsIgnoreCase("0")) {
+											getConfig().set("hookbreak", false);
+										} else {
+											getConfig().set("hookbreak", true);
 										}
 									}
 									else {
@@ -143,24 +153,34 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		if (event.getEntityType() == EntityType.PLAYER) {
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
 			Double dropchance = generator.nextDouble();
-			((Player)(event.getEntity())).sendMessage(new StringBuilder("[ph] ").append(getConfig().getBoolean("pkonly", true))
+/*			((Player)(event.getEntity())).sendMessage(new StringBuilder("[ph] ").append(getConfig().getBoolean("pkonly", true))
 					.append(", ").append(event.getEntity().getKiller() instanceof Player).append(", ")
 					.append(dropchance).append(", ").append(dropchance <= getConfig().getDouble("droprate", 0.05)).toString());
-			//(!(getConfig().getBoolean("pkonly", true))
-			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
+*/			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
 			 || (getConfig().getBoolean("pkonly", true) && (event.getEntity().getKiller() instanceof Player))) // if pkonly's on AND killer is player, continue 
 			 && (dropchance <= getConfig().getDouble("droprate", 0.05))) { // check if it should drop via droprate
 				event.getDrops().add(getHead(((Player)(event.getEntity())).getName())); // drop the precious player head
 			}
 		}
 	}
-
-	public CraftItemStack getHead(String playername) {
-		CraftItemStack head = new CraftItemStack(Material.getMaterial(276),1,(short)3); //TODO: Skull is id 144
+	
+/*	@EventHandler(priority = EventPriority.NORMAL)
+	public void onBlockBreak(BlockBreakEvent event) {
+		
+	}
+*/	
+	public CraftItemStack getHead(String playername) { //TODO: temp = 298 .. Skull item = 144 .. block = 397
+		CraftItemStack head;
+		try {
+			head = new CraftItemStack(Material.getMaterial(397),1,(short)3);
+		} catch (NullPointerException e) {
+			getLogger().warning("It seems you're not yet using version 1.4 .. falling back to a leather helm");
+			head = new CraftItemStack(Material.getMaterial(298),1,(short)55);
+		}		
 		NBTTagCompound headNBT = new NBTTagCompound();
 		headNBT.setString("SkullOwner", playername);
 		head.getHandle().tag = headNBT;
 		return head;
 	}
-
+//NullPointerException
 }

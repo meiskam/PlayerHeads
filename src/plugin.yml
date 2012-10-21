@@ -1,0 +1,25 @@
+name: PlayerHeads
+version: 0.1.0001
+description: Drops a player's head when s/he dies
+author: meiskam
+
+main: org.shininet.bukkit.PlayerHeads.PlayerHeads
+database: false
+
+commands:
+  PlayerHeads:
+    description: Edit player head drop rate or spawn a head 
+    aliases: ph
+    
+permissions:
+  playerheads.*:
+    description: Gives all PlayerHeads permissions
+    children:
+      playerheads.droprate: true
+      playerheads.spawn: true
+  playerheads.droprate:
+    description: Allows to view or set player head drop rate
+    default: op
+  playerheads.spawn:
+    description: Spawn a player head
+    default: op

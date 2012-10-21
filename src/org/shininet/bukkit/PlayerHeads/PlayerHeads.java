@@ -36,7 +36,9 @@ public final class PlayerHeads extends JavaPlugin {
 
 	public static CraftItemStack getHead(String playername) {
 		CraftItemStack head = new CraftItemStack(Material.getMaterial(276),1,(short)3);
-		head.getHandle().getTag().setString("SkullOwner", playername);
+		NBTTagCompound headNBT = new NBTTagCompound();
+		headNBT.setString("SkullOwner", playername);
+		head.getHandle().tag = headNBT;
 		return head;
 	}
 

@@ -1,7 +1,11 @@
 package org.shininet.bukkit.PlayerHeads;
 
+import net.minecraft.server.NBTTagCompound;
+
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,13 +15,13 @@ public final class PlayerHeads extends JavaPlugin {
 	
 	@Override
 	public void onEnable(){
-		getLogger().info(getDescription().getFullName()+" enabled");
+		//getLogger().info(getDescription().getFullName()+" enabled");
 		getServer().getPluginManager().registerEvents(playerDeathListener, this);
 	}
  
 	@Override
 	public void onDisable() {
-		getLogger().info(getDescription().getFullName()+" disabled");
+		//getLogger().info(getDescription().getFullName()+" disabled");
 		EntityDeathEvent.getHandlerList().unregister(playerDeathListener);
 	}
 
@@ -30,5 +34,10 @@ public final class PlayerHeads extends JavaPlugin {
 		return false; 
 	}
 
+	public static CraftItemStack getHead(String playername) {
+		CraftItemStack head = new CraftItemStack(Material.getMaterial(276),1,(short)3);
+		head.getHandle().getTag().setString("SkullOwner", playername);
+		return head;
+	}
 
 }

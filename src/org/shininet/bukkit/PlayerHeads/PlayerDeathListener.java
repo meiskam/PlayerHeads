@@ -9,10 +9,12 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class PlayerDeathListener implements Listener {
 	
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onEntityDeath(EntityDeathEvent event) {
 		if (event.getEntityType() == EntityType.PLAYER) {
-			((Player)(event.getEntity())).chat("Hehe, you died");
+			((Player)(event.getEntity())).sendMessage("Hehe, you died");
+			//PlayerHeads.getHead(((Player)(event.getEntity())).getName());
+			event.getDrops().add(PlayerHeads.getHead(((Player)(event.getEntity())).getName()));
 		}
 	}
 }

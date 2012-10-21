@@ -1,2 +1,2 @@
-pkonly: 'true'
-droprate: '0.05'
+pkonly: true
+droprate: 0.05

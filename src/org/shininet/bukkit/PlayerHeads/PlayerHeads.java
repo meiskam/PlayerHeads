@@ -22,6 +22,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable(){
+		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents((Listener)this, this);
 	}
  
@@ -41,7 +42,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 						sender.sendMessage("["+label+":config] Subcommands: get, set, reload");
 					} else {
 						if (args[1].equalsIgnoreCase("get") || args[1].equalsIgnoreCase("view")) {
-							if (((Player)sender).hasPermission("playerheads.config.get")) {
+							if (sender.hasPermission("playerheads.config.get")) {
 								if (args.length == 2) {
 									sender.sendMessage("["+label+":config:get] Config variables: DropRate, PKOnly");
 								} else if (args.length == 3) {
@@ -53,13 +54,24 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 								sender.sendMessage("["+label+":config:get] You don't have permission to use that command");
 							}
 						} else if (args[1].equalsIgnoreCase("set")) {
-							if (((Player)sender).hasPermission("playerheads.config.set")) {
+							if (sender.hasPermission("playerheads.config.set")) {
 								if (args.length == 2 || args.length == 3) {
 									sender.sendMessage("["+label+":config:set] Config variables: DropRate, PKOnly");
 								} else if (args.length == 4) {
-									getConfig().set(args[2].toLowerCase(), args[3]);
+									if (args[2].equalsIgnoreCase("droprate")) {
+										getConfig().set("droprate", Double.parseDouble(args[3]));
+									} else if (args[2].equalsIgnoreCase("pkonly")) {
+										if (args[3].equalsIgnoreCase("false") || args[3].equalsIgnoreCase("no") || args[3].equalsIgnoreCase("0")) {
+											getConfig().set("pkonly", false);
+										} else {
+											getConfig().set("pkonly", true);
+										}
+									}
+									else {
+										getConfig().set(args[2].toLowerCase(), args[3]);
+									}
 									saveConfig();
-									sender.sendMessage("["+label+":config:set] "+args[3].toLowerCase()+": "+getConfig().get(args[3].toLowerCase()));
+									sender.sendMessage("["+label+":config:set] "+args[2].toLowerCase()+": "+getConfig().get(args[2].toLowerCase()));
 								} else {
 									sender.sendMessage("["+label+":config:set] Too many params!");
 								}
@@ -73,8 +85,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 								sender.sendMessage("["+label+":config:save] You don't have permission to use that command");
 							}
 */						} else if (args[1].equalsIgnoreCase("reload")) {
-							if (((Player)sender).hasPermission("playerheads.config.set")) {
+							if (sender.hasPermission("playerheads.config.set")) {
 								reloadConfig();
+								sender.sendMessage("["+label+":config:reload] Config reloaded");
 							} else {
 								sender.sendMessage("["+label+":config:reload] You don't have permission to use that command");
 							}
@@ -90,7 +103,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 					else {
 						if (args.length == 1) {
 							//spawn them their head
-							if (((Player)sender).hasPermission("playerheads.spawn.own")) {
+							if (sender.hasPermission("playerheads.spawn.own")) {
 								if (((Player)sender).getInventory().addItem(getHead(((Player)sender).getName())).isEmpty()) {
 									sender.sendMessage("["+label+":spawn] Spawned you "+((Player)sender).getName()+"'s head");
 								} else {
@@ -101,7 +114,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 							}
 						} else if (args.length == 2) {
 							//spawn them args[1]'s head
-							if (((Player)sender).hasPermission("playerheads.spawn")) {
+							if (sender.hasPermission("playerheads.spawn")) {
 								if (((Player)sender).getInventory().addItem(getHead(args[1])).isEmpty()) {
 									sender.sendMessage("["+label+":spawn] Spawned you "+args[1]+"'s head");
 								} else {

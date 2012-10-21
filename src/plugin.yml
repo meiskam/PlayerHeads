@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 0.1.0004
+version: 0.1.0005
 description: Drops a player's head when s/he dies
 author: meiskam
 
@@ -8,7 +8,7 @@ database: false
 
 commands:
   PlayerHeads:
-    description: Edit player head drop rate or spawn a head 
+    description: Spawn a playerhead or edit playerheads config
     aliases: ph
     
 permissions:
@@ -32,7 +32,7 @@ permissions:
     description: Spawn a player head
     default: op
     children:
-      playerheads.spawn.own
+      playerheads.spawn.own: true
   playerheads.spawn.own:
     description: Spawn your own head
     default: op

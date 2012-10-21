@@ -59,6 +59,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 								} else if (args.length == 4) {
 									getConfig().set(args[2].toLowerCase(), args[3]);
 									saveConfig();
+									sender.sendMessage("["+label+":config:set] "+args[3].toLowerCase()+": "+getConfig().get(args[3].toLowerCase()));
 								} else {
 									sender.sendMessage("["+label+":config:set] Too many params!");
 								}
@@ -128,9 +129,14 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public void onEntityDeath(EntityDeathEvent event) {
 		if (event.getEntityType() == EntityType.PLAYER) {
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
+			Double dropchance = generator.nextDouble();
+			((Player)(event.getEntity())).sendMessage(new StringBuilder("[ph] ").append(getConfig().getBoolean("pkonly", true))
+					.append(", ").append(event.getEntity().getKiller() instanceof Player).append(", ")
+					.append(dropchance).append(", ").append(dropchance <= getConfig().getDouble("droprate", 0.05)).toString());
+			//(!(getConfig().getBoolean("pkonly", true))
 			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
 			 || (getConfig().getBoolean("pkonly", true) && (event.getEntity().getKiller() instanceof Player))) // if pkonly's on AND killer is player, continue 
-			 && (generator.nextDouble() <= getConfig().getDouble("droprate", 0.05))) { // check if it should drop via droprate
+			 && (dropchance <= getConfig().getDouble("droprate", 0.05))) { // check if it should drop via droprate
 				event.getDrops().add(getHead(((Player)(event.getEntity())).getName())); // drop the precious player head
 			}
 		}

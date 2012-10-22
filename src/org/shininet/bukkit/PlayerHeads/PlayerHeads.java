@@ -7,16 +7,22 @@ package org.shininet.bukkit.PlayerHeads;
 import java.util.Random;
 
 import net.minecraft.server.NBTTagCompound;
+import net.minecraft.server.TileEntity;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.block.CraftBlock;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -168,12 +174,33 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		}
 	}
 	
-/*	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		
+		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 63 && getConfig().getBoolean("hookbreak", true)) { //TODO: temp sign = 63 .. head block = 144
+			Block block = event.getBlock();
+			Location location = block.getLocation();
+			
+			TileEntity tileEntity = ((CraftWorld)block.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+			NBTTagCompound headNBT = new NBTTagCompound();
+			
+			tileEntity.b(headNBT); // copies the TE's NBT data into headNBT
+
+			headNBT.remove("x");
+			headNBT.remove("y");
+			headNBT.remove("z");
+			
+			CraftItemStack head = new CraftItemStack(Material.getMaterial(63),1,(short)0); //TODO temp sign
+			head.getHandle().tag = headNBT;
+			
+			block.setType(Material.AIR);
+			block.getWorld().dropItemNaturally(block.getLocation(), head);
+			
+			//((CraftBlock)block)
+			//block.getState()
+		}
 	}
-*/	
-	public CraftItemStack getHead(String playername) { //TODO: temp = 298 .. Skull item = 144 .. block = 397
+	
+	public CraftItemStack getHead(String playername) { //TODO: temp = 298 .. Skull item = 397
 		CraftItemStack head;
 		try {
 			head = new CraftItemStack(Material.getMaterial(397),1,(short)3);

@@ -165,10 +165,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		if (event.getEntityType() == EntityType.PLAYER) {
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
 			Double dropchance = prng.nextDouble();
-/*			((Player)(event.getEntity())).sendMessage(new StringBuilder("[ph] ").append(getConfig().getBoolean("pkonly", true))
-					.append(", ").append(event.getEntity().getKiller() instanceof Player).append(", ")
-					.append(dropchance).append(", ").append(dropchance <= getConfig().getDouble("droprate", 0.05)).toString());
-*/			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
+
+			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
 			 || (getConfig().getBoolean("pkonly", true) && (event.getEntity().getKiller() instanceof Player))) // if pkonly's on AND killer is player, continue 
 			 && (dropchance <= getConfig().getDouble("droprate", 0.05))) { // check if it should drop via droprate
 				event.getDrops().add(getHead(((Player)(event.getEntity())).getName())); // drop the precious player head
@@ -178,7 +176,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 144 && getConfig().getBoolean("hookbreak", true)) { //TODO: temp sign = 63 .. head block = 144
+		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 144 && getConfig().getBoolean("hookbreak", true)) {
 			Block block = event.getBlock();
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
@@ -188,7 +186,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			
 			tileEntity.b(blockNBT); // copies the TE's NBT data into blockNBT
 			String player = blockNBT.getString("ExtraType");
-			//String player = blockNBT.getString("Text1");
+			//String player = blockNBT.getString("Text1"); // sign id=63
 			if (!(player.equals(""))) {
 				block.setType(Material.AIR);
 				dropItemNaturally(world, location, getHead(player));
@@ -201,7 +199,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		try {
 			head = new CraftItemStack(Material.getMaterial(397),1,(short)3);
 		} catch (NullPointerException e) {
-			getLogger().warning("It seems you're not yet using version 1.4 .. falling back to a leather helm");
+			getLogger().warning("It seems you're not using CraftBukkit 1.4 or above .. falling back to a leather helm");
 			head = new CraftItemStack(Material.LEATHER_HELMET,1,(short)55);
 		}		
 		NBTTagCompound headNBT = new NBTTagCompound();
@@ -210,13 +208,13 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		return head;
 	}
 
-    public void dropItemNaturally(CraftWorld world, Location loc, CraftItemStack item) { //inspired by org.bukkit.craftbukkit.CraftWorld
-        double xs = loc.getX() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-        double ys = loc.getY() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-        double zs = loc.getZ() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-        
-        EntityItem entity = new EntityItem(world.getHandle(), xs, ys, zs, item.getHandle());
-        entity.pickupDelay = 10;
-        world.getHandle().addEntity(entity);
-    }
+	public void dropItemNaturally(CraftWorld world, Location loc, CraftItemStack item) { //inspired by org.bukkit.craftbukkit.CraftWorld
+		double xs = loc.getX() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+		double ys = loc.getY() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+		double zs = loc.getZ() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+		
+		EntityItem entity = new EntityItem(world.getHandle(), xs, ys, zs, item.getHandle());
+		entity.pickupDelay = 10;
+		world.getHandle().addEntity(entity);
+	}
 }

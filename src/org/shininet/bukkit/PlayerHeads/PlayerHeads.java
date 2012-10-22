@@ -185,15 +185,14 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			
 			tileEntity.b(headNBT); // copies the TE's NBT data into headNBT
 
-			headNBT.remove("x");
-			headNBT.remove("y");
-			headNBT.remove("z");
+			headNBT.setString("test", "moo");
 			
 			CraftItemStack head = new CraftItemStack(Material.getMaterial(63),1,(short)0); //TODO temp sign
 			head.getHandle().tag = headNBT;
 			
 			block.setType(Material.AIR);
 			block.getWorld().dropItemNaturally(block.getLocation(), head);
+			block.getWorld().dropItemNaturally(block.getLocation(), getHead(event.getPlayer().getName()));
 			
 			//((CraftBlock)block)
 			//block.getState()

@@ -25,6 +25,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
@@ -191,13 +192,16 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			
 			tileEntity.b(blockNBT); // copies the TE's NBT data into blockNBT
 			//String player = blockNBT.getString("ExtraType");
-			String player = blockNBT.getString("Text1");
-			if (!(player.equals(""))) {
+			String skullname = blockNBT.getString("Text1");
+			if (!(skullname.equals(""))) {
 				//event.setCancelled(true);
 				//block.setType(Material.AIR);
 				//dropItemNaturally(world, location, getHead(player));
-				block.getDrops().clear();
-				block.getDrops().add(getHead(player));
+				
+				ItemStack player_hand = event.getPlayer().getItemInHand();
+				
+				block.getDrops(player_hand).clear();
+				block.getDrops(player_hand).add(getHead(skullname));
 			}
 		}
 	}

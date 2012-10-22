@@ -10,17 +10,13 @@ import net.minecraft.server.EntityItem;
 import net.minecraft.server.NBTTagCompound;
 import net.minecraft.server.TileEntity;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.block.CraftBlock;
-import org.bukkit.craftbukkit.entity.CraftItem;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,7 +24,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
@@ -37,6 +32,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable(){
+		getConfig().options().copyDefaults(true);
 		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents((Listener)this, this);
 	}
@@ -44,6 +40,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable() {
 		EntityDeathEvent.getHandlerList().unregister((Listener)this);
+		BlockBreakEvent.getHandlerList().unregister((Listener)this);
 	}
 
 	@Override
@@ -187,25 +184,25 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			CraftWorld world = (CraftWorld)block.getWorld();
 			
 			TileEntity tileEntity = world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-			NBTTagCompound headNBT = new NBTTagCompound();
+			NBTTagCompound blockNBT = new NBTTagCompound();
 			
-			tileEntity.b(headNBT); // copies the TE's NBT data into headNBT
-			
-			CraftItemStack head = new CraftItemStack(Material.getMaterial(63),1,(short)0); //TODO temp sign
-			head.getHandle().tag = headNBT;
-			
-			block.setType(Material.AIR);
-			dropItemNaturally(world, location, head);
+			tileEntity.b(blockNBT); // copies the TE's NBT data into blockNBT
+			//String player = blockNBT.getString("ExtraType");
+			String player = blockNBT.getString("Text1");
+			if (!(player.equals(""))) {
+				block.setType(Material.AIR);
+				dropItemNaturally(world, location, getHead(player));
+			}
 		}
 	}
 	
-	public CraftItemStack getHead(String playername) { //TODO: temp = 298 .. Skull item = 397
+	public CraftItemStack getHead(String playername) {
 		CraftItemStack head;
 		try {
 			head = new CraftItemStack(Material.getMaterial(397),1,(short)3);
 		} catch (NullPointerException e) {
 			getLogger().warning("It seems you're not yet using version 1.4 .. falling back to a leather helm");
-			head = new CraftItemStack(Material.getMaterial(298),1,(short)55);
+			head = new CraftItemStack(Material.LEATHER_HELMET,1,(short)55);
 		}		
 		NBTTagCompound headNBT = new NBTTagCompound();
 		headNBT.setString("SkullOwner", playername);
@@ -222,5 +219,4 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         entity.pickupDelay = 10;
         world.getHandle().addEntity(entity);
     }
-	
 }

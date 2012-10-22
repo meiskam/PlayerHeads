@@ -178,7 +178,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 63 && getConfig().getBoolean("hookbreak", true)) { //TODO: temp sign = 63 .. head block = 144
+		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 144 && getConfig().getBoolean("hookbreak", true)) { //TODO: temp sign = 63 .. head block = 144
 			Block block = event.getBlock();
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
@@ -187,8 +187,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			NBTTagCompound blockNBT = new NBTTagCompound();
 			
 			tileEntity.b(blockNBT); // copies the TE's NBT data into blockNBT
-			//String player = blockNBT.getString("ExtraType");
-			String player = blockNBT.getString("Text1");
+			String player = blockNBT.getString("ExtraType");
+			//String player = blockNBT.getString("Text1");
 			if (!(player.equals(""))) {
 				block.setType(Material.AIR);
 				dropItemNaturally(world, location, getHead(player));

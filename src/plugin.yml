@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 1.0.0008
+version: 1.0.0009
 description: Drops a player's head when s/he dies
 author: meiskam
 
@@ -15,13 +15,13 @@ permissions:
   playerheads:
     description: Gives all PlayerHeads permissions
     children:
-      playerheads.droprate: true
+      playerheads.config: true
       playerheads.spawn: true
   playerheads.config:
     description: Allows user to edit, save, or reload configs
     children:
-      playerheads.config.view: true
-      playerheads.config.edit: true
+      playerheads.config.get: true
+      playerheads.config.set: true
   playerheads.config.get:
     description: Allows user to get configs
     default: op

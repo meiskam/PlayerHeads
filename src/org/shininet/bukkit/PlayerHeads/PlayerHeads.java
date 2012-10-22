@@ -66,7 +66,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 										try {
 											getConfig().set("droprate", Double.parseDouble(args[3]));
 										} catch (NumberFormatException e) {
-											sender.sendMessage("["+label+":config:set] ERROR: Can not convert "+args[3]+" to a number");
+											sender.sendMessage("["+label+":config:set] ERROR: Can not convert "+args[3].toLowerCase()+" to a number");
 										}
 									} else if (args[2].equalsIgnoreCase("pkonly")) {
 										if (args[3].equalsIgnoreCase("false") || args[3].equalsIgnoreCase("no") || args[3].equalsIgnoreCase("0")) {
@@ -141,9 +141,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 							sender.sendMessage("["+label+":spawn] Too many params!");
 						}
 					}
-				} else if (args[0].equalsIgnoreCase("somethingelse")) {
+/*				} else if (args[0].equalsIgnoreCase("somethingelse")) {
 					sender.sendMessage("["+label+":??] moo");
-				} else {
+*/				} else {
 					sender.sendMessage("["+label+":??] Invalid subcommand");
 				}
 			}

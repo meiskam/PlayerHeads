@@ -1,2 +1,3 @@
 pkonly: true
 droprate: 0.05
+hookbreak: true

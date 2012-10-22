@@ -6,17 +6,21 @@ package org.shininet.bukkit.PlayerHeads;
 
 import java.util.Random;
 
+import net.minecraft.server.EntityItem;
 import net.minecraft.server.NBTTagCompound;
 import net.minecraft.server.TileEntity;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.block.CraftBlock;
+import org.bukkit.craftbukkit.entity.CraftItem;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,11 +28,12 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 	
-	private Random generator = new Random();
+	private Random prng = new Random();
 	
 	@Override
 	public void onEnable(){
@@ -162,7 +167,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public void onEntityDeath(EntityDeathEvent event) {
 		if (event.getEntityType() == EntityType.PLAYER) {
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
-			Double dropchance = generator.nextDouble();
+			Double dropchance = prng.nextDouble();
 /*			((Player)(event.getEntity())).sendMessage(new StringBuilder("[ph] ").append(getConfig().getBoolean("pkonly", true))
 					.append(", ").append(event.getEntity().getKiller() instanceof Player).append(", ")
 					.append(dropchance).append(", ").append(dropchance <= getConfig().getDouble("droprate", 0.05)).toString());
@@ -179,23 +184,18 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 63 && getConfig().getBoolean("hookbreak", true)) { //TODO: temp sign = 63 .. head block = 144
 			Block block = event.getBlock();
 			Location location = block.getLocation();
+			CraftWorld world = (CraftWorld)block.getWorld();
 			
-			TileEntity tileEntity = ((CraftWorld)block.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+			TileEntity tileEntity = world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 			NBTTagCompound headNBT = new NBTTagCompound();
 			
 			tileEntity.b(headNBT); // copies the TE's NBT data into headNBT
-
-			headNBT.setString("test", "moo");
 			
 			CraftItemStack head = new CraftItemStack(Material.getMaterial(63),1,(short)0); //TODO temp sign
 			head.getHandle().tag = headNBT;
 			
 			block.setType(Material.AIR);
-			block.getWorld().dropItemNaturally(block.getLocation(), head);
-			block.getWorld().dropItemNaturally(block.getLocation(), getHead(event.getPlayer().getName()));
-			
-			//((CraftBlock)block)
-			//block.getState()
+			dropItemNaturally(world, location, head);
 		}
 	}
 	
@@ -212,5 +212,15 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		head.getHandle().tag = headNBT;
 		return head;
 	}
-//NullPointerException
+
+    public void dropItemNaturally(CraftWorld world, Location loc, CraftItemStack item) { //inspired by org.bukkit.craftbukkit.CraftWorld
+        double xs = loc.getX() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+        double ys = loc.getY() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+        double zs = loc.getZ() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
+        
+        EntityItem entity = new EntityItem(world.getHandle(), xs, ys, zs, item.getHandle());
+        entity.pickupDelay = 10;
+        world.getHandle().addEntity(entity);
+    }
+	
 }

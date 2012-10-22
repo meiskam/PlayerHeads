@@ -18,6 +18,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -165,18 +166,22 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		if (event.getEntityType() == EntityType.PLAYER) {
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
 			Double dropchance = prng.nextDouble();
+			Player player = (Player)event.getEntity();
+			LivingEntity killer = player.getKiller();
 
-			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next if line
-			 || (getConfig().getBoolean("pkonly", true) && (event.getEntity().getKiller() instanceof Player))) // if pkonly's on AND killer is player, continue 
+			if ((!(getConfig().getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next 2 if lines
+			 || (getConfig().getBoolean("pkonly", true) && (killer instanceof Player) 
+				 && (killer != player) && ((Player)killer).hasPermission("playerheads.canbehead"))) // if pkonly's on AND killer is a Player AND killer != player, AND killer has permission to lop heads, continue
+			 && (player.hasPermission("playerheads.canloosehead")) // if player has permission to drop his head when dies
 			 && (dropchance <= getConfig().getDouble("droprate", 0.05))) { // check if it should drop via droprate
-				event.getDrops().add(getHead(((Player)(event.getEntity())).getName())); // drop the precious player head
+				event.getDrops().add(getHead(player.getName())); // drop the precious player head
 			}
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 144 && getConfig().getBoolean("hookbreak", true)) {
+		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 63 && getConfig().getBoolean("hookbreak", true)) { // skull=144, sign=63
 			Block block = event.getBlock();
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
@@ -185,11 +190,14 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			NBTTagCompound blockNBT = new NBTTagCompound();
 			
 			tileEntity.b(blockNBT); // copies the TE's NBT data into blockNBT
-			String player = blockNBT.getString("ExtraType");
-			//String player = blockNBT.getString("Text1"); // sign id=63
+			//String player = blockNBT.getString("ExtraType");
+			String player = blockNBT.getString("Text1");
 			if (!(player.equals(""))) {
-				block.setType(Material.AIR);
-				dropItemNaturally(world, location, getHead(player));
+				//event.setCancelled(true);
+				//block.setType(Material.AIR);
+				//dropItemNaturally(world, location, getHead(player));
+				block.getDrops().clear();
+				block.getDrops().add(getHead(player));
 			}
 		}
 	}

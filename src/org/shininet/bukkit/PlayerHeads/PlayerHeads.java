@@ -188,7 +188,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && getConfig().getBoolean("hookbreak", true)) { // skull=144, sign=63
+		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && getConfig().getBoolean("hookbreak", true)) {
 			Block block = event.getBlock();
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
@@ -200,6 +200,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			String skullname = blockNBT.getString("ExtraType");
 			//String skullname = blockNBT.getString("Text1");
 			if (!(skullname.equals(""))) {
+				breaklist.add(location);
 				event.setCancelled(true);
 				block.setType(Material.AIR);
 				dropItemNaturally(world, location, getHead(skullname));
@@ -212,16 +213,16 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public void onItemSpawn(ItemSpawnEvent event) { // workaround for the dupe bug
 		if (!(event.isCancelled()) && getConfig().getBoolean("hookbreak", true)) {
 			CraftItemStack itemStack = (CraftItemStack)event.getEntity().getItemStack();
-			if (itemStack.getType() == Material.SKULL_ITEM && itemStack.getDurability() == (short)3 && 
-					itemStack.getHandle().tag.getString("ExtraType").equals("")) {
-				Location itemLocation = event.getEntity().getLocation();
-				
-				//breaklist.iterator()
-				for (int i = 0; i < breaklist.size(); i++) {
-					if (breaklist.get(i).distanceSquared(itemLocation) <= 2) {
-						event.setCancelled(true);
-						breaklist.remove(event.getEntity().getLocation());
-						break;
+			if (itemStack.getType() == Material.SKULL_ITEM && itemStack.getDurability() == (short)3) {
+				NBTTagCompound itemNBT = itemStack.getHandle().tag;
+				if (itemNBT == null || itemNBT.getString("SkullOwner").equals("")) {
+					Location itemLocation = event.getEntity().getLocation();
+					for (int i = 0; i < breaklist.size(); i++) {
+						if (breaklist.get(i).distanceSquared(itemLocation) <= 2) {
+							event.setCancelled(true);
+							breaklist.remove(i);
+							break;
+						}
 					}
 				}
 			}

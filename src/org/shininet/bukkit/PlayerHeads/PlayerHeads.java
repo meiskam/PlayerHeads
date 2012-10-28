@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.PlayerHeads;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.server.EntityItem;
@@ -25,16 +26,21 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	private Random prng = new Random();
+	private ArrayList<Location> breaklist;
 	
 	@Override
 	public void onEnable(){
 		getConfig().options().copyDefaults(true);
 		saveDefaultConfig();
+		breaklist = new ArrayList<Location>();
 		getServer().getPluginManager().registerEvents((Listener)this, this);
 	}
  
@@ -42,6 +48,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public void onDisable() {
 		EntityDeathEvent.getHandlerList().unregister((Listener)this);
 		BlockBreakEvent.getHandlerList().unregister((Listener)this);
+		ItemSpawnEvent.getHandlerList().unregister((Listener)this);
 	}
 
 	@Override
@@ -127,7 +134,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 						if (args.length == 1) {
 							//spawn them their head
 							if (sender.hasPermission("playerheads.spawn.own")) {
-								if (((Player)sender).getInventory().addItem(getHead(((Player)sender).getName())).isEmpty()) {
+								if (addHead((Player)sender, ((Player)sender).getName())) {
 									sender.sendMessage("["+label+":spawn] Spawned you "+((Player)sender).getName()+"'s head");
 								} else {
 									sender.sendMessage("["+label+":spawn] Well I can't very well give you an item if your inventory is full");
@@ -138,7 +145,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 						} else if (args.length == 2) {
 							//spawn them args[1]'s head
 							if (sender.hasPermission("playerheads.spawn")) {
-								if (((Player)sender).getInventory().addItem(getHead(args[1])).isEmpty()) {
+								if (addHead((Player)sender, args[1])) {
 									sender.sendMessage("["+label+":spawn] Spawned you "+args[1]+"'s head");
 								} else {
 									sender.sendMessage("["+label+":spawn] Well I can't very well give you an item if your inventory is full");
@@ -181,7 +188,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getTypeId() == 144 && getConfig().getBoolean("hookbreak", true)) { // skull=144, sign=63
+		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && getConfig().getBoolean("hookbreak", true)) { // skull=144, sign=63
 			Block block = event.getBlock();
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
@@ -200,18 +207,53 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		}
 	}
 	
-	public CraftItemStack getHead(String playername) {
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void onItemSpawn(ItemSpawnEvent event) { // workaround for the dupe bug
+		if (!(event.isCancelled()) && getConfig().getBoolean("hookbreak", true)) {
+			CraftItemStack itemStack = (CraftItemStack)event.getEntity().getItemStack();
+			if (itemStack.getType() == Material.SKULL_ITEM && itemStack.getDurability() == (short)3 && 
+					itemStack.getHandle().tag.getString("ExtraType").equals("")) {
+				Location itemLocation = event.getEntity().getLocation();
+				
+				//breaklist.iterator()
+				for (int i = 0; i < breaklist.size(); i++) {
+					if (breaklist.get(i).distanceSquared(itemLocation) <= 2) {
+						event.setCancelled(true);
+						breaklist.remove(event.getEntity().getLocation());
+						break;
+					}
+				}
+			}
+		}
+	}
+	//ItemSpawnEvent
+	
+	public CraftItemStack getHead(String headname) {
 		CraftItemStack head;
 		try {
-			head = new CraftItemStack(Material.getMaterial(397),1,(short)3);
+			head = new CraftItemStack(Material.SKULL_ITEM,1,(short)3);
 		} catch (NullPointerException e) {
 			getLogger().warning("It seems you're not using CraftBukkit 1.4 or above .. falling back to a leather helm");
 			head = new CraftItemStack(Material.LEATHER_HELMET,1,(short)55);
 		}		
 		NBTTagCompound headNBT = new NBTTagCompound();
-		headNBT.setString("SkullOwner", playername);
+		headNBT.setString("SkullOwner", headname);
 		head.getHandle().tag = headNBT;
 		return head;
+	}
+	
+	public boolean addHead(Player player, String headname) {
+		PlayerInventory inv = player.getInventory();
+		int firstEmpty = inv.firstEmpty();
+		if (firstEmpty == -1) {
+			return false;
+		} else {
+			ItemStack[] invContents = inv.getContents();
+			invContents[firstEmpty] = getHead(headname);
+			inv.setContents(invContents);
+			return true;
+		}
 	}
 
 	public void dropItemNaturally(CraftWorld world, Location loc, CraftItemStack item) { //inspired by org.bukkit.craftbukkit.CraftWorld

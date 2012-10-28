@@ -41,6 +41,12 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		getConfig().options().copyDefaults(true);
 		saveDefaultConfig();
 		breaklist = new ArrayList<Location>();
+		try {
+		    Metrics metrics = new Metrics(this);
+		    metrics.start();
+		} catch (Exception e) {
+			getLogger().warning("Failed to submit the stats :-(");
+		}
 		getServer().getPluginManager().registerEvents((Listener)this, this);
 	}
  

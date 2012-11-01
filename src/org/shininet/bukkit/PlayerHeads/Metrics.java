@@ -26,7 +26,7 @@
  * either expressed or implied, of anybody else.
  */
 
-package org.shininet.bukkit.PlayerHeads;
+package org.shininet.bukkit.playerheads;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;

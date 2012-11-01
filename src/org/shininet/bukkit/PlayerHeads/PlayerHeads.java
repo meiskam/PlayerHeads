@@ -98,11 +98,11 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	public static String implode(Set<String> input, String glue) {
 		int i = 0;
-		String output = "";
+		StringBuilder output = new StringBuilder();
 		for (String key : input) {
-			if (i != 0) output += glue;
-			output += key;
+			if (i++ != 0) output.append(glue);
+			output.append(key);
 		}
-		return output;
+		return output.toString();
 	}
 }

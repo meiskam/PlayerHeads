@@ -97,7 +97,7 @@ public class PlayerHeadsListener implements Listener {
 			
 			if (skull.hasOwner()) {
 				StringBuilder message = new StringBuilder();
-				message.append("[PlayerHeads] That's ").append(skull.skullOwner).append("'s Skull");
+				message.append("[PlayerHeads] That's ").append(skull.skullOwner).append("'s Head");
 				if (skull.hasName()) {
 					message.append(" (").append(skull.name).append(")");
 				}

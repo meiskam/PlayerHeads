@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class PlayerHeadsListener implements Listener {
@@ -84,5 +85,39 @@ public class PlayerHeadsListener implements Listener {
 			}
 		}
 	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onBlockDamage(BlockDamageEvent event) {
+		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && event.getPlayer().getGameMode() == GameMode.SURVIVAL && plugin.configFile.getBoolean("clickinfo", true)) {
+			Block block = event.getBlock();
+			Location location = block.getLocation();
+			CraftWorld world = (CraftWorld)block.getWorld();
+			
+			Skull skull = new Skull(world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
+			
+			if (skull.hasOwner()) {
+				StringBuilder message = new StringBuilder();
+				message.append("[PlayerHeads] That's ").append(skull.skullOwner).append("'s Skull");
+				if (skull.hasName()) {
+					message.append(" (").append(skull.name).append(")");
+				}
+				event.getPlayer().sendMessage(message.toString());
+			}
+		}
+	}
+	
+/*	@EventHandler(priority = EventPriority.MONITOR)
+	public void onBlockPlace(BlockPlaceEvent event) {
+		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && plugin.configFile.getBoolean("extradata", true)) {
+			CraftBlock block = (CraftBlock)event.getBlock();
+			Location location = block.getLocation();
+			
+			
+			Skull skull = new Skull((CraftItemStack)event.getItemInHand());
+			
+			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ExtraTileData(plugin, skull, location));
 
+		}
+	}
+*/	
 }

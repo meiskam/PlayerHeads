@@ -19,6 +19,7 @@ import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,7 +37,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("pkonly", configType.BOOLEAN);
 			put("droprate", configType.DOUBLE);
 			put("hookbreak", configType.BOOLEAN);
-			put("rightclickinfo", configType.BOOLEAN);
+			put("clickinfo", configType.BOOLEAN);
 			put("mobpkonly", configType.BOOLEAN);
 			put("creeperdroprate", configType.DOUBLE);
 			put("zombiedroprate", configType.DOUBLE);
@@ -68,10 +69,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
-		
 		EntityDeathEvent.getHandlerList().unregister(listener);
 		BlockBreakEvent.getHandlerList().unregister(listener);
-		//BlockDamageEvent
+		BlockDamageEvent.getHandlerList().unregister(listener);
 		//BlockPlaceEvent
 	}
 	

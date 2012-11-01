@@ -132,28 +132,32 @@ public class Skull {
 	public NBTTagCompound getNBT() {
 		if (hasTag()) {
 			NBTTagCompound skullNBT = new NBTTagCompound();
-			if (hasEnch()) {
-				skullNBT.set("ench", ench);
-			}
-			if (hasName() || hasLore()) {
-				NBTTagCompound skullNBTdisplay = new NBTTagCompound();
-				if (hasName()) {
-					skullNBTdisplay.setString("Name", name);
-				}
-				if (hasLore()) {
-					skullNBTdisplay.set("Lore", lore);
-				}
-				skullNBT.setCompound("display", skullNBTdisplay);
-			}
-			if (hasOwner()) {
-				skullNBT.setString("SkullOwner", skullOwner);
-			}
-			if (hasRepairCost()) {
-				skullNBT.setInt("RepairCost", repairCost);
-			}
-			return skullNBT;
+			return addNBT(skullNBT);
 		}
 		return null;
+	}
+	
+	public NBTTagCompound addNBT(NBTTagCompound skullNBT) {
+		if (hasEnch()) {
+			skullNBT.set("ench", ench);
+		}
+		if (hasName() || hasLore()) {
+			NBTTagCompound skullNBTdisplay = new NBTTagCompound();
+			if (hasName()) {
+				skullNBTdisplay.setString("Name", name);
+			}
+			if (hasLore()) {
+				skullNBTdisplay.set("Lore", lore);
+			}
+			skullNBT.setCompound("display", skullNBTdisplay);
+		}
+		if (hasOwner()) {
+			skullNBT.setString("SkullOwner", skullOwner);
+		}
+		if (hasRepairCost()) {
+			skullNBT.setInt("RepairCost", repairCost);
+		}
+		return skullNBT;
 	}
 	
 	public static CraftItemStack getItemStack(int damage) {

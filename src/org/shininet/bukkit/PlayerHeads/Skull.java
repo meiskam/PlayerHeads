@@ -6,6 +6,7 @@ package org.shininet.bukkit.playerheads;
 
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
+import org.bukkit.inventory.ItemStack;
 
 import net.minecraft.server.NBTTagCompound;
 import net.minecraft.server.NBTTagList;
@@ -38,6 +39,10 @@ public class Skull {
 			fakeConstructor(skullNBT);
 		}
 		this.damage = (int)(skull.getDurability());
+	}
+	
+	public Skull(ItemStack skull) {
+		this((CraftItemStack)skull);
 	}
 	
 	public Skull(TileEntity skullTE) {

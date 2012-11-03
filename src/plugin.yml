@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 2.0.0033
+version: 2.0.0037
 description: Drops a player's head when s/he dies
 author: meiskam
 
@@ -35,6 +35,9 @@ permissions:
       playerheads.spawn.own: true
   playerheads.spawn.own:
     description: Spawn your own head
+    default: op
+  playerheads.rename:
+    description: User can change the skin of the player head in their hand
     default: op
   playerheads.canbehead:
     description: User can remove heads from others

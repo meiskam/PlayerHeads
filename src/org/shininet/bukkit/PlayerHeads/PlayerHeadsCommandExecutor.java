@@ -6,11 +6,13 @@ package org.shininet.bukkit.playerheads;
 
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 	
@@ -24,7 +26,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if (cmd.getName().equalsIgnoreCase("PlayerHeads")) {
 			if (args.length == 0) {
-				sender.sendMessage("["+label+"] Subcommands: config, spawn");
+				sender.sendMessage("["+label+"] Subcommands: config, spawn, rename");
 			} else {
 				if (args[0].equalsIgnoreCase("config")) {
 					if (args.length == 1) {
@@ -118,12 +120,46 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 						}
 						if ((skullOwner.equals(((Player)sender).getName()) && sender.hasPermission("playerheads.spawn.own")) || sender.hasPermission("playerheads.spawn")) {
 							if (plugin.addHead((Player)sender, skullOwner)) {
-								sender.sendMessage("["+label+":spawn] Spawned you "+skullOwner+"'s head");
+								sender.sendMessage("["+label+":spawn] Spawned you "+skullOwner+"'s Head");
 							} else {
 								sender.sendMessage("["+label+":spawn] Well I can't very well give you an item if your inventory is full");
 							}
 						} else {
 							sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
+						}
+					}
+				} else if (args[0].equalsIgnoreCase("rename")) {
+					if (!(sender instanceof Player)) {
+						sender.sendMessage("["+label+":spawn] Sorry console, heads are for players!");
+					}
+					else {
+						if (sender.hasPermission("playerheads.rename")) {
+							//if (args.length == 1) {
+							//	sender.sendMessage("["+label+":rename] You must enter a player's name");
+							//} else 
+							if ((args.length == 1) || (args.length == 2)) {
+								ItemStack hand = ((Player)sender).getItemInHand();
+								if (hand.getData().getItemType() == Material.SKULL_ITEM) {
+									Skull skull = new Skull (((Player)sender).getItemInHand());
+									if (skull.damage == 3) {
+										if (args.length == 2) {
+											skull.skullOwner = args[1];
+										} else {
+											skull.skullOwner = "";
+										}
+										((Player)sender).setItemInHand(skull.getItemStack());
+										sender.sendMessage("["+label+":rename] Successfully renamed Head");
+									} else {
+										sender.sendMessage("["+label+":rename] That's not a player head");
+									}
+								} else {
+									sender.sendMessage("["+label+":rename] That's not a player head");
+								}
+							} else {
+								sender.sendMessage("["+label+":rename] Too many params!");
+							}
+						} else {
+							sender.sendMessage("["+label+":rename] You don't have permission to use that command");
 						}
 					}
 /*				} else if (args[0].equalsIgnoreCase("somethingelse")) {

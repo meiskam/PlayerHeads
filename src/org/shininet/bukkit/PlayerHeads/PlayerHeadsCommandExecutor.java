@@ -148,34 +148,32 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 						sender.sendMessage("["+label+":spawn] Sorry console, heads are for players!");
 					}
 					else {
-						if (sender.hasPermission("playerheads.rename")) {
-							//if (args.length == 1) {
-							//	sender.sendMessage("["+label+":rename] You must enter a player's name");
-							//} else 
-							if ((args.length == 1) || (args.length == 2)) {
-								ItemStack hand = ((Player)sender).getItemInHand();
-								if (hand.getData().getItemType() == Material.SKULL_ITEM) {
-									Skull skull = new Skull (((Player)sender).getItemInHand());
-									if (skull.damage == 3) {
-										if (args.length == 2) {
-											skull.skullOwner = args[1];
-										} else {
-											skull.skullOwner = "";
-										}
-										((Player)sender).setItemInHand(skull.getItemStack());
-										sender.sendMessage("["+label+":rename] Successfully renamed Head");
-									} else {
-										sender.sendMessage("["+label+":rename] That's not a player head");
-									}
-								} else {
-									sender.sendMessage("["+label+":rename] That's not a player head");
-								}
-							} else {
-								sender.sendMessage("["+label+":rename] Too many params!");
-							}
-						} else {
+						if (!sender.hasPermission("playerheads.rename")) {
 							sender.sendMessage("["+label+":rename] You don't have permission to use that command");
+							return true;
 						}
+						if (!((args.length == 1) || (args.length == 2))) {
+							sender.sendMessage("["+label+":rename] Syntax: "+label+" rename [headname]");
+							return true;
+						}
+						ItemStack hand = ((Player)sender).getItemInHand();
+						if (hand.getData().getItemType() != Material.SKULL_ITEM) {
+							sender.sendMessage("["+label+":rename] That's not a player head");
+							return true;
+						}
+						Skull skull = new Skull (((Player)sender).getItemInHand());
+						if (skull.damage != 3) {
+							sender.sendMessage("["+label+":rename] That's not a player head");
+							return true;
+						}
+						if (args.length == 2) {
+							skull.skullOwner = args[1];
+						} else {
+							skull.skullOwner = "";
+						}
+						((Player)sender).setItemInHand(skull.getItemStack());
+						sender.sendMessage("["+label+":rename] Successfully renamed Head");
+						return true;
 					}
 /*				} else if (args[0].equalsIgnoreCase("somethingelse")) {
 					sender.sendMessage("["+label+":??] moo");

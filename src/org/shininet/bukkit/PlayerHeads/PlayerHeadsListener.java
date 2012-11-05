@@ -38,14 +38,12 @@ public class PlayerHeadsListener implements Listener {
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
 			Player killer = player.getKiller();
-
-			if ((dropchance <= plugin.configFile.getDouble("droprate", 0.05)) && // check if it should drop via droprate
-			 (!(plugin.configFile.getBoolean("pkonly", true)) // if pkonly's off, continue, don't check next 2 if lines
-			 || ((plugin.configFile.getBoolean("pkonly", true) && (killer != null) 
-				 && (killer != player) && killer.hasPermission("playerheads.canbehead")))) // if pkonly's on AND killer is a Player AND killer != player, AND killer has permission to lop heads, continue
-			 && (player.hasPermission("playerheads.canloosehead"))) { // if player has permission to drop his head when dies
-				event.getDrops().add(new Skull(player.getName()).getItemStack()); //getHead(player.getName())); // drop the precious player head
-			}
+			
+			if (dropchance >= plugin.configFile.getDouble("droprate", 0.05)) { return; }
+			if (!player.hasPermission("playerheads.canloosehead")) { return; }
+			if (plugin.configFile.getBoolean("pkonly", true) && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
+			
+			event.getDrops().add(new Skull(player.getName()).getItemStack()); // drop the precious player head
 			break;
 		case CREEPER:
 			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate", 0.005));
@@ -63,10 +61,10 @@ public class PlayerHeadsListener implements Listener {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
-		if ((dropchance <= droprate) && (!(plugin.configFile.getBoolean("mobpkonly", true)) || 
-				((plugin.configFile.getBoolean("mobpkonly", true) && (killer != null) && killer.hasPermission("playerheads.canbeheadmob")))) ) {
-			event.getDrops().add(Skull.getItemStack(damage));
-		}
+		if (dropchance >= droprate) { return; }
+		if (plugin.configFile.getBoolean("mobpkonly", true) && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
+		
+		event.getDrops().add(Skull.getItemStack(damage));
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)

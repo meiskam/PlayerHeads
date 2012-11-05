@@ -76,8 +76,6 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 												plugin.logger.warning("configType \""+PlayerHeads.configKeys.get(keySet.toLowerCase())+"\" unrecognised - this is a bug");
 												break;
 											}
-										}
-										if (keyFound) {
 											break;
 										}
 									}
@@ -95,6 +93,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 						} else if (args[1].equalsIgnoreCase("reload")) {
 							if (sender.hasPermission("playerheads.config.set")) {
 								plugin.reloadConfig();
+								plugin.configFile = plugin.getConfig();
 								sender.sendMessage("["+label+":config:reload] Config reloaded");
 							} else {
 								sender.sendMessage("["+label+":config:reload] You don't have permission to use that command");
@@ -105,28 +104,44 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					}
 				}
 				else if (args[0].equalsIgnoreCase("spawn")) {
-					if (!(sender instanceof Player)) {
-						sender.sendMessage("["+label+":spawn] Sorry console, heads are for players!");
+					String skullOwner;
+					boolean haspermission = false;
+					Player reciever;
+					
+					if (!(sender instanceof Player) && (args.length != 3)) {
+						sender.sendMessage("["+label+":spawn] Syntax: "+label+" spawn <headname> <reciever>");
+						return true;
 					}
-					else {
-						String skullOwner;
-						if (args.length == 1) {
-							skullOwner = ((Player)sender).getName();
-						} else if (args.length == 2) {
-							skullOwner = args[1];
-						} else {
-							sender.sendMessage("["+label+":spawn] Too many params!");
+					reciever = (Player)sender;
+					if (args.length == 1) {
+						skullOwner = ((Player)sender).getName();
+						haspermission = sender.hasPermission("playerheads.spawn.own");
+					} else if (args.length == 2) {
+						skullOwner = args[1];
+						haspermission = sender.hasPermission("playerheads.spawn");
+					} else if (args.length == 3) {
+						if ((reciever = plugin.getServer().getPlayer(args[2])) == null) {
+							sender.sendMessage("["+label+":spawn] Can not find "+args[2]+" online");
 							return true;
 						}
-						if ((skullOwner.equals(((Player)sender).getName()) && sender.hasPermission("playerheads.spawn.own")) || sender.hasPermission("playerheads.spawn")) {
-							if (plugin.addHead((Player)sender, skullOwner)) {
-								sender.sendMessage("["+label+":spawn] Spawned you "+skullOwner+"'s Head");
-							} else {
-								sender.sendMessage("["+label+":spawn] Well I can't very well give you an item if your inventory is full");
-							}
+						skullOwner = args[1];
+						if (sender instanceof Player) {
+							haspermission = true;
 						} else {
-							sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
+							haspermission = sender.hasPermission("playerheads.spawn");
 						}
+					} else {
+						sender.sendMessage("["+label+":spawn] Syntax: "+label+" spawn [headname] [reciever]");
+						return true;
+					}
+					if (!haspermission) {
+						sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
+						return true;
+					}
+					if (plugin.addHead(reciever, skullOwner)) {
+						sender.sendMessage("["+label+":spawn] Spawned "+skullOwner+"'s Head");
+					} else {
+						sender.sendMessage("["+label+":spawn] Well I can't very well spawn a head if the inventory is full");
 					}
 				} else if (args[0].equalsIgnoreCase("rename")) {
 					if (!(sender instanceof Player)) {

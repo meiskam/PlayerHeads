@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 
 import net.minecraft.server.EntityItem;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
@@ -42,6 +44,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("creeperdroprate", configType.DOUBLE);
 			put("zombiedroprate", configType.DOUBLE);
 			put("skeletondroprate", configType.DOUBLE);
+			put("fixcase", configType.BOOLEAN);
 		}
 	};
 	public static final String configKeysString = implode(configKeys.keySet(), ", ");
@@ -75,7 +78,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		//BlockPlaceEvent
 	}
 	
-	public boolean addHead(Player player, String skullOwner) {
+	public static boolean addHead(Player player, String skullOwner) {
 		PlayerInventory inv = player.getInventory();
 		int firstEmpty = inv.firstEmpty();
 		if (firstEmpty == -1) {
@@ -104,5 +107,22 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			output.append(key);
 		}
 		return output.toString();
+	}
+	
+	public static String fixcase(String inputName) {
+		String inputNameLC = inputName.toLowerCase();
+		Player player = Bukkit.getServer().getPlayerExact(inputNameLC);
+
+		if (player != null) {
+			return player.getName();
+		}
+		
+		for (OfflinePlayer offPlayer : Bukkit.getServer().getOfflinePlayers()) {
+			if (offPlayer.getName().toLowerCase().equals(inputNameLC)) {
+				return offPlayer.getName();
+			}
+		}
+		
+		return inputName;
 	}
 }

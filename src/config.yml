@@ -1,3 +1,4 @@
+# PlayerHeads Configuration
 # Defaults/explanation:
 #
 # pkonly: true				[true/false]	When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
@@ -8,6 +9,7 @@
 # creeperdroprate: 0.005	[0.0 -> 1.0]	Chance that a mob trophy will drop when a creeper dies (1 is 100%, 0 is never)
 # zombiedroprate: 0.005		[0.0 -> 1.0]	Chance that a mob trophy will drop when a zombie dies (1 is 100%, 0 is never)
 # skeletondroprate: 0.005	[0.0 -> 1.0]	Chance that a mob trophy will drop when a skeleton dies (1 is 100%, 0 is never)
+# fixcase: true				[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 #
 
 pkonly: true
@@ -18,3 +20,4 @@ mobpkonly: true
 creeperdroprate: 0.005
 zombiedroprate: 0.005
 skeletondroprate: 0.005
+fixcase: true

@@ -122,7 +122,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				return true;
 			}
 			reciever = (Player)sender;
-			if (args.length == 1) {
+			if ((args.length == 1) || ((args.length == 2) && ((Player)sender).getName().equalsIgnoreCase(args[1]))) {
 				skullOwner = ((Player)sender).getName();
 				haspermission = sender.hasPermission("playerheads.spawn.own");
 			} else if (args.length == 2) {
@@ -147,7 +147,10 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
 				return true;
 			}
-			if (plugin.addHead(reciever, skullOwner)) {
+			if (plugin.configFile.getBoolean("fixcase", true)) {
+				skullOwner = PlayerHeads.fixcase(skullOwner);
+			}
+			if (PlayerHeads.addHead(reciever, skullOwner)) {
 				sender.sendMessage("["+label+":spawn] Spawned "+skullOwner+"'s Head");
 			} else {
 				sender.sendMessage("["+label+":spawn] Well I can't very well spawn a head if the inventory is full");
@@ -176,8 +179,12 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":rename] That's not a player head");
 				return true;
 			}
-			if (args.length == 2) {
-				skull.skullOwner = args[1];
+			if (args.length >= 2) {
+				if (plugin.configFile.getBoolean("fixcase", true)) {
+					skull.skullOwner = PlayerHeads.fixcase(args[1]);
+				} else {
+					skull.skullOwner = args[1];
+				}
 			} else {
 				skull.skullOwner = "";
 			}

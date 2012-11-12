@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerHeadsListener implements Listener {
 
@@ -86,8 +87,16 @@ public class PlayerHeadsListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBlockDamage(BlockDamageEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && event.getPlayer().getGameMode() == GameMode.SURVIVAL && plugin.configFile.getBoolean("clickinfo", false)) {
-			Block block = event.getBlock();
+		ClickInfoHelper(event.getPlayer(), event.getBlock());
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		ClickInfoHelper(event.getPlayer(), event.getClickedBlock());
+	}
+	
+	public void ClickInfoHelper(Player player, Block block) {
+		if (block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo", false)) {
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
 			
@@ -99,7 +108,7 @@ public class PlayerHeadsListener implements Listener {
 				if (skull.hasName()) {
 					message.append(" (").append(skull.name).append(")");
 				}
-				event.getPlayer().sendMessage(message.toString());
+				player.sendMessage(message.toString());
 			}
 		}
 	}

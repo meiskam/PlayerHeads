@@ -122,10 +122,10 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				return true;
 			}
 			reciever = (Player)sender;
-			if ((args.length == 1) || ((args.length == 2) && ((Player)sender).getName().equalsIgnoreCase(args[1]))) {
+			if ((args.length == 1) || ((args.length == 2) && (sender instanceof Player) && ((Player)sender).getName().equalsIgnoreCase(args[1]))) {
 				skullOwner = ((Player)sender).getName();
 				haspermission = sender.hasPermission("playerheads.spawn.own");
-			} else if (args.length == 2) {
+			} else if ((args.length == 2) && (sender instanceof Player)) {
 				skullOwner = args[1];
 				haspermission = sender.hasPermission("playerheads.spawn");
 			} else if (args.length == 3) {

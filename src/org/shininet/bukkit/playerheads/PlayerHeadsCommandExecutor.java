@@ -14,6 +14,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+/**
+* @author meiskam
+*/
+
 public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 	
 	private PlayerHeads plugin;

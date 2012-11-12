@@ -26,6 +26,10 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+* @author meiskam
+*/
+
 public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	private final Random prng = new Random();

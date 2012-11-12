@@ -12,6 +12,10 @@ import net.minecraft.server.NBTTagCompound;
 import net.minecraft.server.NBTTagList;
 import net.minecraft.server.TileEntity;
 
+/**
+* @author meiskam
+*/
+
 public class Skull {
 	public String skullOwner;
 	public String name;

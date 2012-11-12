@@ -20,6 +20,10 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+/**
+* @author meiskam
+*/
+
 public class PlayerHeadsListener implements Listener {
 
 	private final Random prng = new Random();

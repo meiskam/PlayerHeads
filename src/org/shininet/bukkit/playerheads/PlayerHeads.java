@@ -49,12 +49,17 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("zombiedroprate", configType.DOUBLE);
 			put("skeletondroprate", configType.DOUBLE);
 			put("fixcase", configType.BOOLEAN);
+			put("autoupdate", configType.BOOLEAN);
 		}
 	};
 	public static final String configKeysString = implode(configKeys.keySet(), ", ");
 	//public Map<String, Object> configMap = new HashMap<String, Object>();
 	public Logger logger;
 	public FileConfiguration configFile;
+	private static boolean updateReady = false;
+	private static String updateName = "";
+	private static long updateSize = 0;
+	private static final String updateSlug = "player-heads";
 	
 	@Override
 	public void onEnable(){
@@ -68,6 +73,16 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		} catch (Exception e) {
 			logger.warning("Failed to start Metrics");
 		}
+		try {
+			if (configFile.getBoolean("autoupdate") && !(updateReady)) {
+				Updater updater = new Updater(this, updateSlug, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
+				updateReady = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
+				updateName = updater.getLatestVersionString(); // Get the latest version
+				updateSize = updater.getFileSize(); // Get latest size
+			}
+		} catch (Exception e) {
+			logger.warning("Failed to start Updater");
+		}
 		listener = new PlayerHeadsListener(this);
 		commandExecutor = new PlayerHeadsCommandExecutor(this);
 		getServer().getPluginManager().registerEvents(listener, this);
@@ -80,6 +95,22 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		BlockBreakEvent.getHandlerList().unregister(listener);
 		BlockDamageEvent.getHandlerList().unregister(listener);
 		//BlockPlaceEvent
+	}
+
+	public boolean getUpdateReady() {
+		return updateReady;
+	}
+
+	public String getUpdateName() {
+		return updateName;
+	}
+
+	public long getUpdateSize() {
+		return updateSize;
+	}
+
+	public void update() {
+		new Updater(this, updateSlug, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
 	}
 	
 	public static boolean addHead(Player player, String skullOwner) {

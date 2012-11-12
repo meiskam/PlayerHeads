@@ -12,12 +12,13 @@ commands:
     aliases: ph
     
 permissions:
-  playerheads:
+  playerheads.*:
     description: Gives all PlayerHeads permissions
     children:
-      playerheads.config: true
+      playerheads.config.*: true
       playerheads.spawn: true
-  playerheads.config:
+      playerheads.update: true
+  playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     children:
       playerheads.config.get: true
@@ -48,3 +49,6 @@ permissions:
   playerheads.canbeheadmob:
     description: User can remove heads from mobs
     default: true
+  playerheads.update:
+    description: When update available, can view notice and manually update
+    default: op

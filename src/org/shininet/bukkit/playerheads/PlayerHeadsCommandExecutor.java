@@ -32,7 +32,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			return false;
 		}
 		if (args.length == 0) {
-			sender.sendMessage("["+label+"] Subcommands: config, spawn, rename");
+			sender.sendMessage("["+label+"] Subcommands: config, spawn, rename, update");
 			return true;
 		}
 		if (args[0].equalsIgnoreCase("config")) {
@@ -194,6 +194,22 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			}
 			((Player)sender).setItemInHand(skull.getItemStack());
 			sender.sendMessage("["+label+":rename] Successfully renamed Head");
+			return true;
+		} else if (args[0].equalsIgnoreCase("update")) {
+			if (!sender.hasPermission("playerheads.update")) {
+				sender.sendMessage("["+label+":update] You don't have permission to use that command");
+				return true;
+			}
+			if (!plugin.configFile.getBoolean("autoupdate")) {
+				sender.sendMessage("["+label+":update] Updater is disabled");
+				return true;
+			}
+			if (!plugin.getUpdateReady()) {
+				sender.sendMessage("["+label+":update] There is no update available");
+				return true;
+			}
+			plugin.update();
+			sender.sendMessage("["+label+":update] Update started, check console for info");
 			return true;
 /*		} else if (args[0].equalsIgnoreCase("somethingelse")) {
 			sender.sendMessage("["+label+":??] moo");

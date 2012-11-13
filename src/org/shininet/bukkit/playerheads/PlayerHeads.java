@@ -23,6 +23,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -94,7 +95,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		EntityDeathEvent.getHandlerList().unregister(listener);
 		BlockBreakEvent.getHandlerList().unregister(listener);
 		BlockDamageEvent.getHandlerList().unregister(listener);
-		//BlockPlaceEvent
+		PlayerInteractEvent.getHandlerList().unregister(listener);
 	}
 
 	public boolean getUpdateReady() {

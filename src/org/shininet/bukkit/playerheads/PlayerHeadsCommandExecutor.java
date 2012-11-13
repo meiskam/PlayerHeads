@@ -119,17 +119,21 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 		else if (args[0].equalsIgnoreCase("spawn")) {
 			String skullOwner;
 			boolean haspermission = false;
-			Player reciever;
+			Player reciever = null;
+			boolean isConsoleSender = !(sender instanceof Player);
 			
-			if (!(sender instanceof Player) && (args.length != 3)) {
-				sender.sendMessage("["+label+":spawn] Syntax: "+label+" spawn <headname> <reciever>");
-				return true;
+			if (isConsoleSender) {
+				if (args.length != 3) {
+					sender.sendMessage("["+label+":spawn] Syntax: "+label+" spawn <headname> <reciever>");
+					return true;
+				}
+			} else {
+				reciever = (Player)sender;
 			}
-			reciever = (Player)sender;
-			if ((args.length == 1) || ((args.length == 2) && (sender instanceof Player) && ((Player)sender).getName().equalsIgnoreCase(args[1]))) {
+			if ((args.length == 1) || ((args.length == 2) && !isConsoleSender && ((Player)sender).getName().equalsIgnoreCase(args[1]))) {
 				skullOwner = ((Player)sender).getName();
 				haspermission = sender.hasPermission("playerheads.spawn.own");
-			} else if ((args.length == 2) && (sender instanceof Player)) {
+			} else if ((args.length == 2) && !isConsoleSender) {
 				skullOwner = args[1];
 				haspermission = sender.hasPermission("playerheads.spawn");
 			} else if (args.length == 3) {

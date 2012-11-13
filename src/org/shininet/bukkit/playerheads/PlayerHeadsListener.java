@@ -116,19 +116,4 @@ public class PlayerHeadsListener implements Listener {
 			}
 		}
 	}
-	
-/*	@EventHandler(priority = EventPriority.MONITOR)
-	public void onBlockPlace(BlockPlaceEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && plugin.configFile.getBoolean("extradata", true)) {
-			CraftBlock block = (CraftBlock)event.getBlock();
-			Location location = block.getLocation();
-			
-			
-			Skull skull = new Skull((CraftItemStack)event.getItemInHand());
-			
-			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new ExtraTileData(plugin, skull, location));
-
-		}
-	}
-*/	
 }

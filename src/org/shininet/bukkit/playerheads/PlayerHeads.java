@@ -24,6 +24,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -96,6 +97,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		BlockBreakEvent.getHandlerList().unregister(listener);
 		BlockDamageEvent.getHandlerList().unregister(listener);
 		PlayerInteractEvent.getHandlerList().unregister(listener);
+		PlayerJoinEvent.getHandlerList().unregister(listener);
 	}
 
 	public boolean getUpdateReady() {
@@ -112,6 +114,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 
 	public void update() {
 		new Updater(this, updateSlug, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
+		updateReady = false;
 	}
 	
 	public static boolean addHead(Player player, String skullOwner) {

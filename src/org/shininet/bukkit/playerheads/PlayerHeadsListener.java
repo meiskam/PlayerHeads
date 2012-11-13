@@ -19,6 +19,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 /**
 * @author meiskam
@@ -114,6 +115,17 @@ public class PlayerHeadsListener implements Listener {
 				}
 				player.sendMessage(message.toString());
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event)
+	{
+		Player player = event.getPlayer();
+		if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
+		{
+			player.sendMessage("[PlayerHeads] An update is available: " + plugin.getUpdateName() + " (" + plugin.getUpdateSize() + " bytes)");
+			player.sendMessage("[PlayerHeads] Type \"/PlayerHeads update\" if you would like to update.");
 		}
 	}
 }

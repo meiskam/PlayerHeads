@@ -92,7 +92,7 @@ public class PlayerHeadsListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo", false)) {
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo", false)) {
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
 			

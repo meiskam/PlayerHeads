@@ -21,7 +21,6 @@ import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -95,7 +94,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public void onDisable() {
 		EntityDeathEvent.getHandlerList().unregister(listener);
 		BlockBreakEvent.getHandlerList().unregister(listener);
-		BlockDamageEvent.getHandlerList().unregister(listener);
 		PlayerInteractEvent.getHandlerList().unregister(listener);
 		PlayerJoinEvent.getHandlerList().unregister(listener);
 	}

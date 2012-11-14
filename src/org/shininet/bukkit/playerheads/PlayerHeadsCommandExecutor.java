@@ -155,7 +155,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
 				return true;
 			}
-			if (plugin.configFile.getBoolean("fixcase", true)) {
+			if (plugin.configFile.getBoolean("fixcase")) {
 				skullOwner = PlayerHeads.fixcase(skullOwner);
 			}
 			if (PlayerHeads.addHead(reciever, skullOwner)) {
@@ -188,7 +188,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				return true;
 			}
 			if (args.length >= 2) {
-				if (plugin.configFile.getBoolean("fixcase", true)) {
+				if (plugin.configFile.getBoolean("fixcase")) {
 					skull.skullOwner = PlayerHeads.fixcase(args[1]);
 				} else {
 					skull.skullOwner = args[1];
@@ -212,8 +212,8 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":update] There is no update available");
 				return true;
 			}
-			plugin.update();
 			sender.sendMessage("["+label+":update] Update started, check console for info");
+			plugin.update();
 			return true;
 /*		} else if (args[0].equalsIgnoreCase("somethingelse")) {
 			sender.sendMessage("["+label+":??] moo");

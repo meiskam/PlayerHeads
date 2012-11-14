@@ -43,9 +43,9 @@ public class PlayerHeadsListener implements Listener {
 			Player player = (Player)event.getEntity();
 			Player killer = player.getKiller();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate", 0.05)) { return; }
+			if (dropchance >= plugin.configFile.getDouble("droprate")) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
-			if (plugin.configFile.getBoolean("pkonly", true) && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
+			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
 			event.getDrops().add(new Skull(player.getName()).getItemStack()); // drop the precious player head
 			if (plugin.configFile.getBoolean("broadcast")) {
@@ -59,13 +59,13 @@ public class PlayerHeadsListener implements Listener {
 			}
 			break;
 		case CREEPER:
-			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate", 0.005));
+			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate"));
 			break;
 		case ZOMBIE:
-			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate", 0.005));
+			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate"));
 			break;
 		case SKELETON:
-			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate", 0.005));
+			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate"));
 			break;
 		}
 	}
@@ -75,7 +75,7 @@ public class PlayerHeadsListener implements Listener {
 		Player killer = event.getEntity().getKiller();
 		
 		if (dropchance >= droprate) { return; }
-		if (plugin.configFile.getBoolean("mobpkonly", true) && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
+		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
 		event.getDrops().add(Skull.getItemStack(damage));
 	}
@@ -83,7 +83,7 @@ public class PlayerHeadsListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo", false)) {
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
 			

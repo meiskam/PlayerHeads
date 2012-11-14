@@ -6,6 +6,7 @@ package org.shininet.bukkit.playerheads;
 
 import java.util.Random;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -47,6 +48,15 @@ public class PlayerHeadsListener implements Listener {
 			if (plugin.configFile.getBoolean("pkonly", true) && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
 			event.getDrops().add(new Skull(player.getName()).getItemStack()); // drop the precious player head
+			if (plugin.configFile.getBoolean("broadcast")) {
+				if (killer == null) {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " was beheaded");
+				} else if (killer == player) {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " beheaded themselves");
+				} else {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " was beheaded by " + killer.getDisplayName() + ChatColor.RESET);
+				}
+			}
 			break;
 		case CREEPER:
 			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate", 0.005));

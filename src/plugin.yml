@@ -1,6 +1,6 @@
 name: PlayerHeads
-version: 2.2.0047
-description: Drops a player's head when s/he dies
+version: 2.3.0048
+description: Drops a player's head when s/he dies, also mob heads
 author: meiskam
 
 main: org.shininet.bukkit.playerheads.PlayerHeads

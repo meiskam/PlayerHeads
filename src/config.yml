@@ -10,6 +10,7 @@
 # skeletondroprate: 0.005	[0.0 -> 1.0]	Chance that a mob trophy will drop when a skeleton dies (1 is 100%, 0 is never)
 # fixcase: true				[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 # autoupdate: true			[true/false]	Checks for update on startup and gives admins option to manually update ingame
+# broadcast: true			[true/false]	Sends a global message when someone gets beheaded
 #
 
 pkonly: true
@@ -21,3 +22,4 @@ zombiedroprate: 0.005
 skeletondroprate: 0.005
 fixcase: true
 autoupdate: true
+broadcast: true

@@ -6,7 +6,6 @@ package org.shininet.bukkit.playerheads;
 
 import java.util.Random;
 
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -15,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -70,23 +68,6 @@ public class PlayerHeadsListener implements Listener {
 		if (plugin.configFile.getBoolean("mobpkonly", true) && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
 		event.getDrops().add(Skull.getItemStack(damage));
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && event.getPlayer().getGameMode() == GameMode.SURVIVAL && plugin.configFile.getBoolean("hookbreak", true)) {
-			Block block = event.getBlock();
-			Location location = block.getLocation();
-			CraftWorld world = (CraftWorld)block.getWorld();
-			
-			Skull skull = new Skull(world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
-
-			if (skull.hasTag()) {
-				event.setCancelled(true);
-				block.setType(Material.AIR);
-				plugin.dropItemNaturally(world, location, skull.getItemStack());
-			}
-		}
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)

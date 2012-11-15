@@ -47,13 +47,12 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:get] You don't have permission to use that command");
 					return true;
 				}
-				if (args.length == 2) {
-					sender.sendMessage("["+label+":config:get] Config variables: "+PlayerHeads.configKeysString);
-				} else if (args.length == 3) {
+				if (args.length == 3) {
 					String key = args[2].toLowerCase();
 					sender.sendMessage("["+label+":config:get] "+key+": "+plugin.configFile.get(key));
 				} else {
-					sender.sendMessage("["+label+":config:get] Syntax: "+label+" config get [variable]");
+					sender.sendMessage("["+label+":config:get] Syntax: "+label+" config get <variable>");
+					sender.sendMessage("["+label+":config:get] Config variables: "+PlayerHeads.configKeysString);
 				}
 				return true;
 			} else if (args[1].equalsIgnoreCase("set")) {
@@ -61,8 +60,11 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:set] You don't have permission to use that command");
 					return true;
 				}
-				if (args.length == 2 || args.length == 3) {
-					sender.sendMessage("["+label+":config:set] Config variables: "+PlayerHeads.configKeysString);
+				if (args.length == 3) {
+					String key = args[2].toLowerCase();
+					plugin.configFile.set(key, null);
+					plugin.saveConfig();
+					sender.sendMessage("["+label+":config:set] "+key+": "+plugin.configFile.get(key));
 					return true;
 				} else if (args.length == 4) {
 					String key = args[2].toLowerCase();
@@ -101,7 +103,8 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:set] "+key+": "+plugin.configFile.get(key));
 					return true;
 				} else {
-					sender.sendMessage("["+label+":config:set] Syntax: "+label+" config set [variable] [value]");
+					sender.sendMessage("["+label+":config:set] Syntax: "+label+" config set <variable> [value]");
+					sender.sendMessage("["+label+":config:set] Config variables: "+PlayerHeads.configKeysString);
 					return true;
 				}
 			} else if (args[1].equalsIgnoreCase("reload")) {

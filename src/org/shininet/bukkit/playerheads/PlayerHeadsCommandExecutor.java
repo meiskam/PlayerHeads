@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -225,10 +227,74 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		// TODO Auto-generated method stub
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args){
+		if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
+			return null;
+		}
+		
+		ArrayList<String> completions = new ArrayList<String>();
+		
+		for (int i = 0; i < args.length; i++) {
+			args[i] = args[i].toLowerCase();
+		}
+		
+		if (args.length == 1) {
+			if ("config".startsWith(args[0])) {
+				completions.add("config");
+			}
+			if ("spawn".startsWith(args[0])) {
+				completions.add("spawn");
+			}
+			if ("rename".startsWith(args[0])) {
+				completions.add("rename");
+			}
+			if ("update".startsWith(args[0])) {
+				completions.add("update");
+			}
+			return sort(completions);
+		}
+		if (args[0].equals("config")) {
+			if (args.length == 2) {
+				if ("get".startsWith(args[1])) {
+					completions.add("get");
+				}
+				if ("set".startsWith(args[1])) {
+					completions.add("set");
+				}
+				if ("reload".startsWith(args[1])) {
+					completions.add("reload");
+				}
+				return sort(completions);
+			}
+
+			if (args[1].equals("get") || args[1].equals("view") || args[1].equals("set")) {
+				if (args.length == 3) {
+					for (String keySet : PlayerHeads.configKeys.keySet()) {
+						if (keySet.startsWith(args[2])) {
+							completions.add(keySet);
+						}
+					}
+					return sort(completions);
+				}
+			}
+			return completions;
+		} else if (args[0].equals("spawn")) {
+			if (args.length > 3) {
+				return completions;
+			}
+		} else if (args[0].equals("rename")) {
+			if (args.length > 2) {
+				return completions;
+			}
+		} else if (args[0].equals("update")) {
+			return completions;
+		}
 		return null;
 	}
 	
+	public List<String> sort(List<String> completions) {
+		Collections.sort(completions, String.CASE_INSENSITIVE_ORDER);
+		return completions;
+	}
 
 }

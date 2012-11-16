@@ -38,13 +38,15 @@ public class PlayerHeadsListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onEntityDeath(EntityDeathEvent event) {
 		Player killer = event.getEntity().getKiller();
-		if (killer == null) return;
-		
-		ItemStack weapon = killer.getItemInHand();
 		double lootingrate = 0;
-		if (!(weapon == null))
-		lootingrate = plugin.configFile.getDouble("lootingrate", 0.005)*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
 		
+		if (killer != null) {
+			ItemStack weapon = killer.getItemInHand();
+			if (weapon != null) {
+				lootingrate = plugin.configFile.getDouble("lootingrate")*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+			}
+		}
+
 		//if (event.getEntityType() == EntityType.PLAYER) {
 		switch (event.getEntityType()) {
 		case PLAYER:

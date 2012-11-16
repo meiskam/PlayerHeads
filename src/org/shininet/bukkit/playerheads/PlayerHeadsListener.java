@@ -52,7 +52,6 @@ public class PlayerHeadsListener implements Listener {
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate", 0.05)) { return; }
 			if (dropchance >= plugin.configFile.getDouble("droprate")+lootingrate) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }

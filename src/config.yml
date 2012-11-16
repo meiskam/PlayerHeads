@@ -3,6 +3,7 @@
 #
 # pkonly: true				[true/false]	When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
 # droprate: 0.05			[0.0 -> 1.0]	Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
+# lootingrate: 0.005		[0.0 -> 1.0]	Increases droprate by lootingrate per looting level when a enchanted weapon is used
 # hookbreak: true			[true/false]	When true breaking head blocks will drop the correct player, instead of Steve
 # clickinfo: false			[true/false]	When a player head is clicked the player name will be displayed
 # mobpkonly: true			[true/false]	When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
@@ -15,6 +16,7 @@
 
 pkonly: true
 droprate: 0.05
+lootingrate: 0.005
 hookbreak: true
 clickinfo: false
 mobpkonly: true

@@ -6,7 +6,7 @@ package org.shininet.bukkit.playerheads;
 
 import java.util.Random;
 
-import org.bukkit.GameMode;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -44,7 +43,7 @@ public class PlayerHeadsListener implements Listener {
 		ItemStack weapon = killer.getItemInHand();
 		double lootingrate = 0;
 		if (!(weapon == null))
-		lootingrate = plugin.configFile.getDouble("lootingrate", 0.005)*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+		lootingrate = plugin.configFile.getDouble("lootingrate")*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
 		
 		//if (event.getEntityType() == EntityType.PLAYER) {
 		switch (event.getEntityType()) {
@@ -53,20 +52,30 @@ public class PlayerHeadsListener implements Listener {
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate", 0.05)+lootingrate) { return; }
+			if (dropchance >= plugin.configFile.getDouble("droprate", 0.05)) { return; }
+			if (dropchance >= plugin.configFile.getDouble("droprate")+lootingrate) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
-			if (plugin.configFile.getBoolean("pkonly", true) && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
+			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
 			event.getDrops().add(new Skull(player.getName()).getItemStack()); // drop the precious player head
+			if (plugin.configFile.getBoolean("broadcast")) {
+				if (killer == null) {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " was beheaded");
+				} else if (killer == player) {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " beheaded themselves");
+				} else {
+					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " was beheaded by " + killer.getDisplayName() + ChatColor.RESET);
+				}
+			}
 			break;
 		case CREEPER:
-			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate", 0.005)+lootingrate);
+			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate")+lootingrate);
 			break;
 		case ZOMBIE:
-			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate", 0.005)+lootingrate);
+			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")+lootingrate);
 			break;
 		case SKELETON:
-			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate", 0.005)+lootingrate);
+			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")+lootingrate);
 			break;
 		}
 	}
@@ -76,32 +85,15 @@ public class PlayerHeadsListener implements Listener {
 		Player killer = event.getEntity().getKiller();
 		
 		if (dropchance >= droprate) { return; }
-		if (plugin.configFile.getBoolean("mobpkonly", true) && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
+		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
 		event.getDrops().add(Skull.getItemStack(damage));
-	}
-	
-	@EventHandler(priority = EventPriority.NORMAL)
-	public void onBlockBreak(BlockBreakEvent event) {
-		if (!(event.isCancelled()) && event.getBlock().getType() == Material.SKULL && event.getPlayer().getGameMode() == GameMode.SURVIVAL && plugin.configFile.getBoolean("hookbreak", true)) {
-			Block block = event.getBlock();
-			Location location = block.getLocation();
-			CraftWorld world = (CraftWorld)block.getWorld();
-			
-			Skull skull = new Skull(world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
-
-			if (skull.hasTag()) {
-				event.setCancelled(true);
-				block.setType(Material.AIR);
-				plugin.dropItemNaturally(world, location, skull.getItemStack());
-			}
-		}
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo", false)) {
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
 			Location location = block.getLocation();
 			CraftWorld world = (CraftWorld)block.getWorld();
 			

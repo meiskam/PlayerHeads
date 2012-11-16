@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -45,13 +47,12 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:get] You don't have permission to use that command");
 					return true;
 				}
-				if (args.length == 2) {
-					sender.sendMessage("["+label+":config:get] Config variables: "+PlayerHeads.configKeysString);
-				} else if (args.length == 3) {
+				if (args.length == 3) {
 					String key = args[2].toLowerCase();
 					sender.sendMessage("["+label+":config:get] "+key+": "+plugin.configFile.get(key));
 				} else {
-					sender.sendMessage("["+label+":config:get] Syntax: "+label+" config get [variable]");
+					sender.sendMessage("["+label+":config:get] Syntax: "+label+" config get <variable>");
+					sender.sendMessage("["+label+":config:get] Config variables: "+PlayerHeads.configKeysString);
 				}
 				return true;
 			} else if (args[1].equalsIgnoreCase("set")) {
@@ -59,8 +60,11 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:set] You don't have permission to use that command");
 					return true;
 				}
-				if (args.length == 2 || args.length == 3) {
-					sender.sendMessage("["+label+":config:set] Config variables: "+PlayerHeads.configKeysString);
+				if (args.length == 3) {
+					String key = args[2].toLowerCase();
+					plugin.configFile.set(key, null);
+					plugin.saveConfig();
+					sender.sendMessage("["+label+":config:set] "+key+": "+plugin.configFile.get(key));
 					return true;
 				} else if (args.length == 4) {
 					String key = args[2].toLowerCase();
@@ -99,7 +103,8 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 					sender.sendMessage("["+label+":config:set] "+key+": "+plugin.configFile.get(key));
 					return true;
 				} else {
-					sender.sendMessage("["+label+":config:set] Syntax: "+label+" config set [variable] [value]");
+					sender.sendMessage("["+label+":config:set] Syntax: "+label+" config set <variable> [value]");
+					sender.sendMessage("["+label+":config:set] Config variables: "+PlayerHeads.configKeysString);
 					return true;
 				}
 			} else if (args[1].equalsIgnoreCase("reload")) {
@@ -155,7 +160,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":spawn] You don't have permission to use that command");
 				return true;
 			}
-			if (plugin.configFile.getBoolean("fixcase", true)) {
+			if (plugin.configFile.getBoolean("fixcase")) {
 				skullOwner = PlayerHeads.fixcase(skullOwner);
 			}
 			if (PlayerHeads.addHead(reciever, skullOwner)) {
@@ -188,7 +193,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				return true;
 			}
 			if (args.length >= 2) {
-				if (plugin.configFile.getBoolean("fixcase", true)) {
+				if (plugin.configFile.getBoolean("fixcase")) {
 					skull.skullOwner = PlayerHeads.fixcase(args[1]);
 				} else {
 					skull.skullOwner = args[1];
@@ -212,8 +217,8 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":update] There is no update available");
 				return true;
 			}
-			plugin.update();
 			sender.sendMessage("["+label+":update] Update started, check console for info");
+			plugin.update();
 			return true;
 /*		} else if (args[0].equalsIgnoreCase("somethingelse")) {
 			sender.sendMessage("["+label+":??] moo");
@@ -225,10 +230,74 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		// TODO Auto-generated method stub
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args){
+		if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
+			return null;
+		}
+		
+		ArrayList<String> completions = new ArrayList<String>();
+		
+		for (int i = 0; i < args.length; i++) {
+			args[i] = args[i].toLowerCase();
+		}
+		
+		if (args.length == 1) {
+			if ("config".startsWith(args[0])) {
+				completions.add("config");
+			}
+			if ("spawn".startsWith(args[0])) {
+				completions.add("spawn");
+			}
+			if ("rename".startsWith(args[0])) {
+				completions.add("rename");
+			}
+			if ("update".startsWith(args[0])) {
+				completions.add("update");
+			}
+			return sort(completions);
+		}
+		if (args[0].equals("config")) {
+			if (args.length == 2) {
+				if ("get".startsWith(args[1])) {
+					completions.add("get");
+				}
+				if ("set".startsWith(args[1])) {
+					completions.add("set");
+				}
+				if ("reload".startsWith(args[1])) {
+					completions.add("reload");
+				}
+				return sort(completions);
+			}
+
+			if (args[1].equals("get") || args[1].equals("view") || args[1].equals("set")) {
+				if (args.length == 3) {
+					for (String keySet : PlayerHeads.configKeys.keySet()) {
+						if (keySet.startsWith(args[2])) {
+							completions.add(keySet);
+						}
+					}
+					return sort(completions);
+				}
+			}
+			return completions;
+		} else if (args[0].equals("spawn")) {
+			if (args.length > 3) {
+				return completions;
+			}
+		} else if (args[0].equals("rename")) {
+			if (args.length > 2) {
+				return completions;
+			}
+		} else if (args[0].equals("update")) {
+			return completions;
+		}
 		return null;
 	}
 	
+	public List<String> sort(List<String> completions) {
+		Collections.sort(completions, String.CASE_INSENSITIVE_ORDER);
+		return completions;
+	}
 
 }

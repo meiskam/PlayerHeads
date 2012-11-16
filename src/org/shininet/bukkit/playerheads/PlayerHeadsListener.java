@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
 * @author meiskam
@@ -35,15 +37,22 @@ public class PlayerHeadsListener implements Listener {
 	@SuppressWarnings("incomplete-switch")
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onEntityDeath(EntityDeathEvent event) {
+		Player killer = event.getEntity().getKiller();
+		if (killer == null) return;
+		
+		ItemStack weapon = killer.getItemInHand();
+		double lootingrate = 0;
+		if (!(weapon == null))
+		lootingrate = plugin.configFile.getDouble("lootingrate", 0.005)*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+		
 		//if (event.getEntityType() == EntityType.PLAYER) {
 		switch (event.getEntityType()) {
 		case PLAYER:
 			//((Player)(event.getEntity())).sendMessage("Hehe, you died");
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
-			Player killer = player.getKiller();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate")) { return; }
+			if (dropchance >= plugin.configFile.getDouble("droprate")+lootingrate) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
@@ -59,13 +68,13 @@ public class PlayerHeadsListener implements Listener {
 			}
 			break;
 		case CREEPER:
-			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate"));
+			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate")+lootingrate);
 			break;
 		case ZOMBIE:
-			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate"));
+			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")+lootingrate);
 			break;
 		case SKELETON:
-			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate"));
+			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")+lootingrate);
 			break;
 		}
 	}

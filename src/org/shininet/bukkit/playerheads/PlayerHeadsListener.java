@@ -38,12 +38,12 @@ public class PlayerHeadsListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onEntityDeath(EntityDeathEvent event) {
 		Player killer = event.getEntity().getKiller();
-		double lootingrate = 0;
+		double lootingrate = 1;
 		
 		if (killer != null) {
 			ItemStack weapon = killer.getItemInHand();
 			if (weapon != null) {
-				lootingrate = plugin.configFile.getDouble("lootingrate")*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+				lootingrate = 1+(plugin.configFile.getDouble("lootingrate")*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
 			}
 		}
 
@@ -54,7 +54,7 @@ public class PlayerHeadsListener implements Listener {
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate")+lootingrate) { return; }
+			if (dropchance >= plugin.configFile.getDouble("droprate")*lootingrate) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
@@ -70,13 +70,13 @@ public class PlayerHeadsListener implements Listener {
 			}
 			break;
 		case CREEPER:
-			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate")+lootingrate);
+			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate")*lootingrate);
 			break;
 		case ZOMBIE:
-			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")+lootingrate);
+			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
 			break;
 		case SKELETON:
-			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")+lootingrate);
+			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
 			break;
 		}
 	}

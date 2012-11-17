@@ -6,18 +6,12 @@ package org.shininet.bukkit.playerheads;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import net.minecraft.server.EntityItem;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -32,7 +26,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 	
-	private final Random prng = new Random();
 	private PlayerHeadsCommandExecutor commandExecutor;
 	private PlayerHeadsListener listener;
 	
@@ -123,16 +116,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			inv.setItem(firstEmpty, new Skull(skullOwner).getItemStack());
 			return true;
 		}
-	}
-
-	public void dropItemNaturally(CraftWorld world, Location loc, CraftItemStack item) { //inspired by org.bukkit.craftbukkit.CraftWorld
-		double xs = loc.getX() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-		double ys = loc.getY() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-		double zs = loc.getZ() + (prng.nextFloat() * 0.7F + (1.0F - 0.7F) * 0.5D);
-		
-		EntityItem entity = new EntityItem(world.getHandle(), xs, ys, zs, item.getHandle());
-		entity.pickupDelay = 10;
-		world.getHandle().addEntity(entity);
 	}
 	
 	public static String implode(Set<String> input, String glue) {

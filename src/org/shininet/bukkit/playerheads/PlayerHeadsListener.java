@@ -13,6 +13,7 @@ import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -76,7 +77,9 @@ public class PlayerHeadsListener implements Listener {
 			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
 			break;
 		case SKELETON:
-			EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+			if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+				EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+			}
 			break;
 		}
 	}

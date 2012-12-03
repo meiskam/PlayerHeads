@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
@@ -26,20 +27,22 @@ public class Skull {
 	public ArrayList<String> lore;
 	public NBTTagList ench;
 	public Integer repairCost;
-	public Integer damage = 3;
+	public Integer skullType; //skull item's damage value
+	public Integer rotation1; //skull block's damage value
+	public Integer rotation2; //tile entities rotation value 
 
 	public Skull(String skullOwner) {
 		this.skullOwner = skullOwner;
-		damage = 3;
+		skullType = 3;
 	}
 
 	public Skull(NBTTagCompound skullNBT) {
 		fakeConstructor(skullNBT);
 	}
 	
-	public Skull(NBTTagCompound skullNBT, int damage) {
+	public Skull(NBTTagCompound skullNBT, int skullType) {
 		this(skullNBT);
-		this.damage = damage;
+		this.skullType = skullType;
 	}
 	
 	public Skull(CraftItemStack skull) {
@@ -47,7 +50,7 @@ public class Skull {
 		if (skullNBT != null) {
 			fakeConstructor(skullNBT);
 		}
-		this.damage = (int)(skull.getDurability());
+		this.skullType = (int)(skull.getDurability());
 	}
 	
 	public Skull(ItemStack skull) {
@@ -62,13 +65,15 @@ public class Skull {
 		}
 	}
 	
-	public Skull(TileEntity skullTE, int damage) {
+	@Deprecated
+	public Skull(TileEntity skullTE, int skullType) {
 		this(skullTE);
-		this.damage = damage;
+		this.skullType = skullType;
 	}
 	
 	public Skull(Location location) {
 		this(((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
+		rotation1 = (int)location.getBlock().getData();
 	}
 	
 	private void fakeConstructor(NBTTagCompound skullNBT) {
@@ -90,7 +95,10 @@ public class Skull {
 			skullOwner = skullNBT.getString("ExtraType");
 		}
 		if (skullNBT.hasKey("SkullType")) {
-			damage = (int)skullNBT.getByte("SkullType");
+			skullType = (int)skullNBT.getByte("SkullType");
+		}
+		if (skullNBT.hasKey("Rot")) {
+			rotation2 = (int)skullNBT.getByte("Rot");
 		}
 		if (skullNBT.hasKey("RepairCost")) {
 			repairCost = skullNBT.getInt("RepairCost");
@@ -145,22 +153,30 @@ public class Skull {
 			//head = new CraftItemStack(Material.LEATHER_HELMET,1,(short)55);
 			return null;
 		}
-		NBTTagCompound skullNBT = getNBT();
+		NBTTagCompound skullNBT = getNBT(false);
 		if (skullNBT != null) {
 			skull.getHandle().tag = skullNBT;
 		}
 		return skull;
 	}
-
+	
 	public NBTTagCompound getNBT() {
+		return getNBT(false);
+	}
+
+	public NBTTagCompound getNBT(boolean isTileEntity) {
 		if (hasTag()) {
 			NBTTagCompound skullNBT = new NBTTagCompound();
-			return addNBT(skullNBT);
+			return addNBT(skullNBT, isTileEntity);
 		}
 		return null;
 	}
 	
 	public NBTTagCompound addNBT(NBTTagCompound skullNBT) {
+		return addNBT(skullNBT, false);
+	}
+
+	public NBTTagCompound addNBT(NBTTagCompound skullNBT, boolean isTileEntity) {
 		if (hasEnch()) {
 			skullNBT.set("ench", ench);
 		}
@@ -174,13 +190,39 @@ public class Skull {
 			}
 			skullNBT.setCompound("display", skullNBTdisplay);
 		}
-		if (hasOwner()) {
-			skullNBT.setString("SkullOwner", skullOwner);
-		}
 		if (hasRepairCost()) {
 			skullNBT.setInt("RepairCost", repairCost);
 		}
+		if (isTileEntity) {
+			if (hasOwner()) {
+				skullNBT.setString("ExtraType", skullOwner);
+			}
+			if (skullType != null) {
+				skullNBT.setByte("SkullType", (byte)(int)skullType);
+			}
+			if (rotation2 != null) {
+				skullNBT.setByte("Rot", (byte)(int)rotation2);
+			}
+		} else {
+			if (hasOwner()) {
+				skullNBT.setString("SkullOwner", skullOwner);
+			}
+		}
 		return skullNBT;
+	}
+	
+	public void place(Location location) {
+		Block block = location.getWorld().getBlockAt(location);
+		block.setType(Material.SKULL);
+		if (rotation1 != null) {
+			block.setData((byte)(int)rotation1);
+		}
+		TileEntity blockTE = ((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+		if (blockTE != null) {
+			NBTTagCompound blockNBT = new NBTTagCompound();
+			blockTE.b(blockNBT); //copy the block's TE into blockNBT
+			blockTE.a(addNBT(blockNBT,true)); //add pertaining details to blockNBT then set the block's TE to blockNBT
+		}
 	}
 	
 	public static CraftItemStack getItemStack(int damage) {

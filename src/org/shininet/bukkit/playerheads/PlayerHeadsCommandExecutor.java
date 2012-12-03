@@ -184,7 +184,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				return true;
 			}
 			Skull skull = new Skull (((Player)sender).getItemInHand());
-			if (skull.damage != 3) {
+			if (skull.skullType != 3) {
 				sender.sendMessage("["+label+":rename] That's not a player head");
 				return true;
 			}

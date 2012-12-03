@@ -18,6 +18,11 @@ permissions:
       playerheads.config.*: true
       playerheads.spawn: true
       playerheads.update: true
+      playerheads.rename: true
+      playerheads.canbehead: true
+      playerheads.canloosehead: true
+      playerheads.canbeheadmob: true
+      playerheads.update: true
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     children:

@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import java.util.ArrayList;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -21,7 +23,7 @@ import net.minecraft.server.TileEntity;
 public class Skull {
 	public String skullOwner;
 	public String name;
-	public NBTTagList lore;
+	public ArrayList<String> lore;
 	public NBTTagList ench;
 	public Integer repairCost;
 	public Integer damage = 3;
@@ -66,7 +68,7 @@ public class Skull {
 	}
 	
 	public Skull(Location location) {
-		this(((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()), location.getBlock().getData());
+		this(((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
 	}
 	
 	private void fakeConstructor(NBTTagCompound skullNBT) {
@@ -79,13 +81,16 @@ public class Skull {
 				name = skullNBTdisplay.getString("Name");
 			}
 			if (skullNBTdisplay.hasKey("Lore")) {
-				lore = skullNBTdisplay.getList("Lore");
+				lore = NBTUtils.NBTList2ArrayList(skullNBTdisplay.getList("Lore"));
 			}
 		}
 		if (skullNBT.hasKey("SkullOwner")) {
 			skullOwner = skullNBT.getString("SkullOwner");
 		} else if (skullNBT.hasKey("ExtraType")) {
 			skullOwner = skullNBT.getString("ExtraType");
+		}
+		if (skullNBT.hasKey("SkullType")) {
+			damage = (int)skullNBT.getByte("SkullType");
 		}
 		if (skullNBT.hasKey("RepairCost")) {
 			repairCost = skullNBT.getInt("RepairCost");
@@ -165,7 +170,7 @@ public class Skull {
 				skullNBTdisplay.setString("Name", name);
 			}
 			if (hasLore()) {
-				skullNBTdisplay.set("Lore", lore);
+				skullNBTdisplay.set("Lore", NBTUtils.ArrayList2NBTList(lore));
 			}
 			skullNBT.setCompound("display", skullNBTdisplay);
 		}

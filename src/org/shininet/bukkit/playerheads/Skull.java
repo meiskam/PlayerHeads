@@ -4,7 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
@@ -26,6 +28,7 @@ public class Skull {
 
 	public Skull(String skullOwner) {
 		this.skullOwner = skullOwner;
+		damage = 3;
 	}
 
 	public Skull(NBTTagCompound skullNBT) {
@@ -50,14 +53,20 @@ public class Skull {
 	}
 	
 	public Skull(TileEntity skullTE) {
-		NBTTagCompound skullNBT = new NBTTagCompound();
-		skullTE.b(skullNBT); // copies the TE's NBT data into blockNBT
-		fakeConstructor(skullNBT);
+		if (skullTE != null) {
+			NBTTagCompound skullNBT = new NBTTagCompound();
+			skullTE.b(skullNBT); // copies the TE's NBT data into blockNBT
+			fakeConstructor(skullNBT);
+		}
 	}
 	
 	public Skull(TileEntity skullTE, int damage) {
 		this(skullTE);
 		this.damage = damage;
+	}
+	
+	public Skull(Location location) {
+		this(((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()), location.getBlock().getData());
 	}
 	
 	private void fakeConstructor(NBTTagCompound skullNBT) {

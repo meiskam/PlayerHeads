@@ -7,10 +7,8 @@ package org.shininet.bukkit.playerheads;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
@@ -97,12 +95,8 @@ public class PlayerHeadsListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
-			Location location = block.getLocation();
-			CraftWorld world = (CraftWorld)block.getWorld();
-			
-			Skull skull = new Skull(world.getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
-			
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {			
+			Skull skull = new Skull(block.getLocation());
 			if (skull.hasOwner()) {
 				StringBuilder message = new StringBuilder();
 				message.append("[PlayerHeads] That's ").append(skull.skullOwner).append("'s Head");

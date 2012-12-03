@@ -75,7 +75,12 @@ public class PlayerHeadsListener implements Listener {
 			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
 			break;
 		case SKELETON:
-			if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+			try {
+				if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+					EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+				}
+			} catch (NoSuchMethodError e) {
+				//Server is running an old version of CraftBukkit
 				EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
 			}
 			break;

@@ -48,7 +48,7 @@ public class Skull {
 				if (skull != null) {
 					Object skullNBT = Utils.NBTTagCompound.newInstance(); //NBTTagCompound
 					
-					Utils.invoke(Utils.TileEntity, skull, "b", skullNBT); // copies the TE's NBT data into blockNBT
+					Utils.invoke(Utils.TileEntity, skull, "b", Utils.NBTTagCompound, skullNBT); // copies the TE's NBT data into blockNBT
 					fakeConstructor(skullNBT);
 				}
 			} catch (Exception e) {
@@ -64,37 +64,37 @@ public class Skull {
 	
 	public Skull(Location location) {
 
-		Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", location.getBlockX(), location.getBlockY(), location.getBlockZ());
+		Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", Location.class, location.getBlockX(), Location.class, location.getBlockY(), Location.class, location.getBlockZ());
 		rotation1 = (int)location.getBlock().getData();
 	}
 	
 	private void fakeConstructor(Object skullNBT) { //NBTTagCompound		
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "ench")) {
-			ench = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getList", "ench");
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "ench")) {
+			ench = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getList", String.class, "ench");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "display")) {
-			Object skullNBTdisplay = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getCompound", "display"); //NBTTagCompound
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "display")) {
+			Object skullNBTdisplay = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getCompound", String.class, "display"); //NBTTagCompound
 			
-			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", "Name")) {
-				name = (String) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getString", "Name");
+			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", String.class, "Name")) {
+				name = (String) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getString", String.class, "Name");
 			}
-			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", "Lore")) {
-				lore = Utils.NBTList2ArrayList(Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getList", "Lore"));
+			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", String.class, "Lore")) {
+				lore = Utils.NBTList2ArrayList(Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getList", String.class, "Lore"));
 			}
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "SkullOwner")) {
-			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", "SkullOwner");
-		} else if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "ExtraType")) {
-			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", "ExtraType");
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "SkullOwner")) {
+			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", String.class, "SkullOwner");
+		} else if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "ExtraType")) {
+			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", String.class, "ExtraType");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "SkullType")) {
-			skullType = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", "SkullType");
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "SkullType")) {
+			skullType = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "SkullType");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "Rot")) {
-			rotation2 = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", "Rot");
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "Rot")) {
+			rotation2 = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "Rot");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", "RepairCost")) {
-			repairCost = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getInt", "RepairCost");
+		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "RepairCost")) {
+			repairCost = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getInt", String.class, "RepairCost");
 		}
 	}
 	
@@ -179,39 +179,39 @@ public class Skull {
 
 	public Object addNBT(Object skullNBT, boolean isTileEntity) {
 		if (hasEnch()) {
-			Utils.invoke(Utils.NBTTagCompound, skullNBT, "set", "ench", ench);
+			Utils.invoke(Utils.NBTTagCompound, skullNBT, "set", String.class, "ench", Utils.NBTBase, ench);
 		}
 		if (hasName() || hasLore()) {
 			Object skullNBTdisplay;
 			try {
 				skullNBTdisplay = Utils.NBTTagCompound.newInstance();
 				if (hasName()) {
-					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "setString", "Name", name);
+					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "setString", String.class, "Name", String.class, name);
 				}
 				if (hasLore()) {
-					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "set", "Lore", Utils.ArrayList2NBTList(lore));
+					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "set", String.class, "Lore", Utils.NBTBase, Utils.ArrayList2NBTList(lore));
 				}
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setCompound", "display", skullNBTdisplay);
+				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setCompound", String.class, "display", Utils.NBTTagCompound, skullNBTdisplay);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		if (hasRepairCost()) {
-			Utils.invoke(Utils.NBTTagCompound, skullNBT, "setInt", "RepairCost", repairCost);
+			Utils.invoke(Utils.NBTTagCompound, skullNBT, "setInt", String.class, "RepairCost", int.class, repairCost);
 		}
 		if (isTileEntity) {
 			if (hasOwner()) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", "ExtraType", skullOwner);
+				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", String.class, "ExtraType", String.class, skullOwner);
 			}
 			if (skullType != null) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", "SkullType", (byte)(int)skullType);
+				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", String.class, "SkullType", byte.class, (byte)(int)skullType);
 			}
 			if (rotation2 != null) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", "Rot", (byte)(int)rotation2);
+				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", String.class, "Rot", byte.class, (byte)(int)rotation2);
 			}
 		} else {
 			if (hasOwner()) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", "SkullOwner", skullOwner);
+				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", String.class, "SkullOwner", String.class, skullOwner);
 			}
 		}
 		return skullNBT;
@@ -223,14 +223,14 @@ public class Skull {
 		if (rotation1 != null) {
 			block.setData((byte)(int)rotation1);
 		}
-		Object blockTE = Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", location.getBlockX(), location.getBlockY(), location.getBlockZ());
+		Object blockTE = Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", int.class, location.getBlockX(), int.class, location.getBlockY(), int.class, location.getBlockZ());
 		//Utils.TileEntity
 		if (blockTE != null) {
 			Object blockNBT;
 			try {
 				blockNBT = Utils.NBTTagCompound.newInstance();
-				Utils.invoke(Utils.TileEntity, blockTE, "b", blockNBT); //copy the block's TE into blockNBT
-				Utils.invoke(Utils.TileEntity, blockTE, "a", addNBT(blockNBT, true)); //add pertaining details to blockNBT then set the block's TE to blockNBT
+				Utils.invoke(Utils.TileEntity, blockTE, "b", Utils.NBTTagCompound, blockNBT); //copy the block's TE into blockNBT
+				Utils.invoke(Utils.TileEntity, blockTE, "a", Utils.NBTTagCompound, addNBT(blockNBT, true)); //add pertaining details to blockNBT then set the block's TE to blockNBT
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -30,7 +30,7 @@ public class Utils {
 			CBBase = Bukkit.getServer().getClass().getName();
 			CBBase = CBBase.substring(0, CBBase.lastIndexOf('.')+1);
 			
-			NMSBase = Bukkit.getServer().getClass().getDeclaredMethod("getServer", (Class<?>)null).invoke(Bukkit.getServer(), (Object)null).getClass().getName();
+			NMSBase = Bukkit.getServer().getClass().getMethod("getServer").invoke(Bukkit.getServer()).getClass().getName();
 			NMSBase = NMSBase.substring(0, NMSBase.lastIndexOf('.')+1);
 	
 			NBTBase = Class.forName(NMSBase + "NBTBase");
@@ -47,12 +47,35 @@ public class Utils {
 	}
 
 	public static Object invoke(Class<?> type, Object var, String method) {
-		return invoke(type, var, method, (Object)null);
+		try {
+			return type.getMethod(method).invoke(var);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
-	public static Object invoke(Class<?> type, Object var, String method, Object... args) {
+	public static Object invoke(Class<?> type, Object var, String method, Class<?> param1c, Object param1) {
 		try {
-			return type.getMethod(method, (Class<?>)null).invoke(var, args);
+			return type.getMethod(method, param1c).invoke(var, param1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Object invoke(Class<?> type, Object var, String method, Class<?> param1c, Object param1, Class<?> param2c, Object param2) {
+		try {
+			return type.getMethod(method, param1c, param2c).invoke(var, param1, param2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Object invoke(Class<?> type, Object var, String method, Class<?> param1c, Object param1, Class<?> param2c, Object param2, Class<?> param3c, Object param3) {
+		try {
+			return type.getMethod(method, param1c, param2c, param3c).invoke(var, param1, param2, param3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,7 +92,7 @@ public class Utils {
 		int listSize = (Integer) invoke(NBTTagList, NBTList, "size");
 		for (int i = 0; i < listSize; i++) {
 			
-			if (NBTTagString.isInstance(line = invoke(NBTTagList, NBTList, "get", i))) {
+			if (NBTTagString.isInstance(line = invoke(NBTTagList, NBTList, "get", int.class, i))) {
 				list.add(line.toString());
 			}
 		}
@@ -82,7 +105,7 @@ public class Utils {
 			Object NBTList = NBTTagList.newInstance();
 			
 			for (int i = 0; i < list.size(); i++) {
-				invoke(NBTTagList, NBTList, "add", NBTTagString.getConstructor(String.class, String.class).newInstance(null, list.get(i)));
+				invoke(NBTTagList, NBTList, "add", Utils.NBTBase, NBTTagString.getConstructor(String.class, String.class).newInstance(null, list.get(i)));
 			}
 			
 			return NBTList;

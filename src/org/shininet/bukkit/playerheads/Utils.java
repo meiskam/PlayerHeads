@@ -14,7 +14,7 @@ import net.minecraft.server.NBTTagString;
 * @author meiskam
 */
 
-public class NBTUtils {
+public class Utils {
 	public static ArrayList<String> NBTList2ArrayList(NBTTagList NBTList) {
 		ArrayList<String> list = new ArrayList<String>();
 		NBTBase line;

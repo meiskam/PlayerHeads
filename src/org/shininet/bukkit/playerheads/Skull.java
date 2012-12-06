@@ -86,7 +86,7 @@ public class Skull {
 				name = skullNBTdisplay.getString("Name");
 			}
 			if (skullNBTdisplay.hasKey("Lore")) {
-				lore = NBTUtils.NBTList2ArrayList(skullNBTdisplay.getList("Lore"));
+				lore = Utils.NBTList2ArrayList(skullNBTdisplay.getList("Lore"));
 			}
 		}
 		if (skullNBT.hasKey("SkullOwner")) {
@@ -186,7 +186,7 @@ public class Skull {
 				skullNBTdisplay.setString("Name", name);
 			}
 			if (hasLore()) {
-				skullNBTdisplay.set("Lore", NBTUtils.ArrayList2NBTList(lore));
+				skullNBTdisplay.set("Lore", Utils.ArrayList2NBTList(lore));
 			}
 			skullNBT.setCompound("display", skullNBTdisplay);
 		}

@@ -63,8 +63,7 @@ public class Skull {
 	}
 	
 	public Skull(Location location) {
-
-		Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", Location.class, location.getBlockX(), Location.class, location.getBlockY(), Location.class, location.getBlockZ());
+		this(Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", int.class, location.getBlockX(), int.class, location.getBlockY(), int.class, location.getBlockZ()));
 		rotation1 = (int)location.getBlock().getData();
 	}
 	
@@ -88,10 +87,10 @@ public class Skull {
 			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", String.class, "ExtraType");
 		}
 		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "SkullType")) {
-			skullType = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "SkullType");
+			skullType = (int)(Byte) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "SkullType");
 		}
 		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "Rot")) {
-			rotation2 = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "Rot");
+			rotation2 = (int)(Byte) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "Rot");
 		}
 		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "RepairCost")) {
 			repairCost = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getInt", String.class, "RepairCost");

@@ -15,6 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 /**
 * @author meiskam
@@ -178,26 +179,23 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				sender.sendMessage("["+label+":rename] Syntax: "+label+" rename [headname]");
 				return true;
 			}
-			ItemStack hand = ((Player)sender).getItemInHand();
-			if (hand.getData().getItemType() != Material.SKULL_ITEM) {
+			ItemStack skull = ((Player)sender).getItemInHand();
+			if (!((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3))) {
 				sender.sendMessage("["+label+":rename] That's not a player head");
 				return true;
 			}
-			Skull skull = new Skull (((Player)sender).getItemInHand());
-			if (skull.skullType != 3) {
-				sender.sendMessage("["+label+":rename] That's not a player head");
-				return true;
-			}
+			SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 			if (args.length >= 2) {
 				if (plugin.configFile.getBoolean("fixcase")) {
-					skull.skullOwner = PlayerHeads.fixcase(args[1]);
+					skullMeta.setOwner(PlayerHeads.fixcase(args[1]));
 				} else {
-					skull.skullOwner = args[1];
+					skullMeta.setOwner(args[1]);
 				}
 			} else {
-				skull.skullOwner = "";
+				skullMeta.setOwner("");
 			}
-			((Player)sender).setItemInHand(skull.getItemStack());
+			skull.setItemMeta(skullMeta);
+			((Player)sender).setItemInHand(skull);
 			sender.sendMessage("["+label+":rename] Successfully renamed Head");
 			return true;
 		} else if (args[0].equalsIgnoreCase("update")) {

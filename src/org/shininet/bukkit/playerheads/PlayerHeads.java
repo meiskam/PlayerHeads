@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -17,7 +18,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -113,7 +116,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		if (firstEmpty == -1) {
 			return false;
 		} else {
-			inv.setItem(firstEmpty, new Skull(skullOwner).getItemStack());
+			inv.setItem(firstEmpty, PlayerHeads.Skull(skullOwner));
 			return true;
 		}
 	}
@@ -143,5 +146,17 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		}
 		
 		return inputName;
+	}
+	
+	public static ItemStack Skull(String skullOwner) {
+		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
+		SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
+		skullMeta.setOwner(skullOwner);
+		skull.setItemMeta(skullMeta);
+		return skull;
+	}	
+	
+	public static ItemStack Skull(int damage) {
+		return new ItemStack(Material.SKULL_ITEM, 1, (short)damage);
 	}
 }

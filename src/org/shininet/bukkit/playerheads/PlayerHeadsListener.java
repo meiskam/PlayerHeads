@@ -19,6 +19,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 
 /**
 * @author meiskam
@@ -57,7 +58,8 @@ public class PlayerHeadsListener implements Listener {
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
-			event.getDrops().add(new Skull(player.getName()).getItemStack()); // drop the precious player head
+			event.getDrops().add(PlayerHeads.Skull(player.getName())); // drop the precious player head
+			
 			if (plugin.configFile.getBoolean("broadcast")) {
 				if (killer == null) {
 					plugin.getServer().broadcastMessage(player.getDisplayName() + ChatColor.RESET + " was beheaded");
@@ -94,21 +96,25 @@ public class PlayerHeadsListener implements Listener {
 		if (dropchance >= droprate) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
-		event.getDrops().add(Skull.getItemStack(damage));
+		event.getDrops().add(PlayerHeads.Skull(damage));
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {			
-			Skull skull = new Skull(block.getLocation());
-			if (skull.hasOwner()) {
-				StringBuilder message = new StringBuilder();
-				message.append("[PlayerHeads] That's ").append(skull.skullOwner).append("'s Head");
-				if (skull.hasName()) {
-					message.append(" (").append(skull.name).append(")");
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {	
+			for (ItemStack skull : block.getDrops()) {
+				if ((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3)) {
+					SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
+					if (skullMeta.hasOwner()) {
+						StringBuilder message = new StringBuilder();
+						message.append("[PlayerHeads] That's ").append(skullMeta.getOwner()).append("'s Head");
+						if (skullMeta.hasDisplayName()) {
+							message.append(" (").append(skullMeta.getDisplayName()).append(")");
+						}
+						event.getPlayer().sendMessage(message.toString());
+					}
 				}
-				event.getPlayer().sendMessage(message.toString());
 			}
 		}
 	}

@@ -56,11 +56,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	private static final String updateSlug = "player-heads";
 	
 	@Override
-	public void onLoad(){
-		Utils.init();
-	}
-
-	@Override
 	public void onEnable(){
 		logger = getLogger();
 		configFile = getConfig();

@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
+
+import net.minecraft.server.NBTTagCompound;
+import net.minecraft.server.NBTTagList;
+import net.minecraft.server.TileEntity;
 
 /**
 * @author meiskam
@@ -19,7 +25,7 @@ public class Skull {
 	public String skullOwner;
 	public String name;
 	public ArrayList<String> lore;
-	public Object ench;
+	public NBTTagList ench;
 	public Integer repairCost;
 	public Integer skullType; //skull item's damage value
 	public Integer rotation1; //skull block's damage value
@@ -30,70 +36,72 @@ public class Skull {
 		skullType = 3;
 	}
 
-	public Skull(Object skull) {
-		if (Utils.NBTTagCompound.isInstance(skull)) { //skullNBT
-			fakeConstructor(skull);
-		} else if (Utils.CraftItemStack.isInstance(skull)) { //skull
-			try {
-				Object skullNBT = Utils.ItemStack.getField("tag").get(Utils.invoke(Utils.CraftItemStack, skull, "getHandle")); //NBTTagCompound
-				if (skullNBT != null) {
-					fakeConstructor(skullNBT);
-				}
-				this.skullType = (Integer)(Utils.invoke(Utils.CraftItemStack, skull, "getDurability"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (Utils.TileEntity.isInstance(skull)) { //TileEntity skullTE
-			try {
-				if (skull != null) {
-					Object skullNBT = Utils.NBTTagCompound.newInstance(); //NBTTagCompound
-					
-					Utils.invoke(Utils.TileEntity, skull, "b", Utils.NBTTagCompound, skullNBT); // copies the TE's NBT data into blockNBT
-					fakeConstructor(skullNBT);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+	public Skull(NBTTagCompound skullNBT) {
+		fakeConstructor(skullNBT);
 	}
 	
-	public Skull(Object skullNBT, int skullType) { //NBTTagCompound
+	public Skull(NBTTagCompound skullNBT, int skullType) {
 		this(skullNBT);
 		this.skullType = skullType;
 	}
 	
+	public Skull(CraftItemStack skull) {
+		NBTTagCompound skullNBT = skull.getHandle().tag;
+		if (skullNBT != null) {
+			fakeConstructor(skullNBT);
+		}
+		this.skullType = (int)(skull.getDurability());
+	}
+	
+	public Skull(ItemStack skull) {
+		this((CraftItemStack)skull);
+	}
+	
+	public Skull(TileEntity skullTE) {
+		if (skullTE != null) {
+			NBTTagCompound skullNBT = new NBTTagCompound();
+			skullTE.b(skullNBT); // copies the TE's NBT data into blockNBT
+			fakeConstructor(skullNBT);
+		}
+	}
+	
+	@Deprecated
+	public Skull(TileEntity skullTE, int skullType) {
+		this(skullTE);
+		this.skullType = skullType;
+	}
+	
 	public Skull(Location location) {
-		this(Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", int.class, location.getBlockX(), int.class, location.getBlockY(), int.class, location.getBlockZ()));
+		this(((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ()));
 		rotation1 = (int)location.getBlock().getData();
 	}
 	
-	private void fakeConstructor(Object skullNBT) { //NBTTagCompound		
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "ench")) {
-			ench = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getList", String.class, "ench");
+	private void fakeConstructor(NBTTagCompound skullNBT) {
+		if (skullNBT.hasKey("ench")) {
+			ench = skullNBT.getList("ench");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "display")) {
-			Object skullNBTdisplay = Utils.invoke(Utils.NBTTagCompound, skullNBT, "getCompound", String.class, "display"); //NBTTagCompound
-			
-			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", String.class, "Name")) {
-				name = (String) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getString", String.class, "Name");
+		if (skullNBT.hasKey("display")) {
+			NBTTagCompound skullNBTdisplay = skullNBT.getCompound("display");
+			if (skullNBTdisplay.hasKey("Name")) {
+				name = skullNBTdisplay.getString("Name");
 			}
-			if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "hasKey", String.class, "Lore")) {
-				lore = Utils.NBTList2ArrayList(Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "getList", String.class, "Lore"));
+			if (skullNBTdisplay.hasKey("Lore")) {
+				lore = NBTUtils.NBTList2ArrayList(skullNBTdisplay.getList("Lore"));
 			}
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "SkullOwner")) {
-			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", String.class, "SkullOwner");
-		} else if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "ExtraType")) {
-			skullOwner = (String) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getString", String.class, "ExtraType");
+		if (skullNBT.hasKey("SkullOwner")) {
+			skullOwner = skullNBT.getString("SkullOwner");
+		} else if (skullNBT.hasKey("ExtraType")) {
+			skullOwner = skullNBT.getString("ExtraType");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "SkullType")) {
-			skullType = (int)(Byte) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "SkullType");
+		if (skullNBT.hasKey("SkullType")) {
+			skullType = (int)skullNBT.getByte("SkullType");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "Rot")) {
-			rotation2 = (int)(Byte) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getByte", String.class, "Rot");
+		if (skullNBT.hasKey("Rot")) {
+			rotation2 = (int)skullNBT.getByte("Rot");
 		}
-		if ((Boolean) Utils.invoke(Utils.NBTTagCompound, skullNBT, "hasKey", String.class, "RepairCost")) {
-			repairCost = (Integer) Utils.invoke(Utils.NBTTagCompound, skullNBT, "getInt", String.class, "RepairCost");
+		if (skullNBT.hasKey("RepairCost")) {
+			repairCost = skullNBT.getInt("RepairCost");
 		}
 	}
 	
@@ -123,7 +131,7 @@ public class Skull {
 	}
 
 	public boolean hasEnch() {
-		if (ench == null || (Integer)Utils.invoke(Utils.NBTTagList, ench, "size") == 0) {
+		if (ench == null || ench.size() == 0) {
 			return false;
 		}
 		return true;
@@ -136,81 +144,68 @@ public class Skull {
 		return true;
 	}
 	
-	public ItemStack getItemStack() {
-		Object skull;
+	public CraftItemStack getItemStack() {
+		CraftItemStack skull;
 		try {
-			skull = Utils.CraftItemStack.getConstructor(Material.class, int.class, short.class).newInstance(Material.SKULL_ITEM, 1, (short)3);
-		} catch (Exception e) {
+			skull = new CraftItemStack(Material.SKULL_ITEM,1,(short)3);
+		} catch (NullPointerException e) {
+			//getLogger().warning("It seems you're not using CraftBukkit 1.4 or above .. falling back to a leather helm");
+			//head = new CraftItemStack(Material.LEATHER_HELMET,1,(short)55);
 			return null;
 		}
-		Object skullNBT = getNBT(false);
+		NBTTagCompound skullNBT = getNBT(false);
 		if (skullNBT != null) {
-			try {
-				Utils.ItemStack.getField("tag").set(Utils.invoke(Utils.CraftItemStack, skull, "getHandle"), skullNBT);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
+			skull.getHandle().tag = skullNBT;
 		}
-		return (ItemStack) skull;
+		return skull;
 	}
 	
-	public Object getNBT() {
+	public NBTTagCompound getNBT() {
 		return getNBT(false);
 	}
 
-	public Object getNBT(boolean isTileEntity) {
+	public NBTTagCompound getNBT(boolean isTileEntity) {
 		if (hasTag()) {
-			Object skullNBT;
-			try {
-				skullNBT = Utils.NBTTagCompound.newInstance();
-				return addNBT(skullNBT, isTileEntity);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			NBTTagCompound skullNBT = new NBTTagCompound();
+			return addNBT(skullNBT, isTileEntity);
 		}
 		return null;
 	}
 	
-	public Object addNBT(Object skullNBT) {
+	public NBTTagCompound addNBT(NBTTagCompound skullNBT) {
 		return addNBT(skullNBT, false);
 	}
 
-	public Object addNBT(Object skullNBT, boolean isTileEntity) {
+	public NBTTagCompound addNBT(NBTTagCompound skullNBT, boolean isTileEntity) {
 		if (hasEnch()) {
-			Utils.invoke(Utils.NBTTagCompound, skullNBT, "set", String.class, "ench", Utils.NBTBase, ench);
+			skullNBT.set("ench", ench);
 		}
 		if (hasName() || hasLore()) {
-			Object skullNBTdisplay;
-			try {
-				skullNBTdisplay = Utils.NBTTagCompound.newInstance();
-				if (hasName()) {
-					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "setString", String.class, "Name", String.class, name);
-				}
-				if (hasLore()) {
-					Utils.invoke(Utils.NBTTagCompound, skullNBTdisplay, "set", String.class, "Lore", Utils.NBTBase, Utils.ArrayList2NBTList(lore));
-				}
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setCompound", String.class, "display", Utils.NBTTagCompound, skullNBTdisplay);
-			} catch (Exception e) {
-				e.printStackTrace();
+			NBTTagCompound skullNBTdisplay = new NBTTagCompound();
+			if (hasName()) {
+				skullNBTdisplay.setString("Name", name);
 			}
+			if (hasLore()) {
+				skullNBTdisplay.set("Lore", NBTUtils.ArrayList2NBTList(lore));
+			}
+			skullNBT.setCompound("display", skullNBTdisplay);
 		}
 		if (hasRepairCost()) {
-			Utils.invoke(Utils.NBTTagCompound, skullNBT, "setInt", String.class, "RepairCost", int.class, repairCost);
+			skullNBT.setInt("RepairCost", repairCost);
 		}
 		if (isTileEntity) {
 			if (hasOwner()) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", String.class, "ExtraType", String.class, skullOwner);
+				skullNBT.setString("ExtraType", skullOwner);
 			}
 			if (skullType != null) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", String.class, "SkullType", byte.class, (byte)(int)skullType);
+				skullNBT.setByte("SkullType", (byte)(int)skullType);
 			}
 			if (rotation2 != null) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setByte", String.class, "Rot", byte.class, (byte)(int)rotation2);
+				skullNBT.setByte("Rot", (byte)(int)rotation2);
 			}
 		} else {
 			if (hasOwner()) {
-				Utils.invoke(Utils.NBTTagCompound, skullNBT, "setString", String.class, "SkullOwner", String.class, skullOwner);
+				skullNBT.setString("SkullOwner", skullOwner);
 			}
 		}
 		return skullNBT;
@@ -222,24 +217,18 @@ public class Skull {
 		if (rotation1 != null) {
 			block.setData((byte)(int)rotation1);
 		}
-		Object blockTE = Utils.invoke(Utils.CraftWorld, location.getWorld(), "getTileEntityAt", int.class, location.getBlockX(), int.class, location.getBlockY(), int.class, location.getBlockZ());
-		//Utils.TileEntity
+		TileEntity blockTE = ((CraftWorld)location.getWorld()).getTileEntityAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 		if (blockTE != null) {
-			Object blockNBT;
-			try {
-				blockNBT = Utils.NBTTagCompound.newInstance();
-				Utils.invoke(Utils.TileEntity, blockTE, "b", Utils.NBTTagCompound, blockNBT); //copy the block's TE into blockNBT
-				Utils.invoke(Utils.TileEntity, blockTE, "a", Utils.NBTTagCompound, addNBT(blockNBT, true)); //add pertaining details to blockNBT then set the block's TE to blockNBT
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			NBTTagCompound blockNBT = new NBTTagCompound();
+			blockTE.b(blockNBT); //copy the block's TE into blockNBT
+			blockTE.a(addNBT(blockNBT,true)); //add pertaining details to blockNBT then set the block's TE to blockNBT
 		}
 	}
 	
-	public static ItemStack getItemStack(int damage) {
+	public static CraftItemStack getItemStack(int damage) {
 		try {
-			return (ItemStack) Utils.CraftItemStack.getConstructor(Material.class, int.class, short.class).newInstance(Material.SKULL_ITEM, 1, (short)damage);
-		} catch (Exception e) {
+			return new CraftItemStack(Material.SKULL_ITEM,1,(short)damage);
+		} catch (NullPointerException e) {
 			return null;
 		}
 	}

@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -80,6 +81,13 @@ public class PlayerHeadsListener implements Listener {
 			try {
 				if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
 					EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+				} else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+					for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext(); ) {
+				    	if (it.next().getType() == Material.SKULL_ITEM) {
+				    		it.remove();
+				    	}
+					}
+					EntityDeathHelper(event, 1, plugin.configFile.getDouble("witherdroprate")*lootingrate);
 				}
 			} catch (NoSuchMethodError e) {
 				//Server is running an old version of CraftBukkit

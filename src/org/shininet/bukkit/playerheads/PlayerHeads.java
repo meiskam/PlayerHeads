@@ -66,7 +66,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		configFile.options().copyDefaults(true);
 		saveDefaultConfig();
 		try {
-		    Metrics metrics = new Metrics(this);
+		    BukkitMetrics metrics = new BukkitMetrics(this);
 		    metrics.start();
 		} catch (Exception e) {
 			logger.warning("Failed to start Metrics");

@@ -36,37 +36,37 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			return false;
 		}
 		if (args.length == 0) {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+"]"+"Subcommands"+": "+"config"+", "+"spawn"+", "+"rename"+", "+"update"));
+			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SUBCOMMANDS+Lang.COLON_SPACE+Lang.CMD_CONFIG+Lang.COMMA_SPACE+Lang.CMD_SPAWN+Lang.COMMA_SPACE+Lang.CMD_RENAME+Lang.COMMA_SPACE+Lang.CMD_UPDATE));
 			return true;
 		}
-		if (args[0].equalsIgnoreCase("config")) {
+		if (args[0].equalsIgnoreCase(Lang.CMD_CONFIG)) {
 			if (args.length == 1) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+"]"+" "+"Subcommands"+": "+"get"+", "+"set"+", "+"reload"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SUBCOMMANDS+Lang.COLON_SPACE+Lang.CMD_GET+Lang.COMMA_SPACE+Lang.CMD_SET+Lang.COMMA_SPACE+Lang.CMD_RELOAD));
 				return true;
 			}
-			if (args[1].equalsIgnoreCase("get")) {
+			if (args[1].equalsIgnoreCase(Lang.CMD_GET)) {
 				if (!sender.hasPermission("playerheads.config.get")) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"get"+"]"+" "+"You don't have permission to use that command"));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_GET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 					return true;
 				}
 				if (args.length == 3) {
 					String key = args[2].toLowerCase();
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"get"+"]"+" "+key+": "+plugin.configFile.get(key)));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_GET+Lang.BRACKET_RIGHT+Lang.SPACE+key+Lang.COLON_SPACE+plugin.configFile.get(key)));
 				} else {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"get"+"]"+" "+"Syntax"+": "+label+" "+"config"+" "+"get"+" "+"<variable>"));
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"get"+"]"+" "+"Config variables"+": "+PlayerHeads.configKeysString));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_GET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_CONFIG+Lang.SPACE+Lang.CMD_GET+Lang.SPACE+Lang.OPT_VARIABLE_REQUIRED));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_GET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.CONFIG_VARIABLES+Lang.COLON_SPACE+PlayerHeads.configKeysString));
 				}
 				return true;
-			} else if (args[1].equalsIgnoreCase("set")) {
+			} else if (args[1].equalsIgnoreCase(Lang.CMD_SET)) {
 				if (!sender.hasPermission("playerheads.config.set")) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+"You don't have permission to use that command"));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 					return true;
 				}
 				if (args.length == 3) {
 					String key = args[2].toLowerCase();
 					plugin.configFile.set(key, null);
 					plugin.saveConfig();
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+key+": "+plugin.configFile.get(key)));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+key+Lang.COLON_SPACE+plugin.configFile.get(key)));
 					return true;
 				} else if (args.length == 4) {
 					String key = args[2].toLowerCase();
@@ -88,11 +88,11 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 								try {
 									plugin.configFile.set(key, Double.parseDouble(value));
 								} catch (NumberFormatException e) {
-									sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+"ERROR: Can not convert %1% to a number".replace("%1%", value)));
+									sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_NUMBERCONVERT.replace("%1%", value)));
 								}
 								break;
 							default:
-								plugin.logger.warning(ChatColor.translateAlternateColorCodes('&', "configType \"%1%\" unrecognised - this is a bug".replace("%1%", PlayerHeads.configKeys.get(keySet.toLowerCase()).toString())));
+								plugin.logger.warning(ChatColor.translateAlternateColorCodes('&', Lang.ERROR_CONFIGTYPE.replace("%1%", PlayerHeads.configKeys.get(keySet.toLowerCase()).toString())));
 								break;
 							}
 							break;
@@ -102,28 +102,29 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 						plugin.configFile.set(key, value);
 					}
 					plugin.saveConfig();
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+key+": "+plugin.configFile.get(key)));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+key+Lang.COLON_SPACE+plugin.configFile.get(key)));
 					return true;
 				} else {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+"Syntax"+": "+label+" "+"config"+" "+"set"+" "+"<variable>"+" "+"[value]"));
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"set"+"]"+" "+"Config variables"+": "+PlayerHeads.configKeysString));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_CONFIG+Lang.SPACE+Lang.CMD_SET+Lang.SPACE+Lang.OPT_VARIABLE_REQUIRED+Lang.SPACE+Lang.OPT_VALUE_OPTIONAL));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_SET+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.CONFIG_VARIABLES+Lang.COLON_SPACE+PlayerHeads.configKeysString));
 					return true;
 				}
-			} else if (args[1].equalsIgnoreCase("reload")) {
+			} else if (args[1].equalsIgnoreCase(Lang.CMD_RELOAD)) {
 				if (!sender.hasPermission("playerheads.config.set")) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"reload"+"]"+" "+"You don't have permission to use that command"));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_RELOAD+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 					return true;
 				}
 				plugin.reloadConfig();
 				plugin.configFile = plugin.getConfig();
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"reload"+"]"+" "+"Config reloaded"));
+				Lang.reload();
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_RELOAD+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.CONFIG_RELOADED));
 				return true;
 			} else {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"config"+":"+"??"+"]"+" "+"Invalid subcommand"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_CONFIG+Lang.COLON+Lang.CMD_UNKNOWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_INVALID_SUBCOMMAND));
 				return true;
 			}
 		}
-		else if (args[0].equalsIgnoreCase("spawn")) {
+		else if (args[0].equalsIgnoreCase(Lang.CMD_SPAWN)) {
 			String skullOwner;
 			boolean haspermission = false;
 			Player reciever = null;
@@ -131,7 +132,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			
 			if (isConsoleSender) {
 				if (args.length != 3) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Syntax"+": "+label+" "+"spawn"+" "+"<headname>"+" "+"<reciever>"));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_REQUIRED+Lang.SPACE+Lang.OPT_RECIEVER_REQUIRED));
 					return true;
 				}
 			} else {
@@ -145,44 +146,44 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				haspermission = sender.hasPermission("playerheads.spawn");
 			} else if (args.length == 3) {
 				if ((reciever = plugin.getServer().getPlayer(args[2])) == null) {
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Can not find %1% online".replace("%1%", args[2])));
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_NOT_ONLINE.replace("%1%", args[2])));
 					return true;
 				}
 				skullOwner = args[1];
 				haspermission = sender.hasPermission("playerheads.spawn.forother");
 			} else {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Syntax"+": "+label+" "+"spawn"+" "+"[headname]"+" "+"[reciever]"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_OPTIONAL+Lang.SPACE+Lang.OPT_RECIEVER_OPTIONAL));
 				return true;
 			}
 			if (!haspermission) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"You don't have permission to use that command"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 				return true;
 			}
 			if (plugin.configFile.getBoolean("fixcase")) {
 				skullOwner = PlayerHeads.fixcase(skullOwner);
 			}
 			if (PlayerHeads.addHead(reciever, skullOwner)) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Spawned %1%'s Head".replace("%1%", skullOwner)));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SPAWNED_HEAD.replace("%1%", skullOwner)));
 			} else {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Well I can't very well spawn a head if the inventory is full"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_INV_FULL));
 			}
 			return true;
-		} else if (args[0].equalsIgnoreCase("rename")) {
+		} else if (args[0].equalsIgnoreCase(Lang.CMD_RENAME)) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"spawn"+"]"+" "+"Sorry console, heads are for players!"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_CONSOLE_SPAWN));
 				return true;
 			}
 			if (!sender.hasPermission("playerheads.rename")) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"rename"+"]"+" "+"You don't have permission to use that command"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 				return true;
 			}
 			if (!((args.length == 1) || (args.length == 2))) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"rename"+"]"+" "+"Syntax"+": "+label+" "+"rename"+" "+"[headname]"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_RENAME+Lang.SPACE+Lang.OPT_HEADNAME_OPTIONAL));
 				return true;
 			}
 			ItemStack skull = ((Player)sender).getItemInHand();
 			if (!((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3))) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"rename"+"]"+" "+"That's not a player head"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_NOT_A_HEAD));
 				return true;
 			}
 			SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
@@ -197,26 +198,26 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			}
 			skull.setItemMeta(skullMeta);
 			((Player)sender).setItemInHand(skull);
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"rename"+"]"+" "+"Successfully renamed Head"));
+			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.RENAMED_HEAD));
 			return true;
-		} else if (args[0].equalsIgnoreCase("update")) {
+		} else if (args[0].equalsIgnoreCase(Lang.CMD_UPDATE)) {
 			if (!sender.hasPermission("playerheads.update")) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"update"+"]"+" "+"You don't have permission to use that command"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION));
 				return true;
 			}
 			if (!plugin.configFile.getBoolean("autoupdate")) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"update"+"]"+" "+"Updater is disabled"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_UPDATE_DISABLED));
 				return true;
 			}
 			if (!plugin.getUpdateReady()) {
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"update"+"]"+" "+"There is no update available"));
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_UPDATE_NOT_AVAILABLE));
 				return true;
 			}
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"update"+"]"+" "+"Update started, check console for info"));
+			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.UPDATE_STARTED));
 			plugin.update();
 			return true;
 		} else {
-			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "["+label+":"+"??"+"]"+" "+"Invalid subcommand"));
+			sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UNKNOWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_INVALID_SUBCOMMAND));
 			return true;
 		}
 	}
@@ -234,35 +235,35 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 		}
 		
 		if (args.length == 1) {
-			if ("config".startsWith(args[0])) {
-				completions.add("config");
+			if (Lang.CMD_CONFIG.startsWith(args[0])) {
+				completions.add(Lang.CMD_CONFIG);
 			}
-			if ("spawn".startsWith(args[0])) {
-				completions.add("spawn");
+			if (Lang.CMD_SPAWN.startsWith(args[0])) {
+				completions.add(Lang.CMD_SPAWN);
 			}
-			if ("rename".startsWith(args[0])) {
-				completions.add("rename");
+			if (Lang.CMD_RENAME.startsWith(args[0])) {
+				completions.add(Lang.CMD_RENAME);
 			}
-			if ("update".startsWith(args[0])) {
-				completions.add("update");
+			if (Lang.CMD_UPDATE.startsWith(args[0])) {
+				completions.add(Lang.CMD_UPDATE);
 			}
 			return sort(completions);
 		}
-		if (args[0].equals("config")) {
+		if (args[0].equals(Lang.CMD_CONFIG)) {
 			if (args.length == 2) {
-				if ("get".startsWith(args[1])) {
-					completions.add("get");
+				if (Lang.CMD_GET.startsWith(args[1])) {
+					completions.add(Lang.CMD_GET);
 				}
-				if ("set".startsWith(args[1])) {
-					completions.add("set");
+				if (Lang.CMD_SET.startsWith(args[1])) {
+					completions.add(Lang.CMD_SET);
 				}
-				if ("reload".startsWith(args[1])) {
-					completions.add("reload");
+				if (Lang.CMD_RELOAD.startsWith(args[1])) {
+					completions.add(Lang.CMD_RELOAD);
 				}
 				return sort(completions);
 			}
 
-			if (args[1].equals("get") || args[1].equals("set")) {
+			if (args[1].equals(Lang.CMD_GET) || args[1].equals(Lang.CMD_SET)) {
 				if (args.length == 3) {
 					for (String keySet : PlayerHeads.configKeys.keySet()) {
 						if (keySet.startsWith(args[2])) {
@@ -273,15 +274,15 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				}
 			}
 			return completions;
-		} else if (args[0].equals("spawn")) {
+		} else if (args[0].equals(Lang.CMD_SPAWN)) {
 			if (args.length > 3) {
 				return completions;
 			}
-		} else if (args[0].equals("rename")) {
+		} else if (args[0].equals(Lang.CMD_RENAME)) {
 			if (args.length > 2) {
 				return completions;
 			}
-		} else if (args[0].equals("update")) {
+		} else if (args[0].equals(Lang.CMD_UPDATE)) {
 			return completions;
 		}
 		return null;

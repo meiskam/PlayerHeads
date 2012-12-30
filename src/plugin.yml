@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 2.6.0064
+version: 2.7.0066
 description: Drops a player's head when s/he dies, also mob heads
 authors: [meiskam, zand]
 
@@ -43,7 +43,7 @@ permissions:
   playerheads.spawn.own:
     description: Spawn your own head
     default: op
-  playerheads.spawn.forother
+  playerheads.spawn.forother:
     description: Spawn a head into someone elses inventory
     default: op
   playerheads.rename:

@@ -65,11 +65,12 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		configFile = getConfig();
 		configFile.options().copyDefaults(true);
 		saveDefaultConfig();
+		Lang.init(this);
 		try {
 		    BukkitMetrics metrics = new BukkitMetrics(this);
 		    metrics.start();
 		} catch (Exception e) {
-			logger.warning("Failed to start Metrics");
+			logger.warning(Lang.ERROR_METRICS);
 		}
 		try {
 			if (configFile.getBoolean("autoupdate") && !(updateReady)) {
@@ -79,7 +80,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 				updateSize = updater.getFileSize(); // Get latest size
 			}
 		} catch (Exception e) {
-			logger.warning("Failed to start Updater");
+			logger.warning(Lang.ERROR_UPDATER);
 		}
 		listener = new PlayerHeadsListener(this);
 		commandExecutor = new PlayerHeadsCommandExecutor(this);

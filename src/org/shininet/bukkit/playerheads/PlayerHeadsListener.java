@@ -63,11 +63,11 @@ public class PlayerHeadsListener implements Listener {
 			
 			if (plugin.configFile.getBoolean("broadcast")) {
 				if (killer == null) {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "%1% was beheaded".replace("%1%", player.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_GENERIC.replace("%1%", player.getDisplayName() + ChatColor.RESET)));
 				} else if (killer == player) {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "%1% beheaded themselves".replace("%1%", player.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_SELF.replace("%1%", player.getDisplayName() + ChatColor.RESET)));
 				} else {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "%1% was beheaded by %2%".replace("%1%", player.getDisplayName() + ChatColor.RESET).replace("%2%", killer.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_OTHER.replace("%1%", player.getDisplayName() + ChatColor.RESET).replace("%2%", killer.getDisplayName() + ChatColor.RESET)));
 				}
 			}
 			break;
@@ -115,7 +115,7 @@ public class PlayerHeadsListener implements Listener {
 				if ((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3)) {
 					SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 					if (skullMeta.hasOwner()) {
-						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "[PlayerHeads] That's %1%'s Head".replace("%1%", skullMeta.getOwner())));
+						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", skullMeta.getOwner())));
 					}
 				}
 			}
@@ -128,8 +128,8 @@ public class PlayerHeadsListener implements Listener {
 		Player player = event.getPlayer();
 		if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
 		{
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "[PlayerHeads] An update is available: %1% (%2% bytes)".replace("%1%", plugin.getUpdateName()).replace("%2%", String.valueOf(plugin.getUpdateSize()))));
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', "[PlayerHeads] Type \"/PlayerHeads update\" if you would like to update."));
+			player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.UPDATE1.replace("%1%", plugin.getUpdateName()).replace("%2%", String.valueOf(plugin.getUpdateSize()))));
+			player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.UPDATE2));
 		}
 	}
 }

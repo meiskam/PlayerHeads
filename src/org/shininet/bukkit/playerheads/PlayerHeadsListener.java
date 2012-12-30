@@ -9,6 +9,7 @@ import java.util.Random;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -72,39 +73,39 @@ public class PlayerHeadsListener implements Listener {
 			}
 			break;
 		case CREEPER:
-			EntityDeathHelper(event, 4, plugin.configFile.getDouble("creeperdroprate")*lootingrate);
+			EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate")*lootingrate);
 			break;
 		case ZOMBIE:
-			EntityDeathHelper(event, 2, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
+			EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
 			break;
 		case SKELETON:
 			try {
 				if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
-					EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+					EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
 				} else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
 					for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext(); ) {
 				    	if (it.next().getType() == Material.SKULL_ITEM) {
 				    		it.remove();
 				    	}
 					}
-					EntityDeathHelper(event, 1, plugin.configFile.getDouble("witherdroprate")*lootingrate);
+					EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
 				}
 			} catch (NoSuchMethodError e) {
 				//Server is running an old version of CraftBukkit
-				EntityDeathHelper(event, 0, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+				EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
 			}
 			break;
 		}
 	}
 	
-	public void EntityDeathHelper(EntityDeathEvent event, int damage, Double droprate) {
+	public void EntityDeathHelper(EntityDeathEvent event, SkullType type, Double droprate) {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
 		if (dropchance >= droprate) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
-		event.getDrops().add(PlayerHeads.Skull(damage));
+		event.getDrops().add(PlayerHeads.Skull(type));
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)

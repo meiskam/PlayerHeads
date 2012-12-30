@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.SkullType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -151,14 +152,14 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	}
 	
 	public static ItemStack Skull(String skullOwner) {
-		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
+		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
 		SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 		skullMeta.setOwner(skullOwner);
 		skull.setItemMeta(skullMeta);
 		return skull;
 	}	
 	
-	public static ItemStack Skull(int damage) {
-		return new ItemStack(Material.SKULL_ITEM, 1, (short)damage);
+	public static ItemStack Skull(SkullType type) {
+		return new ItemStack(Material.SKULL_ITEM, 1, (short)type.ordinal());
 	}
 }

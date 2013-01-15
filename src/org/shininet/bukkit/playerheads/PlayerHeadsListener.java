@@ -85,20 +85,15 @@ public class PlayerHeadsListener implements Listener {
 			EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
 			break;
 		case SKELETON:
-			try {
-				if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
-					EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
-				} else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
-					for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext(); ) {
-				    	if (it.next().getType() == Material.SKULL_ITEM) {
-				    		it.remove();
-				    	}
-					}
-					EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
-				}
-			} catch (NoSuchMethodError e) {
-				//Server is running an old version of CraftBukkit
+			if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
 				EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
+			} else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+				for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext(); ) {
+			    	if (it.next().getType() == Material.SKULL_ITEM) {
+			    		it.remove();
+			    	}
+				}
+				EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
 			}
 			break;
 		}

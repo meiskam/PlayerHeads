@@ -12,6 +12,7 @@
 # fixcase: true				[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 # autoupdate: true			[true/false]	Checks for update on startup and gives admins option to manually update ingame
 # broadcast: true			[true/false]	Sends a global message when someone gets beheaded
+# antideathchest: false		[true/false]	Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground 
 pkonly: true
 droprate: 0.05
 lootingrate: 0.2
@@ -24,3 +25,4 @@ witherdroprate: 0.025
 fixcase: true
 autoupdate: true
 broadcast: true
+antideathchest: false

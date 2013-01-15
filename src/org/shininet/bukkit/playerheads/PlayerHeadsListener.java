@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.block.Block;
@@ -60,7 +61,12 @@ public class PlayerHeadsListener implements Listener {
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 			
-			event.getDrops().add(PlayerHeads.Skull(player.getName())); // drop the precious player head
+			if (plugin.configFile.getBoolean("antideathchest")) {
+				Location location = player.getLocation();
+				location.getWorld().dropItemNaturally(location, PlayerHeads.Skull(player.getName()));
+			} else {
+				event.getDrops().add(PlayerHeads.Skull(player.getName())); // drop the precious player head	
+			}
 			
 			if (plugin.configFile.getBoolean("broadcast")) {
 				if (killer == null) {

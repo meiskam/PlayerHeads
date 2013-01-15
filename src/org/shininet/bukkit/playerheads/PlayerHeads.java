@@ -49,6 +49,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("fixcase", configType.BOOLEAN);
 			put("autoupdate", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
+			put("antideathchest", configType.BOOLEAN);
 		}
 	};
 	public static final String configKeysString = implode(configKeys.keySet(), ", ");

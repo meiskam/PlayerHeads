@@ -21,6 +21,7 @@ public class Lang {
 	public static String BRACKET_LEFT;
 	public static String BRACKET_RIGHT;
 	public static String CLICKINFO;
+	public static String CLICKINFO2;
 	public static String CMD_CONFIG;
 	public static String CMD_GET;
 	public static String CMD_RELOAD;
@@ -46,6 +47,14 @@ public class Lang {
 	public static String ERROR_UPDATE_DISABLED;
 	public static String ERROR_UPDATE_NOT_AVAILABLE;
 	public static String ERROR_UPDATER;
+	public static String HEAD_BLAZE;
+	public static String HEAD_CREEPER;
+	public static String HEAD_ENDERMAN;
+	public static String HEAD_SKELETON;
+	public static String HEAD_SPIDER;
+	public static String HEAD_WITHER;
+	public static String HEAD_ZOMBIE;
+	public static String HEAD;
 	public static String OPT_HEADNAME_OPTIONAL;
 	public static String OPT_HEADNAME_REQUIRED;
 	public static String OPT_RECIEVER_OPTIONAL;

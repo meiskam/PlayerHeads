@@ -96,33 +96,84 @@ public class PlayerHeadsListener implements Listener {
 				EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
 			}
 			break;
+		case SPIDER:
+			EntityDeathHelper(event, PlayerHeads.customSpider, Lang.HEAD_SPIDER, plugin.configFile.getDouble("spiderdroprate")*lootingrate);
+			break;
+		case ENDERMAN:
+			EntityDeathHelper(event, PlayerHeads.customEnderman, Lang.HEAD_ENDERMAN, plugin.configFile.getDouble("endermandroprate")*lootingrate);
+			break;
+		case BLAZE:
+			EntityDeathHelper(event, PlayerHeads.customBlaze, Lang.HEAD_BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
+			break;
 		}
 	}
 	
 	public void EntityDeathHelper(EntityDeathEvent event, SkullType type, Double droprate) {
+		EntityDeathHelper(event, type, null, null, droprate);
+	}
+	
+	public void EntityDeathHelper(EntityDeathEvent event, String owner, String name, Double droprate) {
+		EntityDeathHelper(event, null, owner, name, droprate);
+	}
+	
+	public void EntityDeathHelper(EntityDeathEvent event, SkullType type, String owner, String name, Double droprate) {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
 		if (dropchance >= droprate) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
-		event.getDrops().add(PlayerHeads.Skull(type));
+		if (type != null) {
+			event.getDrops().add(PlayerHeads.Skull(type));
+		} else if (owner != null) {
+			event.getDrops().add(PlayerHeads.Skull(owner, name));
+		}
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		Block block = event.getClickedBlock();
-		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {	
+		Player player = event.getPlayer();
+		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
 			for (ItemStack skull : block.getDrops()) {
-				if ((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3)) {
-					SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
-					if (skullMeta.hasOwner()) {
-						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", skullMeta.getOwner())));
+				if (skull.getType() == Material.SKULL_ITEM) {
+					short duribility = skull.getDurability();
+					if (duribility == SkullType.PLAYER.ordinal()) {
+						SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
+						if (skullMeta.hasOwner()) {
+							String owner = skullMeta.getOwner();
+							if (ChatColor.stripColor(owner).equals(PlayerHeads.customBlaze)) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_BLAZE)));
+							} else if (ChatColor.stripColor(owner).equals(PlayerHeads.customEnderman)) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ENDERMAN)));
+							} else if (ChatColor.stripColor(owner).equals(PlayerHeads.customSpider)) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SPIDER)));
+							} else {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", owner)));
+							}
+						} else {
+							player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD)));
+						}
+					} else if (duribility == SkullType.CREEPER.ordinal()) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_CREEPER)));
+					} else if (duribility == SkullType.SKELETON.ordinal()) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SKELETON)));
+					} else if (duribility == SkullType.WITHER.ordinal()) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_WITHER)));
+					} else if (duribility == SkullType.ZOMBIE.ordinal()) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ZOMBIE)));
 					}
 				}
 			}
 		}
 	}
+
+/* TODO: make it so custom mob heads keep their name after placing/mining
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void onBlockBreak(BlockBreakEvent event) {
+		event.
+	}
+*/
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event)

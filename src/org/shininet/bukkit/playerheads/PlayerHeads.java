@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
@@ -46,6 +47,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("zombiedroprate", configType.DOUBLE);
 			put("skeletondroprate", configType.DOUBLE);
 			put("witherdroprate", configType.DOUBLE);
+			put("spiderdroprate", configType.DOUBLE);
+			put("endermandroprate", configType.DOUBLE);
+			put("blazedroprate", configType.DOUBLE);
 			put("fixcase", configType.BOOLEAN);
 			put("autoupdate", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
@@ -60,6 +64,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	private static String updateName = "";
 	private static long updateSize = 0;
 	private static final String updateSlug = "player-heads";
+	public static final String customSpider = "Kelevra_V";
+	public static final String customEnderman = "Violit";
+	public static final String customBlaze = "Blaze_Head";
 	
 	@Override
 	public void onEnable(){
@@ -153,12 +160,19 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	}
 	
 	public static ItemStack Skull(String skullOwner) {
+		return Skull(skullOwner, null);
+	}
+	
+	public static ItemStack Skull(String skullOwner, String displayName) {
 		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
 		SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 		skullMeta.setOwner(skullOwner);
+		if (displayName != null) {
+			skullMeta.setDisplayName(ChatColor.RESET+displayName);
+		}
 		skull.setItemMeta(skullMeta);
 		return skull;
-	}	
+	}
 	
 	public static ItemStack Skull(SkullType type) {
 		return new ItemStack(Material.SKULL_ITEM, 1, (short)type.ordinal());

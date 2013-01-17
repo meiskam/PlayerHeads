@@ -9,6 +9,9 @@
 # zombiedroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a zombie dies (1 is 100%, 0 is never)
 # skeletondroprate: 0.002	[0.0 -> 1.0]	Chance that a mob trophy will drop when a skeleton dies (1 is 100%, 0 is never)
 # witherdroprate: 0.025		[0.0 -> 1.0]	Chance that a mob trophy will drop when a wither skeleton dies (1 is 100%, 0 is never)
+# spiderdroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a spider dies (1 is 100%, 0 is never)
+# endermandroprate: 0.002	[0.0 -> 1.0]	Chance that a mob trophy will drop when a enderman dies (1 is 100%, 0 is never)
+# blazedroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a blaze dies (1 is 100%, 0 is never)
 # fixcase: true				[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 # autoupdate: true			[true/false]	Checks for update on startup and gives admins option to manually update ingame
 # broadcast: true			[true/false]	Sends a global message when someone gets beheaded
@@ -22,6 +25,9 @@ creeperdroprate: 0.005
 zombiedroprate: 0.002
 skeletondroprate: 0.002
 witherdroprate: 0.025
+spiderdroprate: 0.002
+endermandroprate: 0.002
+blazedroprate: 0.002
 fixcase: true
 autoupdate: true
 broadcast: true

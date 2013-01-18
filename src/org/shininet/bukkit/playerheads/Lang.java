@@ -2,9 +2,11 @@ package org.shininet.bukkit.playerheads;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.bukkit.plugin.Plugin;
@@ -90,16 +92,29 @@ public class Lang {
 	}
 
 	public static void reload() {
-		RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME);
-		String locale = RESOURCE_BUNDLE0.getLocale().toString();
-		if (!(locale.equals(""))) {
-			locale = "_".concat(locale);
-		}
+		String locale = "";
 		try {
-			URL[] urls = {(plugin.getDataFolder().toURI().toURL())};
+			RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME);
+			locale = RESOURCE_BUNDLE0.getLocale().toString();
+			if (!(locale.equals(""))) {
+				locale = "_".concat(locale);
+			}
+		} catch (MissingResourceException e) {
+		}
+		
+		try {
+			URL[] urls = {plugin.getDataFolder().toURI().toURL()};
 			RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls));
-		} catch (Exception e) {
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (MissingResourceException e) {
 			plugin.saveResource(BUNDLE_NAME.concat(locale).replace('.', '/').concat(".properties"), false);
+			try {
+				URL[] urls = {plugin.getDataFolder().toURI().toURL()};
+				RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls));
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		for (Field field : Lang.class.getFields()) {
 			if (field.getType().equals(String.class) && Modifier.isStatic(field.getModifiers())) {

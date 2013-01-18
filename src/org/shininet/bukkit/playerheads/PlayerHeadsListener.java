@@ -24,7 +24,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
 /**
 * @author meiskam
@@ -129,35 +128,36 @@ public class PlayerHeadsListener implements Listener {
 		Block block = event.getClickedBlock();
 		Player player = event.getPlayer();
 		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
-			for (ItemStack skull : block.getDrops()) {
-				if (skull.getType() == Material.SKULL_ITEM) {
-					short duribility = skull.getDurability();
-					if (duribility == SkullType.PLAYER.ordinal()) {
-						SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
-						if (skullMeta.hasOwner()) {
-							String owner = skullMeta.getOwner();
-							if (ChatColor.stripColor(owner).equals(CustomSkullType.BLAZE.getOwner())) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.BLAZE.getDisplayName())));
-							} else if (ChatColor.stripColor(owner).equals(CustomSkullType.ENDERMAN.getOwner())) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.ENDERMAN.getDisplayName())));
-							} else if (ChatColor.stripColor(owner).equals(CustomSkullType.SPIDER.getOwner())) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.SPIDER.getDisplayName())));
-							} else {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", owner)));
-							}
-						} else {
-							player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD)));
-						}
-					} else if (duribility == SkullType.CREEPER.ordinal()) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_CREEPER)));
-					} else if (duribility == SkullType.SKELETON.ordinal()) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SKELETON)));
-					} else if (duribility == SkullType.WITHER.ordinal()) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_WITHER)));
-					} else if (duribility == SkullType.ZOMBIE.ordinal()) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ZOMBIE)));
+			Skull skullState = (Skull)block.getState();
+			switch (skullState.getSkullType()) {
+			case PLAYER:
+				if (skullState.hasOwner()) {
+					String owner = skullState.getOwner();
+					if (ChatColor.stripColor(owner).equals(CustomSkullType.BLAZE.getOwner())) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.BLAZE.getDisplayName())));
+					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.ENDERMAN.getOwner())) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.ENDERMAN.getDisplayName())));
+					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.SPIDER.getOwner())) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.SPIDER.getDisplayName())));
+					} else {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", owner)));
 					}
+				} else {
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD)));
 				}
+				break;
+			case CREEPER:
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_CREEPER)));
+				break;
+			case SKELETON:
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SKELETON)));
+				break;
+			case WITHER:
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_WITHER)));
+				break;
+			case ZOMBIE:
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ZOMBIE)));
+				break;
 			}
 		}
 	}
@@ -167,7 +167,6 @@ public class PlayerHeadsListener implements Listener {
 		if (event instanceof FakeBlockBreakEvent) {
 			return;
 		}
-		Player player = event.getPlayer();
 		Block block = event.getBlock();
 		if (block.getType() == Material.SKULL) {
 			Skull skull = (Skull)block.getState();

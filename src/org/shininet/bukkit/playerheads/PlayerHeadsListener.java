@@ -12,12 +12,14 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.block.Block;
+import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -97,36 +99,28 @@ public class PlayerHeadsListener implements Listener {
 			}
 			break;
 		case SPIDER:
-			EntityDeathHelper(event, PlayerHeads.customSpider, Lang.HEAD_SPIDER, plugin.configFile.getDouble("spiderdroprate")*lootingrate);
+			EntityDeathHelper(event, CustomSkullType.SPIDER, plugin.configFile.getDouble("spiderdroprate")*lootingrate);
 			break;
 		case ENDERMAN:
-			EntityDeathHelper(event, PlayerHeads.customEnderman, Lang.HEAD_ENDERMAN, plugin.configFile.getDouble("endermandroprate")*lootingrate);
+			EntityDeathHelper(event, CustomSkullType.ENDERMAN, plugin.configFile.getDouble("endermandroprate")*lootingrate);
 			break;
 		case BLAZE:
-			EntityDeathHelper(event, PlayerHeads.customBlaze, Lang.HEAD_BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
+			EntityDeathHelper(event, CustomSkullType.BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
 			break;
 		}
 	}
 	
-	public void EntityDeathHelper(EntityDeathEvent event, SkullType type, Double droprate) {
-		EntityDeathHelper(event, type, null, null, droprate);
-	}
-	
-	public void EntityDeathHelper(EntityDeathEvent event, String owner, String name, Double droprate) {
-		EntityDeathHelper(event, null, owner, name, droprate);
-	}
-	
-	public void EntityDeathHelper(EntityDeathEvent event, SkullType type, String owner, String name, Double droprate) {
+	public void EntityDeathHelper(EntityDeathEvent event, Enum<?> type, Double droprate) {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
 		if (dropchance >= droprate) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
-		if (type != null) {
-			event.getDrops().add(PlayerHeads.Skull(type));
-		} else if (owner != null) {
-			event.getDrops().add(PlayerHeads.Skull(owner, name));
+		if (type instanceof SkullType) {
+			event.getDrops().add(PlayerHeads.Skull((SkullType)type));
+		} else if (type instanceof CustomSkullType) {
+			event.getDrops().add(PlayerHeads.Skull((CustomSkullType)type));
 		}
 	}
 	
@@ -142,12 +136,12 @@ public class PlayerHeadsListener implements Listener {
 						SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 						if (skullMeta.hasOwner()) {
 							String owner = skullMeta.getOwner();
-							if (ChatColor.stripColor(owner).equals(PlayerHeads.customBlaze)) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_BLAZE)));
-							} else if (ChatColor.stripColor(owner).equals(PlayerHeads.customEnderman)) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ENDERMAN)));
-							} else if (ChatColor.stripColor(owner).equals(PlayerHeads.customSpider)) {
-								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SPIDER)));
+							if (ChatColor.stripColor(owner).equals(CustomSkullType.BLAZE.getOwner())) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.BLAZE.getDisplayName())));
+							} else if (ChatColor.stripColor(owner).equals(CustomSkullType.ENDERMAN.getOwner())) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.ENDERMAN.getDisplayName())));
+							} else if (ChatColor.stripColor(owner).equals(CustomSkullType.SPIDER.getOwner())) {
+								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.SPIDER.getDisplayName())));
 							} else {
 								player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", owner)));
 							}
@@ -168,12 +162,45 @@ public class PlayerHeadsListener implements Listener {
 		}
 	}
 
-/* TODO: make it so custom mob heads keep their name after placing/mining
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockBreak(BlockBreakEvent event) {
-		event.
+		if (event instanceof FakeBlockBreakEvent) {
+			return;
+		}
+		Player player = event.getPlayer();
+		Block block = event.getBlock();
+		if (block.getType() == Material.SKULL) {
+			Skull skull = (Skull)block.getState();
+			if (skull.hasOwner()) {
+				String owner = ChatColor.stripColor(skull.getOwner());
+				if ((owner.equals(CustomSkullType.BLAZE.getOwner()))
+						|| (owner.equals(CustomSkullType.ENDERMAN.getOwner()))
+						|| (owner.equals(CustomSkullType.SPIDER.getOwner()))) {
+					FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, event.getPlayer());
+					plugin.getServer().getPluginManager().callEvent(fakebreak);
+
+					if (fakebreak.isCancelled()) {
+						event.setCancelled(true);
+					} else {
+						Location location = block.getLocation();
+						ItemStack item = null;
+						if (owner.equals(CustomSkullType.BLAZE.getOwner())) {
+							item = PlayerHeads.Skull(CustomSkullType.BLAZE);
+						} else if (owner.equals(CustomSkullType.ENDERMAN.getOwner())) {
+							item = PlayerHeads.Skull(CustomSkullType.ENDERMAN);
+						} else if (owner.equals(CustomSkullType.SPIDER.getOwner())) {
+							item = PlayerHeads.Skull(CustomSkullType.SPIDER);
+						}
+						if (item != null) {
+							event.setCancelled(true);
+							block.setType(Material.AIR);
+							location.getWorld().dropItemNaturally(location, item);
+						}
+					}
+				}
+			}
+		}
 	}
-*/
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event)

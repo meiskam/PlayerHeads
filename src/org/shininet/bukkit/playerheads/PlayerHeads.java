@@ -17,6 +17,7 @@ import org.bukkit.SkullType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -64,9 +65,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	private static String updateName = "";
 	private static long updateSize = 0;
 	private static final String updateSlug = "player-heads";
-	public static final String customSpider = "Kelevra_V";
-	public static final String customEnderman = "Violit";
-	public static final String customBlaze = "Blaze_Head";
 	
 	@Override
 	public void onEnable(){
@@ -102,6 +100,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		EntityDeathEvent.getHandlerList().unregister(listener);
 		PlayerInteractEvent.getHandlerList().unregister(listener);
 		PlayerJoinEvent.getHandlerList().unregister(listener);
+		BlockBreakEvent.getHandlerList().unregister(listener);
 	}
 
 	public boolean getUpdateReady() {
@@ -172,6 +171,10 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		}
 		skull.setItemMeta(skullMeta);
 		return skull;
+	}
+	
+	public static ItemStack Skull(CustomSkullType type) {
+		return Skull(type.getOwner(), type.getDisplayName());
 	}
 	
 	public static ItemStack Skull(SkullType type) {

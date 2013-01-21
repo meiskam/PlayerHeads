@@ -20,7 +20,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -175,7 +177,12 @@ public class PlayerHeadsListener implements Listener {
 				if ((owner.equals(CustomSkullType.BLAZE.getOwner()))
 						|| (owner.equals(CustomSkullType.ENDERMAN.getOwner()))
 						|| (owner.equals(CustomSkullType.SPIDER.getOwner()))) {
-					FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, event.getPlayer());
+					Player player = event.getPlayer();
+					
+					plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
+					plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
+					
+					FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
 					plugin.getServer().getPluginManager().callEvent(fakebreak);
 
 					if (fakebreak.isCancelled()) {

@@ -71,11 +71,11 @@ public class PlayerHeadsListener implements Listener {
 			
 			if (plugin.configFile.getBoolean("broadcast")) {
 				if (killer == null) {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_GENERIC.replace("%1%", player.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET));
 				} else if (killer == player) {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_SELF.replace("%1%", player.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET));
 				} else {
-					plugin.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Lang.BEHEAD_OTHER.replace("%1%", player.getDisplayName() + ChatColor.RESET).replace("%2%", killer.getDisplayName() + ChatColor.RESET)));
+					plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET));
 				}
 			}
 			break;
@@ -134,29 +134,29 @@ public class PlayerHeadsListener implements Listener {
 				if (skullState.hasOwner()) {
 					String owner = skullState.getOwner();
 					if (ChatColor.stripColor(owner).equals(CustomSkullType.BLAZE.getOwner())) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.BLAZE.getDisplayName())));
+						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.BLAZE.getDisplayName());
 					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.ENDERMAN.getOwner())) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.ENDERMAN.getDisplayName())));
+						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.ENDERMAN.getDisplayName());
 					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.SPIDER.getOwner())) {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", CustomSkullType.SPIDER.getDisplayName())));
+						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SPIDER.getDisplayName());
 					} else {
-						player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO.replace("%1%", owner)));
+						PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);
 					}
 				} else {
-					player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD)));
+					PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
 				}
 				break;
 			case CREEPER:
-				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_CREEPER)));
+				PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_CREEPER);
 				break;
 			case SKELETON:
-				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_SKELETON)));
+				PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_SKELETON);
 				break;
 			case WITHER:
-				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_WITHER)));
+				PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_WITHER);
 				break;
 			case ZOMBIE:
-				player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.CLICKINFO2.replace("%1%", Lang.HEAD_ZOMBIE)));
+				PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_ZOMBIE);
 				break;
 			}
 		}
@@ -207,8 +207,8 @@ public class PlayerHeadsListener implements Listener {
 		Player player = event.getPlayer();
 		if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
 		{
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.UPDATE1.replace("%1%", plugin.getUpdateName()).replace("%2%", String.valueOf(plugin.getUpdateSize()))));
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', Lang.UPDATE2));
+			PlayerHeads.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
+			PlayerHeads.formatMsg(player, Lang.UPDATE2);
 		}
 	}
 }

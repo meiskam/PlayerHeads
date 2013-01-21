@@ -14,6 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -179,5 +180,21 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	
 	public static ItemStack Skull(SkullType type) {
 		return new ItemStack(Material.SKULL_ITEM, 1, (short)type.ordinal());
+	}
+	
+	public static String format(String text, String... replacement) {
+		String output = text;
+		for (int i = 0; i < replacement.length; i++) {
+			output.replace("%"+(i+1)+"%", replacement[i]);
+		}
+		return ChatColor.translateAlternateColorCodes('&', output);
+	}
+	
+	public static void formatMsg(CommandSender player, String text, String... replacement) {
+		player.sendMessage(format(text, replacement));
+	}
+	
+	public static String formatStrip(String text, String... replacement) {
+		return ChatColor.stripColor(format(text, replacement));
 	}
 }

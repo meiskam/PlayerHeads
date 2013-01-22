@@ -160,7 +160,24 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	}
 	
 	public static ItemStack Skull(String skullOwner) {
-		return Skull(skullOwner, null);
+		String skullOwnerLC = skullOwner.toLowerCase();
+		if (skullOwnerLC.equals("#creeper")) {
+			return Skull(SkullType.CREEPER);
+		} else if (skullOwnerLC.equals("#zombie")) {
+			return Skull(SkullType.ZOMBIE);
+		} else if (skullOwnerLC.equals("#skeleton")) {
+			return Skull(SkullType.SKELETON);
+		} else if (skullOwnerLC.equals("#wither")) {
+			return Skull(SkullType.WITHER);
+		} else if (skullOwnerLC.equals("#spider")) {
+			return Skull(CustomSkullType.SPIDER);
+		} else if (skullOwnerLC.equals("#enderman")) {
+			return Skull(CustomSkullType.ENDERMAN);
+		} else if (skullOwnerLC.equals("#blaze")) {
+			return Skull(CustomSkullType.BLAZE);
+		} else {
+			return Skull(skullOwner, null);
+		}
 	}
 	
 	public static ItemStack Skull(String skullOwner, String displayName) {

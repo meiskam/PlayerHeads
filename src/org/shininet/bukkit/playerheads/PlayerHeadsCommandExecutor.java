@@ -15,7 +15,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 
 /**
 * @author meiskam
@@ -180,23 +179,23 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 				PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_RENAME+Lang.SPACE+Lang.OPT_HEADNAME_OPTIONAL);
 				return true;
 			}
-			ItemStack skull = ((Player)sender).getItemInHand();
-			if (!((skull.getType() == Material.SKULL_ITEM) && (skull.getDurability() == 3))) {
+			ItemStack skullInput = ((Player)sender).getItemInHand();
+			if (skullInput.getType() != Material.SKULL_ITEM) {
 				PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_NOT_A_HEAD);
 				return true;
 			}
-			SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
+			ItemStack skullOutput;
 			if (args.length >= 2) {
 				if (plugin.configFile.getBoolean("fixcase")) {
-					skullMeta.setOwner(PlayerHeads.fixcase(args[1]));
+					skullOutput = PlayerHeads.Skull(PlayerHeads.fixcase(args[1]));
 				} else {
-					skullMeta.setOwner(args[1]);
+					skullOutput = PlayerHeads.Skull(args[1]);
 				}
 			} else {
-				skullMeta.setOwner("");
+				skullOutput = PlayerHeads.Skull("");
 			}
-			skull.setItemMeta(skullMeta);
-			((Player)sender).setItemInHand(skull);
+			skullOutput.setAmount(skullInput.getAmount());
+			((Player)sender).setItemInHand(skullOutput);
 			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.RENAMED_HEAD);
 			return true;
 		} else if (args[0].equalsIgnoreCase(PlayerHeads.formatStrip(Lang.CMD_UPDATE))) {

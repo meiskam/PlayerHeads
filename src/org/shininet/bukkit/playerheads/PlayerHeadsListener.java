@@ -135,11 +135,12 @@ public class PlayerHeadsListener implements Listener {
 			case PLAYER:
 				if (skullState.hasOwner()) {
 					String owner = skullState.getOwner();
-					if (ChatColor.stripColor(owner).equals(CustomSkullType.BLAZE.getOwner())) {
+					String ownerStrip = ChatColor.stripColor(owner);
+					if (ownerStrip.equals(CustomSkullType.BLAZE.getOwner())) {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.BLAZE.getDisplayName());
-					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.ENDERMAN.getOwner())) {
+					} else if (ownerStrip.equals(CustomSkullType.ENDERMAN.getOwner())) {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.ENDERMAN.getDisplayName());
-					} else if (ChatColor.stripColor(owner).equals(CustomSkullType.SPIDER.getOwner())) {
+					} else if (ownerStrip.equals(CustomSkullType.SPIDER.getOwner())) {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SPIDER.getDisplayName());
 					} else {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);

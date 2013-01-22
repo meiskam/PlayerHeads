@@ -1,21 +1,22 @@
 # PlayerHeads Configuration
 # Defaults/explanation:
-# pkonly: true				[true/false]	When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
-# droprate: 0.05			[0.0 -> 1.0]	Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
-# lootingrate: 0.2			[0.0 -> 1.0]	Increases all droprates by lootingrate percent per looting level when a enchanted weapon is used (1 is 100%, 0 is never)
-# clickinfo: false			[true/false]	When a player head is clicked the player name will be displayed
-# mobpkonly: true			[true/false]	When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
-# creeperdroprate: 0.005	[0.0 -> 1.0]	Chance that a mob trophy will drop when a creeper dies (1 is 100%, 0 is never)
-# zombiedroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a zombie dies (1 is 100%, 0 is never)
-# skeletondroprate: 0.002	[0.0 -> 1.0]	Chance that a mob trophy will drop when a skeleton dies (1 is 100%, 0 is never)
-# witherdroprate: 0.025		[0.0 -> 1.0]	Chance that a mob trophy will drop when a wither skeleton dies (1 is 100%, 0 is never)
-# spiderdroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a spider dies (1 is 100%, 0 is never)
-# endermandroprate: 0.002	[0.0 -> 1.0]	Chance that a mob trophy will drop when a enderman dies (1 is 100%, 0 is never)
-# blazedroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a blaze dies (1 is 100%, 0 is never)
-# fixcase: true				[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
-# autoupdate: true			[true/false]	Checks for update on startup and gives admins option to manually update ingame
-# broadcast: true			[true/false]	Sends a global message when someone gets beheaded
-# antideathchest: false		[true/false]	Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground 
+# pkonly: true					[true/false]	When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
+# droprate: 0.05				[0.0 -> 1.0]	Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
+# lootingrate: 0.2				[0.0 -> 1.0]	Increases all droprates by lootingrate percent per looting level when a enchanted weapon is used (1 is 100%, 0 is never)
+# clickinfo: false				[true/false]	When a player head is clicked the player name will be displayed
+# mobpkonly: true				[true/false]	When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
+# creeperdroprate: 0.005		[0.0 -> 1.0]	Chance that a mob trophy will drop when a creeper dies (1 is 100%, 0 is never)
+# zombiedroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a zombie dies (1 is 100%, 0 is never)
+# skeletondroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a skeleton dies (1 is 100%, 0 is never)
+# witherdroprate: 0.025			[0.0 -> 1.0]	Chance that a mob trophy will drop when a wither skeleton dies (1 is 100%, 0 is never)
+# spiderdroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a spider dies (1 is 100%, 0 is never)
+# endermandroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a enderman dies (1 is 100%, 0 is never)
+# blazedroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a blaze dies (1 is 100%, 0 is never)
+# fixcase: true					[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
+# autoupdate: true				[true/false]	Checks for update on startup and gives admins option to manually update ingame
+# broadcast: true				[true/false]	Sends a global message when someone gets beheaded
+# antideathchest: false			[true/false]	Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
+# dropboringplayerheads: false	[true/false]	Drop plain heads when a player dies, instead of the player's head
 pkonly: true
 droprate: 0.05
 lootingrate: 0.2
@@ -32,3 +33,4 @@ fixcase: true
 autoupdate: true
 broadcast: true
 antideathchest: false
+dropboringplayerheads: false

@@ -56,6 +56,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("autoupdate", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
 			put("antideathchest", configType.BOOLEAN);
+			put("dropboringplayerheads", configType.BOOLEAN);
 		}
 	};
 	public static final String configKeysString = implode(configKeys.keySet(), ", ");

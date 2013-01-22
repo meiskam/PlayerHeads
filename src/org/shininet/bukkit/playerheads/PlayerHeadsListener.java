@@ -63,12 +63,19 @@ public class PlayerHeadsListener implements Listener {
 			if (dropchance >= plugin.configFile.getDouble("droprate")*lootingrate) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
+
+			String skullOwner;
+			if (plugin.configFile.getBoolean("dropboringplayerheads")) {
+				skullOwner = "";
+			} else {
+				skullOwner = player.getName();
+			}
 			
 			if (plugin.configFile.getBoolean("antideathchest")) {
 				Location location = player.getLocation();
-				location.getWorld().dropItemNaturally(location, PlayerHeads.Skull(player.getName()));
+				location.getWorld().dropItemNaturally(location, PlayerHeads.Skull(skullOwner));
 			} else {
-				event.getDrops().add(PlayerHeads.Skull(player.getName())); // drop the precious player head	
+				event.getDrops().add(PlayerHeads.Skull(skullOwner)); // drop the precious player head	
 			}
 			
 			if (plugin.configFile.getBoolean("broadcast")) {

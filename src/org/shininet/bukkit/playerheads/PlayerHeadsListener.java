@@ -60,7 +60,7 @@ public class PlayerHeadsListener implements Listener {
 			Double dropchance = prng.nextDouble();
 			Player player = (Player)event.getEntity();
 			
-			if (dropchance >= plugin.configFile.getDouble("droprate")*lootingrate) { return; }
+			if ((dropchance >= plugin.configFile.getDouble("droprate")*lootingrate) && !killer.hasPermission("playerheads.alwaysbehead")) { return; }
 			if (!player.hasPermission("playerheads.canloosehead")) { return; }
 			if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
 
@@ -122,7 +122,7 @@ public class PlayerHeadsListener implements Listener {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
-		if (dropchance >= droprate) { return; }
+		if ((dropchance >= droprate) && !killer.hasPermission("playerheads.alwaysbeheadmob")) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
 		if (type instanceof SkullType) {

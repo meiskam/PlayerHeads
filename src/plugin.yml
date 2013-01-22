@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 2.9.0080
+version: 2.9.0081
 description: Drops a player's head when s/he dies, also mob heads
 authors: [meiskam, zand]
 
@@ -23,6 +23,8 @@ permissions:
       playerheads.canloosehead: true
       playerheads.canbeheadmob: true
       playerheads.update: true
+      playerheads.alwaysbehead: true
+      playerheads.alwaysbeheadmob: true
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     children:
@@ -66,3 +68,9 @@ permissions:
   playerheads.update:
     description: When update available, can view notice and manually update
     default: op
+  playerheads.alwaysbehead:
+    description: Ignore drop rate for player heads and drop 100% of the time
+    default: false
+  playerheads.alwaysbeheadmob:
+    description: Ignore drop rate for mob heads and drop 100% of the time
+    default: false

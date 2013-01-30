@@ -203,7 +203,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public static String format(String text, String... replacement) {
 		String output = text;
 		for (int i = 0; i < replacement.length; i++) {
-			output.replace("%"+(i+1)+"%", replacement[i]);
+			output = output.replace("%"+(i+1)+"%", replacement[i]);
 		}
 		return ChatColor.translateAlternateColorCodes('&', output);
 	}

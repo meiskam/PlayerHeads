@@ -122,7 +122,7 @@ public class PlayerHeadsListener implements Listener {
 		Double dropchance = prng.nextDouble();
 		Player killer = event.getEntity().getKiller();
 		
-		if ((dropchance >= droprate) && !killer.hasPermission("playerheads.alwaysbeheadmob")) { return; }
+		if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbeheadmob"))) { return; }
 		if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 		
 		if (type instanceof SkullType) {

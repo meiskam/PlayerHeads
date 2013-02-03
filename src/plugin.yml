@@ -1,5 +1,5 @@
 name: PlayerHeads
-version: 2.9.0084
+version: 3.0.0085
 description: Drops a player's head when s/he dies, also mob heads
 authors: [meiskam, zand]
 
@@ -14,6 +14,7 @@ commands:
 permissions:
   playerheads.*:
     description: Gives all PlayerHeads permissions
+    default: false
     children:
       playerheads.config.*: true
       playerheads.spawn.*: true
@@ -27,6 +28,7 @@ permissions:
       playerheads.alwaysbeheadmob: true
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
+    default: op
     children:
       playerheads.config.get: true
       playerheads.config.set: true

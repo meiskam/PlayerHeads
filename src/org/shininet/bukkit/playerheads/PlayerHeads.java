@@ -66,7 +66,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	private static boolean updateReady = false;
 	private static String updateName = "";
 	private static long updateSize = 0;
-	private static final String updateSlug = "player-heads";
+	public static final String updateSlug = "player-heads";
 	
 	@Override
 	public void onEnable(){
@@ -115,11 +115,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 
 	public long getUpdateSize() {
 		return updateSize;
-	}
-
-	public void update() {
-		new Updater(this, updateSlug, getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-		updateReady = false;
 	}
 	
 	public static boolean addHead(Player player, String skullOwner) {

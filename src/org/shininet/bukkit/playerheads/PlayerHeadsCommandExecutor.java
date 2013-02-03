@@ -34,7 +34,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			return false;
 		}
 		if (args.length == 0) {
-			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SUBCOMMANDS+Lang.COLON_SPACE+Lang.CMD_CONFIG+Lang.COMMA_SPACE+Lang.CMD_SPAWN+Lang.COMMA_SPACE+Lang.CMD_RENAME+Lang.COMMA_SPACE+Lang.CMD_UPDATE);
+			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SUBCOMMANDS+Lang.COLON_SPACE+Lang.CMD_CONFIG+Lang.COMMA_SPACE+Lang.CMD_SPAWN+Lang.COMMA_SPACE+Lang.CMD_RENAME);
 			return true;
 		}
 		if (args[0].equalsIgnoreCase(PlayerHeads.formatStrip(Lang.CMD_CONFIG))) {
@@ -198,22 +198,6 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			((Player)sender).setItemInHand(skullOutput);
 			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_RENAME+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.RENAMED_HEAD);
 			return true;
-		} else if (args[0].equalsIgnoreCase(PlayerHeads.formatStrip(Lang.CMD_UPDATE))) {
-			if (!sender.hasPermission("playerheads.update")) {
-				PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_PERMISSION);
-				return true;
-			}
-			if (!plugin.configFile.getBoolean("autoupdate")) {
-				PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_UPDATE_DISABLED);
-				return true;
-			}
-			if (!plugin.getUpdateReady()) {
-				PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_UPDATE_NOT_AVAILABLE);
-				return true;
-			}
-			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UPDATE+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.UPDATE_STARTED);
-			plugin.update();
-			return true;
 		} else {
 			PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_UNKNOWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.ERROR_INVALID_SUBCOMMAND);
 			return true;
@@ -238,7 +222,6 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 		final String cmd_rename = PlayerHeads.formatStrip(Lang.CMD_RENAME);
 		final String cmd_set = PlayerHeads.formatStrip(Lang.CMD_SET);
 		final String cmd_spawn = PlayerHeads.formatStrip(Lang.CMD_SPAWN);
-		final String cmd_update = PlayerHeads.formatStrip(Lang.CMD_UPDATE);
 		
 		if (args.length == 1) {
 			if (cmd_config.startsWith(args[0])) {
@@ -249,9 +232,6 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			}
 			if (cmd_rename.startsWith(args[0])) {
 				completions.add(cmd_rename);
-			}
-			if (cmd_update.startsWith(args[0])) {
-				completions.add(cmd_update);
 			}
 			return sort(completions);
 		}
@@ -288,8 +268,6 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 			if (args.length > 2) {
 				return completions;
 			}
-		} else if (args[0].equals(cmd_update)) {
-			return completions;
 		}
 		return null;
 	}

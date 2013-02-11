@@ -57,6 +57,7 @@ public class Lang {
 	public static String HEAD_WITHER;
 	public static String HEAD_ZOMBIE;
 	public static String HEAD;
+	public static String OPT_AMOUNT_OPTIONAL;
 	public static String OPT_HEADNAME_OPTIONAL;
 	public static String OPT_HEADNAME_REQUIRED;
 	public static String OPT_RECIEVER_OPTIONAL;

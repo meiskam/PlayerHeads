@@ -67,6 +67,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	private static String updateName = "";
 	private static long updateSize = 0;
 	public static final String updateSlug = "player-heads";
+	public static int defaultStackSize = 1;
 	
 	@Override
 	public void onEnable(){
@@ -116,14 +117,18 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	public long getUpdateSize() {
 		return updateSize;
 	}
-	
+
 	public static boolean addHead(Player player, String skullOwner) {
+		return addHead(player, skullOwner, defaultStackSize);
+	}
+
+	public static boolean addHead(Player player, String skullOwner, int quantity) {
 		PlayerInventory inv = player.getInventory();
 		int firstEmpty = inv.firstEmpty();
 		if (firstEmpty == -1) {
 			return false;
 		} else {
-			inv.setItem(firstEmpty, PlayerHeads.Skull(skullOwner));
+			inv.setItem(firstEmpty, PlayerHeads.Skull(skullOwner, quantity));
 			return true;
 		}
 	}
@@ -137,7 +142,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		}
 		return output.toString();
 	}
-	
+
 	public static String fixcase(String inputName) {
 		String inputNameLC = inputName.toLowerCase();
 		Player player = Bukkit.getServer().getPlayerExact(inputNameLC);
@@ -154,30 +159,38 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		
 		return inputName;
 	}
-	
+
 	public static ItemStack Skull(String skullOwner) {
+		return Skull(skullOwner, defaultStackSize);
+	}
+
+	public static ItemStack Skull(String skullOwner, int quantity) {
 		String skullOwnerLC = skullOwner.toLowerCase();
 		if (skullOwnerLC.equals("#creeper")) {
-			return Skull(SkullType.CREEPER);
+			return Skull(SkullType.CREEPER, quantity);
 		} else if (skullOwnerLC.equals("#zombie")) {
-			return Skull(SkullType.ZOMBIE);
+			return Skull(SkullType.ZOMBIE, quantity);
 		} else if (skullOwnerLC.equals("#skeleton")) {
-			return Skull(SkullType.SKELETON);
+			return Skull(SkullType.SKELETON, quantity);
 		} else if (skullOwnerLC.equals("#wither")) {
-			return Skull(SkullType.WITHER);
+			return Skull(SkullType.WITHER, quantity);
 		} else if (skullOwnerLC.equals("#spider")) {
-			return Skull(CustomSkullType.SPIDER);
+			return Skull(CustomSkullType.SPIDER, quantity);
 		} else if (skullOwnerLC.equals("#enderman")) {
-			return Skull(CustomSkullType.ENDERMAN);
+			return Skull(CustomSkullType.ENDERMAN, quantity);
 		} else if (skullOwnerLC.equals("#blaze")) {
-			return Skull(CustomSkullType.BLAZE);
+			return Skull(CustomSkullType.BLAZE, quantity);
 		} else {
-			return Skull(skullOwner, null);
+			return Skull(skullOwner, null, quantity);
 		}
 	}
 	
 	public static ItemStack Skull(String skullOwner, String displayName) {
-		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short)SkullType.PLAYER.ordinal());
+		return Skull(skullOwner, displayName, defaultStackSize);
+	}
+	
+	public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
+		ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short)SkullType.PLAYER.ordinal());
 		SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
 		skullMeta.setOwner(skullOwner);
 		if (displayName != null) {
@@ -188,11 +201,19 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 	}
 	
 	public static ItemStack Skull(CustomSkullType type) {
-		return Skull(type.getOwner(), type.getDisplayName());
+		return Skull(type, defaultStackSize);
+	}
+	
+	public static ItemStack Skull(CustomSkullType type, int quantity) {
+		return Skull(type.getOwner(), type.getDisplayName(), quantity);
 	}
 	
 	public static ItemStack Skull(SkullType type) {
-		return new ItemStack(Material.SKULL_ITEM, 1, (short)type.ordinal());
+		return Skull(type, defaultStackSize);
+	}
+	
+	public static ItemStack Skull(SkullType type, int quantity) {
+		return new ItemStack(Material.SKULL_ITEM, quantity, (short)type.ordinal());
 	}
 	
 	public static String format(String text, String... replacement) {

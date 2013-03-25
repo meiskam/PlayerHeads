@@ -53,7 +53,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("endermandroprate", configType.DOUBLE);
 			put("blazedroprate", configType.DOUBLE);
 			put("fixcase", configType.BOOLEAN);
-			put("autoupdate", configType.BOOLEAN);
+			put("updatecheck", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
 			put("antideathchest", configType.BOOLEAN);
 			put("dropboringplayerheads", configType.BOOLEAN);
@@ -83,7 +83,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			logger.warning(Lang.ERROR_METRICS);
 		}
 		try {
-			if (configFile.getBoolean("autoupdate") && !(updateReady)) {
+			if (configFile.getBoolean("updatecheck") && !(updateReady)) {
 				Updater updater = new Updater(this, updateSlug, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
 				updateReady = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
 				updateName = updater.getLatestVersionString(); // Get the latest version

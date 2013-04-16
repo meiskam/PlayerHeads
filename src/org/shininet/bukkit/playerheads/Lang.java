@@ -53,6 +53,7 @@ public class Lang {
 	public static String HEAD_CREEPER;
 	public static String HEAD_ENDERMAN;
 	public static String HEAD_SKELETON;
+	public static String HEAD_SLIME;
 	public static String HEAD_SPIDER;
 	public static String HEAD_WITHER;
 	public static String HEAD_ZOMBIE;

@@ -2,9 +2,10 @@ package org.shininet.bukkit.playerheads;
 
 public enum CustomSkullType {
 	
-	SPIDER("Kelevra_V", PlayerHeads.format(Lang.HEAD_SPIDER)),
-	ENDERMAN("Violit", PlayerHeads.format(Lang.HEAD_ENDERMAN)),
-	BLAZE("Blaze_Head", PlayerHeads.format(Lang.HEAD_BLAZE));
+	SPIDER("Kelevra_V", PlayerHeads.format(Lang.HEAD_SPIDER)), // Thanks SethBling
+	ENDERMAN("Violit", PlayerHeads.format(Lang.HEAD_ENDERMAN)), // Thanks SethBling
+	BLAZE("Blaze_Head", PlayerHeads.format(Lang.HEAD_BLAZE)), // Thanks SethBling
+	SLIME("gavertoso", PlayerHeads.format(Lang.HEAD_SLIME)); // Thanks Glompalici0us
 	
 	private final String owner;
 	private final String displayName;

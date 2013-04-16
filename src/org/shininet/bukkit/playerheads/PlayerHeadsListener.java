@@ -16,6 +16,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -115,6 +116,11 @@ public class PlayerHeadsListener implements Listener {
 		case BLAZE:
 			EntityDeathHelper(event, CustomSkullType.BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
 			break;
+		case SLIME:
+			if (((Slime)event.getEntity()).getSize() == 1) {
+				EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate")*lootingrate);
+			}
+			break;
 		}
 	}
 	
@@ -149,6 +155,8 @@ public class PlayerHeadsListener implements Listener {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.ENDERMAN.getDisplayName());
 					} else if (ownerStrip.equals(CustomSkullType.SPIDER.getOwner())) {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SPIDER.getDisplayName());
+					} else if (ownerStrip.equals(CustomSkullType.SLIME.getOwner())) {
+						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SLIME.getDisplayName());
 					} else {
 						PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);
 					}
@@ -184,7 +192,8 @@ public class PlayerHeadsListener implements Listener {
 				String owner = ChatColor.stripColor(skull.getOwner());
 				if ((owner.equals(CustomSkullType.BLAZE.getOwner()))
 						|| (owner.equals(CustomSkullType.ENDERMAN.getOwner()))
-						|| (owner.equals(CustomSkullType.SPIDER.getOwner()))) {
+						|| (owner.equals(CustomSkullType.SPIDER.getOwner()))
+						|| (owner.equals(CustomSkullType.SLIME.getOwner()))) {
 					Player player = event.getPlayer();
 					
 					plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
@@ -204,6 +213,8 @@ public class PlayerHeadsListener implements Listener {
 							item = PlayerHeads.Skull(CustomSkullType.ENDERMAN);
 						} else if (owner.equals(CustomSkullType.SPIDER.getOwner())) {
 							item = PlayerHeads.Skull(CustomSkullType.SPIDER);
+						} else if (owner.equals(CustomSkullType.SLIME.getOwner())) {
+							item = PlayerHeads.Skull(CustomSkullType.SLIME);
 						}
 						if (item != null) {
 							event.setCancelled(true);

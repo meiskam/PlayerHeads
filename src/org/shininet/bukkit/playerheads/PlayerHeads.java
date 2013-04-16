@@ -52,6 +52,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("spiderdroprate", configType.DOUBLE);
 			put("endermandroprate", configType.DOUBLE);
 			put("blazedroprate", configType.DOUBLE);
+			put("slimedroprate", configType.DOUBLE);
 			put("fixcase", configType.BOOLEAN);
 			put("updatecheck", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
@@ -180,6 +181,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			return Skull(CustomSkullType.ENDERMAN, quantity);
 		} else if (skullOwnerLC.equals("#blaze")) {
 			return Skull(CustomSkullType.BLAZE, quantity);
+		} else if (skullOwnerLC.equals("#slime")) {
+			return Skull(CustomSkullType.SLIME, quantity);
 		} else {
 			return Skull(skullOwner, null, quantity);
 		}

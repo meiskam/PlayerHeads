@@ -12,6 +12,7 @@
 # spiderdroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a spider dies (1 is 100%, 0 is never)
 # endermandroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when a enderman dies (1 is 100%, 0 is never)
 # blazedroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a blaze dies (1 is 100%, 0 is never)
+# slimedroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a slime dies (1 is 100%, 0 is never)
 # fixcase: true					[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true				[true/false]	Checks for update on startup and alerts admins
 # broadcast: true				[true/false]	Sends a global message when someone gets beheaded
@@ -29,6 +30,7 @@ witherdroprate: 0.025
 spiderdroprate: 0.002
 endermandroprate: 0.002
 blazedroprate: 0.002
+slimedroprate: 0.002
 fixcase: true
 updatecheck: true
 broadcast: true

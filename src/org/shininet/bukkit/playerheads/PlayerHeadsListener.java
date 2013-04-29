@@ -116,11 +116,36 @@ public class PlayerHeadsListener implements Listener {
 		case BLAZE:
 			EntityDeathHelper(event, CustomSkullType.BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
 			break;
+//		case ____: //TODO
+//			EntityDeathHelper(event, CustomSkullType.____, plugin.configFile.getDouble("____droprate")*lootingrate);
+//			break;
+		case SQUID:
+			EntityDeathHelper(event, CustomSkullType.SQUID, plugin.configFile.getDouble("squiddroprate")*lootingrate);
+			break;
+		case SILVERFISH:
+			EntityDeathHelper(event, CustomSkullType.SILVERFISH, plugin.configFile.getDouble("silverfishdroprate")*lootingrate);
+			break;
+		case ENDER_DRAGON:
+			EntityDeathHelper(event, CustomSkullType.ENDER_DRAGON, plugin.configFile.getDouble("enderdragondroprate")*lootingrate);
+			break;
 		case SLIME:
 			if (((Slime)event.getEntity()).getSize() == 1) {
 				EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate")*lootingrate);
 			}
 			break;
+//		case GHAST:
+//			EntityDeathHelper(event, CustomSkullType.GHAST, plugin.configFile.getDouble("ghastdroprate")*lootingrate);
+//			break;
+		case IRON_GOLEM:
+			EntityDeathHelper(event, CustomSkullType.IRON_GOLEM, plugin.configFile.getDouble("irongolemdroprate")*lootingrate);
+			break;
+		case MUSHROOM_COW:
+			EntityDeathHelper(event, CustomSkullType.MUSHROOM_COW, plugin.configFile.getDouble("mushroomcowdroprate")*lootingrate);
+			break;
+		case BAT:
+			EntityDeathHelper(event, CustomSkullType.BAT, plugin.configFile.getDouble("batdroprate")*lootingrate);
+			break;
+
 		}
 	}
 	

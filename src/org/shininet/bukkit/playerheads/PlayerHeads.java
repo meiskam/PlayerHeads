@@ -52,7 +52,13 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			put("spiderdroprate", configType.DOUBLE);
 			put("endermandroprate", configType.DOUBLE);
 			put("blazedroprate", configType.DOUBLE);
+			put("squiddroprate", configType.DOUBLE);
+			put("silverfishdroprate", configType.DOUBLE);
+			put("enderdragondroprate", configType.DOUBLE);
 			put("slimedroprate", configType.DOUBLE);
+			put("irongolemdroprate", configType.DOUBLE);
+			put("mushroomcowdroprate", configType.DOUBLE);
+			put("batdroprate", configType.DOUBLE);			
 			put("fixcase", configType.BOOLEAN);
 			put("updatecheck", configType.BOOLEAN);
 			put("broadcast", configType.BOOLEAN);
@@ -181,8 +187,22 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 			return Skull(CustomSkullType.ENDERMAN, quantity);
 		} else if (skullOwnerLC.equals("#blaze")) {
 			return Skull(CustomSkullType.BLAZE, quantity);
+		} else if (skullOwnerLC.equals("#squid")) {
+			return Skull(CustomSkullType.SQUID, quantity);
+		} else if (skullOwnerLC.equals("#silverfish")) {
+			return Skull(CustomSkullType.SILVERFISH, quantity);
+		} else if (skullOwnerLC.equals("#enderdragon")) {
+			return Skull(CustomSkullType.ENDER_DRAGON, quantity);
 		} else if (skullOwnerLC.equals("#slime")) {
 			return Skull(CustomSkullType.SLIME, quantity);
+//		} else if (skullOwnerLC.equals("#ghast")) {
+//			return Skull(CustomSkullType.GHAST, quantity);
+		} else if (skullOwnerLC.equals("#irongolem")) {
+			return Skull(CustomSkullType.IRON_GOLEM, quantity);
+		} else if (skullOwnerLC.equals("#mushroomcow")) {
+			return Skull(CustomSkullType.MUSHROOM_COW, quantity);
+		} else if (skullOwnerLC.equals("#bat")) {
+			return Skull(CustomSkullType.BAT, quantity);
 		} else {
 			return Skull(skullOwner, null, quantity);
 		}

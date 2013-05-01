@@ -169,22 +169,19 @@ public class PlayerHeadsListener implements Listener {
 		Player player = event.getPlayer();
 		if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
 			Skull skullState = (Skull)block.getState();
+			Switch:
 			switch (skullState.getSkullType()) {
 			case PLAYER:
 				if (skullState.hasOwner()) {
 					String owner = skullState.getOwner();
 					String ownerStrip = ChatColor.stripColor(owner);
-					if (ownerStrip.equals(CustomSkullType.BLAZE.getOwner())) {
-						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.BLAZE.getDisplayName());
-					} else if (ownerStrip.equals(CustomSkullType.ENDERMAN.getOwner())) {
-						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.ENDERMAN.getDisplayName());
-					} else if (ownerStrip.equals(CustomSkullType.SPIDER.getOwner())) {
-						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SPIDER.getDisplayName());
-					} else if (ownerStrip.equals(CustomSkullType.SLIME.getOwner())) {
-						PlayerHeads.formatMsg(player, Lang.CLICKINFO2, CustomSkullType.SLIME.getDisplayName());
-					} else {
-						PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);
+					for (CustomSkullType skullType : CustomSkullType.values()) {
+						if (ownerStrip.equals(skullType.getOwner())) {
+							PlayerHeads.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+							break Switch;
+						}
 					}
+					PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);
 				} else {
 					PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
 				}
@@ -215,37 +212,27 @@ public class PlayerHeadsListener implements Listener {
 			Skull skull = (Skull)block.getState();
 			if (skull.hasOwner()) {
 				String owner = ChatColor.stripColor(skull.getOwner());
-				if ((owner.equals(CustomSkullType.BLAZE.getOwner()))
-						|| (owner.equals(CustomSkullType.ENDERMAN.getOwner()))
-						|| (owner.equals(CustomSkullType.SPIDER.getOwner()))
-						|| (owner.equals(CustomSkullType.SLIME.getOwner()))) {
-					Player player = event.getPlayer();
-					
-					plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
-					plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
-					
-					FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
-					plugin.getServer().getPluginManager().callEvent(fakebreak);
+				for (CustomSkullType skullType : CustomSkullType.values()) {
+					if (owner.equals(skullType.getOwner())) {
+						Player player = event.getPlayer();
+						
+						plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
+						plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
+						
+						FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
+						plugin.getServer().getPluginManager().callEvent(fakebreak);
 
-					if (fakebreak.isCancelled()) {
-						event.setCancelled(true);
-					} else {
-						Location location = block.getLocation();
-						ItemStack item = null;
-						if (owner.equals(CustomSkullType.BLAZE.getOwner())) {
-							item = PlayerHeads.Skull(CustomSkullType.BLAZE);
-						} else if (owner.equals(CustomSkullType.ENDERMAN.getOwner())) {
-							item = PlayerHeads.Skull(CustomSkullType.ENDERMAN);
-						} else if (owner.equals(CustomSkullType.SPIDER.getOwner())) {
-							item = PlayerHeads.Skull(CustomSkullType.SPIDER);
-						} else if (owner.equals(CustomSkullType.SLIME.getOwner())) {
-							item = PlayerHeads.Skull(CustomSkullType.SLIME);
-						}
-						if (item != null) {
+						if (fakebreak.isCancelled()) {
+							event.setCancelled(true);
+						} else {
+							Location location = block.getLocation();
+							ItemStack item = PlayerHeads.Skull(skullType);
+							
 							event.setCancelled(true);
 							block.setType(Material.AIR);
 							location.getWorld().dropItemNaturally(location, item);
 						}
+						break;
 					}
 				}
 			}

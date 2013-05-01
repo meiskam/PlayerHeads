@@ -173,36 +173,21 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 
 	public static ItemStack Skull(String skullOwner, int quantity) {
 		String skullOwnerLC = skullOwner.toLowerCase();
-		if (skullOwnerLC.equals("#creeper")) {
+		
+		for (CustomSkullType skullType : CustomSkullType.values()) {
+			if (skullOwnerLC.equals(skullType.getSpawnName())) {
+				return Skull(skullType, quantity);
+			}
+		}
+		
+		if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
 			return Skull(SkullType.CREEPER, quantity);
-		} else if (skullOwnerLC.equals("#zombie")) {
+		} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
 			return Skull(SkullType.ZOMBIE, quantity);
-		} else if (skullOwnerLC.equals("#skeleton")) {
+		} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
 			return Skull(SkullType.SKELETON, quantity);
-		} else if (skullOwnerLC.equals("#wither")) {
+		} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
 			return Skull(SkullType.WITHER, quantity);
-		} else if (skullOwnerLC.equals("#spider")) {
-			return Skull(CustomSkullType.SPIDER, quantity);
-		} else if (skullOwnerLC.equals("#enderman")) {
-			return Skull(CustomSkullType.ENDERMAN, quantity);
-		} else if (skullOwnerLC.equals("#blaze")) {
-			return Skull(CustomSkullType.BLAZE, quantity);
-		} else if (skullOwnerLC.equals("#squid")) {
-			return Skull(CustomSkullType.SQUID, quantity);
-		} else if (skullOwnerLC.equals("#silverfish")) {
-			return Skull(CustomSkullType.SILVERFISH, quantity);
-		} else if (skullOwnerLC.equals("#enderdragon")) {
-			return Skull(CustomSkullType.ENDER_DRAGON, quantity);
-		} else if (skullOwnerLC.equals("#slime")) {
-			return Skull(CustomSkullType.SLIME, quantity);
-//		} else if (skullOwnerLC.equals("#ghast")) {
-//			return Skull(CustomSkullType.GHAST, quantity);
-		} else if (skullOwnerLC.equals("#irongolem")) {
-			return Skull(CustomSkullType.IRON_GOLEM, quantity);
-		} else if (skullOwnerLC.equals("#mushroomcow")) {
-			return Skull(CustomSkullType.MUSHROOM_COW, quantity);
-		} else if (skullOwnerLC.equals("#bat")) {
-			return Skull(CustomSkullType.BAT, quantity);
 		} else {
 			return Skull(skullOwner, null, quantity);
 		}

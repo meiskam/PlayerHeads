@@ -12,6 +12,7 @@
 # spiderdroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a spider dies (1 is 100%, 0 is never)
 # endermandroprate: 0.002		[0.0 -> 1.0]	Chance that a mob trophy will drop when an enderman dies (1 is 100%, 0 is never)
 # blazedroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a blaze dies (1 is 100%, 0 is never)
+# horsedroprate: 0.001			[0.0 -> 1.0]	Chance that a mob trophy will drop when a horse dies (1 is 100%, 0 is never)
 # squiddroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a squid dies (1 is 100%, 0 is never)
 # silverfishdroprate: 0.01		[0.0 -> 1.0]	Chance that a mob trophy will drop when a silverfish dies (1 is 100%, 0 is never)
 # enderdragondroprate: 0.05		[0.0 -> 1.0]	Chance that a mob trophy will drop when an ender dragon dies (1 is 100%, 0 is never)
@@ -36,6 +37,7 @@ witherdroprate: 0.025
 spiderdroprate: 0.002
 endermandroprate: 0.002
 blazedroprate: 0.002
+horsedroprate: 0.001
 squiddroprate: 0.002
 silverfishdroprate: 0.01
 enderdragondroprate: 0.05

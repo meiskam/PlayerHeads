@@ -116,9 +116,9 @@ public class PlayerHeadsListener implements Listener {
 		case BLAZE:
 			EntityDeathHelper(event, CustomSkullType.BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
 			break;
-//		case ____: //TODO
-//			EntityDeathHelper(event, CustomSkullType.____, plugin.configFile.getDouble("____droprate")*lootingrate);
-//			break;
+		case HORSE:
+			EntityDeathHelper(event, CustomSkullType.HORSE, plugin.configFile.getDouble("horsedroprate")*lootingrate);
+			break;
 		case SQUID:
 			EntityDeathHelper(event, CustomSkullType.SQUID, plugin.configFile.getDouble("squiddroprate")*lootingrate);
 			break;
@@ -145,7 +145,6 @@ public class PlayerHeadsListener implements Listener {
 		case BAT:
 			EntityDeathHelper(event, CustomSkullType.BAT, plugin.configFile.getDouble("batdroprate")*lootingrate);
 			break;
-
 		}
 	}
 	

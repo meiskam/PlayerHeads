@@ -5,7 +5,7 @@ public enum CustomSkullType {
 	SPIDER("Kelevra_V", PlayerHeads.format(Lang.HEAD_SPIDER), Lang.HEAD_SPAWN_SPIDER), // Thanks SethBling
 	ENDERMAN("Violit", PlayerHeads.format(Lang.HEAD_ENDERMAN), Lang.HEAD_SPAWN_ENDERMAN), // Thanks SethBling
 	BLAZE("Blaze_Head", PlayerHeads.format(Lang.HEAD_BLAZE), Lang.HEAD_SPAWN_BLAZE), // Thanks SethBling
-//	TEMP("gavertoso", PlayerHeads.format(Lang.HEAD_), Lang.HEAD_SPAWN_), // Thanks Glompalici0us //TODO
+	HORSE("gavertoso", PlayerHeads.format(Lang.HEAD_HORSE), Lang.HEAD_SPAWN_HORSE), // Thanks Glompalici0us
 	SQUID("squidette8", PlayerHeads.format(Lang.HEAD_SQUID), Lang.HEAD_SPAWN_SQUID), // Thanks SethBling
 	SILVERFISH("AlexVMiner", PlayerHeads.format(Lang.HEAD_SILVERFISH), Lang.HEAD_SPAWN_SILVERFISH), // Thanks SethBling
 	ENDER_DRAGON("KingEndermen", PlayerHeads.format(Lang.HEAD_ENDER_DRAGON), Lang.HEAD_SPAWN_ENDER_DRAGON), // Thanks SethBling

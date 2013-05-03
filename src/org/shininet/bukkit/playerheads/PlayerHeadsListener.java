@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -207,14 +208,13 @@ public class PlayerHeadsListener implements Listener {
 			return;
 		}
 		Block block = event.getBlock();
-		if (block.getType() == Material.SKULL) {
+		Player player = event.getPlayer();
+		if ((player.getGameMode() != GameMode.CREATIVE) && (block.getType() == Material.SKULL)) {
 			Skull skull = (Skull)block.getState();
 			if (skull.hasOwner()) {
 				String owner = ChatColor.stripColor(skull.getOwner());
 				for (CustomSkullType skullType : CustomSkullType.values()) {
 					if (owner.equals(skullType.getOwner())) {
-						Player player = event.getPlayer();
-						
 						plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
 						plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
 						

@@ -146,6 +146,9 @@ public class PlayerHeadsListener implements Listener {
 		case BAT:
 			EntityDeathHelper(event, CustomSkullType.BAT, plugin.configFile.getDouble("batdroprate")*lootingrate);
 			break;
+		case PIG_ZOMBIE:
+			EntityDeathHelper(event, CustomSkullType.PIG_ZOMBIE, plugin.configFile.getDouble("pigzombiedroprate")*lootingrate);
+			break;
 		}
 	}
 	

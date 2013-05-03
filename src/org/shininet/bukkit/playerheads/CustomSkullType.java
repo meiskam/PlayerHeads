@@ -13,7 +13,8 @@ public enum CustomSkullType {
 //	GHAST("ghast1", PlayerHeads.format(Lang.HEAD_GHAST), Lang.HEAD_SPAWN_GHAST), // Thanks SethBling
 	IRON_GOLEM("zippie007", PlayerHeads.format(Lang.HEAD_IRON_GOLEM), Lang.HEAD_SPAWN_IRON_GOLEM), // Thanks SethBling
 	MUSHROOM_COW("Mooshroom_Stew", PlayerHeads.format(Lang.HEAD_MUSHROOM_COW), Lang.HEAD_SPAWN_MUSHROOM_COW), // Thanks SethBling
-	BAT("coolwhip101", PlayerHeads.format(Lang.HEAD_BAT), Lang.HEAD_SPAWN_BAT); // Thanks SethBling
+	BAT("coolwhip101", PlayerHeads.format(Lang.HEAD_BAT), Lang.HEAD_SPAWN_BAT), // Thanks SethBling
+	PIG_ZOMBIE("ManBearPigZombie", PlayerHeads.format(Lang.HEAD_PIG_ZOMBIE), Lang.HEAD_SPAWN_PIG_ZOMBIE); // Thanks cnaude of TrophyHeads
 	
 	private final String owner;
 	private final String displayName;

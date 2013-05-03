@@ -58,6 +58,7 @@ public class Lang {
 	public static String HEAD_HORSE;
 	public static String HEAD_IRON_GOLEM;
 	public static String HEAD_MUSHROOM_COW;
+	public static String HEAD_PIG_ZOMBIE;
 	public static String HEAD_SILVERFISH;
 	public static String HEAD_SKELETON;
 	public static String HEAD_SLIME;
@@ -74,6 +75,7 @@ public class Lang {
 	public static String HEAD_SPAWN_HORSE;
 	public static String HEAD_SPAWN_IRON_GOLEM;
 	public static String HEAD_SPAWN_MUSHROOM_COW;
+	public static String HEAD_SPAWN_PIG_ZOMBIE;
 	public static String HEAD_SPAWN_SILVERFISH;
 	public static String HEAD_SPAWN_SKELETON;
 	public static String HEAD_SPAWN_SLIME;

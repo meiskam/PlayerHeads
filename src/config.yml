@@ -20,6 +20,7 @@
 # irongolemdroprate: 0.005		[0.0 -> 1.0]	Chance that a mob trophy will drop when an iron golem dies (1 is 100%, 0 is never)
 # mushroomcowdroprate: 0.001	[0.0 -> 1.0]	Chance that a mob trophy will drop when a mushroom cow dies (1 is 100%, 0 is never)
 # batdroprate: 0.002			[0.0 -> 1.0]	Chance that a mob trophy will drop when a bat dies (1 is 100%, 0 is never)
+# pigzombiedroprate: 0.001		[0.0 -> 1.0]	Chance that a mob trophy will drop when a pig zombie dies (1 is 100%, 0 is never)
 # fixcase: true					[true/false]	When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true				[true/false]	Checks for update on startup and alerts admins
 # broadcast: true				[true/false]	Sends a global message when someone gets beheaded
@@ -45,6 +46,7 @@ slimedroprate: 0.001
 irongolemdroprate: 0.005
 mushroomcowdroprate: 0.002
 batdroprate: 0.002
+pigzombiedroprate: 0.001
 fixcase: true
 updatecheck: true
 broadcast: true

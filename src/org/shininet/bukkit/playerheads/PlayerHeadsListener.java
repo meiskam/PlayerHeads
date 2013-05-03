@@ -245,7 +245,7 @@ public class PlayerHeadsListener implements Listener {
 		if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
 		{
 			PlayerHeads.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
-			PlayerHeads.formatMsg(player, Lang.UPDATE2, "http://curse.com/server-mods/minecraft/" + PlayerHeads.updateSlug);
+			PlayerHeads.formatMsg(player, Lang.UPDATE3, "http://curse.com/server-mods/minecraft/" + PlayerHeads.updateSlug);
 		}
 	}
 }

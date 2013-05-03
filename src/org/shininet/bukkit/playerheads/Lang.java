@@ -96,7 +96,7 @@ public class Lang {
 	public static String SYNTAX;
 	public static String UPDATE_STARTED;
 	public static String UPDATE1;
-	public static String UPDATE2;
+	public static String UPDATE3;
 	
 	private Lang() {}
 

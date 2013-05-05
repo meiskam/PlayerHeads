@@ -177,7 +177,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 		String skullOwnerLC = skullOwner.toLowerCase();
 		
 		for (CustomSkullType skullType : CustomSkullType.values()) {
-			if (skullOwnerLC.equals(skullType.getSpawnName())) {
+			if (skullOwnerLC.equals(skullType.getSpawnName().toLowerCase())) {
 				return Skull(skullType, quantity);
 			}
 		}

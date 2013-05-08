@@ -134,9 +134,6 @@ public class PlayerHeadsListener implements Listener {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate")*lootingrate);
             }
             break;
-//        case GHAST:
-//            EntityDeathHelper(event, CustomSkullType.GHAST, plugin.configFile.getDouble("ghastdroprate")*lootingrate);
-//            break;
         case IRON_GOLEM:
             EntityDeathHelper(event, CustomSkullType.IRON_GOLEM, plugin.configFile.getDouble("irongolemdroprate")*lootingrate);
             break;
@@ -148,6 +145,12 @@ public class PlayerHeadsListener implements Listener {
             break;
         case PIG_ZOMBIE:
             EntityDeathHelper(event, CustomSkullType.PIG_ZOMBIE, plugin.configFile.getDouble("pigzombiedroprate")*lootingrate);
+            break;
+        case SNOWMAN:
+            EntityDeathHelper(event, CustomSkullType.SNOWMAN, plugin.configFile.getDouble("snowmandroprate")*lootingrate);
+            break;
+        case GHAST:
+            EntityDeathHelper(event, CustomSkullType.GHAST, plugin.configFile.getDouble("ghastdroprate")*lootingrate);
             break;
         }
     }

@@ -61,6 +61,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
             put("mushroomcowdroprate", configType.DOUBLE);
             put("batdroprate", configType.DOUBLE);
             put("pigzombiedroprate", configType.DOUBLE);
+            put("snowmandroprate", configType.DOUBLE);
+            put("ghastdroprate", configType.DOUBLE);
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);
             put("broadcast", configType.BOOLEAN);

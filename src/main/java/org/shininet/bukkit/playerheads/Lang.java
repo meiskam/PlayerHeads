@@ -62,6 +62,7 @@ public class Lang {
     public static String HEAD_SILVERFISH;
     public static String HEAD_SKELETON;
     public static String HEAD_SLIME;
+    public static String HEAD_SNOWMAN;
     public static String HEAD_SPIDER;
     public static String HEAD_SQUID;
     public static String HEAD_WITHER;
@@ -79,6 +80,7 @@ public class Lang {
     public static String HEAD_SPAWN_SILVERFISH;
     public static String HEAD_SPAWN_SKELETON;
     public static String HEAD_SPAWN_SLIME;
+    public static String HEAD_SPAWN_SNOWMAN;
     public static String HEAD_SPAWN_SPIDER;
     public static String HEAD_SPAWN_SQUID;
     public static String HEAD_SPAWN_WITHER;

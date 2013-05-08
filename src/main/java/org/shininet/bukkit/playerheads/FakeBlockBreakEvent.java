@@ -6,8 +6,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public class FakeBlockBreakEvent extends BlockBreakEvent {
 
-	public FakeBlockBreakEvent(Block theBlock, Player player) {
-		super(theBlock, player);
-	}
+    public FakeBlockBreakEvent(Block theBlock, Player player) {
+        super(theBlock, player);
+    }
 
 }

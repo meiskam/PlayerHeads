@@ -152,6 +152,9 @@ public class PlayerHeadsListener implements Listener {
         case GHAST:
             EntityDeathHelper(event, CustomSkullType.GHAST, plugin.configFile.getDouble("ghastdroprate")*lootingrate);
             break;
+        case PIG:
+            EntityDeathHelper(event, CustomSkullType.PIG, plugin.configFile.getDouble("pigdroprate")*lootingrate);
+            break;
         }
     }
 

@@ -15,7 +15,8 @@ public enum CustomSkullType {
     BAT("coolwhip101", PlayerHeads.format(Lang.HEAD_BAT), Lang.HEAD_SPAWN_BAT), // Thanks SethBling
     PIG_ZOMBIE("ManBearPigZombie", PlayerHeads.format(Lang.HEAD_PIG_ZOMBIE), Lang.HEAD_SPAWN_PIG_ZOMBIE), // Thanks cnaude of TrophyHeads
     SNOWMAN("Koebasti", PlayerHeads.format(Lang.HEAD_SNOWMAN), Lang.HEAD_SPAWN_SNOWMAN), // Thanks MrLeikermoser
-    GHAST("_QuBra_", PlayerHeads.format(Lang.HEAD_GHAST), Lang.HEAD_SPAWN_GHAST); // Thanks MrLeikermoser
+    GHAST("_QuBra_", PlayerHeads.format(Lang.HEAD_GHAST), Lang.HEAD_SPAWN_GHAST), // Thanks MrLeikermoser
+    PIG("XlexerX", PlayerHeads.format(Lang.HEAD_PIG), Lang.HEAD_SPAWN_PIG); // Thanks XlexerX
 
     private final String owner;
     private final String displayName;

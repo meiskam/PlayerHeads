@@ -39,7 +39,6 @@ public class Lang {
     public static String CMD_SET;
     public static String CMD_SPAWN;
     public static String CMD_UNKNOWN;
-    public static String CMD_UPDATE;
     public static String COLON;
     public static String COLON_SPACE;
     public static String COMMA_SPACE;
@@ -54,8 +53,6 @@ public class Lang {
     public static String ERROR_NOT_ONLINE;
     public static String ERROR_NUMBERCONVERT;
     public static String ERROR_PERMISSION;
-    public static String ERROR_UPDATE_DISABLED;
-    public static String ERROR_UPDATE_NOT_AVAILABLE;
     public static String ERROR_UPDATER;
     public static String HEAD_BAT;
     public static String HEAD_BLAZE;
@@ -108,7 +105,6 @@ public class Lang {
     public static String SPAWNED_HEAD;
     public static String SUBCOMMANDS;
     public static String SYNTAX;
-    public static String UPDATE_STARTED;
     public static String UPDATE1;
     public static String UPDATE3;
 

@@ -15,6 +15,7 @@ import org.bukkit.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Slime;
@@ -42,7 +43,6 @@ public class PlayerHeadsListener implements Listener {
         this.plugin = plugin;
     }
 
-    @SuppressWarnings("incomplete-switch")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDeath(EntityDeathEvent event) {
         Player killer = event.getEntity().getKiller();
@@ -55,10 +55,8 @@ public class PlayerHeadsListener implements Listener {
             }
         }
 
-        //if (event.getEntityType() == EntityType.PLAYER) {
-        switch (event.getEntityType()) {
-        case PLAYER:
-            //((Player)(event.getEntity())).sendMessage("Hehe, you died");
+        EntityType entityType = event.getEntityType();
+        if (entityType == EntityType.PLAYER) {
             Double dropchance = prng.nextDouble();
             Player player = (Player)event.getEntity();
 
@@ -89,14 +87,11 @@ public class PlayerHeadsListener implements Listener {
                     plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET));
                 }
             }
-            break;
-        case CREEPER:
+        } else if (entityType == EntityType.CREEPER) {
             EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate")*lootingrate);
-            break;
-        case ZOMBIE:
+        } else if (entityType == EntityType.ZOMBIE) {
             EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
-            break;
-        case SKELETON:
+        } else if (entityType == EntityType.SKELETON) {
             if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
                 EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
             } else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
@@ -107,54 +102,15 @@ public class PlayerHeadsListener implements Listener {
                 }
                 EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
             }
-            break;
-        case SPIDER:
-            EntityDeathHelper(event, CustomSkullType.SPIDER, plugin.configFile.getDouble("spiderdroprate")*lootingrate);
-            break;
-        case ENDERMAN:
-            EntityDeathHelper(event, CustomSkullType.ENDERMAN, plugin.configFile.getDouble("endermandroprate")*lootingrate);
-            break;
-        case BLAZE:
-            EntityDeathHelper(event, CustomSkullType.BLAZE, plugin.configFile.getDouble("blazedroprate")*lootingrate);
-            break;
-        case HORSE:
-            EntityDeathHelper(event, CustomSkullType.HORSE, plugin.configFile.getDouble("horsedroprate")*lootingrate);
-            break;
-        case SQUID:
-            EntityDeathHelper(event, CustomSkullType.SQUID, plugin.configFile.getDouble("squiddroprate")*lootingrate);
-            break;
-        case SILVERFISH:
-            EntityDeathHelper(event, CustomSkullType.SILVERFISH, plugin.configFile.getDouble("silverfishdroprate")*lootingrate);
-            break;
-        case ENDER_DRAGON:
-            EntityDeathHelper(event, CustomSkullType.ENDER_DRAGON, plugin.configFile.getDouble("enderdragondroprate")*lootingrate);
-            break;
-        case SLIME:
+        } else if (entityType == EntityType.SLIME) {
             if (((Slime)event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate")*lootingrate);
             }
-            break;
-        case IRON_GOLEM:
-            EntityDeathHelper(event, CustomSkullType.IRON_GOLEM, plugin.configFile.getDouble("irongolemdroprate")*lootingrate);
-            break;
-        case MUSHROOM_COW:
-            EntityDeathHelper(event, CustomSkullType.MUSHROOM_COW, plugin.configFile.getDouble("mushroomcowdroprate")*lootingrate);
-            break;
-        case BAT:
-            EntityDeathHelper(event, CustomSkullType.BAT, plugin.configFile.getDouble("batdroprate")*lootingrate);
-            break;
-        case PIG_ZOMBIE:
-            EntityDeathHelper(event, CustomSkullType.PIG_ZOMBIE, plugin.configFile.getDouble("pigzombiedroprate")*lootingrate);
-            break;
-        case SNOWMAN:
-            EntityDeathHelper(event, CustomSkullType.SNOWMAN, plugin.configFile.getDouble("snowmandroprate")*lootingrate);
-            break;
-        case GHAST:
-            EntityDeathHelper(event, CustomSkullType.GHAST, plugin.configFile.getDouble("ghastdroprate")*lootingrate);
-            break;
-        case PIG:
-            EntityDeathHelper(event, CustomSkullType.PIG, plugin.configFile.getDouble("pigdroprate")*lootingrate);
-            break;
+        } else {
+            try {
+                CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
+                EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase()+"droprate")*lootingrate);
+            } catch (IllegalArgumentException e) {}
         }
     }
 

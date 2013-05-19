@@ -71,6 +71,7 @@ public class Lang {
     public static String HEAD_SNOWMAN;
     public static String HEAD_SPIDER;
     public static String HEAD_SQUID;
+    public static String HEAD_VILLAGER;
     public static String HEAD_WITHER;
     public static String HEAD_ZOMBIE;
     public static String HEAD_SPAWN_BAT;
@@ -90,6 +91,7 @@ public class Lang {
     public static String HEAD_SPAWN_SNOWMAN;
     public static String HEAD_SPAWN_SPIDER;
     public static String HEAD_SPAWN_SQUID;
+    public static String HEAD_SPAWN_VILLAGER;
     public static String HEAD_SPAWN_WITHER;
     public static String HEAD_SPAWN_ZOMBIE;
     public static String HEAD;

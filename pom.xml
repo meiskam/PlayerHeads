@@ -98,7 +98,6 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <Built-By>Maven</Built-By>
               <Implementation-Title>${project.name}</Implementation-Title>
               <Implementation-Version>${project.version}${describe}</Implementation-Version>
               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>

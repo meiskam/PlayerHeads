@@ -131,7 +131,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
 
             if (isConsoleSender) {
                 if ((args.length != 3) && (args.length != 4)) {
-                    PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_REQUIRED+Lang.SPACE+Lang.OPT_RECIEVER_REQUIRED+Lang.SPACE+Lang.OPT_AMOUNT_OPTIONAL);
+                    PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_REQUIRED+Lang.SPACE+Lang.OPT_RECEIVER_REQUIRED+Lang.SPACE+Lang.OPT_AMOUNT_OPTIONAL);
                     return true;
                 }
             } else {
@@ -157,7 +157,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                 skullOwner = args[1];
                 haspermission = sender.hasPermission("playerheads.spawn.forother");
             } else {
-                PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_OPTIONAL+Lang.SPACE+Lang.OPT_RECIEVER_OPTIONAL+Lang.SPACE+Lang.OPT_AMOUNT_OPTIONAL);
+                PlayerHeads.formatMsg(sender, Lang.BRACKET_LEFT+label+Lang.COLON+Lang.CMD_SPAWN+Lang.BRACKET_RIGHT+Lang.SPACE+Lang.SYNTAX+Lang.COLON_SPACE+label+Lang.SPACE+Lang.CMD_SPAWN+Lang.SPACE+Lang.OPT_HEADNAME_OPTIONAL+Lang.SPACE+Lang.OPT_RECEIVER_OPTIONAL+Lang.SPACE+Lang.OPT_AMOUNT_OPTIONAL);
                 return true;
             }
             if (!haspermission) {

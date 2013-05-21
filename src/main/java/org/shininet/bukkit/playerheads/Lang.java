@@ -98,8 +98,8 @@ public class Lang {
     public static String OPT_AMOUNT_OPTIONAL;
     public static String OPT_HEADNAME_OPTIONAL;
     public static String OPT_HEADNAME_REQUIRED;
-    public static String OPT_RECIEVER_OPTIONAL;
-    public static String OPT_RECIEVER_REQUIRED;
+    public static String OPT_RECEIVER_OPTIONAL;
+    public static String OPT_RECEIVER_REQUIRED;
     public static String OPT_VALUE_OPTIONAL;
     public static String OPT_VARIABLE_REQUIRED;
     public static String RENAMED_HEAD;

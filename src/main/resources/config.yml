@@ -25,6 +25,8 @@
 # ghastdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a ghast dies
 # pigdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig dies
 # villagerdroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a villager dies
+# sheepdroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a sheep dies
+# cowdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cow dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a global message when someone gets beheaded
@@ -55,6 +57,8 @@ snowmandroprate: 0.002
 ghastdroprate: 0.005
 pigdroprate: 0.002
 villagerdroprate: 0.002
+sheepdroprate: 0.002
+cowdroprate: 0.002
 fixcase: true
 updatecheck: true
 broadcast: true

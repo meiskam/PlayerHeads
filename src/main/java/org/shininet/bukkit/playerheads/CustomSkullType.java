@@ -25,7 +25,9 @@ public enum CustomSkullType {
     SNOWMAN("Koebasti"), // Thanks MrLeikermoser
     GHAST("_QuBra_"), // Thanks MrLeikermoser
     PIG("XlexerX"), // Thanks XlexerX
-    VILLAGER("Kuvase"); // Thanks XlexerX
+    VILLAGER("Kuvase"), // Thanks XlexerX
+    SHEEP("Eagle_Peak"), // Thanks Jknies
+    COW("VerifiedBernard"); // Thanks Jknies
 
     private final String owner;
 

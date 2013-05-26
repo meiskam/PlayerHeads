@@ -73,18 +73,18 @@ public class PlayerHeadsListener implements Listener {
 
             if (plugin.configFile.getBoolean("antideathchest")) {
                 Location location = player.getLocation();
-                location.getWorld().dropItemNaturally(location, PlayerHeads.Skull(skullOwner));
+                location.getWorld().dropItemNaturally(location, Tools.Skull(skullOwner));
             } else {
-                event.getDrops().add(PlayerHeads.Skull(skullOwner)); // drop the precious player head
+                event.getDrops().add(Tools.Skull(skullOwner)); // drop the precious player head
             }
 
             if (plugin.configFile.getBoolean("broadcast")) {
                 if (killer == null) {
-                    plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET));
+                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET));
                 } else if (killer == player) {
-                    plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET));
+                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET));
                 } else {
-                    plugin.getServer().broadcastMessage(PlayerHeads.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET));
+                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET));
                 }
             }
         } else if (entityType == EntityType.CREEPER) {
@@ -122,9 +122,9 @@ public class PlayerHeadsListener implements Listener {
         if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
 
         if (type instanceof SkullType) {
-            event.getDrops().add(PlayerHeads.Skull((SkullType)type));
+            event.getDrops().add(Tools.Skull((SkullType)type));
         } else if (type instanceof CustomSkullType) {
-            event.getDrops().add(PlayerHeads.Skull((CustomSkullType)type));
+            event.getDrops().add(Tools.Skull((CustomSkullType)type));
         }
     }
 
@@ -142,26 +142,26 @@ public class PlayerHeadsListener implements Listener {
                     String ownerStrip = ChatColor.stripColor(owner);
                     for (CustomSkullType skullType : CustomSkullType.values()) {
                         if (ownerStrip.equals(skullType.getOwner())) {
-                            PlayerHeads.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                            Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
                             break Switch;
                         }
                     }
-                    PlayerHeads.formatMsg(player, Lang.CLICKINFO, owner);
+                    Tools.formatMsg(player, Lang.CLICKINFO, owner);
                 } else {
-                    PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
+                    Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                 }
                 break;
             case CREEPER:
-                PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_CREEPER);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_CREEPER);
                 break;
             case SKELETON:
-                PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_SKELETON);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_SKELETON);
                 break;
             case WITHER:
-                PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_WITHER);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_WITHER);
                 break;
             case ZOMBIE:
-                PlayerHeads.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_ZOMBIE);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_ZOMBIE);
                 break;
             }
         }
@@ -190,7 +190,7 @@ public class PlayerHeadsListener implements Listener {
                             event.setCancelled(true);
                         } else {
                             Location location = block.getLocation();
-                            ItemStack item = PlayerHeads.Skull(skullType);
+                            ItemStack item = Tools.Skull(skullType);
 
                             event.setCancelled(true);
                             block.setType(Material.AIR);
@@ -209,8 +209,8 @@ public class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
         {
-            PlayerHeads.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
-            PlayerHeads.formatMsg(player, Lang.UPDATE3, "http://curse.com/server-mods/minecraft/" + PlayerHeads.updateSlug);
+            Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
+            Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/server-mods/minecraft/" + Config.updateSlug);
         }
     }
 }

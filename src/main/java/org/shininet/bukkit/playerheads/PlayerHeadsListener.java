@@ -163,16 +163,16 @@ public class PlayerHeadsListener implements Listener {
                 }
                 break;
             case CREEPER:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_CREEPER);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
                 break;
             case SKELETON:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_SKELETON);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
                 break;
             case WITHER:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_WITHER);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
                 break;
             case ZOMBIE:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD_ZOMBIE);
+                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
                 break;
             }
         }

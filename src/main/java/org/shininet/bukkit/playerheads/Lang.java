@@ -113,7 +113,7 @@ public class Lang {
     private Lang() {
     }
 
-    private static String getString(String key) {
+    public static String getString(String key) {
         try {
             return RESOURCE_BUNDLE.getString(key);
         } catch (Exception e) {

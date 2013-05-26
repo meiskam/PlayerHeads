@@ -8,15 +8,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public class Config {
 
-    public static enum configType {DOUBLE, BOOLEAN}
+    public static enum configType {
+        DOUBLE, BOOLEAN
+    }
 
     @SuppressWarnings("serial")
-    public static final Map<String, configType> configKeys = new HashMap<String, configType>(){
+    public static final Map<String, configType> configKeys = new HashMap<String, configType>() {
         {
             put("pkonly", configType.BOOLEAN);
             put("droprate", configType.DOUBLE);
@@ -28,7 +30,7 @@ public class Config {
             put("skeletondroprate", configType.DOUBLE);
             put("witherdroprate", configType.DOUBLE);
             for (CustomSkullType customSkullType : CustomSkullType.values()) {
-                put(customSkullType.name().replace("_", "").toLowerCase()+"droprate", configType.DOUBLE);
+                put(customSkullType.name().replace("_", "").toLowerCase() + "droprate", configType.DOUBLE);
             }
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);

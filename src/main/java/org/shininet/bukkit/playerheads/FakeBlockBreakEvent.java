@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public class FakeBlockBreakEvent extends BlockBreakEvent {
 

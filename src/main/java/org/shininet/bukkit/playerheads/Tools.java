@@ -18,8 +18,8 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public class Tools {
 
@@ -42,7 +42,9 @@ public class Tools {
         int i = 0;
         StringBuilder output = new StringBuilder();
         for (String key : input) {
-            if (i++ != 0) output.append(glue);
+            if (i++ != 0) {
+                output.append(glue);
+            }
             output.append(key);
         }
         return output.toString();
@@ -51,17 +53,17 @@ public class Tools {
     public static String fixcase(String inputName) {
         String inputNameLC = inputName.toLowerCase();
         Player player = Bukkit.getServer().getPlayerExact(inputNameLC);
-    
+
         if (player != null) {
             return player.getName();
         }
-    
+
         for (OfflinePlayer offPlayer : Bukkit.getServer().getOfflinePlayers()) {
             if (offPlayer.getName().toLowerCase().equals(inputNameLC)) {
                 return offPlayer.getName();
             }
         }
-    
+
         return inputName;
     }
 
@@ -71,13 +73,13 @@ public class Tools {
 
     public static ItemStack Skull(String skullOwner, int quantity) {
         String skullOwnerLC = skullOwner.toLowerCase();
-    
+
         for (CustomSkullType skullType : CustomSkullType.values()) {
             if (skullOwnerLC.equals(skullType.getSpawnName().toLowerCase())) {
                 return Skull(skullType, quantity);
             }
         }
-    
+
         if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
             return Skull(SkullType.CREEPER, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
@@ -96,11 +98,11 @@ public class Tools {
     }
 
     public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
-        ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short)SkullType.PLAYER.ordinal());
-        SkullMeta skullMeta = (SkullMeta)skull.getItemMeta();
+        ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
+        SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         skullMeta.setOwner(skullOwner);
         if (displayName != null) {
-            skullMeta.setDisplayName(ChatColor.RESET+displayName);
+            skullMeta.setDisplayName(ChatColor.RESET + displayName);
         }
         skull.setItemMeta(skullMeta);
         return skull;
@@ -119,13 +121,13 @@ public class Tools {
     }
 
     public static ItemStack Skull(SkullType type, int quantity) {
-        return new ItemStack(Material.SKULL_ITEM, quantity, (short)type.ordinal());
+        return new ItemStack(Material.SKULL_ITEM, quantity, (short) type.ordinal());
     }
 
     public static String format(String text, String... replacement) {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {
-            output = output.replace("%"+(i+1)+"%", replacement[i]);
+            output = output.replace("%" + (i + 1) + "%", replacement[i]);
         }
         return ChatColor.translateAlternateColorCodes('&', output);
     }

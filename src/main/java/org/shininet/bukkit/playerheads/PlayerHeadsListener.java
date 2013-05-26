@@ -31,8 +31,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public class PlayerHeadsListener implements Listener {
 
@@ -51,18 +51,24 @@ public class PlayerHeadsListener implements Listener {
         if (killer != null) {
             ItemStack weapon = killer.getItemInHand();
             if (weapon != null) {
-                lootingrate = 1+(plugin.configFile.getDouble("lootingrate")*weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
+                lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
         }
 
         EntityType entityType = event.getEntityType();
         if (entityType == EntityType.PLAYER) {
             Double dropchance = prng.nextDouble();
-            Player player = (Player)event.getEntity();
+            Player player = (Player) event.getEntity();
 
-            if ((dropchance >= plugin.configFile.getDouble("droprate")*lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) { return; }
-            if (!player.hasPermission("playerheads.canloosehead")) { return; }
-            if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) { return; }
+            if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
+                return;
+            }
+            if (!player.hasPermission("playerheads.canloosehead")) {
+                return;
+            }
+            if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
+                return;
+            }
 
             String skullOwner;
             if (plugin.configFile.getBoolean("dropboringplayerheads")) {
@@ -88,29 +94,30 @@ public class PlayerHeadsListener implements Listener {
                 }
             }
         } else if (entityType == EntityType.CREEPER) {
-            EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate")*lootingrate);
+            EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
         } else if (entityType == EntityType.ZOMBIE) {
-            EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate")*lootingrate);
+            EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
         } else if (entityType == EntityType.SKELETON) {
-            if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
-                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate")*lootingrate);
-            } else if (((Skeleton)event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
-                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext(); ) {
+            if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+            } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
                     if (it.next().getType() == Material.SKULL_ITEM) {
                         it.remove();
                     }
                 }
-                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate")*lootingrate);
+                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
             }
         } else if (entityType == EntityType.SLIME) {
-            if (((Slime)event.getEntity()).getSize() == 1) {
-                EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate")*lootingrate);
+            if (((Slime) event.getEntity()).getSize() == 1) {
+                EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
-                EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase()+"droprate")*lootingrate);
-            } catch (IllegalArgumentException e) {}
+                EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
+            } catch (IllegalArgumentException e) {
+            }
         }
     }
 
@@ -118,13 +125,17 @@ public class PlayerHeadsListener implements Listener {
         Double dropchance = prng.nextDouble();
         Player killer = event.getEntity().getKiller();
 
-        if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbeheadmob"))) { return; }
-        if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) { return; }
+        if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbeheadmob"))) {
+            return;
+        }
+        if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) {
+            return;
+        }
 
         if (type instanceof SkullType) {
-            event.getDrops().add(Tools.Skull((SkullType)type));
+            event.getDrops().add(Tools.Skull((SkullType) type));
         } else if (type instanceof CustomSkullType) {
-            event.getDrops().add(Tools.Skull((CustomSkullType)type));
+            event.getDrops().add(Tools.Skull((CustomSkullType) type));
         }
     }
 
@@ -133,7 +144,7 @@ public class PlayerHeadsListener implements Listener {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
         if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
-            Skull skullState = (Skull)block.getState();
+            Skull skullState = (Skull) block.getState();
             Switch:
             switch (skullState.getSkullType()) {
             case PLAYER:
@@ -175,7 +186,7 @@ public class PlayerHeadsListener implements Listener {
         Block block = event.getBlock();
         Player player = event.getPlayer();
         if ((player.getGameMode() != GameMode.CREATIVE) && (block.getType() == Material.SKULL)) {
-            Skull skull = (Skull)block.getState();
+            Skull skull = (Skull) block.getState();
             if (skull.hasOwner()) {
                 String owner = ChatColor.stripColor(skull.getOwner());
                 for (CustomSkullType skullType : CustomSkullType.values()) {
@@ -204,11 +215,9 @@ public class PlayerHeadsListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event)
-    {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if(player.hasPermission("playerheads.update") && plugin.getUpdateReady())
-        {
+        if (player.hasPermission("playerheads.update") && plugin.getUpdateReady()) {
             Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
             Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/server-mods/minecraft/" + Config.updateSlug);
         }

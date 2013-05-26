@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 
@@ -29,7 +29,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     private static long updateSize = 0;
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         logger = getLogger();
         configFile = getConfig();
         configFile.options().copyDefaults(true);
@@ -59,7 +59,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
             metrics.start();
         } catch (Exception e) {
             logger.warning(Lang.ERROR_METRICS);
-        }  
+        }
     }
 
     private void initUpdater() {

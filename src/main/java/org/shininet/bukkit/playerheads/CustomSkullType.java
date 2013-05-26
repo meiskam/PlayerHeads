@@ -5,8 +5,8 @@
 package org.shininet.bukkit.playerheads;
 
 /**
-* @author meiskam
-*/
+ * @author meiskam
+ */
 
 public enum CustomSkullType {
 

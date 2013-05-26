@@ -133,7 +133,7 @@ public class Lang {
     public static void reload() {
         String locale = "";
         try {
-            RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME);
+            RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME, new UTF8Control());
             locale = RESOURCE_BUNDLE0.getLocale().toString();
             if (!(locale.equals(""))) {
                 locale = "_".concat(locale);
@@ -143,14 +143,14 @@ public class Lang {
 
         try {
             URL[] urls = { plugin.getDataFolder().toURI().toURL() };
-            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls));
+            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (MissingResourceException e) {
             plugin.saveResource(BUNDLE_NAME.concat(locale).replace('.', '/').concat(".properties"), false);
             try {
                 URL[] urls = { plugin.getDataFolder().toURI().toURL() };
-                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls));
+                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
             } catch (Exception e2) {
                 e2.printStackTrace();
             }

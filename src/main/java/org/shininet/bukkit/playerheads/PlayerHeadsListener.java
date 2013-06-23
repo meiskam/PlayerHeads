@@ -143,39 +143,48 @@ public class PlayerHeadsListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-        if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
+        if (block != null && block.getType() == Material.SKULL) {
             Skull skullState = (Skull) block.getState();
-            switch (skullState.getSkullType()) {
-            case PLAYER:
-                if (skullState.hasOwner()) {
-                    String owner = skullState.getOwner();
-                    //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                    CustomSkullType skullType = CustomSkullType.get(owner);
-                    if (skullType != null) {
-                        Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                        if (!owner.equals(skullType.getOwner())) {
-                            skullState.setOwner(skullType.getOwner());
-                            skullState.update();
+            if (plugin.configFile.getBoolean("clickinfo")) {
+                switch (skullState.getSkullType()) {
+                case PLAYER:
+                    if (skullState.hasOwner()) {
+                        String owner = skullState.getOwner();
+                        //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
+                        CustomSkullType skullType = CustomSkullType.get(owner);
+                        if (skullType != null) {
+                            Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                            if (!owner.equals(skullType.getOwner())) {
+                                skullState.setOwner(skullType.getOwner());
+                                skullState.update();
+                            }
+                        } else {
+                            Tools.formatMsg(player, Lang.CLICKINFO, owner);
                         }
                     } else {
-                        Tools.formatMsg(player, Lang.CLICKINFO, owner);
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                     }
-                } else {
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
+                    break;
+                case CREEPER:
+                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
+                    break;
+                case SKELETON:
+                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
+                    break;
+                case WITHER:
+                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
+                    break;
+                case ZOMBIE:
+                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
+                    break;
                 }
-                break;
-            case CREEPER:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
-                break;
-            case SKELETON:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
-                break;
-            case WITHER:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
-                break;
-            case ZOMBIE:
-                Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
-                break;
+            } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
+                String owner = skullState.getOwner();
+                CustomSkullType skullType = CustomSkullType.get(owner);
+                if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
+                    skullState.setOwner(skullType.getOwner());
+                    skullState.update();
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ import java.util.Map;
 public class Config {
 
     public static enum configType {
-        DOUBLE, BOOLEAN
+        DOUBLE, BOOLEAN, INT
     }
 
     @SuppressWarnings("serial")
@@ -35,6 +35,7 @@ public class Config {
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);
             put("broadcast", configType.BOOLEAN);
+            put("broadcastrange", configType.INT);
             put("antideathchest", configType.BOOLEAN);
             put("dropboringplayerheads", configType.BOOLEAN);
         }

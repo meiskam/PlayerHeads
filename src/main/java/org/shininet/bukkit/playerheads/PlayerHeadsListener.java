@@ -5,6 +5,7 @@
 package org.shininet.bukkit.playerheads;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -85,12 +86,28 @@ public class PlayerHeadsListener implements Listener {
             }
 
             if (plugin.configFile.getBoolean("broadcast")) {
+                String message;
                 if (killer == null) {
-                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET));
+                    message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
                 } else if (killer == player) {
-                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET));
+                    message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
                 } else {
-                    plugin.getServer().broadcastMessage(Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET));
+                    message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
+                }
+
+                int broadcastRange = plugin.configFile.getInt("broadcastrange");
+                if (broadcastRange > 0) {
+                    broadcastRange *= broadcastRange;
+                    Location location = player.getLocation();
+                    List<Player> players = player.getWorld().getPlayers();
+
+                    for (Player loopPlayer : players) {
+                        if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                            player.sendMessage(message);
+                        }
+                    }
+                } else {
+                    plugin.getServer().broadcastMessage(message);
                 }
             }
         } else if (entityType == EntityType.CREEPER) {

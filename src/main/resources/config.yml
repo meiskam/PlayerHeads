@@ -29,7 +29,8 @@
 # cowdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cow dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
-# broadcast: true               [true/false]    Sends a global message when someone gets beheaded
+# broadcast: true               [true/false]    Sends a message when someone gets beheaded
+# broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
 # antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
 # dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
 pkonly: true
@@ -62,5 +63,6 @@ cowdroprate: 0.002
 fixcase: true
 updatecheck: true
 broadcast: true
+broadcastrange: 0
 antideathchest: false
 dropboringplayerheads: false

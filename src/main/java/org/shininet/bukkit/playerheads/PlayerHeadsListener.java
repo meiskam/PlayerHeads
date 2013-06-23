@@ -151,8 +151,12 @@ public class PlayerHeadsListener implements Listener {
                     String owner = skullState.getOwner();
                     //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                     CustomSkullType skullType = CustomSkullType.get(owner);
-                    if (owner != null) {
+                    if (skullType != null) {
                         Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                        if (!owner.equals(skullType.getOwner())) {
+                            skullState.setOwner(skullType.getOwner());
+                            skullState.update();
+                        }
                     } else {
                         Tools.formatMsg(player, Lang.CLICKINFO, owner);
                     }

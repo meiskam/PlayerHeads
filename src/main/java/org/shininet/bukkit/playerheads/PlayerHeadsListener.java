@@ -145,19 +145,17 @@ public class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null && block.getType() == Material.SKULL && plugin.configFile.getBoolean("clickinfo")) {
             Skull skullState = (Skull) block.getState();
-            Switch:
             switch (skullState.getSkullType()) {
             case PLAYER:
                 if (skullState.hasOwner()) {
                     String owner = skullState.getOwner();
-                    String ownerStrip = ChatColor.stripColor(owner);
-                    for (CustomSkullType skullType : CustomSkullType.values()) {
-                        if (ownerStrip.equals(skullType.getOwner())) {
-                            Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                            break Switch;
-                        }
+                    //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
+                    CustomSkullType skullType = CustomSkullType.get(owner);
+                    if (owner != null) {
+                        Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                    } else {
+                        Tools.formatMsg(player, Lang.CLICKINFO, owner);
                     }
-                    Tools.formatMsg(player, Lang.CLICKINFO, owner);
                 } else {
                     Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                 }
@@ -188,26 +186,24 @@ public class PlayerHeadsListener implements Listener {
         if ((player.getGameMode() != GameMode.CREATIVE) && (block.getType() == Material.SKULL)) {
             Skull skull = (Skull) block.getState();
             if (skull.hasOwner()) {
-                String owner = ChatColor.stripColor(skull.getOwner());
-                for (CustomSkullType skullType : CustomSkullType.values()) {
-                    if (owner.equals(skullType.getOwner())) {
-                        plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
-                        plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
+                //String owner = ChatColor.stripColor(skull.getOwner()); //Unnecessary?
+                CustomSkullType skullType = CustomSkullType.get(skull.getOwner());
+                if (skullType != null) {
+                    plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
+                    plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
 
-                        FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
-                        plugin.getServer().getPluginManager().callEvent(fakebreak);
+                    FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
+                    plugin.getServer().getPluginManager().callEvent(fakebreak);
 
-                        if (fakebreak.isCancelled()) {
-                            event.setCancelled(true);
-                        } else {
-                            Location location = block.getLocation();
-                            ItemStack item = Tools.Skull(skullType);
+                    if (fakebreak.isCancelled()) {
+                        event.setCancelled(true);
+                    } else {
+                        Location location = block.getLocation();
+                        ItemStack item = Tools.Skull(skullType);
 
-                            event.setCancelled(true);
-                            block.setType(Material.AIR);
-                            location.getWorld().dropItemNaturally(location, item);
-                        }
-                        break;
+                        event.setCancelled(true);
+                        block.setType(Material.AIR);
+                        location.getWorld().dropItemNaturally(location, item);
                     }
                 }
             }

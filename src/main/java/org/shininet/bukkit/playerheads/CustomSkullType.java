@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import java.util.HashMap;
+
 /**
  * @author meiskam
  */
@@ -30,9 +32,20 @@ public enum CustomSkullType {
     COW("VerifiedBernard"); // Thanks Jknies
 
     private final String owner;
+    private static class Holder {
+        static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
+    }
 
     CustomSkullType(String owner) {
         this.owner = owner;
+        Holder.map.put(owner, this);
+    }
+    
+    CustomSkullType(String owner, String... toConvert) {
+        this(owner);
+        for (String key : toConvert) {
+            Holder.map.put(key, this);
+        }
     }
 
     public String getOwner() {
@@ -45,5 +58,9 @@ public enum CustomSkullType {
 
     public String getSpawnName() {
         return Lang.getString("HEAD_SPAWN_" + name());
+    }
+
+    public static CustomSkullType get(String owner) {
+        return Holder.map.get(owner);
     }
 }

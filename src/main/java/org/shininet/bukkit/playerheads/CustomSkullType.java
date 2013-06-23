@@ -22,7 +22,7 @@ public enum CustomSkullType {
     SLIME("HappyHappyMan"), // Thanks SethBling
     IRON_GOLEM("zippie007"), // Thanks SethBling
     MUSHROOM_COW("Mooshroom_Stew"), // Thanks SethBling
-    BAT("coolwhip101"), // Thanks SethBling
+    BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
     PIG_ZOMBIE("ManBearPigZombie"), // Thanks cnaude of TrophyHeads
     SNOWMAN("Koebasti"), // Thanks MrLeikermoser
     GHAST("_QuBra_"), // Thanks MrLeikermoser

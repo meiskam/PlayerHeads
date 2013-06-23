@@ -21,7 +21,7 @@ permissions:
       playerheads.update: true
       playerheads.rename: true
       playerheads.canbehead: true
-      playerheads.canloosehead: true
+      playerheads.canlosehead: true
       playerheads.canbeheadmob: true
       playerheads.update: true
       playerheads.alwaysbehead: true
@@ -61,7 +61,7 @@ permissions:
   playerheads.canbehead:
     description: User can remove heads from others
     default: true
-  playerheads.canloosehead:
+  playerheads.canlosehead:
     description: User can have their head removed
     default: true
   playerheads.canbeheadmob:

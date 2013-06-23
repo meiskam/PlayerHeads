@@ -64,7 +64,7 @@ public class PlayerHeadsListener implements Listener {
             if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
                 return;
             }
-            if (!player.hasPermission("playerheads.canloosehead")) {
+            if (!player.hasPermission("playerheads.canlosehead")) {
                 return;
             }
             if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {

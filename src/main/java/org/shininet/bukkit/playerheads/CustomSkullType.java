@@ -19,7 +19,7 @@ public enum CustomSkullType {
     SQUID("squidette8"), // Thanks SethBling
     SILVERFISH("AlexVMiner"), // Thanks SethBling
     ENDER_DRAGON("KingEndermen"), // Thanks SethBling
-    SLIME("HappyHappyMan"), // Thanks SethBling
+    SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
     IRON_GOLEM("zippie007"), // Thanks SethBling
     MUSHROOM_COW("Mooshroom_Stew"), // Thanks SethBling
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com

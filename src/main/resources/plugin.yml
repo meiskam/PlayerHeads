@@ -6,6 +6,8 @@ authors: [meiskam, zand]
 main: org.shininet.bukkit.playerheads.PlayerHeads
 database: false
 
+softdepend: [NoCheatPlus]
+
 commands:
   PlayerHeads:
     description: Spawn a playerhead or edit playerheads config

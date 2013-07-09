@@ -31,6 +31,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
+import fr.neatmonster.nocheatplus.checks.CheckType;
+import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+
 /**
  * @author meiskam
  */
@@ -219,11 +222,22 @@ public class PlayerHeadsListener implements Listener {
                 //String owner = ChatColor.stripColor(skull.getOwner()); //Unnecessary?
                 CustomSkullType skullType = CustomSkullType.get(skull.getOwner());
                 if (skullType != null) {
+                    boolean isNotExempt = false;
+                    if (plugin.NCPHook) {
+                        if (isNotExempt = !NCPExemptionManager.isExempted(player, CheckType.BLOCKBREAK_FASTBREAK)) {
+                            NCPExemptionManager.exemptPermanently(player, CheckType.BLOCKBREAK_FASTBREAK);
+                        }
+                    }
+
                     plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
                     plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
 
                     FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
                     plugin.getServer().getPluginManager().callEvent(fakebreak);
+
+                    if (plugin.NCPHook && isNotExempt) {
+                        NCPExemptionManager.unexempt(player, CheckType.BLOCKBREAK_FASTBREAK);
+                    }
 
                     if (fakebreak.isCancelled()) {
                         event.setCancelled(true);

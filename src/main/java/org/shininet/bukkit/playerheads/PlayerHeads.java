@@ -27,6 +27,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     private static boolean updateReady = false;
     private static String updateName = "";
     private static long updateSize = 0;
+    public boolean NCPHook = false;
 
     @Override
     public void onEnable() {
@@ -38,6 +39,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         Lang.init(this);
         initMetrics();
         initUpdater();
+        initNCPHook();
 
         listener = new PlayerHeadsListener(this);
         commandExecutor = new PlayerHeadsCommandExecutor(this);
@@ -72,6 +74,12 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
             }
         } catch (Exception e) {
             logger.warning(Lang.ERROR_UPDATER);
+        }
+    }
+
+    private void initNCPHook() {
+        if(getServer().getPluginManager().getPlugin("NoCheatPlus") != null){
+            NCPHook = true;
         }
     }
 

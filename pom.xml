@@ -32,6 +32,10 @@
       <id>bukkit-repo</id>
       <url>http://repo.bukkit.org/content/groups/public</url>
     </repository>
+    <repository>
+      <id>md_5-releases</id>
+      <url>http://repo.md-5.net/content/repositories/releases/</url>
+    </repository>
   </repositories>
   
   <dependencies>
@@ -42,8 +46,8 @@
     </dependency>
     <dependency>
       <groupId>fr.neatmonster</groupId>
-      <artifactId>nocheatplus</artifactId>
-      <version>3.9.4-DEV</version>
+      <artifactId>ncpplugin</artifactId>
+      <version>static</version>
     </dependency>
   </dependencies>
   
@@ -66,7 +70,6 @@
         <configuration>
           <includes>
             <include>org.bukkit</include>
-            <include>fr.neatmonster</include>
           </includes>
         </configuration>
         <executions>

@@ -18,18 +18,18 @@ public enum CustomSkullType {
     HORSE("gavertoso"), // Thanks Glompalici0us
     SQUID("squidette8"), // Thanks SethBling
     SILVERFISH("AlexVMiner"), // Thanks SethBling
-    ENDER_DRAGON("KingEndermen"), // Thanks SethBling
+    ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
     SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
     IRON_GOLEM("zippie007"), // Thanks SethBling
     MUSHROOM_COW("Mooshroom_Stew"), // Thanks SethBling
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
-    PIG_ZOMBIE("ManBearPigZombie"), // Thanks cnaude of TrophyHeads
-    SNOWMAN("Koebasti"), // Thanks MrLeikermoser
-    GHAST("_QuBra_"), // Thanks MrLeikermoser
-    PIG("XlexerX"), // Thanks XlexerX
-    VILLAGER("Kuvase"), // Thanks XlexerX
+    PIG_ZOMBIE("ManBearPigZombie", "scraftbrothers5"), // Thanks cnaude of TrophyHeads
+    SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
+    GHAST("_QuBra_", "blaiden"), // Thanks MrLeikermoser
+    PIG("XlexerX", "scrafbrothers7"), // Thanks XlexerX
+    VILLAGER("Kuvase", "Villager", "scraftbrothers9"), // Thanks XlexerX
     SHEEP("Eagle_Peak"), // Thanks Jknies
-    COW("VerifiedBernard"), // Thanks Jknies
+    COW("VerifiedBernard", "CarlosTheCow"), // Thanks Jknies
     CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
     WITCH("scrafbrothers4"); // Thanks SuperCraftBrothers.com

@@ -29,7 +29,10 @@ public enum CustomSkullType {
     PIG("XlexerX"), // Thanks XlexerX
     VILLAGER("Kuvase"), // Thanks XlexerX
     SHEEP("Eagle_Peak"), // Thanks Jknies
-    COW("VerifiedBernard"); // Thanks Jknies
+    COW("VerifiedBernard"), // Thanks Jknies
+    CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
+    OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
+    WITCH("scrafbrothers4"); // Thanks SuperCraftBrothers.com
 
     private final String owner;
     private static class Holder {

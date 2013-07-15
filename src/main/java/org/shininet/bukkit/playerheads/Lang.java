@@ -56,6 +56,7 @@ public class Lang {
     public static String ERROR_UPDATER;
     public static String HEAD_BAT;
     public static String HEAD_BLAZE;
+    public static String HEAD_CHICKEN;
     public static String HEAD_COW;
     public static String HEAD_CREEPER;
     public static String HEAD_ENDER_DRAGON;
@@ -64,6 +65,7 @@ public class Lang {
     public static String HEAD_HORSE;
     public static String HEAD_IRON_GOLEM;
     public static String HEAD_MUSHROOM_COW;
+    public static String HEAD_OCELOT;
     public static String HEAD_PIG;
     public static String HEAD_PIG_ZOMBIE;
     public static String HEAD_SHEEP;
@@ -74,10 +76,12 @@ public class Lang {
     public static String HEAD_SPIDER;
     public static String HEAD_SQUID;
     public static String HEAD_VILLAGER;
+    public static String HEAD_WITCH;
     public static String HEAD_WITHER;
     public static String HEAD_ZOMBIE;
     public static String HEAD_SPAWN_BAT;
     public static String HEAD_SPAWN_BLAZE;
+    public static String HEAD_SPAWN_CHICKEN;
     public static String HEAD_SPAWN_COW;
     public static String HEAD_SPAWN_CREEPER;
     public static String HEAD_SPAWN_ENDER_DRAGON;
@@ -86,6 +90,7 @@ public class Lang {
     public static String HEAD_SPAWN_HORSE;
     public static String HEAD_SPAWN_IRON_GOLEM;
     public static String HEAD_SPAWN_MUSHROOM_COW;
+    public static String HEAD_SPAWN_OCELOT;
     public static String HEAD_SPAWN_PIG;
     public static String HEAD_SPAWN_PIG_ZOMBIE;
     public static String HEAD_SPAWN_SHEEP;
@@ -96,6 +101,7 @@ public class Lang {
     public static String HEAD_SPAWN_SPIDER;
     public static String HEAD_SPAWN_SQUID;
     public static String HEAD_SPAWN_VILLAGER;
+    public static String HEAD_SPAWN_WITCH;
     public static String HEAD_SPAWN_WITHER;
     public static String HEAD_SPAWN_ZOMBIE;
     public static String HEAD;

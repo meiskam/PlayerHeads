@@ -28,7 +28,7 @@ public enum CustomSkullType {
     GHAST("_QuBra_", "blaiden"), // Thanks MrLeikermoser
     PIG("XlexerX", "scrafbrothers7"), // Thanks XlexerX
     VILLAGER("Kuvase", "Villager", "scraftbrothers9"), // Thanks XlexerX
-    SHEEP("Eagle_Peak"), // Thanks Jknies
+    SHEEP("SGT_KICYORASS", "Eagle_Peak"), // Thanks cowboys2317
     COW("VerifiedBernard", "CarlosTheCow"), // Thanks Jknies
     CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com

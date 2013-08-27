@@ -180,8 +180,13 @@ public class PlayerHeadsListener implements Listener {
         if (dropHeadEvent.isCancelled()) {
             return;
         }
-        
-        event.getDrops().add(drop);
+
+        if (plugin.configFile.getBoolean("antideathchest")) {
+            Location location = event.getEntity().getLocation();
+            location.getWorld().dropItemNaturally(location, drop);
+        } else {
+            event.getDrops().add(drop);
+        }
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

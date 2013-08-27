@@ -30,6 +30,9 @@ import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.shininet.bukkit.playerheads.events.FakeBlockBreakEvent;
+import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
+import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
@@ -81,11 +84,20 @@ public class PlayerHeadsListener implements Listener {
                 skullOwner = player.getName();
             }
 
+            ItemStack drop = Tools.Skull(skullOwner);
+
+            PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
+            plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
+
+            if (dropHeadEvent.isCancelled()) {
+                return;
+            }
+
             if (plugin.configFile.getBoolean("antideathchest")) {
                 Location location = player.getLocation();
-                location.getWorld().dropItemNaturally(location, Tools.Skull(skullOwner));
+                location.getWorld().dropItemNaturally(location, drop);
             } else {
-                event.getDrops().add(Tools.Skull(skullOwner)); // drop the precious player head
+                event.getDrops().add(drop);
             }
 
             if (plugin.configFile.getBoolean("broadcast")) {
@@ -152,11 +164,24 @@ public class PlayerHeadsListener implements Listener {
             return;
         }
 
+        ItemStack drop;
+
         if (type instanceof SkullType) {
-            event.getDrops().add(Tools.Skull((SkullType) type));
+            drop = Tools.Skull((SkullType) type);
         } else if (type instanceof CustomSkullType) {
-            event.getDrops().add(Tools.Skull((CustomSkullType) type));
+            drop = Tools.Skull((CustomSkullType) type);
+        } else {
+            return;
         }
+
+        MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
+        plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
+
+        if (dropHeadEvent.isCancelled()) {
+            return;
+        }
+        
+        event.getDrops().add(drop);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)

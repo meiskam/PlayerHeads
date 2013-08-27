@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.shininet.bukkit.playerheads;
+package org.shininet.bukkit.playerheads.events;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

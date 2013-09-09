@@ -21,7 +21,7 @@ public enum CustomSkullType {
     ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
     SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
     IRON_GOLEM("zippie007"), // Thanks SethBling
-    MUSHROOM_COW("Mooshroom_Stew"), // Thanks SethBling
+    MUSHROOM_COW("MHF_MushroomCow", "Mooshroom_Stew"), // Thanks Marc Watson
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
     PIG_ZOMBIE("ManBearPigZombie", "scraftbrothers5"), // Thanks cnaude of TrophyHeads
     SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
@@ -32,7 +32,8 @@ public enum CustomSkullType {
     COW("VerifiedBernard", "CarlosTheCow"), // Thanks Jknies
     CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
-    WITCH("scrafbrothers4"); // Thanks SuperCraftBrothers.com
+    WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
+    MAGMA_CUBE("MHF_LavaSlime"); // Thanks Marc Watson
 
     private final String owner;
     private static class Holder {

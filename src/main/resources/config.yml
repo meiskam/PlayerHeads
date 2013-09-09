@@ -30,6 +30,7 @@
 # chickendroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a chicken dies
 # ocelotdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an ocelot dies
 # witchdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a witch dies
+# magmacubedroprate: 0.001      [0.0 -> 1.0]    Chance that a mob trophy will drop when a magma cube dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a message when someone gets beheaded
@@ -66,6 +67,7 @@ cowdroprate: 0.002
 chickendroprate: 0.002
 ocelotdroprate: 0.005
 witchdroprate: 0.005
+magmacubedroprate: 0.001
 fixcase: true
 updatecheck: true
 broadcast: true

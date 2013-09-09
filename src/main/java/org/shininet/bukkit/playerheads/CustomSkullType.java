@@ -33,9 +33,11 @@ public enum CustomSkullType {
     CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
     WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
-    MAGMA_CUBE("MHF_LavaSlime"); // Thanks Marc Watson
+    MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
+    WOLF("Budwolf");
 
     private final String owner;
+
     private static class Holder {
         static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
     }
@@ -44,7 +46,7 @@ public enum CustomSkullType {
         this.owner = owner;
         Holder.map.put(owner, this);
     }
-    
+
     CustomSkullType(String owner, String... toConvert) {
         this(owner);
         for (String key : toConvert) {

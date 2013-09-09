@@ -79,6 +79,7 @@ public class Lang {
     public static String HEAD_VILLAGER;
     public static String HEAD_WITCH;
     public static String HEAD_WITHER;
+    public static String HEAD_WOLF;
     public static String HEAD_ZOMBIE;
     public static String HEAD_SPAWN_BAT;
     public static String HEAD_SPAWN_BLAZE;
@@ -105,6 +106,7 @@ public class Lang {
     public static String HEAD_SPAWN_VILLAGER;
     public static String HEAD_SPAWN_WITCH;
     public static String HEAD_SPAWN_WITHER;
+    public static String HEAD_SPAWN_WOLF;
     public static String HEAD_SPAWN_ZOMBIE;
     public static String HEAD;
     public static String OPT_AMOUNT_OPTIONAL;

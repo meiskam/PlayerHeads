@@ -34,7 +34,7 @@ public enum CustomSkullType {
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
     WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
     MAGMA_CUBE("MHF_LavaSlime", "brinkley26"), // Thanks Marc_IRL of Mojang
-    WITHER("Mad_Miner63") // Thanks Mad_Miner63
+    WITHER("Mad_Miner63"); // Thanks Mad_Miner63
 
     private final String owner;
     private static class Holder {

@@ -56,6 +56,7 @@ public class Lang {
     public static String ERROR_UPDATER;
     public static String HEAD_BAT;
     public static String HEAD_BLAZE;
+    public static String HEAD_CAVE_SPIDER;
     public static String HEAD_CHICKEN;
     public static String HEAD_COW;
     public static String HEAD_CREEPER;
@@ -83,6 +84,7 @@ public class Lang {
     public static String HEAD_ZOMBIE;
     public static String HEAD_SPAWN_BAT;
     public static String HEAD_SPAWN_BLAZE;
+    public static String HEAD_SPAWN_CAVE_SPIDER;
     public static String HEAD_SPAWN_CHICKEN;
     public static String HEAD_SPAWN_COW;
     public static String HEAD_SPAWN_CREEPER;

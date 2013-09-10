@@ -34,7 +34,8 @@ public enum CustomSkullType {
     OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
     WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
     MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
-    WOLF("Budwolf");
+    WOLF("Budwolf"),
+    CAVE_SPIDER("MHF_CaveSpider"); // Thanks Marc Watson
 
     private final String owner;
 

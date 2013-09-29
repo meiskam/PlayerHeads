@@ -12,26 +12,26 @@ import java.util.HashMap;
 
 public enum CustomSkullType {
 
-    SPIDER("Kelevra_V"), // Thanks SethBling
-    ENDERMAN("Violit"), // Thanks SethBling
-    BLAZE("Blaze_Head"), // Thanks SethBling
+    SPIDER("MHF_Spider", "Kelevra_V"), // Thanks Marc Watson
+    ENDERMAN("MHF_Enderman", "Violit"), // Thanks Marc Watson
+    BLAZE("MHF_Blaze", "Blaze_Head"), // Thanks Marc Watson
     HORSE("gavertoso"), // Thanks Glompalici0us
-    SQUID("squidette8"), // Thanks SethBling
+    SQUID("MHF_Squid", "squidette8"), // Thanks Marc Watson
     SILVERFISH("AlexVMiner"), // Thanks SethBling
     ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
     SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
-    IRON_GOLEM("zippie007"), // Thanks SethBling
+    IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson
     MUSHROOM_COW("MHF_MushroomCow", "Mooshroom_Stew"), // Thanks Marc Watson
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
-    PIG_ZOMBIE("ManBearPigZombie", "scraftbrothers5"), // Thanks cnaude of TrophyHeads
+    PIG_ZOMBIE("MHF_PigZombie", "ManBearPigZombie", "scraftbrothers5"), // Thanks Marc Watson
     SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
     GHAST("_QuBra_", "blaiden"), // Thanks MrLeikermoser
-    PIG("XlexerX", "scrafbrothers7"), // Thanks XlexerX
-    VILLAGER("Kuvase", "Villager", "scraftbrothers9"), // Thanks XlexerX
+    PIG("MHF_Pig", "XlexerX", "scrafbrothers7"), // Thanks Marc Watson
+    VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
     SHEEP("SGT_KICYORASS", "Eagle_Peak"), // Thanks cowboys2317
-    COW("VerifiedBernard", "CarlosTheCow"), // Thanks Jknies
-    CHICKEN("scraftbrothers1"), // Thanks SuperCraftBrothers.com
-    OCELOT("scraftbrothers3"), // Thanks SuperCraftBrothers.com
+    COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
+    CHICKEN("MHF_Chicken", "scraftbrothers1"), // Thanks Marc Watson
+    OCELOT("MHF_Ocelot", "scraftbrothers3"), // Thanks Marc Watson
     WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
     MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
     WOLF("Budwolf"),

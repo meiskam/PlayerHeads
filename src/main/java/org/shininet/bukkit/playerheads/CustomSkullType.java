@@ -19,16 +19,16 @@ public enum CustomSkullType {
     SQUID("MHF_Squid", "squidette8"), // Thanks Marc Watson
     SILVERFISH("AlexVMiner"), // Thanks SethBling
     ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
-    SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
+    SLIME("MHF_Slime", "HappyHappyMan", "Ex_PS3Zocker"), // Thanks Marc Watson
     IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson
     MUSHROOM_COW("MHF_MushroomCow", "Mooshroom_Stew"), // Thanks Marc Watson
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
     PIG_ZOMBIE("MHF_PigZombie", "ManBearPigZombie", "scraftbrothers5"), // Thanks Marc Watson
     SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
-    GHAST("_QuBra_", "blaiden"), // Thanks MrLeikermoser
+    GHAST("MHF_Ghast", "_QuBra_", "blaiden"), // Thanks Marc Watson
     PIG("MHF_Pig", "XlexerX", "scrafbrothers7"), // Thanks Marc Watson
     VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
-    SHEEP("SGT_KICYORASS", "Eagle_Peak"), // Thanks cowboys2317
+    SHEEP("MHF_Sheep", "SGT_KICYORASS", "Eagle_Peak"), // Thanks Marc Watson
     COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
     CHICKEN("MHF_Chicken", "scraftbrothers1"), // Thanks Marc Watson
     OCELOT("MHF_Ocelot", "scraftbrothers3"), // Thanks Marc Watson

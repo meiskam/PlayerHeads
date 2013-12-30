@@ -161,7 +161,11 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                     return true;
                 }
                 skullOwner = args[1];
-                haspermission = sender.hasPermission("playerheads.spawn.forother");
+                if (reciever.equals(sender)) {
+                    haspermission = sender.hasPermission("playerheads.spawn");
+                } else {
+                    haspermission = sender.hasPermission("playerheads.spawn.forother");
+                }
             } else {
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_SPAWN + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.SYNTAX + Lang.COLON_SPACE + label + Lang.SPACE + Lang.CMD_SPAWN + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL + Lang.SPACE + Lang.OPT_RECEIVER_OPTIONAL + Lang.SPACE + Lang.OPT_AMOUNT_OPTIONAL);
                 return true;

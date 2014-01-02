@@ -288,8 +288,8 @@ public class PlayerHeadsListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("playerheads.update") && plugin.getUpdateReady()) {
-            Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName(), String.valueOf(plugin.getUpdateSize()));
-            Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/server-mods/minecraft/" + Config.updateSlug);
+            Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName());
+            Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/bukkit-plugins/minecraft/" + Config.updateSlug);
         }
     }
 }

@@ -43,5 +43,6 @@ public class Config {
     public static final String configKeysString = Tools.implode(configKeys.keySet(), ", ");
     public static int defaultStackSize = 1;
     public static final String updateSlug = "player-heads";
+    public static final int updateID = 46244;
 
 }

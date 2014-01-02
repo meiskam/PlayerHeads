@@ -26,7 +26,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     public FileConfiguration configFile;
     private static boolean updateReady = false;
     private static String updateName = "";
-    private static long updateSize = 0;
     public boolean NCPHook = false;
 
     @Override
@@ -67,10 +66,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     private void initUpdater() {
         try {
             if (configFile.getBoolean("updatecheck") && !(updateReady)) {
-                Updater updater = new Updater(this, Config.updateSlug, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
+                Updater updater = new Updater(this, Config.updateID, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
                 updateReady = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
-                updateName = updater.getLatestVersionString(); // Get the latest version
-                updateSize = updater.getFileSize(); // Get latest size
+                updateName = updater.getLatestName(); // Get the latest version
             }
         } catch (Exception e) {
             logger.warning(Lang.ERROR_UPDATER);
@@ -89,9 +87,5 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
 
     public String getUpdateName() {
         return updateName;
-    }
-
-    public long getUpdateSize() {
-        return updateSize;
     }
 }

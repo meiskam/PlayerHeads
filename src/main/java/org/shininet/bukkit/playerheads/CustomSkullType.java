@@ -17,7 +17,7 @@ public enum CustomSkullType {
     BLAZE("MHF_Blaze", "Blaze_Head"), // Thanks Marc Watson
     HORSE("gavertoso"), // Thanks Glompalici0us
     SQUID("MHF_Squid", "squidette8"), // Thanks Marc Watson
-    SILVERFISH("AlexVMiner"), // Thanks SethBling
+    SILVERFISH("Xzomag", "AlexVMiner"), // Thanks XlexerX
     ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
     SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
     IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson

@@ -28,6 +28,7 @@ permissions:
       playerheads.update: true
       playerheads.alwaysbehead: true
       playerheads.alwaysbeheadmob: true
+      playerheads.clickinfo: true
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     default: op
@@ -77,4 +78,7 @@ permissions:
     default: false
   playerheads.alwaysbeheadmob:
     description: Ignore drop rate for mob heads and drop 100% of the time
+    default: false
+  playerheads.clickinfo:
+    description: When a player head is clicked the player name will be displayed
     default: false

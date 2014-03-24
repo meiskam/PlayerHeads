@@ -23,7 +23,6 @@ public class Config {
             put("pkonly", configType.BOOLEAN);
             put("droprate", configType.DOUBLE);
             put("lootingrate", configType.DOUBLE);
-            put("clickinfo", configType.BOOLEAN);
             put("mobpkonly", configType.BOOLEAN);
             put("creeperdroprate", configType.DOUBLE);
             put("zombiedroprate", configType.DOUBLE);

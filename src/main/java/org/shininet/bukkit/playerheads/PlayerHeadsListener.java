@@ -195,7 +195,7 @@ public class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null && block.getType() == Material.SKULL) {
             Skull skullState = (Skull) block.getState();
-            if (plugin.configFile.getBoolean("clickinfo")) {
+            if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullState.getSkullType()) {
                 case PLAYER:
                     if (skullState.hasOwner()) {

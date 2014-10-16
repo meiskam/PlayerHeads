@@ -39,11 +39,13 @@
   </repositories>
   
   <dependencies>
+    <!-- Private patched spigot version 20141001a -->
     <dependency>
-      <groupId>org.bukkit</groupId>
-      <artifactId>bukkit</artifactId>
-      <version>1.7.2-R0.3-SNAPSHOT</version>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot</artifactId>
+      <version>1.7.10-R0.1-SNAPSHOT</version>
     </dependency>
+    <!-- Private updated ncp -->
     <dependency>
       <groupId>fr.neatmonster</groupId>
       <artifactId>ncpplugin</artifactId>
@@ -107,6 +109,7 @@
         <configuration>
           <archive>
             <manifestEntries>
+              <Built-By>Maven</Built-By>
               <Implementation-Title>${project.name}</Implementation-Title>
               <Implementation-Version>${project.version}${describe}</Implementation-Version>
               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>

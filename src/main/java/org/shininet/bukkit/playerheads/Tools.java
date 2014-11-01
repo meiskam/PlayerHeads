@@ -59,7 +59,7 @@ public class Tools {
         }
 
         for (OfflinePlayer offPlayer : Bukkit.getServer().getOfflinePlayers()) {
-            if (offPlayer.getName().toLowerCase().equals(inputNameLC)) {
+            if ((offPlayer.getName() != null) && (offPlayer.getName().toLowerCase().equals(inputNameLC))) {
                 return offPlayer.getName();
             }
         }

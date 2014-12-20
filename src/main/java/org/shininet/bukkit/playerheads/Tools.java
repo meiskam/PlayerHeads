@@ -100,11 +100,18 @@ public class Tools {
     public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
         ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-        skullMeta.setOwner(skullOwner);
+        boolean shouldSet = false;
+        if ((skullOwner != null) && (!skullOwner.equals(""))) {
+        	skullMeta.setOwner(skullOwner);
+            shouldSet = true;
+        }
         if (displayName != null) {
             skullMeta.setDisplayName(ChatColor.RESET + displayName);
+            shouldSet = true;
         }
-        skull.setItemMeta(skullMeta);
+        if (shouldSet) {
+            skull.setItemMeta(skullMeta);
+        }
         return skull;
     }
 

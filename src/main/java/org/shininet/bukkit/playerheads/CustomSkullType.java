@@ -37,7 +37,7 @@ public enum CustomSkullType {
     WOLF("Pablo_Penguin", "Budwolf"), // I still need an official wolf head if anyone wants to provide one
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
     RABBIT("rabbit2077"), // Thanks IrParadox
-    GUARDIAN("Creepypig7"); // Thanks IrParadox
+    GUARDIAN("Guardian", "creepypig7", "Creepypig7"); // Thanks lee3kfc
 
     private final String owner;
 

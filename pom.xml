@@ -4,7 +4,7 @@
   <groupId>org.shininet.bukkit</groupId>
   <artifactId>PlayerHeads</artifactId>
   <packaging>jar</packaging>
-  <version>3.10-SNAPSHOT</version>
+  <version>3.10</version>
   <name>PlayerHeads</name>
   
   <organization>
@@ -40,11 +40,6 @@
   
   <dependencies>
     <dependency>
-      <groupId>org.spigotmc</groupId>
-      <artifactId>spigot-api</artifactId>
-      <version>1.8-R0.1-SNAPSHOT</version>
-    </dependency>
-    <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
       <version>1.8-R0.1-SNAPSHOT</version>
@@ -53,6 +48,16 @@
       <groupId>fr.neatmonster</groupId>
       <artifactId>ncpplugin</artifactId>
       <version>static</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.bukkit</groupId>
+          <artifactId>bukkit</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.bukkit</groupId>
+          <artifactId>craftbukkit</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   

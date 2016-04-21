@@ -36,7 +36,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         saveDefaultConfig();
 
         Lang.init(this);
-        initMetrics();
         initUpdater();
         initNCPHook();
 
@@ -54,14 +53,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         BlockBreakEvent.getHandlerList().unregister(listener);
     }
 
-    private void initMetrics() {
-        try {
-            BukkitMetrics metrics = new BukkitMetrics(this);
-            metrics.start();
-        } catch (Exception e) {
-            logger.warning(Lang.ERROR_METRICS);
-        }
-    }
 
     private void initUpdater() {
         try {

@@ -86,8 +86,8 @@ public class Tools {
             return Skull(SkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
             return Skull(SkullType.SKELETON, quantity);
-        } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-            return Skull(SkullType.WITHER, quantity);
+        //} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
+        //    return Skull(SkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }

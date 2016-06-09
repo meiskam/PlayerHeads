@@ -129,9 +129,10 @@ public class PlayerHeadsListener implements Listener {
             EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
         } else if (entityType == EntityType.ZOMBIE) {
             EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
-//        } else if (entityType == EntityType.SKELETON) {
-//            if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
-//                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+        } else if (entityType == EntityType.SKELETON) {
+            if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+            }
 //            } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
 //                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
 //                    if (it.next().getType() == Material.SKULL_ITEM) {

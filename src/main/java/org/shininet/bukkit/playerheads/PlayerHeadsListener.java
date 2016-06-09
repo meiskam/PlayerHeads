@@ -144,6 +144,8 @@ public class PlayerHeadsListener implements Listener {
             if (((Slime) event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
+        } else if (entityType == EntityType.ENDER_DRAGON) {
+            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());

@@ -195,8 +195,8 @@ public class PlayerHeadsListener implements Listener {
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullState.getSkullType()) {
                     case PLAYER:
-                        if (skullState.hasOwner()) {
-                            String owner = skullState.getOwner();
+                        String owner = skullState.getOwner();
+                        if (skullState.hasOwner() && owner != null) {
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             CustomSkullType skullType = CustomSkullType.get(owner);
                             if (skullType != null) {

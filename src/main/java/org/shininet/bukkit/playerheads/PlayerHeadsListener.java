@@ -133,6 +133,9 @@ public class PlayerHeadsListener implements Listener {
             if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
                 EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
             } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+                if (plugin.configFile.getDouble("witherdroprate") < 0) {
+                    return;
+                }
                 for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
                     if (it.next().getType() == Material.SKULL_ITEM) {
                         it.remove();

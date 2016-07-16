@@ -133,6 +133,9 @@ public class PlayerHeadsListener implements Listener {
             if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
                 EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
             } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+                if (plugin.configFile.getDouble("witherdroprate") < 0) {
+                    return;
+                }
                 for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
                     if (it.next().getType() == Material.SKULL_ITEM) {
                         it.remove();
@@ -144,6 +147,8 @@ public class PlayerHeadsListener implements Listener {
             if (((Slime) event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
+        } else if (entityType == EntityType.ENDER_DRAGON) {
+            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
@@ -198,8 +203,8 @@ public class PlayerHeadsListener implements Listener {
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullState.getSkullType()) {
                 case PLAYER:
-                    if (skullState.hasOwner()) {
-                        String owner = skullState.getOwner();
+                    String owner = skullState.getOwner();
+                    if (skullState.hasOwner() && owner != null) {
                         //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                         CustomSkullType skullType = CustomSkullType.get(owner);
                         if (skullType != null) {

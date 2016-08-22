@@ -53,7 +53,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         BlockBreakEvent.getHandlerList().unregister(listener);
     }
 
-
     private void initUpdater() {
         try {
             if (configFile.getBoolean("updatecheck") && !(updateReady)) {

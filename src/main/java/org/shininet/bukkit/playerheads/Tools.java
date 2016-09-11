@@ -134,7 +134,9 @@ public class Tools {
     public static String format(String text, String... replacement) {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {
-            output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            if (output != null) {
+                output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            }
         }
         return ChatColor.translateAlternateColorCodes('&', output);
     }

@@ -94,7 +94,7 @@ public class PlayerHeadsListener implements Listener {
                 return;
             }
 
-            if (plugin.configFile.getBoolean("antideathchest")) {
+            if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
                 Location location = player.getLocation();
                 location.getWorld().dropItemNaturally(location, drop);
             } else {

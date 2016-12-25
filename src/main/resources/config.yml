@@ -1,0 +1,82 @@
+# PlayerHeads Configuration
+# Defaults/explanation:
+# pkonly: true                  [true/false]    When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
+# droprate: 0.05                [0.0 -> 1.0]    Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
+# lootingrate: 0.2              [0.0 -> 1.0]    Increases all droprates by lootingrate percent per looting level when a enchanted weapon is used
+# mobpkonly: true               [true/false]    When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
+# creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
+# zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
+# skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
+# witherdroprate: 0.025         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
+# spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
+# endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
+# blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies
+# horsedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a horse dies
+# squiddroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a squid dies
+# silverfishdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a silverfish dies
+# enderdragondroprate: 0.05     [0.0 -> 1.0]    Chance that a mob trophy will drop when an ender dragon dies
+# slimedroprate: 0.001          [0.0 -> 1.0]    Chance that a mob trophy will drop when a slime dies
+# irongolemdroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when an iron golem dies
+# mushroomcowdroprate: 0.002    [0.0 -> 1.0]    Chance that a mob trophy will drop when a mushroom cow dies
+# batdroprate: 0.005            [0.0 -> 1.0]    Chance that a mob trophy will drop when a bat dies
+# pigzombiedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig zombie dies
+# snowmandroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a snowman dies
+# ghastdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a ghast dies
+# pigdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig dies
+# villagerdroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a villager dies
+# sheepdroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a sheep dies
+# cowdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cow dies
+# chickendroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a chicken dies
+# ocelotdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an ocelot dies
+# witchdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a witch dies
+# magmacubedroprate: 0.001      [0.0 -> 1.0]    Chance that a mob trophy will drop when a magma cube dies
+# wolfdroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a wolf dies
+# cavespiderdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a cave spider dies
+# rabbitdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a rabbit dies
+# guardiandroprate: 0.025       [0.0 -> 1.0]    Chance that a mob trophy will drop when a guardian dies
+# fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
+# updatecheck: true             [true/false]    Checks for update on startup and alerts admins
+# broadcast: true               [true/false]    Sends a message when someone gets beheaded
+# broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
+# antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
+# dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
+pkonly: true
+droprate: 0.05
+lootingrate: 0.2
+mobpkonly: true
+creeperdroprate: 0.005
+zombiedroprate: 0.002
+skeletondroprate: 0.002
+witherdroprate: 0.025
+spiderdroprate: 0.002
+endermandroprate: 0.002
+blazedroprate: 0.002
+horsedroprate: 0.002
+squiddroprate: 0.005
+silverfishdroprate: 0.005
+enderdragondroprate: 0.05
+slimedroprate: 0.001
+irongolemdroprate: 0.005
+mushroomcowdroprate: 0.002
+batdroprate: 0.005
+pigzombiedroprate: 0.002
+snowmandroprate: 0.002
+ghastdroprate: 0.005
+pigdroprate: 0.002
+villagerdroprate: 0.002
+sheepdroprate: 0.002
+cowdroprate: 0.002
+chickendroprate: 0.002
+ocelotdroprate: 0.005
+witchdroprate: 0.005
+magmacubedroprate: 0.001
+wolfdroprate: 0.002
+cavespiderdroprate: 0.002
+rabbitdroprate: 0.002
+guardiandroprate: 0.025
+fixcase: true
+updatecheck: true
+broadcast: true
+broadcastrange: 0
+antideathchest: false
+dropboringplayerheads: false

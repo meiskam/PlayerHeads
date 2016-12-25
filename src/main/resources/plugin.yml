@@ -1,10 +1,12 @@
 name: PlayerHeads
-version: 2.3.0052
+version: ${project.version}${describe}
 description: Drops a player's head when s/he dies, also mob heads
 authors: [meiskam, zand]
 
 main: org.shininet.bukkit.playerheads.PlayerHeads
 database: false
+
+softdepend: [NoCheatPlus]
 
 commands:
   PlayerHeads:
@@ -14,12 +16,22 @@ commands:
 permissions:
   playerheads.*:
     description: Gives all PlayerHeads permissions
+    default: false
     children:
       playerheads.config.*: true
-      playerheads.spawn: true
+      playerheads.spawn.*: true
       playerheads.update: true
+      playerheads.rename: true
+      playerheads.canbehead: true
+      playerheads.canlosehead: true
+      playerheads.canbeheadmob: true
+      playerheads.update: true
+      playerheads.alwaysbehead: true
+      playerheads.alwaysbeheadmob: true
+      playerheads.clickinfo: true
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
+    default: op
     children:
       playerheads.config.get: true
       playerheads.config.set: true
@@ -29,13 +41,22 @@ permissions:
   playerheads.config.set:
     description: Allows user to set or reload configs
     default: op
+  playerheads.spawn.*:
+    description: Spawn player heads
+    default: op
+    children:
+      playerheads.spawn: true
+      playerheads.spawn.forother: true
   playerheads.spawn:
-    description: Spawn a player head
+    description: Spawn any player head
     default: op
     children:
       playerheads.spawn.own: true
   playerheads.spawn.own:
     description: Spawn your own head
+    default: op
+  playerheads.spawn.forother:
+    description: Spawn a head into someone elses inventory
     default: op
   playerheads.rename:
     description: User can change the skin of the player head in their hand
@@ -43,7 +64,7 @@ permissions:
   playerheads.canbehead:
     description: User can remove heads from others
     default: true
-  playerheads.canloosehead:
+  playerheads.canlosehead:
     description: User can have their head removed
     default: true
   playerheads.canbeheadmob:
@@ -52,3 +73,12 @@ permissions:
   playerheads.update:
     description: When update available, can view notice and manually update
     default: op
+  playerheads.alwaysbehead:
+    description: Ignore drop rate for player heads and drop 100% of the time
+    default: false
+  playerheads.alwaysbeheadmob:
+    description: Ignore drop rate for mob heads and drop 100% of the time
+    default: false
+  playerheads.clickinfo:
+    description: When a player head is clicked the player name will be displayed
+    default: false

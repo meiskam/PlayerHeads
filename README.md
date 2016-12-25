@@ -1,6 +1,6 @@
 PlayerHeads
 ===========
 
-Bukkit Plugin - Player's heads lop off when they die
+Bukkit Plugin - Drops a player's head when s/he dies, also mob heads
 
-http://dev.bukkit.org/server-mods/player-heads/
+http://www.curse.com/server-mods/minecraft/player-heads

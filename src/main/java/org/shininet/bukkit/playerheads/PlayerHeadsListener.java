@@ -4,15 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.SkullType;
+import fr.neatmonster.nocheatplus.checks.CheckType;
+import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
@@ -34,8 +28,8 @@ import org.shininet.bukkit.playerheads.events.FakeBlockBreakEvent;
 import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
-import fr.neatmonster.nocheatplus.checks.CheckType;
-import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @author meiskam
@@ -132,18 +126,21 @@ public class PlayerHeadsListener implements Listener {
         } else if (entityType == EntityType.SKELETON) {
             if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
                 EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
-            } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
-                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
-                    if (it.next().getType() == Material.SKULL_ITEM) {
-                        it.remove();
-                    }
-                }
-                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
             }
+//            } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+//                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
+//                    if (it.next().getType() == Material.SKULL_ITEM) {
+//                        it.remove();
+//                    }
+//                }
+//                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
+//            }
         } else if (entityType == EntityType.SLIME) {
             if (((Slime) event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
+        } else if (entityType == EntityType.ENDER_DRAGON) {
+            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
@@ -197,36 +194,36 @@ public class PlayerHeadsListener implements Listener {
             Skull skullState = (Skull) block.getState();
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullState.getSkullType()) {
-                case PLAYER:
-                    if (skullState.hasOwner()) {
+                    case PLAYER:
                         String owner = skullState.getOwner();
-                        //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                        CustomSkullType skullType = CustomSkullType.get(owner);
-                        if (skullType != null) {
-                            Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                            if (!owner.equals(skullType.getOwner())) {
-                                skullState.setOwner(skullType.getOwner());
-                                skullState.update();
+                        if (skullState.hasOwner() && owner != null) {
+                            //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
+                            CustomSkullType skullType = CustomSkullType.get(owner);
+                            if (skullType != null) {
+                                Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                                if (!owner.equals(skullType.getOwner())) {
+                                    skullState.setOwner(skullType.getOwner());
+                                    skullState.update();
+                                }
+                            } else {
+                                Tools.formatMsg(player, Lang.CLICKINFO, owner);
                             }
                         } else {
-                            Tools.formatMsg(player, Lang.CLICKINFO, owner);
+                            Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
-                    } else {
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
-                    }
-                    break;
-                case CREEPER:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
-                    break;
-                case SKELETON:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
-                    break;
-                case WITHER:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
-                    break;
-                case ZOMBIE:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
-                    break;
+                        break;
+                    case CREEPER:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
+                        break;
+                    case SKELETON:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
+                        break;
+                    case WITHER:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
+                        break;
+                    case ZOMBIE:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
+                        break;
                 }
             } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
                 String owner = skullState.getOwner();

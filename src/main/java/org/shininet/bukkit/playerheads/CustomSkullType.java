@@ -17,14 +17,13 @@ public enum CustomSkullType {
     BLAZE("MHF_Blaze", "Blaze_Head"), // Thanks Marc Watson
     HORSE("gavertoso"), // Thanks Glompalici0us
     SQUID("MHF_Squid", "squidette8"), // Thanks Marc Watson
-    SILVERFISH("Xzomag", "AlexVMiner"), // Thanks XlexerX
-    ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
-    SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
+    SILVERFISH("MHF_Silverfish", "Xzomag", "AlexVMiner"), // Thanks XlexerX
+    SLIME("MHF_Slime", "HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
     IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson
     MUSHROOM_COW("MHF_MushroomCow", "Mooshroom_Stew"), // Thanks Marc Watson
     BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
     PIG_ZOMBIE("MHF_PigZombie", "ManBearPigZombie", "scraftbrothers5"), // Thanks Marc Watson
-    SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
+    SNOWMAN("MHF_SnowGolem", "Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
     GHAST("MHF_Ghast", "_QuBra_", "blaiden"), // Thanks Marc Watson
     PIG("MHF_Pig", "XlexerX", "scrafbrothers7"), // Thanks Marc Watson
     VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
@@ -32,12 +31,12 @@ public enum CustomSkullType {
     COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
     CHICKEN("MHF_Chicken", "scraftbrothers1"), // Thanks Marc Watson
     OCELOT("MHF_Ocelot", "scraftbrothers3"), // Thanks Marc Watson
-    WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
+    WITCH("MHF_Witch", "scrafbrothers4"), // Thanks SuperCraftBrothers.com
     MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
-    WOLF("Pablo_Penguin", "Budwolf"), // I still need an official wolf head if anyone wants to provide one
+    WOLF("MHF_Wolf", "Pablo_Penguin", "Budwolf"),
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
     RABBIT("rabbit2077"), // Thanks IrParadox
-    GUARDIAN("Guardian", "creepypig7", "Creepypig7"); // Thanks lee3kfc
+    GUARDIAN("MHF_Guardian", "Guardian"); // Thanks lee3kfc
 
     private final String owner;
 

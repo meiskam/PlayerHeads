@@ -36,7 +36,9 @@ public enum CustomSkullType {
     WOLF("MHF_Wolf", "Pablo_Penguin", "Budwolf"),
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
     RABBIT("rabbit2077"), // Thanks IrParadox
-    GUARDIAN("MHF_Guardian", "Guardian"); // Thanks lee3kfc
+    GUARDIAN("MHF_Guardian", "Guardian"), // Thanks lee3kfc
+    POLAR_BEAR("ice_bear", "snowbear"),
+    SHULKER("MHF_Shulker");
 
     private final String owner;
 

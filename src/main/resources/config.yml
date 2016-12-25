@@ -74,7 +74,9 @@ wolfdroprate: 0.002
 cavespiderdroprate: 0.002
 rabbitdroprate: 0.002
 guardiandroprate: 0.025
-fixcase: true
+polarbeardroprate: 1.0
+shulkerdroprate: 1.0
+fixcase: false
 updatecheck: true
 broadcast: true
 broadcastrange: 0

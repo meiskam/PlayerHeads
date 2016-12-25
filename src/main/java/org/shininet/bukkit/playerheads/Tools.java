@@ -86,8 +86,8 @@ public class Tools {
             return Skull(SkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
             return Skull(SkullType.SKELETON, quantity);
-        //} else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-        //    return Skull(SkullType.WITHER, quantity);
+        } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
+            return Skull(SkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }
@@ -134,7 +134,9 @@ public class Tools {
     public static String format(String text, String... replacement) {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {
-            output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            if (output != null) {
+                output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            }
         }
         return ChatColor.translateAlternateColorCodes('&', output);
     }

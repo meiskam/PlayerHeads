@@ -43,7 +43,7 @@ class PlayerHeadsListener implements Listener {
     private final Random prng = new Random();
     private final PlayerHeads plugin;
 
-    public PlayerHeadsListener(PlayerHeads plugin) {
+    private PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
     }
 
@@ -128,8 +128,7 @@ class PlayerHeadsListener implements Listener {
             EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
         } else if (entityType == EntityType.SKELETON) {
             if (event.getEntity() instanceof Stray) {
-                // todo: Add stray drop
-                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+                EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
             } else if (event.getEntity() instanceof WitherSkeleton) {
                 if (plugin.configFile.getDouble("witherdroprate") < 0) {
                     return;

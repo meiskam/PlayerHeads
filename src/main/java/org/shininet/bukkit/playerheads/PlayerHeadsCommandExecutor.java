@@ -5,7 +5,6 @@
 package org.shininet.bukkit.playerheads;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -20,9 +19,9 @@ import org.bukkit.inventory.ItemStack;
  * @author meiskam
  */
 
-public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
+class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 
-    private PlayerHeads plugin;
+    private final PlayerHeads plugin;
 
     public PlayerHeadsCommandExecutor(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -75,30 +74,30 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                         if (key.equals(keySet.toLowerCase())) {
                             keyFound = true;
                             switch (Config.configKeys.get(keySet.toLowerCase())) {
-                            case BOOLEAN:
-                                if (value.equals("false") || value.equals("no") || value.equals("0")) {
-                                    plugin.configFile.set(key, false);
-                                } else {
-                                    plugin.configFile.set(key, true);
-                                }
-                                break;
-                            case DOUBLE:
-                                try {
-                                    plugin.configFile.set(key, Double.parseDouble(value));
-                                } catch (NumberFormatException e) {
-                                    Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
-                                }
-                                break;
-                            case INT:
-                                try {
-                                    plugin.configFile.set(key, Integer.parseInt(value));
-                                } catch (NumberFormatException e) {
-                                    Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
-                                }
-                            break;
-                            default:
-                                plugin.logger.warning(Tools.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
-                                break;
+                                case BOOLEAN:
+                                    if (value.equals("false") || value.equals("no") || value.equals("0")) {
+                                        plugin.configFile.set(key, false);
+                                    } else {
+                                        plugin.configFile.set(key, true);
+                                    }
+                                    break;
+                                case DOUBLE:
+                                    try {
+                                        plugin.configFile.set(key, Double.parseDouble(value));
+                                    } catch (NumberFormatException e) {
+                                        Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
+                                    }
+                                    break;
+                                case INT:
+                                    try {
+                                        plugin.configFile.set(key, Integer.parseInt(value));
+                                    } catch (NumberFormatException e) {
+                                        Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_CONFIG + Lang.COLON + Lang.CMD_SET + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NUMBERCONVERT, value);
+                                    }
+                                    break;
+                                default:
+                                    plugin.logger.warning(Tools.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
+                                    break;
                             }
                             break;
                         }
@@ -130,7 +129,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
             }
         } else if (args[0].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_SPAWN))) {
             String skullOwner;
-            boolean haspermission = false;
+            boolean haspermission;
             Player reciever = null;
             int quantity = Config.defaultStackSize;
             boolean isConsoleSender = !(sender instanceof Player);
@@ -143,17 +142,17 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
             } else {
                 reciever = (Player) sender;
             }
-            if ((args.length == 1) || ((args.length == 2) && !isConsoleSender && ((Player) sender).getName().equalsIgnoreCase(args[1]))) {
-                skullOwner = ((Player) sender).getName();
+            if (args.length == 1 || args.length == 2 && sender.getName().equalsIgnoreCase(args[1])) {
+                skullOwner = sender.getName();
                 haspermission = sender.hasPermission("playerheads.spawn.own");
-            } else if ((args.length == 2) && !isConsoleSender) {
+            } else if (args.length == 2) {
                 skullOwner = args[1];
                 haspermission = sender.hasPermission("playerheads.spawn");
             } else if ((args.length == 3) || (args.length == 4)) {
                 if (args.length == 4) {
                     try {
                         quantity = Integer.parseInt(args[3]);
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException ignored) {
                     }
                 }
                 if ((reciever = plugin.getServer().getPlayer(args[2])) == null) {
@@ -196,7 +195,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.SYNTAX + Lang.COLON_SPACE + label + Lang.SPACE + Lang.CMD_RENAME + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
                 return true;
             }
-            ItemStack skullInput = ((Player) sender).getItemInHand();
+            ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
             if (skullInput.getType() != Material.SKULL_ITEM) {
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NOT_A_HEAD);
                 return true;
@@ -212,7 +211,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
                 skullOutput = Tools.Skull("");
             }
             skullOutput.setAmount(skullInput.getAmount());
-            ((Player) sender).setItemInHand(skullOutput);
+            ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
             Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.RENAMED_HEAD);
             return true;
         } else {
@@ -227,7 +226,7 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
             return null;
         }
 
-        ArrayList<String> completions = new ArrayList<String>();
+        ArrayList<String> completions = new ArrayList<>();
 
         for (int i = 0; i < args.length; i++) {
             args[i] = args[i].toLowerCase();
@@ -289,8 +288,8 @@ public class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter
         return null;
     }
 
-    public List<String> sort(List<String> completions) {
-        Collections.sort(completions, String.CASE_INSENSITIVE_ORDER);
+    private List<String> sort(List<String> completions) {
+        completions.sort(String.CASE_INSENSITIVE_ORDER);
         return completions;
     }
 

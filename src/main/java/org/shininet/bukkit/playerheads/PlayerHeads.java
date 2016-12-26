@@ -20,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 
-    private PlayerHeadsCommandExecutor commandExecutor;
     private PlayerHeadsListener listener;
     public Logger logger;
     public FileConfiguration configFile;
@@ -40,7 +39,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         initNCPHook();
 
         listener = new PlayerHeadsListener(this);
-        commandExecutor = new PlayerHeadsCommandExecutor(this);
+        PlayerHeadsCommandExecutor commandExecutor = new PlayerHeadsCommandExecutor(this);
         getServer().getPluginManager().registerEvents(listener, this);
         getCommand("PlayerHeads").setExecutor(commandExecutor);
     }
@@ -66,7 +65,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     }
 
     private void initNCPHook() {
-        if(getServer().getPluginManager().getPlugin("NoCheatPlus") != null){
+        if (getServer().getPluginManager().getPlugin("NoCheatPlus") != null) {
             NCPHook = true;
         }
     }

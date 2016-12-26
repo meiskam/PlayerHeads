@@ -43,7 +43,7 @@ public enum CustomSkullType {
     private final String owner;
 
     private static class Holder {
-        static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
+        static final HashMap<String, CustomSkullType> map = new HashMap<>();
     }
 
     CustomSkullType(String owner) {

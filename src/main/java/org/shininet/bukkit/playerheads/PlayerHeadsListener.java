@@ -4,7 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -16,10 +15,7 @@ import org.bukkit.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -42,10 +38,10 @@ import org.bukkit.Bukkit;
  * @author meiskam
  */
 
-public class PlayerHeadsListener implements Listener {
+class PlayerHeadsListener implements Listener {
 
     private final Random prng = new Random();
-    private PlayerHeads plugin;
+    private final PlayerHeads plugin;
 
     public PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -57,7 +53,7 @@ public class PlayerHeadsListener implements Listener {
         double lootingrate = 1;
 
         if (killer != null) {
-            ItemStack weapon = killer.getItemInHand();
+            ItemStack weapon = killer.getEquipment().getItemInMainHand();
             if (weapon != null) {
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
@@ -131,18 +127,17 @@ public class PlayerHeadsListener implements Listener {
         } else if (entityType == EntityType.ZOMBIE) {
             EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
         } else if (entityType == EntityType.SKELETON) {
-            if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.NORMAL) {
+            if (event.getEntity() instanceof Stray) {
+                // todo: Add stray drop
                 EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
-            } else if (((Skeleton) event.getEntity()).getSkeletonType() == Skeleton.SkeletonType.WITHER) {
+            } else if (event.getEntity() instanceof WitherSkeleton) {
                 if (plugin.configFile.getDouble("witherdroprate") < 0) {
                     return;
                 }
-                for (Iterator<ItemStack> it = event.getDrops().iterator(); it.hasNext();) {
-                    if (it.next().getType() == Material.SKULL_ITEM) {
-                        it.remove();
-                    }
-                }
+                event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.SKULL_ITEM);
                 EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
+            } else if (event.getEntity() instanceof Skeleton) {
+                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
             }
         } else if (entityType == EntityType.SLIME) {
             if (((Slime) event.getEntity()).getSize() == 1) {
@@ -154,12 +149,12 @@ public class PlayerHeadsListener implements Listener {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
                 EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
 
-    public void EntityDeathHelper(EntityDeathEvent event, Enum<?> type, Double droprate) {
+    private void EntityDeathHelper(EntityDeathEvent event, Enum<?> type, Double droprate) {
         Double dropchance = prng.nextDouble();
         Player killer = event.getEntity().getKiller();
 
@@ -203,36 +198,36 @@ public class PlayerHeadsListener implements Listener {
             Skull skullState = (Skull) block.getState();
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullState.getSkullType()) {
-                case PLAYER:
-                    if (skullState.hasOwner()) {
-                        String owner = skullState.getOwningPlayer().getName();
-                        //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                        CustomSkullType skullType = CustomSkullType.get(owner);
-                        if (skullType != null) {
-                            Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                            if (!owner.equals(skullType.getOwner())) {
-                                skullState.setOwner(skullType.getOwner());
-                                skullState.update();
+                    case PLAYER:
+                        if (skullState.hasOwner()) {
+                            String owner = skullState.getOwningPlayer().getName();
+                            //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
+                            CustomSkullType skullType = CustomSkullType.get(owner);
+                            if (skullType != null) {
+                                Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                                if (!owner.equals(skullType.getOwner())) {
+                                    skullState.setOwner(skullType.getOwner());
+                                    skullState.update();
+                                }
+                            } else {
+                                Tools.formatMsg(player, Lang.CLICKINFO, owner);
                             }
                         } else {
-                            Tools.formatMsg(player, Lang.CLICKINFO, owner);
+                            Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
-                    } else {
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
-                    }
-                    break;
-                case CREEPER:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
-                    break;
-                case SKELETON:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
-                    break;
-                case WITHER:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
-                    break;
-                case ZOMBIE:
-                    Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
-                    break;
+                        break;
+                    case CREEPER:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
+                        break;
+                    case SKELETON:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
+                        break;
+                    case WITHER:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
+                        break;
+                    case ZOMBIE:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
+                        break;
                 }
             } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
                 String owner = skullState.getOwningPlayer().toString();
@@ -266,7 +261,7 @@ public class PlayerHeadsListener implements Listener {
                     }
 
                     plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
-                    plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getItemInHand(), true));
+                    plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getEquipment().getItemInMainHand(), true));
 
                     FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
                     plugin.getServer().getPluginManager().callEvent(fakebreak);

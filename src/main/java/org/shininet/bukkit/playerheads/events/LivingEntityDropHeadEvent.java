@@ -17,9 +17,9 @@ import org.bukkit.inventory.ItemStack;
 public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean canceled = false;
-    private ItemStack drop;
+    private final ItemStack drop;
 
-    public LivingEntityDropHeadEvent(LivingEntity entity, ItemStack drop) {
+    LivingEntityDropHeadEvent(LivingEntity entity, ItemStack drop) {
         super(entity);
         this.drop = drop;
     }
@@ -27,6 +27,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     /**
      * @return mutable ItemStack that will drop into the world once this event is over
      */
+    @SuppressWarnings("unused")
     public ItemStack getDrop() {
         return drop;
     }
@@ -51,6 +52,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
         return handlers;
     }
 
+    @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
         return handlers;
     }

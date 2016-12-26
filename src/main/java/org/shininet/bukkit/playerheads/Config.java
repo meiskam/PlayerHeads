@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class Config {
 
-    public static enum configType {
+    public enum configType {
         DOUBLE, BOOLEAN, INT
     }
 
@@ -39,8 +39,8 @@ public class Config {
             put("dropboringplayerheads", configType.BOOLEAN);
         }
     };
-    public static final String configKeysString = Tools.implode(configKeys.keySet(), ", ");
-    public static int defaultStackSize = 1;
+    public static final String configKeysString = String.join(", ", configKeys.keySet());
+    public static final int defaultStackSize = 1;
     public static final String updateSlug = "player-heads";
     public static final int updateID = 46244;
 

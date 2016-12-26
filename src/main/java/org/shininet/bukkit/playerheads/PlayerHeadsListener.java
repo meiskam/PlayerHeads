@@ -43,7 +43,7 @@ class PlayerHeadsListener implements Listener {
     private final Random prng = new Random();
     private final PlayerHeads plugin;
 
-    private PlayerHeadsListener(PlayerHeads plugin) {
+    protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
     }
 

@@ -34,6 +34,10 @@
 # cavespiderdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a cave spider dies
 # rabbitdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a rabbit dies
 # guardiandroprate: 0.025       [0.0 -> 1.0]    Chance that a mob trophy will drop when a guardian dies
+# polarbeardroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when a polarbear dies
+# shulkerdroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a shulker dies
+# straydroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a stray dies
+# endermitedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a endermite dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a message when someone gets beheaded
@@ -74,7 +78,11 @@ wolfdroprate: 0.002
 cavespiderdroprate: 0.002
 rabbitdroprate: 0.002
 guardiandroprate: 0.025
-fixcase: true
+polarbeardroprate: 0.005
+shulkerdroprate: 0.002
+straydroprate: 0.002
+endermitedroprate: 0.005
+fixcase: false
 updatecheck: true
 broadcast: true
 broadcastrange: 0

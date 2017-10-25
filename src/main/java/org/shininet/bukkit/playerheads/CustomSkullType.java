@@ -16,33 +16,36 @@ public enum CustomSkullType {
     ENDERMAN("MHF_Enderman", "Violit"), // Thanks Marc Watson
     BLAZE("MHF_Blaze", "Blaze_Head"), // Thanks Marc Watson
     HORSE("gavertoso"), // Thanks Glompalici0us
-    SQUID("MHF_Squid", "squidette8"), // Thanks Marc Watson
-    SILVERFISH("Xzomag", "AlexVMiner"), // Thanks XlexerX
-    ENDER_DRAGON("KingEndermen", "KingEnderman"), // Thanks SethBling
-    SLIME("HappyHappyMan", "Ex_PS3Zocker"), // Thanks SethBling
+    SQUID("MHF_Squid"), // Thanks Marc Watson
+    SILVERFISH("MHF_Silverfish", "AlexVMiner"), // Thanks XlexerX
+    SLIME("MHF_Slime", "HappyHappyMan"), // Thanks SethBling
     IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson
-    MUSHROOM_COW("MHF_MushroomCow", "Mooshroom_Stew"), // Thanks Marc Watson
-    BAT("bozzobrain", "coolwhip101"), // Thanks incraftion.com
-    PIG_ZOMBIE("MHF_PigZombie", "ManBearPigZombie", "scraftbrothers5"), // Thanks Marc Watson
-    SNOWMAN("Koebasti", "scraftbrothers2"), // Thanks MrLeikermoser
-    GHAST("MHF_Ghast", "_QuBra_", "blaiden"), // Thanks Marc Watson
-    PIG("MHF_Pig", "XlexerX", "scrafbrothers7"), // Thanks Marc Watson
+    MUSHROOM_COW("MHF_MushroomCow"), // Thanks Marc Watson
+    BAT("bozzobrain"), // Thanks incraftion.com
+    PIG_ZOMBIE("MHF_PigZombie", "ManBearPigZombie"), // Thanks Marc Watson
+    SNOWMAN("MHF_SnowGolem", "Koebasti"), // Thanks MrLeikermoser
+    GHAST("MHF_Ghast", "_QuBra_"), // Thanks Marc Watson
+    PIG("MHF_Pig"), // Thanks Marc Watson
     VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
-    SHEEP("MHF_Sheep", "SGT_KICYORASS", "Eagle_Peak"), // Thanks Marc Watson
+    SHEEP("MHF_Sheep"), // Thanks Marc Watson
     COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
-    CHICKEN("MHF_Chicken", "scraftbrothers1"), // Thanks Marc Watson
-    OCELOT("MHF_Ocelot", "scraftbrothers3"), // Thanks Marc Watson
-    WITCH("scrafbrothers4"), // Thanks SuperCraftBrothers.com
+    CHICKEN("MHF_Chicken"), // Thanks Marc Watson
+    OCELOT("MHF_Ocelot"), // Thanks Marc Watson
+    WITCH("MHF_Witch"),
     MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
-    WOLF("Pablo_Penguin", "Budwolf"), // I still need an official wolf head if anyone wants to provide one
+    WOLF("MHF_Wolf", "Pablo_Penguin", "Budwolf"),
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
     RABBIT("rabbit2077"), // Thanks IrParadox
-    GUARDIAN("Guardian", "creepypig7", "Creepypig7"); // Thanks lee3kfc
+    GUARDIAN("MHF_Guardian", "Guardian"), // Thanks lee3kfc
+    POLAR_BEAR("ice_bear", "snowbear"),
+    SHULKER("MHF_Shulker"),
+    STRAY("MHF_Stray"),
+    ENDERMITE("MHF_Endermite");
 
     private final String owner;
 
     private static class Holder {
-        static HashMap<String, CustomSkullType> map = new HashMap<String, CustomSkullType>();
+        static final HashMap<String, CustomSkullType> map = new HashMap<>();
     }
 
     CustomSkullType(String owner) {

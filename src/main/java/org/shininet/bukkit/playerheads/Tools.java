@@ -4,8 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import java.util.Set;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,8 +19,10 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author meiskam
  */
 
+@SuppressWarnings("WeakerAccess")
 public class Tools {
 
+    @SuppressWarnings("unused")
     public static boolean addHead(Player player, String skullOwner) {
         return addHead(player, skullOwner, Config.defaultStackSize);
     }
@@ -36,18 +36,6 @@ public class Tools {
             inv.setItem(firstEmpty, Tools.Skull(skullOwner, quantity));
             return true;
         }
-    }
-
-    public static String implode(Set<String> input, String glue) {
-        int i = 0;
-        StringBuilder output = new StringBuilder();
-        for (String key : input) {
-            if (i++ != 0) {
-                output.append(glue);
-            }
-            output.append(key);
-        }
-        return output.toString();
     }
 
     public static String fixcase(String inputName) {
@@ -93,6 +81,7 @@ public class Tools {
         }
     }
 
+    @SuppressWarnings("unused")
     public static ItemStack Skull(String skullOwner, String displayName) {
         return Skull(skullOwner, displayName, Config.defaultStackSize);
     }
@@ -102,7 +91,7 @@ public class Tools {
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         boolean shouldSet = false;
         if ((skullOwner != null) && (!skullOwner.equals(""))) {
-        	skullMeta.setOwner(skullOwner);
+            skullMeta.setOwner(skullOwner);
             shouldSet = true;
         }
         if (displayName != null) {
@@ -134,8 +123,11 @@ public class Tools {
     public static String format(String text, String... replacement) {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {
-            output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            if (output != null) {
+                output = output.replace("%" + (i + 1) + "%", replacement[i]);
+            }
         }
+        //noinspection ConstantConditions
         return ChatColor.translateAlternateColorCodes('&', output);
     }
 

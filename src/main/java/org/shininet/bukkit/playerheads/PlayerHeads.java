@@ -20,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PlayerHeads extends JavaPlugin implements Listener {
 
-    private PlayerHeadsCommandExecutor commandExecutor;
     private PlayerHeadsListener listener;
     public Logger logger;
     public FileConfiguration configFile;
@@ -36,12 +35,11 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         saveDefaultConfig();
 
         Lang.init(this);
-        initMetrics();
         initUpdater();
         initNCPHook();
 
         listener = new PlayerHeadsListener(this);
-        commandExecutor = new PlayerHeadsCommandExecutor(this);
+        PlayerHeadsCommandExecutor commandExecutor = new PlayerHeadsCommandExecutor(this);
         getServer().getPluginManager().registerEvents(listener, this);
         getCommand("PlayerHeads").setExecutor(commandExecutor);
     }
@@ -52,15 +50,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         PlayerInteractEvent.getHandlerList().unregister(listener);
         PlayerJoinEvent.getHandlerList().unregister(listener);
         BlockBreakEvent.getHandlerList().unregister(listener);
-    }
-
-    private void initMetrics() {
-        try {
-            BukkitMetrics metrics = new BukkitMetrics(this);
-            metrics.start();
-        } catch (Exception e) {
-            logger.warning(Lang.ERROR_METRICS);
-        }
     }
 
     private void initUpdater() {
@@ -76,7 +65,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     }
 
     private void initNCPHook() {
-        if(getServer().getPluginManager().getPlugin("NoCheatPlus") != null){
+        if (getServer().getPluginManager().getPlugin("NoCheatPlus") != null) {
             NCPHook = true;
         }
     }

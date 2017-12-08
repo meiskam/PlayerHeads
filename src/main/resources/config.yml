@@ -7,11 +7,12 @@
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
-# witherdroprate: 0.025         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
+# withedroprate: 0.025          [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
 # spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
 # endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
 # blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies
 # horsedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a horse dies
+# donkeydroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a donkey dies
 # squiddroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a squid dies
 # silverfishdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a silverfish dies
 # enderdragondroprate: 0.05     [0.0 -> 1.0]    Chance that a mob trophy will drop when an ender dragon dies
@@ -34,10 +35,18 @@
 # cavespiderdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a cave spider dies
 # rabbitdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a rabbit dies
 # guardiandroprate: 0.025       [0.0 -> 1.0]    Chance that a mob trophy will drop when a guardian dies
+# elderguardiandroprate: 0.030  [0.0 -> 1.0]    Chance that a mob trophy will drop when an elder guardian dies
 # polarbeardroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when a polarbear dies
 # shulkerdroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a shulker dies
 # straydroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a stray dies
 # endermitedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a endermite dies
+# evokerdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an evoker dies
+# illusionerdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when an illusioner dies
+# vindicatordroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a vindicator dies
+# witherbossdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither(boss) dies
+# vexdroprate: 0.004            [0.0 -> 1.0]    Chance that a mob trophy will drop when a vex dies
+# llamadroprate: 0.008          [0.0 -> 1.0]    Chance that a mob trophy will drop when a llama dies
+# parrotdroprate: 0.008         [0.0 -> 1.0]    Chance that a mob trophy will drop when a parrot dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a message when someone gets beheaded
@@ -56,6 +65,7 @@ spiderdroprate: 0.002
 endermandroprate: 0.002
 blazedroprate: 0.002
 horsedroprate: 0.002
+donkeydroprate: 0.002
 squiddroprate: 0.005
 silverfishdroprate: 0.005
 enderdragondroprate: 0.05
@@ -78,10 +88,18 @@ wolfdroprate: 0.002
 cavespiderdroprate: 0.002
 rabbitdroprate: 0.002
 guardiandroprate: 0.025
+elderguardiandroprate: 0.030
 polarbeardroprate: 0.005
 shulkerdroprate: 0.002
 straydroprate: 0.002
 endermitedroprate: 0.005
+evokerdroprate: 0.005
+illusionerdroprate: 0.005
+vindicatordroprate: 0.005
+witherbossdroprate: 0.005
+vexdroprate: 0.004
+llamadroprate: 0.008
+parrotdroprate: 0.008
 fixcase: false
 updatecheck: true
 broadcast: true

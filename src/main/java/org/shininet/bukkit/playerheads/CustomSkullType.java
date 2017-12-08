@@ -16,6 +16,8 @@ public enum CustomSkullType {
     ENDERMAN("MHF_Enderman", "Violit"), // Thanks Marc Watson
     BLAZE("MHF_Blaze", "Blaze_Head"), // Thanks Marc Watson
     HORSE("gavertoso"), // Thanks Glompalici0us
+    DONKEY("Donkeyes"), // Still looking for a better alternative
+    // Also looking for a Mule skull.
     SQUID("MHF_Squid"), // Thanks Marc Watson
     SILVERFISH("MHF_Silverfish", "AlexVMiner"), // Thanks XlexerX
     SLIME("MHF_Slime", "HappyHappyMan"), // Thanks SethBling
@@ -27,6 +29,7 @@ public enum CustomSkullType {
     GHAST("MHF_Ghast", "_QuBra_"), // Thanks Marc Watson
     PIG("MHF_Pig"), // Thanks Marc Watson
     VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
+    ZOMBIE_VILLAGER("Clubjustin"), // Need to find a secondary just to be sure.
     SHEEP("MHF_Sheep"), // Thanks Marc Watson
     COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
     CHICKEN("MHF_Chicken"), // Thanks Marc Watson
@@ -37,10 +40,19 @@ public enum CustomSkullType {
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
     RABBIT("rabbit2077"), // Thanks IrParadox
     GUARDIAN("MHF_Guardian", "Guardian"), // Thanks lee3kfc
+    ELDER_GUARDIAN("MHF_EGuardian"),
     POLAR_BEAR("ice_bear", "snowbear"),
     SHULKER("MHF_Shulker"),
     STRAY("MHF_Stray"),
-    ENDERMITE("MHF_Endermite");
+    ENDERMITE("MHF_Endermite"),
+    EVOKER("MHF_Evoker", "MHF_Illager"),
+    ILLUSIONER("MHF_Illusioner"),
+    VINDICATOR("Vindicator"),
+    WITHER("MHF_Wither"),
+    VEX("MHF_Vex"),
+    LLAMA("MHF_Llama"),
+    PARROT("MHF_Parrot");
+    // Still have to find a skull for Husk Zombie.
 
     private final String owner;
 

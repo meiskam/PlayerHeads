@@ -19,7 +19,7 @@ public enum CustomSkullType {
     DONKEY("Donkeyes"), // Still looking for a better alternative
     // Also looking for a Mule skull.
     SQUID("MHF_Squid"), // Thanks Marc Watson
-    SILVERFISH("MHF_Silverfish", "AlexVMiner"), // Thanks XlexerX
+    SILVERFISH("AlexVMiner","MHF_Silverfish"), // Thanks XlexerX  //20180903-secondary name no longer has this skin
     SLIME("MHF_Slime", "HappyHappyMan"), // Thanks SethBling
     IRON_GOLEM("MHF_Golem", "zippie007"), // Thanks Marc Watson
     MUSHROOM_COW("MHF_MushroomCow"), // Thanks Marc Watson
@@ -29,7 +29,7 @@ public enum CustomSkullType {
     GHAST("MHF_Ghast", "_QuBra_"), // Thanks Marc Watson
     PIG("MHF_Pig"), // Thanks Marc Watson
     VILLAGER("MHF_Villager", "Kuvase", "Villager", "scraftbrothers9"), // Thanks Marc Watson
-    ZOMBIE_VILLAGER("Clubjustin"), // Need to find a secondary just to be sure.
+    ZOMBIE_VILLAGER("Geartooth_","Clubjustin"), // Need to find a secondary just to be sure. 20180903-original name changed
     SHEEP("MHF_Sheep"), // Thanks Marc Watson
     COW("MHF_Cow", "VerifiedBernard", "CarlosTheCow"), // Thanks Marc Watson
     CHICKEN("MHF_Chicken"), // Thanks Marc Watson
@@ -38,20 +38,20 @@ public enum CustomSkullType {
     MAGMA_CUBE("MHF_LavaSlime"), // Thanks Marc Watson
     WOLF("MHF_Wolf", "Pablo_Penguin", "Budwolf"),
     CAVE_SPIDER("MHF_CaveSpider"), // Thanks Marc Watson
-    RABBIT("rabbit2077"), // Thanks IrParadox
+    RABBIT("MHF_Rabbit","rabbit2077"), // Thanks IrParadox
     GUARDIAN("MHF_Guardian", "Guardian"), // Thanks lee3kfc
     ELDER_GUARDIAN("MHF_EGuardian"),
     POLAR_BEAR("ice_bear", "snowbear"),
     SHULKER("MHF_Shulker"),
     STRAY("MHF_Stray"),
     ENDERMITE("MHF_Endermite"),
-    EVOKER("MHF_Evoker", "MHF_Illager"),
-    ILLUSIONER("MHF_Illusioner"),
+    EVOKER("MHF_Illager","MHF_Evoker"),//20180903-secondary name no longer has this skin
+    ILLUSIONER("Illager","MHF_Illusioner"),//20180903-name no longer exists
     VINDICATOR("Vindicator"),
     WITHER("MHF_Wither"),
     VEX("MHF_Vex"),
-    LLAMA("MHF_Llama"),
-    PARROT("MHF_Parrot");
+    LLAMA("LilLlama","MHF_Llama"),//20180903-name no longer exists
+    PARROT("ParrotBot","MHF_Parrot");//20180903-better options available
     // Still have to find a skull for Husk Zombie.
 
     private final String owner;

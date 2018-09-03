@@ -62,13 +62,13 @@ public enum CustomSkullType {
 
     CustomSkullType(String owner) {
         this.owner = owner;
-        Holder.map.put(owner, this);
+        Holder.map.put(owner.toLowerCase(), this);
     }
 
     CustomSkullType(String owner, String... toConvert) {
         this(owner);
         for (String key : toConvert) {
-            Holder.map.put(key, this);
+            Holder.map.put(key.toLowerCase(), this);
         }
     }
 
@@ -85,6 +85,6 @@ public enum CustomSkullType {
     }
 
     public static CustomSkullType get(String owner) {
-        return Holder.map.get(owner);
+        return Holder.map.get(owner.toLowerCase());
     }
 }

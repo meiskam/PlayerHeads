@@ -203,12 +203,18 @@ class PlayerHeadsListener implements Listener {
                 switch (skullTypeCheck) {
                     case PLAYER:
                         if (skullState.hasOwner()) {
+                            String owner=null;
+                            
                             OfflinePlayer op = skullState.getOwningPlayer();
-                            String owner = skullState.getOwningPlayer().getName();
+                            if(op!=null) owner=op.getName();
+                            if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
+                            if(owner==null) owner="Unknown";
+                            
+                            
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             CustomSkullType skullType = CustomSkullType.get(owner);
                             if (skullType != null) {
-                                player.sendMessage("ClickInfo2 GetDisplayName");
+                                //player.sendMessage("ClickInfo2 GetDisplayName");
                                 Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
                                 if (!owner.equals(skullType.getOwner())) {
                                     skullState.setOwner(skullType.getOwner());
@@ -216,11 +222,11 @@ class PlayerHeadsListener implements Listener {
                                 }
                             } else {
                                 //player.sendMessage("ClickInfo owner");
-                                if(owner==null) owner="Unknown";
+                                //if(owner==null) owner="Unknown";
                                 Tools.formatMsg(player, Lang.CLICKINFO, owner);
                             }
                         } else {
-                            player.sendMessage("ClickInfo2 HEAD");
+                            //player.sendMessage("ClickInfo2 HEAD");
                             Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
                         break;

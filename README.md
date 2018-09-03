@@ -7,6 +7,7 @@ http://www.curse.com/server-mods/minecraft/player-heads
 
 ===========
 
-Experimental support for 1.13.1 by shimming item creation and type-checking methods.
+Experimental development into converting the plugin to use Textured heads instead of using usernames for mob skins.
 
-Only tested on spigot 1.13 / 1.13.1
+This branch is unfinished and untested - you probably want the `master` branch instead which has been tested and shims the old plugin to work with the 1.13 API without the redesign.
+

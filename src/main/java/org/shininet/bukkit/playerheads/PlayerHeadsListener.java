@@ -125,11 +125,11 @@ class PlayerHeadsListener implements Listener {
                 if (event.getEntity() instanceof Stray) {
                     EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
                 } else if (event.getEntity() instanceof WitherSkeleton) {
-                    if (plugin.configFile.getDouble("witherdroprate") < 0) {
+                    if (plugin.configFile.getDouble("witherskeletondroprate") < 0) {
                         return;
                     }
                     event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.WITHER_SKELETON_SKULL);
-                    EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
+                    EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherskeletondroprate") * lootingrate);
                 } else if (event.getEntity() instanceof Skeleton) {
                     EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
                 }   break;

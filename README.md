@@ -8,3 +8,5 @@ http://www.curse.com/server-mods/minecraft/player-heads
 ===========
 
 Experimental support for 1.13.1 by shimming item creation and type-checking methods.
+
+Only tested on spigot 1.13 / 1.13.1

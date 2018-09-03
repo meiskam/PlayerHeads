@@ -126,6 +126,10 @@ public class Tools {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {
             if (output != null) {
+                if(replacement[i]==null){
+                    
+                    replacement[i]="<null:"+replacement.length+":>";
+                }
                 output = output.replace("%" + (i + 1) + "%", replacement[i]);
             }
         }

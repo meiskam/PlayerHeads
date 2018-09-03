@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
+import com.github.crashdemons.playerheads.Shim.SkullType;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -71,13 +71,13 @@ public class Tools {
         }
 
         if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
-            return Skull(Shim.SkullType.CREEPER, quantity);
+            return Skull(SkullType.CREEPER, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
-            return Skull(Shim.SkullType.ZOMBIE, quantity);
+            return Skull(SkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
-            return Skull(Shim.SkullType.SKELETON, quantity);
+            return Skull(SkullType.SKELETON, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-            return Skull(Shim.SkullType.WITHER, quantity);
+            return Skull(SkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }
@@ -89,7 +89,7 @@ public class Tools {
     }
 
     public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
-        ItemStack skull = new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) Shim.SkullType.PLAYER.ordinal());
+        ItemStack skull = new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         boolean shouldSet = false;
         if ((skullOwner != null) && (!skullOwner.equals(""))) {
@@ -114,11 +114,11 @@ public class Tools {
         return Skull(type.getOwner(), type.getDisplayName(), quantity);
     }
 
-    public static ItemStack Skull(Shim.SkullType type) {
+    public static ItemStack Skull(SkullType type) {
         return Skull(type, Config.defaultStackSize);
     }
 
-    public static ItemStack Skull(Shim.SkullType type, int quantity) {
+    public static ItemStack Skull(SkullType type, int quantity) {
         return new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) type.ordinal());
     }
 

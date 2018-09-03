@@ -244,7 +244,13 @@ class PlayerHeadsListener implements Listener {
                         break;
                 }
             } else if ((skullTypeCheck == SkullType.PLAYER) && (skullState.hasOwner())) {
-                String owner = skullState.getOwningPlayer().toString();
+                OfflinePlayer op = skullState.getOwningPlayer();
+                String owner=null;
+                if(op!=null) owner=op.getName();
+                if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
+                if(owner==null) return;
+                
+                //String owner = skullState.getOwningPlayer().toString();
                 CustomSkullType skullType = CustomSkullType.get(owner);
                 if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
                     skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));

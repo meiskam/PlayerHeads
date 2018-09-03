@@ -63,13 +63,7 @@ class PlayerHeadsListener implements Listener {
         }
 
         EntityType entityType = event.getEntityType();
-        if (null == entityType) {
-            try {
-                CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
-                EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
-            } catch (IllegalArgumentException ignored) {
-            }
-        } else switch (entityType) {
+        switch (entityType) {
             case PLAYER:
                 Double dropchance = prng.nextDouble();
                 Player player = (Player) event.getEntity();

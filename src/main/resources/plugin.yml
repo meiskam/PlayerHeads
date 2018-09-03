@@ -1,7 +1,7 @@
 name: PlayerHeads
 version: ${project.version}
 description: Drops a player's head when s/he dies, also mob heads
-authors: [meiskam, zand]
+authors: [meiskam, zand, crashdemons (shimming)]
 
 api-version: 1.13
 

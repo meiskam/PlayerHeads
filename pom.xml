@@ -17,14 +17,14 @@
     </properties>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:meiskam/PlayerHeads.git</developerConnection>
-        <connection>scm:git:git://github.com/meiskam/PlayerHeads.git</connection>
-        <url>https://github.com/meiskam/PlayerHeads/tree/master/</url>
+        <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
+        <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
+        <url>https://github.com/crashdemons/PlayerHeads/tree/master/</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/meiskam/PlayerHeads/issues</url>
+        <url>https://github.com/crashdemons/PlayerHeads/issues</url>
     </issueManagement>
 
     <repositories>
@@ -42,12 +42,12 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.13.1-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.13.1-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>fr.neatmonster</groupId>

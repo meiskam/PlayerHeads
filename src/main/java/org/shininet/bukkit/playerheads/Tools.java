@@ -4,6 +4,8 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.Shim;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -69,13 +71,13 @@ public class Tools {
         }
 
         if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
-            return Skull(SkullType.CREEPER, quantity);
+            return Skull(Shim.SkullType.CREEPER, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
-            return Skull(SkullType.ZOMBIE, quantity);
+            return Skull(Shim.SkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
-            return Skull(SkullType.SKELETON, quantity);
+            return Skull(Shim.SkullType.SKELETON, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-            return Skull(SkullType.WITHER, quantity);
+            return Skull(Shim.SkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }
@@ -87,7 +89,7 @@ public class Tools {
     }
 
     public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
-        ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
+        ItemStack skull = new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) Shim.SkullType.PLAYER.ordinal());
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         boolean shouldSet = false;
         if ((skullOwner != null) && (!skullOwner.equals(""))) {
@@ -112,12 +114,12 @@ public class Tools {
         return Skull(type.getOwner(), type.getDisplayName(), quantity);
     }
 
-    public static ItemStack Skull(SkullType type) {
+    public static ItemStack Skull(Shim.SkullType type) {
         return Skull(type, Config.defaultStackSize);
     }
 
-    public static ItemStack Skull(SkullType type, int quantity) {
-        return new ItemStack(Material.SKULL_ITEM, quantity, (short) type.ordinal());
+    public static ItemStack Skull(Shim.SkullType type, int quantity) {
+        return new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) type.ordinal());
     }
 
     public static String format(String text, String... replacement) {

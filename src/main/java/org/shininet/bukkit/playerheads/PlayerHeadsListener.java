@@ -35,6 +35,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 
 /**
  * @author meiskam
@@ -202,19 +203,24 @@ class PlayerHeadsListener implements Listener {
                 switch (skullTypeCheck) {
                     case PLAYER:
                         if (skullState.hasOwner()) {
+                            OfflinePlayer op = skullState.getOwningPlayer();
                             String owner = skullState.getOwningPlayer().getName();
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             CustomSkullType skullType = CustomSkullType.get(owner);
                             if (skullType != null) {
+                                player.sendMessage("ClickInfo2 GetDisplayName");
                                 Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
                                 if (!owner.equals(skullType.getOwner())) {
                                     skullState.setOwner(skullType.getOwner());
                                     skullState.update();
                                 }
                             } else {
+                                //player.sendMessage("ClickInfo owner");
+                                if(owner==null) owner="Unknown";
                                 Tools.formatMsg(player, Lang.CLICKINFO, owner);
                             }
                         } else {
+                            player.sendMessage("ClickInfo2 HEAD");
                             Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
                         break;

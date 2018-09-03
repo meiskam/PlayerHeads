@@ -7,7 +7,7 @@
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
-# witherdroprate: 0.025          [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
+# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
 # spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
 # endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
 # blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies
@@ -43,7 +43,7 @@
 # evokerdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an evoker dies
 # illusionerdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when an illusioner dies
 # vindicatordroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a vindicator dies
-# witherbossdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither(boss) dies
+# witherdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither(boss) dies
 # vexdroprate: 0.004            [0.0 -> 1.0]    Chance that a mob trophy will drop when a vex dies
 # llamadroprate: 0.008          [0.0 -> 1.0]    Chance that a mob trophy will drop when a llama dies
 # parrotdroprate: 0.008         [0.0 -> 1.0]    Chance that a mob trophy will drop when a parrot dies
@@ -60,7 +60,7 @@ mobpkonly: true
 creeperdroprate: 0.005
 zombiedroprate: 0.002
 skeletondroprate: 0.002
-witherdroprate: 0.025
+witherskeletondroprate: 0.025
 spiderdroprate: 0.002
 endermandroprate: 0.002
 blazedroprate: 0.002
@@ -96,7 +96,7 @@ endermitedroprate: 0.005
 evokerdroprate: 0.005
 illusionerdroprate: 0.005
 vindicatordroprate: 0.005
-witherbossdroprate: 0.005
+witherdroprate: 0.005
 vexdroprate: 0.004
 llamadroprate: 0.008
 parrotdroprate: 0.008

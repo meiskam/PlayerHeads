@@ -63,96 +63,95 @@ class PlayerHeadsListener implements Listener {
         }
 
         EntityType entityType = event.getEntityType();
-        if (entityType == EntityType.PLAYER) {
-            Double dropchance = prng.nextDouble();
-            Player player = (Player) event.getEntity();
-
-            if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
-                return;
-            }
-            if (!player.hasPermission("playerheads.canlosehead")) {
-                return;
-            }
-            if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
-                return;
-            }
-
-            String skullOwner;
-            if (plugin.configFile.getBoolean("dropboringplayerheads")) {
-                skullOwner = "";
-            } else {
-                skullOwner = player.getName();
-            }
-
-            ItemStack drop = Tools.Skull(skullOwner);
-
-            PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
-            plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
-
-            if (dropHeadEvent.isCancelled()) {
-                return;
-            }
-
-            if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
-                Location location = player.getLocation();
-                location.getWorld().dropItemNaturally(location, drop);
-            } else {
-                event.getDrops().add(drop);
-            }
-
-            if (plugin.configFile.getBoolean("broadcast")) {
-                String message;
-                if (killer == null) {
-                    message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
-                } else if (killer == player) {
-                    message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
-                } else {
-                    message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
-                }
-
-                int broadcastRange = plugin.configFile.getInt("broadcastrange");
-                if (broadcastRange > 0) {
-                    broadcastRange *= broadcastRange;
-                    Location location = player.getLocation();
-                    List<Player> players = player.getWorld().getPlayers();
-
-                    for (Player loopPlayer : players) {
-                        if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
-                            player.sendMessage(message);
-                        }
-                    }
-                } else {
-                    plugin.getServer().broadcastMessage(message);
-                }
-            }
-        } else if (entityType == EntityType.CREEPER) {
-            EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
-        } else if (entityType == EntityType.ZOMBIE) {
-            EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
-        } else if (entityType == EntityType.SKELETON) {
-            if (event.getEntity() instanceof Stray) {
-                EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
-            } else if (event.getEntity() instanceof WitherSkeleton) {
-                if (plugin.configFile.getDouble("witherdroprate") < 0) {
-                    return;
-                }
-                event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.WITHER_SKELETON_SKULL);
-                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
-            } else if (event.getEntity() instanceof Skeleton) {
-                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
-            }
-        } else if (entityType == EntityType.SLIME) {
-            if (((Slime) event.getEntity()).getSize() == 1) {
-                EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
-            }
-        } else if (entityType == EntityType.ENDER_DRAGON) {
-            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
-        } else {
+        if (null == entityType) {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
                 EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
             } catch (IllegalArgumentException ignored) {
             }
+        } else switch (entityType) {
+            case PLAYER:
+                Double dropchance = prng.nextDouble();
+                Player player = (Player) event.getEntity();
+                if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
+                    return;
+                }   if (!player.hasPermission("playerheads.canlosehead")) {
+                    return;
+                }   if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
+                    return;
+                }   String skullOwner;
+                if (plugin.configFile.getBoolean("dropboringplayerheads")) {
+                    skullOwner = "";
+                } else {
+                    skullOwner = player.getName();
+                }   ItemStack drop = Tools.Skull(skullOwner);
+                PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
+                plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
+                if (dropHeadEvent.isCancelled()) {
+                    return;
+                }   if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
+                    Location location = player.getLocation();
+                    location.getWorld().dropItemNaturally(location, drop);
+                } else {
+                    event.getDrops().add(drop);
+                }   if (plugin.configFile.getBoolean("broadcast")) {
+                    String message;
+                    if (killer == null) {
+                        message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
+                    } else if (killer == player) {
+                        message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
+                    } else {
+                        message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
+                    }
+                    
+                    int broadcastRange = plugin.configFile.getInt("broadcastrange");
+                    if (broadcastRange > 0) {
+                        broadcastRange *= broadcastRange;
+                        Location location = player.getLocation();
+                        List<Player> players = player.getWorld().getPlayers();
+                        
+                        for (Player loopPlayer : players) {
+                            if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                                player.sendMessage(message);
+                            }
+                        }
+                    } else {
+                        plugin.getServer().broadcastMessage(message);
+                    }
+                }   break;
+            case CREEPER:
+                EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
+                break;
+            case ZOMBIE:
+                EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
+                break;
+            case SKELETON:
+            case WITHER_SKELETON:
+            case STRAY:
+                if (event.getEntity() instanceof Stray) {
+                    EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
+                } else if (event.getEntity() instanceof WitherSkeleton) {
+                    if (plugin.configFile.getDouble("witherdroprate") < 0) {
+                        return;
+                    }
+                    event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.WITHER_SKELETON_SKULL);
+                    EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
+                } else if (event.getEntity() instanceof Skeleton) {
+                    EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+                }   break;
+            case SLIME:
+                if (((Slime) event.getEntity()).getSize() == 1) {
+                    EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
+                }   break;
+            case ENDER_DRAGON:
+                EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
+                break;
+            default:
+                try {
+                    CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
+                    EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
+                } catch (IllegalArgumentException ignored) {
+                }   break;
         }
     }
 

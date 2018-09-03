@@ -4,6 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.Shim.SkullType;
+import com.github.crashdemons.playerheads.Shim;
+
 import java.util.List;
 import java.util.Random;
 
@@ -11,7 +14,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import com.github.crashdemons.playerheads.Shim.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
 import org.bukkit.enchantments.Enchantment;
@@ -193,10 +195,11 @@ class PlayerHeadsListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-        if (block != null && block.getType() == Material.SKULL) {
+        if (block != null && Shim.isSkull(block.getType())) {
             Skull skullState = (Skull) block.getState();
+            SkullType skullTypeCheck = Shim.getSkullType(block);
             if (player.hasPermission("playerheads.clickinfo")) {
-                switch (skullState.getSkullType()) {
+                switch (skullTypeCheck) {
                     case PLAYER:
                         if (skullState.hasOwner()) {
                             String owner = skullState.getOwningPlayer().getName();
@@ -228,7 +231,7 @@ class PlayerHeadsListener implements Listener {
                         Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
                         break;
                 }
-            } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
+            } else if ((skullTypeCheck == SkullType.PLAYER) && (skullState.hasOwner())) {
                 String owner = skullState.getOwningPlayer().toString();
                 CustomSkullType skullType = CustomSkullType.get(owner);
                 if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
@@ -246,7 +249,7 @@ class PlayerHeadsListener implements Listener {
         }
         Block block = event.getBlock();
         Player player = event.getPlayer();
-        if ((player.getGameMode() != GameMode.CREATIVE) && (block.getType() == Material.SKULL)) {
+        if ((player.getGameMode() != GameMode.CREATIVE) && (Shim.isSkull(block.getType()))) {
             Skull skull = (Skull) block.getState();
             if (skull.hasOwner()) {
                 //String owner = ChatColor.stripColor(skull.getOwner()); //Unnecessary?

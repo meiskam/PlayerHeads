@@ -4,13 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.Shim;
-import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import org.bukkit.Bukkit;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;

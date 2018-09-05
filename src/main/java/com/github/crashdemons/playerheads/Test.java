@@ -79,8 +79,8 @@ public class Test {
             String spaced = type.name().replace("_", " ").toLowerCase();
             String spawn=type.name().replace("_", "").toLowerCase();
             String caps = camelCase(spaced);
-            System.out.println("HEAD_"+name+"="+caps+" Head");
-            System.out.println("HEAD_SPAWN_"+name+"=#"+spawn);
+            System.out.println("public static String HEAD_"+name+";");//+"="+caps+" Head");
+            System.out.println("public static String HEAD_SPAWN_"+name+";");//=#"+spawn);
             count++;
         }
         System.out.println(count+" mobs in total");

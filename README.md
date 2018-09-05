@@ -7,9 +7,9 @@ http://www.curse.com/server-mods/minecraft/player-heads
 
 ===========
 
-Experimental development into converting the plugin to use Textured heads instead of using usernames for mob skins.
+This version is undergoing testing - there may be significant behavior changes.
 
-This branch is undergoing testing - there may be significant behavior changes 
+If you want a version supporting 1.13+ that tries to maintain the old behavior, see the `3.x` branch or any 3.x releases.
 
 ## What's New?
 ### Textured Mobheads

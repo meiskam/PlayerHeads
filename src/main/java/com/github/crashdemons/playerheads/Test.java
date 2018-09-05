@@ -54,7 +54,6 @@ public class Test {
         long count=0;
         for(EntityType type : EntityType.values()){
             if(!type.isAlive()) continue;
-            count++;
             try{
                 TexturedSkullType type2 = TexturedSkullType.valueOf( type.name().toUpperCase() );
                 //System.out.println("Mob skull: "+type.name()+" <-> "+type2 +" vanillaitem?"+type2.hasDedicatedItem());
@@ -82,6 +81,7 @@ public class Test {
             String caps = camelCase(spaced);
             System.out.println("HEAD_"+name+"="+caps+" Head");
             System.out.println("HEAD_SPAWN_"+name+"=#"+spawn);
+            count++;
         }
         System.out.println(count+" mobs in total");
         /*

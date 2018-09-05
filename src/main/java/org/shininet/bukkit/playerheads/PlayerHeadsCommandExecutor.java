@@ -37,6 +37,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
             return false;
         }
+        /*
         if(args.length==1){
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
@@ -49,7 +50,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
         }
-        
+        */
         
         if (args.length == 0) {
             Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.SUBCOMMANDS + Lang.COLON_SPACE + Lang.CMD_CONFIG + Lang.COMMA_SPACE + Lang.CMD_SPAWN + Lang.COMMA_SPACE + Lang.CMD_RENAME);

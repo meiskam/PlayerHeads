@@ -10,7 +10,8 @@ import java.util.HashMap;
  * @author meiskam
  */
 
-public enum CustomSkullType {
+@Deprecated
+public enum LegacySkullType {
 
     SPIDER("MHF_Spider", "Kelevra_V"), // Thanks Marc Watson
     ENDERMAN("MHF_Enderman", "Violit"), // Thanks Marc Watson
@@ -57,15 +58,15 @@ public enum CustomSkullType {
     private final String owner;
 
     private static class Holder {
-        static final HashMap<String, CustomSkullType> map = new HashMap<>();
+        static final HashMap<String, LegacySkullType> map = new HashMap<>();
     }
 
-    CustomSkullType(String owner) {
+    LegacySkullType(String owner) {
         this.owner = owner;
         Holder.map.put(owner.toLowerCase(), this);
     }
 
-    CustomSkullType(String owner, String... toConvert) {
+    LegacySkullType(String owner, String... toConvert) {
         this(owner);
         for (String key : toConvert) {
             Holder.map.put(key.toLowerCase(), this);
@@ -84,7 +85,7 @@ public enum CustomSkullType {
         return Lang.getString("HEAD_SPAWN_" + name());
     }
 
-    public static CustomSkullType get(String owner) {
+    public static LegacySkullType get(String owner) {
         return Holder.map.get(owner.toLowerCase());
     }
 }

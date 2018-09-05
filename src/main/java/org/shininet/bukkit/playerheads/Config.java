@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,12 +25,9 @@ public class Config {
             put("droprate", configType.DOUBLE);
             put("lootingrate", configType.DOUBLE);
             put("mobpkonly", configType.BOOLEAN);
-            put("creeperdroprate", configType.DOUBLE);
-            put("zombiedroprate", configType.DOUBLE);
-            put("skeletondroprate", configType.DOUBLE);
-            put("witherdroprate", configType.DOUBLE);
-            for (CustomSkullType customSkullType : CustomSkullType.values()) {
-                put(customSkullType.name().replace("_", "").toLowerCase() + "droprate", configType.DOUBLE);
+            for (TexturedSkullType skullType : TexturedSkullType.values()) {
+                if(skullType==TexturedSkullType.PLAYER) continue;
+                put(skullType.name().replace("_", "").toLowerCase() + "droprate", configType.DOUBLE);
             }
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);

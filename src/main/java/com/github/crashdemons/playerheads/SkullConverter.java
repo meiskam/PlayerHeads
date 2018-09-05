@@ -12,7 +12,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.EntityType;
-import org.shininet.bukkit.playerheads.CustomSkullType;
+import org.shininet.bukkit.playerheads.LegacySkullType;
 
 /**
  * Converts between entities, custom skullState type, etc
@@ -21,7 +21,7 @@ import org.shininet.bukkit.playerheads.CustomSkullType;
 public abstract class SkullConverter {
     /*
     
-                    CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
+                    LegacySkullType customSkullType = LegacySkullType.valueOf(entityType.name());
                     EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
     */
     public static String dropConfigFromSkullType(TexturedSkullType skullType){
@@ -72,7 +72,7 @@ public abstract class SkullConverter {
         if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
         
-        CustomSkullType oldtype = CustomSkullType.get(owner);
+        LegacySkullType oldtype = LegacySkullType.get(owner);
         if(oldtype==null) return TexturedSkullType.PLAYER;//we can't resolve a legacy type for this playerhead so...
         
         return upgradeSkullTypeLegacy(oldtype);
@@ -80,7 +80,7 @@ public abstract class SkullConverter {
     }
     
     @Deprecated
-    public static TexturedSkullType upgradeSkullTypeLegacy(CustomSkullType oldType){
+    public static TexturedSkullType upgradeSkullTypeLegacy(LegacySkullType oldType){
         try{
             return TexturedSkullType.valueOf(oldType.name().toUpperCase());
         }catch(IllegalArgumentException e){

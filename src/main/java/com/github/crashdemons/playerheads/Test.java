@@ -7,7 +7,7 @@ package com.github.crashdemons.playerheads;
 
 import java.util.UUID;
 import org.bukkit.entity.EntityType;
-import org.shininet.bukkit.playerheads.CustomSkullType;
+import org.shininet.bukkit.playerheads.LegacySkullType;
 
 /**
  *
@@ -16,7 +16,7 @@ import org.shininet.bukkit.playerheads.CustomSkullType;
 public class Test {
     public static void main(String[] args) {
         // Prints "Hello, World" to the terminal window.
-        CustomSkullType sk = CustomSkullType.get("CarlosTheCow");
+        LegacySkullType sk = LegacySkullType.get("CarlosTheCow");
         System.out.println(sk);
         System.out.println(sk.getOwner());
         System.out.println(sk.getDisplayName());

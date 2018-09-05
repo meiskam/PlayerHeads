@@ -25,6 +25,31 @@ public class Test {
         
         testSkullTypes();
     }
+    public static String camelCase(String str)
+	{
+		StringBuilder builder = new StringBuilder(str);
+		// Flag to keep track if last visited character is a 
+		// white space or not
+		boolean isLastSpace = true;
+		
+		// Iterate String from beginning to end.
+		for(int i = 0; i < builder.length(); i++)
+		{
+			char ch = builder.charAt(i);
+			
+			if(isLastSpace && ch >= 'a' && ch <='z')
+			{
+				// Character need to be converted to uppercase
+				builder.setCharAt(i, (char)(ch + ('A' - 'a') ));
+				isLastSpace = false;
+			}else if (ch != ' ')
+				isLastSpace = false;
+			else
+				isLastSpace = true;
+		}
+	
+		return builder.toString();
+	}
     public static void testSkullTypes(){
         long count=0;
         for(EntityType type : EntityType.values()){
@@ -47,12 +72,19 @@ public class Test {
             }
         }
         TexturedSkullType.debug();
-        /*for(EntityType type : EntityType.values()){
+        System.out.println("========================");
+        for(EntityType type : EntityType.values()){
             if(!type.isAlive()) continue;
-            System.out.println(type.name());
+            if(type==EntityType.ARMOR_STAND || type==EntityType.PLAYER || type==EntityType.GIANT) continue;
+            String name=type.name();
+            String spaced = type.name().replace("_", " ").toLowerCase();
+            String spawn=type.name().replace("_", "").toLowerCase();
+            String caps = camelCase(spaced);
+            System.out.println("HEAD_"+name+"="+caps+" Head");
+            System.out.println("HEAD_SPAWN_"+name+"=#"+spawn);
         }
         System.out.println(count+" mobs in total");
-        
+        /*
         for(int i=0;i<100;i++){
             UUID uuid = UUID.randomUUID();
             String randomUUIDString = uuid.toString();

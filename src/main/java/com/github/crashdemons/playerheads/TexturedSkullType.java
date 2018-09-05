@@ -414,6 +414,9 @@ public enum TexturedSkullType {
     public String getDisplayName() {
         return Tools.format(Lang.getString("HEAD_" + name()));
     }
+    public static String getDisplayName(String owner) {
+        return Tools.format(Lang.getString("HEAD_PLAYER"),owner);
+    }
     public String getSpawnName() {
         return Lang.getString("HEAD_SPAWN_" + name());
     }

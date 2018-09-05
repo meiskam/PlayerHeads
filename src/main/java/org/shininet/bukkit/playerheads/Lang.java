@@ -56,6 +56,7 @@ public class Lang {
     public static String ERROR_PERMISSION;
     public static String ERROR_UPDATER;
     
+    //TODO: update lang entries
     public static String HEAD_BAT;
     public static String HEAD_BLAZE;
     public static String HEAD_CAVE_SPIDER;

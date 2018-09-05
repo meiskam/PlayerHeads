@@ -15,6 +15,7 @@ import org.bukkit.ChatColor;
 
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -74,6 +75,9 @@ public class SkullManager {
         ItemStack stack = new ItemStack(Material.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         applyOwningPlayer(headMeta,owner);
+        String name = owner.getName();
+        if(name!=null)
+            applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -83,6 +87,20 @@ public class SkullManager {
     public static ItemStack PlayerSkull(String owner, int quantity){
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);//TODO: check null
         return PlayerSkull(op,quantity);
+    }
+    public static void updatePlayerSkullState(BlockState skullState){
+        //for a skull belonging to a player drop, this shouldn't really be necessary to reset the owner.
+        //and for textured mobheads, the texture is embedded, so shouldn't need updating...
+        /*
+        OfflinePlayer op = skullState.getOwningPlayer();
+        String owner=null;
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
+        if(owner==null) return;
+
+        skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));
+        */
+        skullState.update();
     }
     /*
     public static ItemStack PlayerSkull(UUID owner){

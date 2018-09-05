@@ -11,7 +11,7 @@ All original credit goes to meiskam for creating the plugin and zand, Dragoboss,
 This is my personal revision attempting to modernize parts of the plugin.  Currently undergoing testing - there may be significant behavior changes.
 
 
-**If you want a version supporting 1.13+ that tries to maintain the old behavior, see the `3.x` branch or any 3.x releases** - These are builds that I have added code shimming the original code to work with 1.13.
+**If you want a version supporting 1.13+ that tries to maintain the old behavior, see the `3.x` branch or any 3.x releases** - These are builds that I have added code shimming to the original code to work with 1.13.
 
 
 ## What's New?

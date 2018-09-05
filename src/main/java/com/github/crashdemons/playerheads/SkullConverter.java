@@ -43,7 +43,7 @@ public abstract class SkullConverter {
     public static TexturedSkullType skullTypeFromBlockState(BlockState state){
         TexturedSkullType type = TexturedSkullType.get(state.getType());//guess skullState by material
         if(type==null){
-            System.out.println("Material not found "+state.getType().name());
+            //System.out.println("Material not found "+state.getType().name());
             return null;
         }
         if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob

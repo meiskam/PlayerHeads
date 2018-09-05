@@ -4,8 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.Shim.SkullType;
-import com.github.crashdemons.playerheads.Shim;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
@@ -37,7 +35,6 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
@@ -86,7 +83,7 @@ class PlayerHeadsListener implements Listener {
                     skullOwner = "";
                 } else {
                     skullOwner = player.getName();
-                }   ItemStack drop = Tools.Skull(skullOwner);
+                }   ItemStack drop = SkullManager.PlayerSkull(skullOwner);
                 PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
                 plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
                 if (dropHeadEvent.isCancelled()) {
@@ -214,10 +211,10 @@ class PlayerHeadsListener implements Listener {
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
             if(skullType==null){
                 
-                System.out.println("break null");
+                //System.out.println("break null");
             }
             else{
-                System.out.println("break "+skullType.name());
+                //System.out.println("break "+skullType.name());
                 boolean isNotExempt = false;
                 if (plugin.NCPHook) {
                     if (isNotExempt = !NCPExemptionManager.isExempted(player, CheckType.BLOCKBREAK_FASTBREAK)) {

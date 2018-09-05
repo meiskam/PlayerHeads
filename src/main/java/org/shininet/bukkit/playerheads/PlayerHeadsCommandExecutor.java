@@ -215,7 +215,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
-            if ( Shim.isSkull(skullInput.getType()) ) {
+            Material inputType = skullInput.getType();
+            if ( TexturedSkullType.get(skullInput.getType())==null ) {
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NOT_A_HEAD);
                 return true;
             }

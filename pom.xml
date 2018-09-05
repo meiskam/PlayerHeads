@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>3.12-texturedmobheads-alpha9</version>
+    <version>4.0-alpha</version>
     <name>PlayerHeads</name>
 
     <organization>

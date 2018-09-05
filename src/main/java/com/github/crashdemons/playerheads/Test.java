@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads;
 
+import java.util.UUID;
 import org.bukkit.entity.EntityType;
 import org.shininet.bukkit.playerheads.CustomSkullType;
 
@@ -25,8 +26,10 @@ public class Test {
         testSkullTypes();
     }
     public static void testSkullTypes(){
+        long count=0;
         for(EntityType type : EntityType.values()){
             if(!type.isAlive()) continue;
+            count++;
             try{
                 TexturedSkullType type2 = TexturedSkullType.valueOf( type.name().toUpperCase() );
                 System.out.println("Mob skull: "+type.name()+" <-> "+type2 +" vanillaitem?"+type2.hasDedicatedItem());
@@ -43,5 +46,16 @@ public class Test {
                 System.out.println("Mob skull has no associated entity: "+type.name()+" - BUG!");
             }
         }
+        for(EntityType type : EntityType.values()){
+            if(!type.isAlive()) continue;
+            System.out.println(type.name());
+        }
+        System.out.println(count+" mobs in total");
+        /*
+        for(int i=0;i<100;i++){
+            UUID uuid = UUID.randomUUID();
+            String randomUUIDString = uuid.toString();
+            System.out.println(randomUUIDString);
+        }*/
     }
 }

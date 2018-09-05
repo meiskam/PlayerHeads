@@ -4,18 +4,16 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.Shim;
 
+import com.github.crashdemons.playerheads.SkullManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import com.github.crashdemons.playerheads.Shim.SkullType;
+import com.github.crashdemons.playerheads.TexturedSkullType;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.SkullMeta;
 
 /**
  * @author meiskam
@@ -64,64 +62,14 @@ public class Tools {
     public static ItemStack Skull(String skullOwner, int quantity) {
         String skullOwnerLC = skullOwner.toLowerCase();
 
-        for (CustomSkullType skullType : CustomSkullType.values()) {
+        for (TexturedSkullType skullType : TexturedSkullType.values()) {
             if (skullOwnerLC.equals(skullType.getSpawnName().toLowerCase())) {
-                return Skull(skullType, quantity);
+                return SkullManager.MobSkull(skullType, quantity);
             }
         }
-
-        if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
-            return Skull(SkullType.CREEPER, quantity);
-        } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
-            return Skull(SkullType.ZOMBIE, quantity);
-        } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
-            return Skull(SkullType.SKELETON, quantity);
-        } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-            return Skull(SkullType.WITHER, quantity);
-        } else {
-            return Skull(skullOwner, null, quantity);
-        }
+        return SkullManager.PlayerSkull(skullOwner,quantity);
     }
-
-    @SuppressWarnings("unused")
-    public static ItemStack Skull(String skullOwner, String displayName) {
-        return Skull(skullOwner, displayName, Config.defaultStackSize);
-    }
-
-    public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
-        ItemStack skull = new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
-        SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-        boolean shouldSet = false;
-        if ((skullOwner != null) && (!skullOwner.equals(""))) {
-            skullMeta.setOwner(skullOwner);
-            shouldSet = true;
-        }
-        if (displayName != null) {
-            skullMeta.setDisplayName(ChatColor.RESET + displayName);
-            shouldSet = true;
-        }
-        if (shouldSet) {
-            skull.setItemMeta(skullMeta);
-        }
-        return skull;
-    }
-
-    public static ItemStack Skull(CustomSkullType type) {
-        return Skull(type, Config.defaultStackSize);
-    }
-
-    public static ItemStack Skull(CustomSkullType type, int quantity) {
-        return Skull(type.getOwner(), type.getDisplayName(), quantity);
-    }
-
-    public static ItemStack Skull(SkullType type) {
-        return Skull(type, Config.defaultStackSize);
-    }
-
-    public static ItemStack Skull(SkullType type, int quantity) {
-        return new Shim.ItemStack(Shim.Material.SKULL_ITEM, quantity, (short) type.ordinal());
-    }
-
+    
     public static String format(String text, String... replacement) {
         String output = text;
         for (int i = 0; i < replacement.length; i++) {

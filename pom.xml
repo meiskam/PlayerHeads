@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>3.12-shimmed1.13-patch3</version>
+    <version>3.12-texturedmobheads-alpha9</version>
     <name>PlayerHeads</name>
 
     <organization>
@@ -28,6 +28,11 @@
     </issueManagement>
 
     <repositories>
+		<repository>
+            <id>mojang</id>
+            <name>Mojang's Repository</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
@@ -39,6 +44,11 @@
     </repositories>
 
     <dependencies>
+		<dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>1.5.25</version>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>

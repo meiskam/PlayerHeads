@@ -57,6 +57,13 @@ pkonly: true
 droprate: 0.05
 lootingrate: 0.2
 mobpkonly: true
+fixcase: false
+updatecheck: true
+broadcast: true
+broadcastrange: 0
+antideathchest: false
+dropboringplayerheads: false
+
 creeperdroprate: 0.005
 zombiedroprate: 0.002
 skeletondroprate: 0.002
@@ -100,9 +107,18 @@ witherdroprate: 0.005
 vexdroprate: 0.004
 llamadroprate: 0.008
 parrotdroprate: 0.008
-fixcase: false
-updatecheck: true
-broadcast: true
-broadcastrange: 0
-antideathchest: false
-dropboringplayerheads: false
+
+#new drop rates supported since the redesign
+huskdroprate: 0.002
+zombievillagerdroprate: 0.002
+skeletonhorsedroprate: 0.002
+zombiehorsedroprate: 0.002
+muledroprate: 0.002
+turtledroprate: 0.002
+phantomdroprate: 0.001
+coddroprate: 0.002
+salmondroprate: 0.002
+pufferfishdroprate: 0.002
+tropicalfishdroprate: 0.002
+drowneddroprate: 0.002
+dolphindroprate: 0.002

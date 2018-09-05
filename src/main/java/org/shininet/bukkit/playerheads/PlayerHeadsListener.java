@@ -4,8 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.Shim.SkullType;
-import com.github.crashdemons.playerheads.Shim;
+import com.github.crashdemons.playerheads.SkullConverter;
+import com.github.crashdemons.playerheads.SkullManager;
+import com.github.crashdemons.playerheads.TexturedSkullType;
 
 import java.util.List;
 import java.util.Random;
@@ -34,8 +35,8 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.block.BlockState;
 
 /**
  * @author meiskam
@@ -61,9 +62,13 @@ class PlayerHeadsListener implements Listener {
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
         }
-
         EntityType entityType = event.getEntityType();
-        switch (entityType) {
+        TexturedSkullType skullType = SkullConverter.skullTypeFromEntityType(entityType);//TODO: check null
+        if(skullType==null) return;
+        //System.out.println(skullType);
+        String mobDropConfig = SkullConverter.dropConfigFromSkullType(skullType);
+        //System.out.println(mobDropConfig);
+        switch (skullType) {
             case PLAYER:
                 Double dropchance = prng.nextDouble();
                 Player player = (Player) event.getEntity();
@@ -78,7 +83,7 @@ class PlayerHeadsListener implements Listener {
                     skullOwner = "";
                 } else {
                     skullOwner = player.getName();
-                }   ItemStack drop = Tools.Skull(skullOwner);
+                }   ItemStack drop = SkullManager.PlayerSkull(skullOwner);
                 PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
                 plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
                 if (dropHeadEvent.isCancelled()) {
@@ -113,43 +118,21 @@ class PlayerHeadsListener implements Listener {
                         plugin.getServer().broadcastMessage(message);
                     }
                 }   break;
-            case CREEPER:
-                EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
-                break;
-            case ZOMBIE:
-                EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
-                break;
-            case SKELETON:
             case WITHER_SKELETON:
-            case STRAY:
-                if (event.getEntity() instanceof Stray) {
-                    EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
-                } else if (event.getEntity() instanceof WitherSkeleton) {
-                    if (plugin.configFile.getDouble("witherskeletondroprate") < 0) {
-                        return;
-                    }
-                    event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.WITHER_SKELETON_SKULL);
-                    EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherskeletondroprate") * lootingrate);
-                } else if (event.getEntity() instanceof Skeleton) {
-                    EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
-                }   break;
-            case SLIME:
-                if (((Slime) event.getEntity()).getSize() == 1) {
-                    EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
-                }   break;
-            case ENDER_DRAGON:
-                EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
-                break;
+                 if (plugin.configFile.getDouble(SkullConverter.dropConfigFromSkullType(skullType)) < 0) return;//if droprate is <0, don't modify drops
+                 event.getDrops().removeIf(
+                         itemStack -> 
+                                 itemStack.getType() == Material.WITHER_SKELETON_SKULL
+                 );
+                 //don't break, we want to fallthrough
+                 //not working currently though
             default:
-                try {
-                    CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
-                    EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
-                } catch (IllegalArgumentException ignored) {
-                }   break;
+                MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
+                break;
         }
     }
-
-    private void EntityDeathHelper(EntityDeathEvent event, Enum<?> type, Double droprate) {
+    
+    private void MobDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprate) {
         Double dropchance = prng.nextDouble();
         Player killer = event.getEntity().getKiller();
 
@@ -160,15 +143,7 @@ class PlayerHeadsListener implements Listener {
             return;
         }
 
-        ItemStack drop;
-
-        if (type instanceof SkullType) {
-            drop = Tools.Skull((SkullType) type);
-        } else if (type instanceof CustomSkullType) {
-            drop = Tools.Skull((CustomSkullType) type);
-        } else {
-            return;
-        }
+        ItemStack drop = SkullManager.MobSkull(type);
 
         MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
@@ -189,12 +164,16 @@ class PlayerHeadsListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-        if (block != null && Shim.isSkull(block.getType())) {
-            Skull skullState = (Skull) block.getState();
-            SkullType skullTypeCheck = Shim.getSkullType(block);
+        if (block != null) {
+            BlockState state = block.getState();
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+            if(skullType==null) return;
+            //System.out.println(skullType.name());
+            
             if (player.hasPermission("playerheads.clickinfo")) {
-                switch (skullTypeCheck) {
+                switch (skullType) {
                     case PLAYER:
+                        Skull skullState=(Skull) block.getState();
                         if (skullState.hasOwner()) {
                             String owner=null;
                             
@@ -203,53 +182,20 @@ class PlayerHeadsListener implements Listener {
                             if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
                             if(owner==null) owner="Unknown";
                             
-                            
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                            CustomSkullType skullType = CustomSkullType.get(owner);
-                            if (skullType != null) {
-                                //player.sendMessage("ClickInfo2 GetDisplayName");
-                                Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                                if (!owner.equals(skullType.getOwner())) {
-                                    skullState.setOwner(skullType.getOwner());
-                                    skullState.update();
-                                }
-                            } else {
-                                //player.sendMessage("ClickInfo owner");
-                                //if(owner==null) owner="Unknown";
-                                Tools.formatMsg(player, Lang.CLICKINFO, owner);
-                            }
+                            Tools.formatMsg(player, Lang.CLICKINFO, owner);
                         } else {
                             //player.sendMessage("ClickInfo2 HEAD");
                             Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
                         break;
-                    case CREEPER:
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
+                    default:
+                        Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
                         break;
-                    case SKELETON:
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_SKELETON));
-                        break;
-                    case WITHER:
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_WITHER));
-                        break;
-                    case ZOMBIE:
-                        Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
-                        break;
-                }
-            } else if ((skullTypeCheck == SkullType.PLAYER) && (skullState.hasOwner())) {
-                OfflinePlayer op = skullState.getOwningPlayer();
-                String owner=null;
-                if(op!=null) owner=op.getName();
-                if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
-                if(owner==null) return;
-                
-                //String owner = skullState.getOwningPlayer().toString();
-                CustomSkullType skullType = CustomSkullType.get(owner);
-                if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
-                    skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));
-                    skullState.update();
                 }
             }
+            SkullManager.updatePlayerSkullState(state);
+            
         }
     }
 
@@ -260,41 +206,53 @@ class PlayerHeadsListener implements Listener {
         }
         Block block = event.getBlock();
         Player player = event.getPlayer();
-        if ((player.getGameMode() != GameMode.CREATIVE) && (Shim.isSkull(block.getType()))) {
-            Skull skull = (Skull) block.getState();
-            if (skull.hasOwner()) {
-                //String owner = ChatColor.stripColor(skull.getOwner()); //Unnecessary?
-                CustomSkullType skullType = CustomSkullType.get(skull.getOwner());
-                if (skullType != null) {
-                    boolean isNotExempt = false;
-                    if (plugin.NCPHook) {
-                        if (isNotExempt = !NCPExemptionManager.isExempted(player, CheckType.BLOCKBREAK_FASTBREAK)) {
-                            NCPExemptionManager.exemptPermanently(player, CheckType.BLOCKBREAK_FASTBREAK);
-                        }
-                    }
-
-                    plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
-                    plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getEquipment().getItemInMainHand(), true));
-
-                    FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
-                    plugin.getServer().getPluginManager().callEvent(fakebreak);
-
-                    if (plugin.NCPHook && isNotExempt) {
-                        NCPExemptionManager.unexempt(player, CheckType.BLOCKBREAK_FASTBREAK);
-                    }
-
-                    if (fakebreak.isCancelled()) {
-                        event.setCancelled(true);
-                    } else {
-                        Location location = block.getLocation();
-                        ItemStack item = Tools.Skull(skullType);
-
-                        event.setCancelled(true);
-                        block.setType(Material.AIR);
-                        location.getWorld().dropItemNaturally(location, item);
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            BlockState state = block.getState();
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+            if(skullType==null){
+                
+                //System.out.println("break null");
+            }
+            else{
+                //System.out.println("break "+skullType.name());
+                boolean isNotExempt = false;
+                if (plugin.NCPHook) {
+                    if (isNotExempt = !NCPExemptionManager.isExempted(player, CheckType.BLOCKBREAK_FASTBREAK)) {
+                        NCPExemptionManager.exemptPermanently(player, CheckType.BLOCKBREAK_FASTBREAK);
                     }
                 }
+
+                plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
+                plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getEquipment().getItemInMainHand(), true));
+
+                FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
+                plugin.getServer().getPluginManager().callEvent(fakebreak);
+
+                if (plugin.NCPHook && isNotExempt) {
+                    NCPExemptionManager.unexempt(player, CheckType.BLOCKBREAK_FASTBREAK);
+                }
+
+                if (fakebreak.isCancelled()) {
+                    event.setCancelled(true);
+                } else {
+                    Location location = block.getLocation();
+                    ItemStack item = null;
+                    switch(skullType){
+                        case PLAYER:
+                            Skull skull = (Skull) block.getState();
+                            item = SkullManager.PlayerSkull(skull.getOwner());
+                            break;
+                        default:
+                            item = SkullManager.MobSkull(skullType);
+                            break;
+                    }
+
+                    event.setCancelled(true);
+                    block.setType(Material.AIR);
+                    location.getWorld().dropItemNaturally(location, item);
+                }
             }
+            
         }
     }
 

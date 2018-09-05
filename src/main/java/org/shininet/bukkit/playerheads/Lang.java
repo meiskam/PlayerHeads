@@ -55,6 +55,8 @@ public class Lang {
     public static String ERROR_NUMBERCONVERT;
     public static String ERROR_PERMISSION;
     public static String ERROR_UPDATER;
+    
+    //TODO: update lang entries
     public static String HEAD_BAT;
     public static String HEAD_BLAZE;
     public static String HEAD_CAVE_SPIDER;
@@ -144,6 +146,7 @@ public class Lang {
     public static String HEAD_SPAWN_LLAMA;
     public static String HEAD_SPAWN_PARROT;
     public static String HEAD;
+    
     public static String OPT_AMOUNT_OPTIONAL;
     public static String OPT_HEADNAME_OPTIONAL;
     public static String OPT_HEADNAME_REQUIRED;

@@ -5,8 +5,12 @@
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.Shim;
+import com.github.crashdemons.playerheads.SkullManager;
+import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import org.bukkit.Bukkit;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -33,6 +37,21 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
             return false;
         }
+        /*
+        if(args.length==1){
+            if(args[0].equalsIgnoreCase("test")){
+                Player p = (Player) sender;
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.ENDER_DRAGON, 3));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.COD, 4));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.SALMON, 5));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.TROPICAL_FISH, 6));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.HUSK, 7));
+                p.getInventory().addItem(SkullManager.PlayerSkull("xMojooo",8));
+                return true;
+            }
+        }
+        */
+        
         if (args.length == 0) {
             Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.SUBCOMMANDS + Lang.COLON_SPACE + Lang.CMD_CONFIG + Lang.COMMA_SPACE + Lang.CMD_SPAWN + Lang.COMMA_SPACE + Lang.CMD_RENAME);
             return true;
@@ -197,7 +216,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
-            if ( Shim.isSkull(skullInput.getType()) ) {
+            Material inputType = skullInput.getType();
+            if ( TexturedSkullType.get(skullInput.getType())==null ) {
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NOT_A_HEAD);
                 return true;
             }

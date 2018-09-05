@@ -57,7 +57,7 @@ public abstract class Shim {
                     case DRAGON:
                         return org.bukkit.Material.DRAGON_HEAD;
                     case PLAYER:
-                        return org.bukkit.Material.PLAYER_HEAD;//TODO: warning for lack of nbt?
+                        return org.bukkit.Material.PLAYER_HEAD;
                     case SKELETON:
                         return org.bukkit.Material.SKELETON_SKULL;
                     case WITHER:

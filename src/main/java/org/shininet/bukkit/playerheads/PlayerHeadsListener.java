@@ -63,7 +63,7 @@ class PlayerHeadsListener implements Listener {
             }
         }
         EntityType entityType = event.getEntityType();
-        TexturedSkullType skullType = SkullConverter.skullTypeFromEntityType(entityType);//TODO: check null
+        TexturedSkullType skullType = SkullConverter.skullTypeFromEntityType(entityType);
         if(skullType==null) return;
         //System.out.println(skullType);
         String mobDropConfig = SkullConverter.dropConfigFromSkullType(skullType);

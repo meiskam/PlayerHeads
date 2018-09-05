@@ -106,12 +106,13 @@ public class SkullManager {
         skullState.update();
     }
     /*
+    //these do not properly update head skin in server testing.
     public static ItemStack PlayerSkull(UUID owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
     
     public static ItemStack PlayerSkull(UUID owner, int quantity){
-        OfflinePlayer op = Bukkit.getOfflinePlayer(owner);//TODO: check null
+        OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         //this is great but it doesn't update the texture
         return PlayerSkull(op,quantity);
     }

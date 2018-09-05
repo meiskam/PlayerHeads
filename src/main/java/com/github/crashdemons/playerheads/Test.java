@@ -32,7 +32,7 @@ public class Test {
             count++;
             try{
                 TexturedSkullType type2 = TexturedSkullType.valueOf( type.name().toUpperCase() );
-                System.out.println("Mob skull: "+type.name()+" <-> "+type2 +" vanillaitem?"+type2.hasDedicatedItem());
+                //System.out.println("Mob skull: "+type.name()+" <-> "+type2 +" vanillaitem?"+type2.hasDedicatedItem());
             }catch(Exception e){
                 System.out.println("Mob skull unsupported for: "+type.name());
             }
@@ -41,17 +41,17 @@ public class Test {
         for(TexturedSkullType type : TexturedSkullType.values()){
             try{
                 EntityType type2 = EntityType.valueOf( type.name().toUpperCase() );
-                System.out.println("Mob skull: "+type.name()+" <-> "+type2+" vanillaitem?"+type.hasDedicatedItem());
+                //System.out.println("Mob skull: "+type.name()+" <-> "+type2+" vanillaitem?"+type.hasDedicatedItem());
             }catch(Exception e){
                 System.out.println("Mob skull has no associated entity: "+type.name()+" - BUG!");
             }
         }
-        for(EntityType type : EntityType.values()){
+        /*for(EntityType type : EntityType.values()){
             if(!type.isAlive()) continue;
             System.out.println(type.name());
         }
         System.out.println(count+" mobs in total");
-        /*
+        
         for(int i=0;i<100;i++){
             UUID uuid = UUID.randomUUID();
             String randomUUIDString = uuid.toString();

@@ -39,7 +39,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
                 
-                p.getInventory().addItem(SkullManager.Skull(TexturedSkullType.PIG, 3));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.HUSK, 3));
                 return true;
             }
         }

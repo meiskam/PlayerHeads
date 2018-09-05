@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import org.bukkit.ChatColor;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -23,9 +24,11 @@ import org.shininet.bukkit.playerheads.Config;
  * @author x7aSv
  */
 public class SkullManager {
-    private static boolean applyTexture(ItemStack head, UUID uuid, String texture){//credit to x7aSv
-        System.out.println("Applying texture...");
-        SkullMeta headMeta = (SkullMeta) head.getItemMeta();
+    private static void applyDisplayName(SkullMeta headMeta,String display){
+        headMeta.setDisplayName(display);
+    }
+    private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){//credit to x7aSv
+        //System.out.println("Applying texture...");
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
         profile.getProperties().put("textures", new Property("textures", texture));
         try {
@@ -36,21 +39,23 @@ public class SkullManager {
             error.printStackTrace();
             return false;
         }
-        head.setItemMeta(headMeta);
-        System.out.println("done applying.");
+       // System.out.println("done applying.");
         return true;
     }
     
     
-    public static ItemStack Skull(TexturedSkullType type){
-        return Skull(type,Config.defaultStackSize);
+    public static ItemStack MobSkull(TexturedSkullType type){
+        return MobSkull(type,Config.defaultStackSize);
     }
-    public static ItemStack Skull(TexturedSkullType type,int quantity){
+    public static ItemStack MobSkull(TexturedSkullType type,int quantity){
         Material mat = type.getMaterial();
         if(type.isPlayerHead()){
-            System.out.println("Player-head");
+            //System.out.println("Player-head");
             ItemStack stack = new ItemStack(mat,quantity);
-            applyTexture(stack,type.getOwner(),type.getTexture());
+            SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
+            applyTexture(headMeta,type.getOwner(),type.getTexture());
+            applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
+            stack.setItemMeta(headMeta);
             return stack;
         }else{
             return new ItemStack(mat,quantity);

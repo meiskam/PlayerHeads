@@ -74,10 +74,13 @@ public class SkullManager {
     private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity){
         ItemStack stack = new ItemStack(Material.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
-        applyOwningPlayer(headMeta,owner);
-        String name = owner.getName();
-        if(name!=null)
-            applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
+        String name=null;
+        if(owner!=null){
+            applyOwningPlayer(headMeta,owner);
+            name = owner.getName();
+        }
+        if(name==null) name="Unknown";//only used for display purposes.
+        applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -85,7 +88,7 @@ public class SkullManager {
         return PlayerSkull(owner,Config.defaultStackSize);
     }
     public static ItemStack PlayerSkull(String owner, int quantity){
-        OfflinePlayer op = Bukkit.getOfflinePlayer(owner);//TODO: check null
+        OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         return PlayerSkull(op,quantity);
     }
     public static void updatePlayerSkullState(BlockState skullState){

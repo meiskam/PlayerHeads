@@ -10,6 +10,7 @@ All original credit goes to meiskam for creating the plugin and zand, Dragoboss,
 # 4.x Branch
 This is my personal revision attempting to modernize parts of the plugin.  Currently undergoing testing - there may be significant behavior changes.
 
+Credit to MagmaVoid_ for going through every single mob to find a texture.
 
 **If you want a version supporting 1.13+ that tries to maintain the old behavior, see the `3.x` branch or any 3.x releases** - These are builds that I have added code shimming to the original code to work with 1.13.
 
@@ -20,7 +21,7 @@ This is my personal revision attempting to modernize parts of the plugin.  Curre
 * Heads with texture-urls are *in* for good. (easily searchable on many sites)
 * Legacy heads are still recognized by the plugin, and when broken are converted to updated versions.
 ### All current mobs supported
-* Want a head from a phantom? An illusioner? How about a Cod? You can get one now.
+* Want a head from a Dolphin? A Phantom? How about a Cod? You can get one now.
 ### 1.13 and 1.13.1-ready
 * You need one of the shiniest versions if you want all these new heads.
 

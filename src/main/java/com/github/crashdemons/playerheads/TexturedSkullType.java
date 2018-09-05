@@ -10,7 +10,6 @@ import org.shininet.bukkit.playerheads.Lang;
 import org.shininet.bukkit.playerheads.Tools;
 import java.util.HashMap;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 
 /**
  * Enumeration of skulls with associated UUID (randomly assigned) and texture string.
@@ -373,7 +372,9 @@ public enum TexturedSkullType {
     
     
     private static class Mappings{
+        public static final UUID playerUUID=UUID.fromString("a1ae4481-f3f0-4af9-a83e-75d3a7f87853");//must match above
         public static final HashMap<UUID,TexturedSkullType> skullsById = new HashMap<>();
+        public static final HashMap<Material,TexturedSkullType> skullsByMaterial = new HashMap<>();
     }
             
     TexturedSkullType(Material material, Material wallMaterial, String ownerUUID, String texture){
@@ -385,6 +386,10 @@ public enum TexturedSkullType {
         this.material=material;
         this.wallMaterial=wallMaterial;
         Mappings.skullsById.put(owner, this);
+        if(hasDedicatedItem()){
+            Mappings.skullsByMaterial.put(material,this);
+            Mappings.skullsByMaterial.put(wallMaterial,this);
+        }
     }
     public UUID getOwner() {
         return owner;
@@ -402,6 +407,9 @@ public enum TexturedSkullType {
     public static TexturedSkullType get(UUID owner) {
         return Mappings.skullsById.get(owner);
     }
+    public static TexturedSkullType get(Material mat){
+        return Mappings.skullsByMaterial.get(mat);
+    }
     
     public String getDisplayName() {
         return Tools.format(Lang.getString("HEAD_" + name()));
@@ -413,6 +421,11 @@ public enum TexturedSkullType {
         return this.material.equals(Material.PLAYER_HEAD);
     }
     public boolean hasDedicatedItem(){
-        return (this.equals(PLAYER) || !isPlayerHead());
+        return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead());
+    }
+    public static void debug(){
+        for(HashMap.Entry<Material,TexturedSkullType> entry : Mappings.skullsByMaterial.entrySet()){
+            System.out.println(entry.getKey().name()+" -> "+entry.getValue().name());
+        }
     }
 }

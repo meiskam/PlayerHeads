@@ -6,6 +6,8 @@ package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.Shim.SkullType;
 import com.github.crashdemons.playerheads.Shim;
+import com.github.crashdemons.playerheads.SkullConverter;
+import com.github.crashdemons.playerheads.TexturedSkullType;
 
 import java.util.List;
 import java.util.Random;
@@ -191,6 +193,10 @@ class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null && Shim.isSkull(block.getType())) {
             Skull skullState = (Skull) block.getState();
+            
+            TexturedSkullType newtype = SkullConverter.skullTypeFromBlockState(skullState);
+            System.out.println(newtype.name());
+            
             SkullType skullTypeCheck = Shim.getSkullType(block);
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullTypeCheck) {

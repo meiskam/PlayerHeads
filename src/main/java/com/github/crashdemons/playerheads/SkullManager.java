@@ -34,7 +34,7 @@ public class SkullManager {
     }
     private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){//credit to x7aSv
         //System.out.println("Applying texture...");
-        GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+        GameProfile profile = new GameProfile(uuid, null);
         profile.getProperties().put("textures", new Property("textures", texture));
         try {
             Field profileField = headMeta.getClass().getDeclaredField("profile");
@@ -60,16 +60,17 @@ public class SkullManager {
             //System.out.println("Player-head");
             ItemStack stack = new ItemStack(mat,quantity);
             SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
+            //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
             applyTexture(headMeta,type.getOwner(),type.getTexture());
             applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
             stack.setItemMeta(headMeta);
             return stack;
         }
     }
-    public static ItemStack PlayerSkull(OfflinePlayer owner){
+    private static ItemStack PlayerSkull(OfflinePlayer owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
-    public static ItemStack PlayerSkull(OfflinePlayer owner, int quantity){
+    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity){
         ItemStack stack = new ItemStack(Material.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         applyOwningPlayer(headMeta,owner);
@@ -87,6 +88,7 @@ public class SkullManager {
     public static ItemStack PlayerSkull(UUID owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
+    
     public static ItemStack PlayerSkull(UUID owner, int quantity){
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);//TODO: check null
         //this is great but it doesn't update the texture

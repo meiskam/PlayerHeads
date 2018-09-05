@@ -46,6 +46,7 @@ public class Test {
                 System.out.println("Mob skull has no associated entity: "+type.name()+" - BUG!");
             }
         }
+        TexturedSkullType.debug();
         /*for(EntityType type : EntityType.values()){
             if(!type.isAlive()) continue;
             System.out.println(type.name());

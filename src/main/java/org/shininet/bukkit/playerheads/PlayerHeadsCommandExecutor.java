@@ -9,6 +9,8 @@ import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import org.bukkit.Bukkit;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -38,8 +40,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if(args.length==1){
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
-                
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.HUSK, 3));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.ENDER_DRAGON, 3));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.COD, 4));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.SALMON, 5));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.TROPICAL_FISH, 6));
+                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.HUSK, 7));
+                p.getInventory().addItem(SkullManager.PlayerSkull("xMojooo",8));
                 return true;
             }
         }

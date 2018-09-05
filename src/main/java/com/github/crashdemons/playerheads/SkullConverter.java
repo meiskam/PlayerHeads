@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads;
 
 import org.bukkit.entity.EntityType;
+import org.shininet.bukkit.playerheads.CustomSkullType;
 
 /**
  * Converts between entities, custom skull type, etc
@@ -34,6 +35,14 @@ public abstract class SkullConverter {
             return EntityType.valueOf(skullName);
         }catch(IllegalArgumentException e){
             return null;
+        }
+    }
+    public static TexturedSkullType upgradeSkullType(CustomSkullType oldType){
+        try{
+            return TexturedSkullType.valueOf(oldType.name().toUpperCase());
+        }catch(IllegalArgumentException e){
+            System.out.println("ERROR - Could not upgrade head: "+oldType.name());
+            return TexturedSkullType.PLAYER;
         }
     }
 }

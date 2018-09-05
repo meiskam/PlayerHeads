@@ -23,6 +23,12 @@ import org.bukkit.entity.EntityType;
 public enum TexturedSkullType {
     
     //Entity skull settings - big thanks to MagmaVoid_ for finding all of these textures.
+    PLAYER(//used for unknown player heads
+        Material.PLAYER_HEAD,
+        Material.PLAYER_WALL_HEAD,
+        "a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
+    ),
     ELDER_GUARDIAN(
         Material.PLAYER_HEAD,
         Material.PLAYER_WALL_HEAD,
@@ -407,6 +413,6 @@ public enum TexturedSkullType {
         return this.material.equals(Material.PLAYER_HEAD);
     }
     public boolean hasDedicatedItem(){
-        return !isPlayerHead();
+        return (this.equals(PLAYER) || !isPlayerHead());
     }
 }

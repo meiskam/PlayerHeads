@@ -124,8 +124,11 @@ class PlayerHeadsListener implements Listener {
                          itemStack -> 
                                  itemStack.getType() == Material.WITHER_SKELETON_SKULL
                  );
-                 //don't break, we want to fallthrough
-                 //not working currently though
+                 MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
+                 break;
+                 //not working currently though 
+                 //TODO: retest this
+                 
             default:
                 MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
                 break;

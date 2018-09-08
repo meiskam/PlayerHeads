@@ -127,8 +127,6 @@ class PlayerHeadsListener implements Listener {
                  );
                  MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
                  break;
-                 //not working currently though 
-                 //TODO: retest this
                  
             default:
                 MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);

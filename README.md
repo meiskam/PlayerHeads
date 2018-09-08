@@ -19,7 +19,7 @@ Credit to MagmaVoid_ for going through every single mob to find a texture.
 ### Textured Mobheads
 * Old, hard-to-maintain, hard-to-replace username-based heads are on the way *out*. ("Legacy Heads")
 * Heads with texture-urls are *in* for good. (easily searchable on many sites)
-* Legacy heads are still recognized by the plugin, and when broken are converted to updated versions.
+* **Legacy heads are still recognized by the 4.x plugin, and when broken are converted to updated versions.**
 ### All current mobs supported
 * Want a head from a Dolphin? A Phantom? How about a Cod? You can get one now.
 ### 1.13 and 1.13.1-ready

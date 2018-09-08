@@ -35,6 +35,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import org.bukkit.GameRule;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
@@ -88,7 +89,7 @@ class PlayerHeadsListener implements Listener {
                 plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
                 if (dropHeadEvent.isCancelled()) {
                     return;
-                }   if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
+                }   if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
                     Location location = player.getLocation();
                     location.getWorld().dropItemNaturally(location, drop);
                 } else {

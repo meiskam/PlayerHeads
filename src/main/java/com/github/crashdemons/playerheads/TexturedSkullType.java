@@ -242,7 +242,7 @@ public enum TexturedSkullType {
         Material.PLAYER_HEAD,
         Material.PLAYER_WALL_HEAD,
         "fadbdff9-a3e6-471a-8dc3-23e23f9c7acf",
-        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJkNTEyMmE1YzE0NzU4ODI1YzRlMTkyODQ0Nzg2ZjMxNTI3NTE1OTBhNzcxYmEzMWM4ZDMyMjZhMmE1ZiJ9fX0="
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYzODQ2OWE1OTljZWVmNzIwNzUzNzYwMzI0OGE5YWIxMWZmNTkxZmQzNzhiZWE0NzM1YjM0NmE3ZmFlODkzIn19fQ=="
     ),
     SQUID(
         Material.PLAYER_HEAD,

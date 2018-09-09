@@ -7,7 +7,7 @@
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
-# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies
+# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies. (NOTE: if this is negative, wither skeleton will use vanilla drop behavior instead.)
 # spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
 # endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
 # blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies

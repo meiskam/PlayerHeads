@@ -8,7 +8,7 @@
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
-# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies. (NOTE: if this is negative, wither skeleton will use vanilla drop behavior instead.)
+# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies. (NOTE: if this is negative, wither skeleton will use vanilla drop behavior and items instead.)
 # spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
 # endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
 # blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies
@@ -67,8 +67,10 @@
 # broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
 # antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
 # dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
-# dropvanillaheads: true        [true/false]    Drop vanilla heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)
+# dropvanillaheads: true        [true/false]    Drop vanilla mob heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)
 #                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
+# convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
+#                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
 
 pkonly: true
 droprate: 0.05
@@ -81,6 +83,7 @@ broadcastrange: 0
 antideathchest: false
 dropboringplayerheads: false
 dropvanillaheads: true
+convertvanillaheads: false
 
 creeperdroprate: 0.005
 zombiedroprate: 0.002

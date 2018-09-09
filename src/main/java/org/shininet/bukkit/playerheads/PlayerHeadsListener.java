@@ -247,7 +247,22 @@ class PlayerHeadsListener implements Listener {
                             item = SkullManager.PlayerSkull(skull.getOwner());
                             break;
                         default:
+                            boolean blockIsSkinned = SkullConverter.isPlayerHead( block.getType() );
                             boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+                            boolean convertvanillahead = plugin.configFile.getBoolean("convertvanillaheads");
+                            
+                            //if the head is a skinned playerhead and usevanillaskull is set, then breaking it would convert it to a vanilla head
+                            //if the head is a vanilla skull/head and usevanillaskull is unset, then breaking would convert it to a skinned head
+                            boolean conversionWillHappen = (blockIsSkinned && usevanillaskull) || (!blockIsSkinned && !usevanillaskull);
+                            if(conversionWillHappen && !convertvanillahead)
+                                usevanillaskull=!usevanillaskull;//change the drop to the state that avoids converting it.
+                            
+                            
+                            if( SkullConverter.isPlayerHead( block.getType() ) ){//playerhead - nonvanilla mob head
+                                if(usevanillaskull && !convertvanillahead) usevanillaskull=false;//drop vanillas heads, but don't convert skinned heads to vanilla (if set)
+                            }else{//not a playerhead - vanilla mob head
+                                if(!usevanillaskull && !convertvanillahead) usevanillaskull=true;//drop skinned heads, but don't convert vanilla heads to skinned (if set)
+                            }
                             item = SkullManager.MobSkull(skullType,usevanillaskull);
                             break;
                     }

@@ -36,6 +36,7 @@ public class Config {
             put("antideathchest", configType.BOOLEAN);
             put("dropboringplayerheads", configType.BOOLEAN);
             put("dropvanillaheads", configType.BOOLEAN);
+            put("convertvanillaheads", configType.BOOLEAN);
         }
     };
     public static final String configKeysString = String.join(", ", configKeys.keySet());

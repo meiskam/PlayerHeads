@@ -58,6 +58,7 @@ public class SkullManager {
         
         
         if(type.hasDedicatedItem()){
+            System.out.println(type.name()+" :: "+mat.name() + " :: "+useVanillaHeads);//TODO: remove
             if(useVanillaHeads)
                 return new ItemStack(mat,quantity);
             else mat=Material.PLAYER_HEAD;

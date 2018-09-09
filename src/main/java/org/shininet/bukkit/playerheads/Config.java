@@ -35,6 +35,7 @@ public class Config {
             put("broadcastrange", configType.INT);
             put("antideathchest", configType.BOOLEAN);
             put("dropboringplayerheads", configType.BOOLEAN);
+            put("dropvanillaheads", configType.BOOLEAN);
         }
     };
     public static final String configKeysString = String.join(", ", configKeys.keySet());

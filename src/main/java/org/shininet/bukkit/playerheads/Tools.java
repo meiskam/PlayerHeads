@@ -23,17 +23,17 @@ import org.bukkit.inventory.PlayerInventory;
 public class Tools {
 
     @SuppressWarnings("unused")
-    public static boolean addHead(Player player, String skullOwner) {
-        return addHead(player, skullOwner, Config.defaultStackSize);
+    public static boolean addHead(Player player, String skullOwner, boolean usevanillaskulls) {
+        return addHead(player, skullOwner, Config.defaultStackSize, usevanillaskulls);
     }
 
-    public static boolean addHead(Player player, String skullOwner, int quantity) {
+    public static boolean addHead(Player player, String skullOwner, int quantity, boolean usevanillaskulls) {
         PlayerInventory inv = player.getInventory();
         int firstEmpty = inv.firstEmpty();
         if (firstEmpty == -1) {
             return false;
         } else {
-            inv.setItem(firstEmpty, Tools.Skull(skullOwner, quantity));
+            inv.setItem(firstEmpty, Tools.Skull(skullOwner, quantity, usevanillaskulls));
             return true;
         }
     }
@@ -55,16 +55,17 @@ public class Tools {
         return inputName;
     }
 
-    public static ItemStack Skull(String skullOwner) {
-        return Skull(skullOwner, Config.defaultStackSize);
+    public static ItemStack Skull(String skullOwner, boolean usevanillaskulls) {
+        return Skull(skullOwner, Config.defaultStackSize, usevanillaskulls);
     }
 
-    public static ItemStack Skull(String skullOwner, int quantity) {
+    public static ItemStack Skull(String skullOwner, int quantity, boolean usevanillaskulls) {
         String skullOwnerLC = skullOwner.toLowerCase();
 
         for (TexturedSkullType skullType : TexturedSkullType.values()) {
             if (skullOwnerLC.equals(skullType.getSpawnName().toLowerCase())) {
-                return SkullManager.MobSkull(skullType, quantity);
+                
+                return SkullManager.MobSkull(skullType, quantity, usevanillaskulls);
             }
         }
         return SkullManager.PlayerSkull(skullOwner,quantity);

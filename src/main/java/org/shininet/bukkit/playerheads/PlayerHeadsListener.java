@@ -145,7 +145,9 @@ class PlayerHeadsListener implements Listener {
             return;
         }
 
-        ItemStack drop = SkullManager.MobSkull(type);
+        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+        
+        ItemStack drop = SkullManager.MobSkull(type,usevanillaskull);
 
         MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
@@ -245,7 +247,8 @@ class PlayerHeadsListener implements Listener {
                             item = SkullManager.PlayerSkull(skull.getOwner());
                             break;
                         default:
-                            item = SkullManager.MobSkull(skullType);
+                            boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+                            item = SkullManager.MobSkull(skullType,usevanillaskull);
                             break;
                     }
 

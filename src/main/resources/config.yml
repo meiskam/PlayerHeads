@@ -47,12 +47,28 @@
 # vexdroprate: 0.004            [0.0 -> 1.0]    Chance that a mob trophy will drop when a vex dies
 # llamadroprate: 0.008          [0.0 -> 1.0]    Chance that a mob trophy will drop when a llama dies
 # parrotdroprate: 0.008         [0.0 -> 1.0]    Chance that a mob trophy will drop when a parrot dies
+# huskdroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a husk dies
+# zombievillagerdroprate: 0.002 [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie villager dies
+# skeletonhorsedroprate: 0.002  [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton horse dies
+# zombiehorsedroprate: 0.002    [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie horse dies
+# muledroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a mule dies
+# turtledroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a turtle dies
+# phantomdroprate: 0.001        [0.0 -> 1.0]    Chance that a mob trophy will drop when a phasntom dies
+# coddroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cod dies
+# salmondroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a salmon dies
+# pufferfishdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a pufferfish dies
+# tropicalfishdroprate: 0.002   [0.0 -> 1.0]    Chance that a mob trophy will drop when a tropical fish dies
+# drowneddroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a drowned dies
+# dolphindroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a dolphin dies
 # fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a message when someone gets beheaded
 # broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
 # antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
 # dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
+# dropvanillaheads: true        [true/false]    Drop vanilla heads when possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)
+#                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
+
 pkonly: true
 droprate: 0.05
 lootingrate: 0.2
@@ -63,6 +79,7 @@ broadcast: true
 broadcastrange: 0
 antideathchest: false
 dropboringplayerheads: false
+dropvanillaheads: true
 
 creeperdroprate: 0.005
 zombiedroprate: 0.002
@@ -108,7 +125,7 @@ vexdroprate: 0.004
 llamadroprate: 0.008
 parrotdroprate: 0.008
 
-#new drop rates supported since the redesign
+#new drop rates supported since the 4.x redesign
 huskdroprate: 0.002
 zombievillagerdroprate: 0.002
 skeletonhorsedroprate: 0.002
@@ -122,3 +139,4 @@ pufferfishdroprate: 0.002
 tropicalfishdroprate: 0.002
 drowneddroprate: 0.002
 dolphindroprate: 0.002
+

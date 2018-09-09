@@ -144,6 +144,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         Player reciever = null;
         int quantity = Config.defaultStackSize;
         boolean isConsoleSender = !(sender instanceof Player);
+        
+        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
 
         if (isConsoleSender) {
             if ((args.length != 3) && (args.length != 4)) {
@@ -187,7 +189,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (plugin.configFile.getBoolean("fixcase")) {
             skullOwner = Tools.fixcase(skullOwner);
         }
-        if (Tools.addHead(reciever, skullOwner, quantity)) {
+        if (Tools.addHead(reciever, skullOwner, quantity, usevanillaskull)) {
             formatMsg(sender, scope, Lang.SPAWNED_HEAD, skullOwner);
         } else {
             formatMsg(sender, scope, Lang.ERROR_INV_FULL);
@@ -196,6 +198,9 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
     }
     
     private boolean onCommandRename(CommandSender sender, Command cmd, String label, String[] args, String scope){
+        
+        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+        
         if (!(sender instanceof Player)) {
                 formatMsg(sender, scope, Lang.ERROR_CONSOLE_SPAWN);
                 return true;
@@ -217,12 +222,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             ItemStack skullOutput;
             if (args.length >= 2) {
                 if (plugin.configFile.getBoolean("fixcase")) {
-                    skullOutput = Tools.Skull(Tools.fixcase(args[1]));
+                    skullOutput = Tools.Skull(Tools.fixcase(args[1]),usevanillaskull);
                 } else {
-                    skullOutput = Tools.Skull(args[1]);
+                    skullOutput = Tools.Skull(args[1],usevanillaskull);
                 }
             } else {
-                skullOutput = Tools.Skull("");
+                skullOutput = Tools.Skull("",usevanillaskull);
             }
             skullOutput.setAmount(skullInput.getAmount());
             ((Player) sender).getEquipment().setItemInMainHand(skullOutput);

@@ -50,23 +50,27 @@ public class SkullManager {
     }
     
     
-    public static ItemStack MobSkull(TexturedSkullType type){
-        return MobSkull(type,Config.defaultStackSize);
+    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads){
+        return MobSkull(type,Config.defaultStackSize, useVanillaHeads);
     }
-    public static ItemStack MobSkull(TexturedSkullType type,int quantity){
+    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads){
         Material mat = type.getMaterial();
+        
+        
         if(type.hasDedicatedItem()){
-            return new ItemStack(mat,quantity);
-        }else{
-            //System.out.println("Player-head");
-            ItemStack stack = new ItemStack(mat,quantity);
-            SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
-            //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
-            applyTexture(headMeta,type.getOwner(),type.getTexture());
-            applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
-            stack.setItemMeta(headMeta);
-            return stack;
+            if(useVanillaHeads)
+                return new ItemStack(mat,quantity);
+            else mat=Material.PLAYER_HEAD;
         }
+        
+        //System.out.println("Player-head");
+        ItemStack stack = new ItemStack(mat,quantity);
+        SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
+        //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
+        applyTexture(headMeta,type.getOwner(),type.getTexture());
+        applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
+        stack.setItemMeta(headMeta);
+        return stack;
     }
     private static ItemStack PlayerSkull(OfflinePlayer owner){
         return PlayerSkull(owner,Config.defaultStackSize);

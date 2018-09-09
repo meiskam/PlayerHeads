@@ -257,12 +257,6 @@ class PlayerHeadsListener implements Listener {
                             if(conversionWillHappen && !convertvanillahead)
                                 usevanillaskull=!usevanillaskull;//change the drop to the state that avoids converting it.
                             
-                            
-                            if( SkullConverter.isPlayerHead( block.getType() ) ){//playerhead - nonvanilla mob head
-                                if(usevanillaskull && !convertvanillahead) usevanillaskull=false;//drop vanillas heads, but don't convert skinned heads to vanilla (if set)
-                            }else{//not a playerhead - vanilla mob head
-                                if(!usevanillaskull && !convertvanillahead) usevanillaskull=true;//drop skinned heads, but don't convert vanilla heads to skinned (if set)
-                            }
                             item = SkullManager.MobSkull(skullType,usevanillaskull);
                             break;
                     }

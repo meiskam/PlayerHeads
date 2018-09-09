@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -27,6 +28,15 @@ import org.shininet.bukkit.playerheads.Config;
  * @author x7aSv
  */
 public class SkullManager {
+    
+    private static void applyLore(SkullMeta headMeta,String extra){
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add(" ");
+        lore.add(ChatColor.BLUE+""+ChatColor.ITALIC+"PlayerHeads");
+        if(!extra.isEmpty()) lore.add(extra);
+        headMeta.setLore(lore);
+    }
+    
     private static void applyOwningPlayer(SkullMeta headMeta,OfflinePlayer owner){
         headMeta.setOwningPlayer( owner );
     }
@@ -58,7 +68,6 @@ public class SkullManager {
         
         
         if(type.hasDedicatedItem()){
-            System.out.println(type.name()+" :: "+mat.name() + " :: "+useVanillaHeads);//TODO: remove
             if(useVanillaHeads)
                 return new ItemStack(mat,quantity);
             else mat=Material.PLAYER_HEAD;
@@ -70,6 +79,7 @@ public class SkullManager {
         //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
         applyTexture(headMeta,type.getOwner(),type.getTexture());
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
+        applyLore(headMeta,ChatColor.GREEN+"Mob Drop");
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -86,6 +96,7 @@ public class SkullManager {
         }
         if(name==null) name="Unknown";//only used for display purposes.
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
+        applyLore(headMeta,ChatColor.RED+"Player Drop");
         stack.setItemMeta(headMeta);
         return stack;
     }

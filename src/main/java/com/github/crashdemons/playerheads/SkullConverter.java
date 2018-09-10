@@ -25,6 +25,7 @@ public abstract class SkullConverter {
                     EntityDeathHelper(event, customSkullType, plugin.configFile.getDouble(customSkullType.name().replace("_", "").toLowerCase() + "droprate") * lootingrate);
     */
     public static String dropConfigFromSkullType(TexturedSkullType skullType){
+        if(skullType==TexturedSkullType.PLAYER) return "droprate";
         return skullType.name().replace("_", "").toLowerCase() + "droprate";
     }
     public static TexturedSkullType skullTypeFromEntityType(EntityType entityType){

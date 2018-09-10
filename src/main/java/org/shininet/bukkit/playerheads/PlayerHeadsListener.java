@@ -63,69 +63,16 @@ class PlayerHeadsListener implements Listener {
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
         }
-        EntityType entityType = event.getEntityType();
+        EntityType entityType = event.getEntityType();//entity type of the thing dying.
         TexturedSkullType skullType = SkullConverter.skullTypeFromEntityType(entityType);
-        if(skullType==null) return;
-        //System.out.println(skullType);
+        if(skullType==null) return;//entity type is one we don't support - don't attempt to handle heads for it.
         String mobDropConfig = SkullConverter.dropConfigFromSkullType(skullType);
         Double droprate = plugin.configFile.getDouble(mobDropConfig);
+        //System.out.println(skullType);
         //System.out.println(mobDropConfig);
         switch (skullType) {
             case PLAYER:
-                Double dropchance = prng.nextDouble();
-                Player player = (Player) event.getEntity();
-                if ((dropchance >= droprate * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
-                    return;
-                }
-                if (!player.hasPermission("playerheads.canlosehead")) {
-                    return;
-                }
-                if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
-                    return;
-                }   
-                String skullOwner;
-                if (plugin.configFile.getBoolean("dropboringplayerheads")) {
-                    skullOwner = "";
-                } else {
-                    skullOwner = player.getName();
-                }
-                ItemStack drop = SkullManager.PlayerSkull(skullOwner);
-                PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
-                plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
-                if (dropHeadEvent.isCancelled()) {
-                    return;
-                }   
-                if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
-                    Location location = player.getLocation();
-                    location.getWorld().dropItemNaturally(location, drop);
-                } else {
-                    event.getDrops().add(drop);
-                }   
-                if (plugin.configFile.getBoolean("broadcast")) {
-                    String message;
-                    if (killer == null) {
-                        message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
-                    } else if (killer == player) {
-                        message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
-                    } else {
-                        message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
-                    }
-                    
-                    int broadcastRange = plugin.configFile.getInt("broadcastrange");
-                    if (broadcastRange > 0) {
-                        broadcastRange *= broadcastRange;
-                        Location location = player.getLocation();
-                        List<Player> players = player.getWorld().getPlayers();
-                        
-                        for (Player loopPlayer : players) {
-                            if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
-                                player.sendMessage(message);
-                            }
-                        }
-                    } else {
-                        plugin.getServer().broadcastMessage(message);
-                    }
-                }   
+                PlayerDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             case WITHER_SKELETON:
                 if (droprate < 0) return;//if droprate is <0, don't modify drops
@@ -139,6 +86,81 @@ class PlayerHeadsListener implements Listener {
                 MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
         }
+    }
+    
+    private void PlayerDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprate){
+        Double dropchance = prng.nextDouble();
+        Player player = (Player) event.getEntity();
+        Player killer = event.getEntity().getKiller();
+
+        //initial conditions preventing head drop
+        //if the killer is null (mob?) or doesn't have alwaysbehead, then check if the dropchance allows drop
+        if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
+            return;
+        }
+        //if the target player doesn't have canlosehead then we don't allow drop
+        if (!player.hasPermission("playerheads.canlosehead")) {
+            return;
+        }
+        /*
+         * if the killer is null (mob), the same person, or doesn't have canbehead then 'pkonly' determines if the player can behead the person
+         * NOTE: this doesn't seem right - if the player is missing canbehead and pkonly is disabled, there's a chance they can behead still.
+         *       but this is from the original code.
+         *       This may be a bug in the original code - I added an issue here https://github.com/crashdemons/PlayerHeads/issues/6
+         */
+        if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
+            return;
+        }
+        
+        String skullOwner;
+        if (plugin.configFile.getBoolean("dropboringplayerheads")) {
+            skullOwner = "";
+        } else {
+            skullOwner = player.getName();
+        }
+        
+        ItemStack drop = SkullManager.PlayerSkull(skullOwner);
+        PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
+        plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
+        if (dropHeadEvent.isCancelled()) {
+            return;
+        }   
+        
+        //drop item naturally if the drops will be modified by another plugin or gamerule.
+        if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
+            Location location = player.getLocation();
+            location.getWorld().dropItemNaturally(location, drop);
+        } else {
+            event.getDrops().add(drop);
+        }   
+        
+        //broadcast message about the beheading.
+        if (plugin.configFile.getBoolean("broadcast")) {
+            String message;
+            if (killer == null) {
+                message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
+            } else if (killer == player) {
+                message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
+            } else {
+                message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
+            }
+
+            int broadcastRange = plugin.configFile.getInt("broadcastrange");
+            if (broadcastRange > 0) {
+                broadcastRange *= broadcastRange;
+                Location location = player.getLocation();
+                List<Player> players = player.getWorld().getPlayers();
+
+                for (Player loopPlayer : players) {
+                    if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                        player.sendMessage(message);
+                    }
+                }
+            } else {
+                plugin.getServer().broadcastMessage(message);
+            }
+        }    
+        
     }
     
     private void MobDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprate) {

@@ -90,5 +90,6 @@ public class Test {
             String randomUUIDString = uuid.toString();
             System.out.println(randomUUIDString);
         }*/
+        System.out.println(SkullConverter.dropConfigFromSkullType(TexturedSkullType.PLAYER));
     }
 }

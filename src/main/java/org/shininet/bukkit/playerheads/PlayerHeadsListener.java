@@ -75,26 +75,32 @@ class PlayerHeadsListener implements Listener {
                 Player player = (Player) event.getEntity();
                 if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
                     return;
-                }   if (!player.hasPermission("playerheads.canlosehead")) {
+                }
+                if (!player.hasPermission("playerheads.canlosehead")) {
                     return;
-                }   if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
+                }
+                if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
                     return;
-                }   String skullOwner;
+                }   
+                String skullOwner;
                 if (plugin.configFile.getBoolean("dropboringplayerheads")) {
                     skullOwner = "";
                 } else {
                     skullOwner = player.getName();
-                }   ItemStack drop = SkullManager.PlayerSkull(skullOwner);
+                }
+                ItemStack drop = SkullManager.PlayerSkull(skullOwner);
                 PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
                 plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
                 if (dropHeadEvent.isCancelled()) {
                     return;
-                }   if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
+                }   
+                if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
                     Location location = player.getLocation();
                     location.getWorld().dropItemNaturally(location, drop);
                 } else {
                     event.getDrops().add(drop);
-                }   if (plugin.configFile.getBoolean("broadcast")) {
+                }   
+                if (plugin.configFile.getBoolean("broadcast")) {
                     String message;
                     if (killer == null) {
                         message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
@@ -118,7 +124,8 @@ class PlayerHeadsListener implements Listener {
                     } else {
                         plugin.getServer().broadcastMessage(message);
                     }
-                }   break;
+                }   
+                break;
             case WITHER_SKELETON:
                  if (plugin.configFile.getDouble(SkullConverter.dropConfigFromSkullType(skullType)) < 0) return;//if droprate is <0, don't modify drops
                  event.getDrops().removeIf(

@@ -68,12 +68,13 @@ class PlayerHeadsListener implements Listener {
         if(skullType==null) return;
         //System.out.println(skullType);
         String mobDropConfig = SkullConverter.dropConfigFromSkullType(skullType);
+        Double droprate = plugin.configFile.getDouble(mobDropConfig);
         //System.out.println(mobDropConfig);
         switch (skullType) {
             case PLAYER:
                 Double dropchance = prng.nextDouble();
                 Player player = (Player) event.getEntity();
-                if ((dropchance >= plugin.configFile.getDouble("droprate") * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
+                if ((dropchance >= droprate * lootingrate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
                     return;
                 }
                 if (!player.hasPermission("playerheads.canlosehead")) {
@@ -127,7 +128,6 @@ class PlayerHeadsListener implements Listener {
                 }   
                 break;
             case WITHER_SKELETON:
-                Double droprate = plugin.configFile.getDouble(mobDropConfig);
                 if (droprate < 0) return;//if droprate is <0, don't modify drops
                 event.getDrops().removeIf(
                         itemStack -> 
@@ -136,7 +136,7 @@ class PlayerHeadsListener implements Listener {
                 MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             default:
-                MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
+                MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
         }
     }

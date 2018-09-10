@@ -127,14 +127,14 @@ class PlayerHeadsListener implements Listener {
                 }   
                 break;
             case WITHER_SKELETON:
-                 if (plugin.configFile.getDouble(SkullConverter.dropConfigFromSkullType(skullType)) < 0) return;//if droprate is <0, don't modify drops
-                 event.getDrops().removeIf(
-                         itemStack -> 
-                                 itemStack.getType() == Material.WITHER_SKELETON_SKULL
-                 );
-                 MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
-                 break;
-                 
+                Double droprate = plugin.configFile.getDouble(mobDropConfig);
+                if (droprate < 0) return;//if droprate is <0, don't modify drops
+                event.getDrops().removeIf(
+                        itemStack -> 
+                                itemStack.getType() == Material.WITHER_SKELETON_SKULL
+                );
+                MobDeathHelper(event, skullType, droprate * lootingrate);
+                break;
             default:
                 MobDeathHelper(event, skullType, plugin.configFile.getDouble(mobDropConfig) * lootingrate);
                 break;

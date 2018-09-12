@@ -376,7 +376,15 @@ public enum TexturedSkullType {
         public static final HashMap<UUID,TexturedSkullType> skullsById = new HashMap<>();
         public static final HashMap<Material,TexturedSkullType> skullsByMaterial = new HashMap<>();
     }
-            
+    
+    TexturedSkullType(String ownerUUID, String texture){
+        this(
+                Material.PLAYER_HEAD,
+                Material.PLAYER_WALL_HEAD,
+                UUID.fromString(ownerUUID),
+                texture
+        );
+    }    
     TexturedSkullType(Material material, Material wallMaterial, String ownerUUID, String texture){
         this(material,wallMaterial,UUID.fromString(ownerUUID),texture);
     }

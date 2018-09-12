@@ -102,29 +102,7 @@ class PlayerHeadsListener implements Listener {
             if(plugin.configFile.getBoolean("pkonly")) return;
         }
         if(dropchance >= droprate) return;
-        
-        
-        
-
-        //initial conditions preventing head drop
-        //if the killer is null (mob?) or doesn't have alwaysbehead, then check if the dropchance allows drop
-        if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbehead"))) {
-            return;
-        }
-        //if the target player doesn't have canlosehead then we don't allow drop
-        if (!player.hasPermission("playerheads.canlosehead")) {
-            return;
-        }
-        /*
-         * if the killer is null (mob), the same person, or doesn't have canbehead then 'pkonly' determines if the player can behead the person
-         * NOTE: this doesn't seem right - if the player is missing canbehead and pkonly is disabled, there's a chance they can behead still.
-         *       but this is from the original code.
-         *       This may be a bug in the original code - I added an issue here https://github.com/crashdemons/PlayerHeads/issues/6
-         */
-        if (plugin.configFile.getBoolean("pkonly") && ((killer == null) || (killer == player) || !killer.hasPermission("playerheads.canbehead"))) {
-            return;
-        }
-        
+                
         String skullOwner;
         if (plugin.configFile.getBoolean("dropboringplayerheads")) {
             skullOwner = "";

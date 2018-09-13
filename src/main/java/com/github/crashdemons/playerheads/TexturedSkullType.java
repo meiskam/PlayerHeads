@@ -17,7 +17,8 @@ import org.bukkit.Material;
  * This enum should match correspondingly named entries in bukkit EntityType enum.
  * 
  * Inspired by shininet-CustomSkullType, presumably by meiskam
- * @author crash
+ * @author crashdemons
+ * @author MagmaVoid_
  */
 public enum TexturedSkullType {
     

@@ -23,12 +23,17 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.shininet.bukkit.playerheads.Config;
 
 /**
- * D
+ * Defines an abstract class of methods for creating, updating, and applying information to heads managed by the plugin.
  * @author crash
  * @author x7aSv
  */
 public abstract class SkullManager {
     
+    /**
+     * Applies Lore text (including the PlayerHeads plugin name) to a playerhead's meta.
+     * @param headMeta The SkullMeta associated with the playerhead to modify
+     * @param extra Extra lore text to display under the "PlayerHeads" line.
+     */
     private static void applyLore(SkullMeta headMeta,String extra){
         ArrayList<String> lore = new ArrayList<String>();
         lore.add(" ");
@@ -37,12 +42,31 @@ public abstract class SkullManager {
         headMeta.setLore(lore);
     }
     
+    /**
+     * Sets an owning player to a playerhead
+     * @param headMeta  The SkullMeta associated with the playerhead to modify
+     * @param owner The OfflinePlayer owning to own the head.
+     */
     private static void applyOwningPlayer(SkullMeta headMeta,OfflinePlayer owner){
         headMeta.setOwningPlayer( owner );
     }
+    /**
+     * Sets a display name for the playerhead item's meta
+     * @param headMeta The SkullMeta associated with the playerhead to modify
+     * @param display The string containing the display name to set
+     */
     private static void applyDisplayName(SkullMeta headMeta,String display){
         headMeta.setDisplayName(display);
     }
+    
+    /**
+     * Applies a texture-url to a playerhead's meta.
+     * @param headMeta The SkullMeta associated with the playerhead to modify
+     * @param uuid A UUID to associate with the head and texture
+     * @param texture The Base64-encoded Texture-URL tags.
+     * @return true: the information was properly set on the playerhead; false: there was an error setting the profile field.
+     * @author x7aSv
+     */
     private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){//credit to x7aSv
         //System.out.println("Applying texture...");
         GameProfile profile = new GameProfile(uuid, null);
@@ -59,10 +83,27 @@ public abstract class SkullManager {
         return true;
     }
     
-    
+    /**
+     * Creates a stack of heads for the specified Mob's SkullType.
+     * 
+     * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
+     * 
+     * @param type The TexturedSkullType to create heads of.
+     * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
+     * @return The ItemStack of heads desired.
+     * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
+     */
     public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads){
         return MobSkull(type,Config.defaultStackSize, useVanillaHeads);
     }
+    
+    /**
+     * Creates a stack of heads for the specified Mob's SkullType
+     * @param type The TexturedSkullType to create heads of.
+     * @param quantity the number of heads to create in the stack
+     * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
+     * @return The ItemStack of heads desired.
+     */
     public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads){
         Material mat = type.getMaterial();
         
@@ -100,13 +141,44 @@ public abstract class SkullManager {
         stack.setItemMeta(headMeta);
         return stack;
     }
+    
+    /**
+     * Creates a stack of playerheads for the given username.
+     * 
+     * The username given is translated to an OfflinePlayer by bukkit at the time of creation.
+     * 
+     * Note: if the owner name is null or can't be translated to a player internally, a generic playerhead will be created with the name "Unknown".
+     * 
+     * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
+     * @param owner The username to create a head for.
+     * @return The ItemStack of heads desired.
+     * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
+     */
     public static ItemStack PlayerSkull(String owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
+    /**
+     * Creates a stack of playerheads for the given username.
+     * 
+     * The username given is translated to an OfflinePlayer by bukkit at the time of creation.
+     * 
+     * @param owner The username to create a head for.
+     * @param quantity The number of heads to create in the stack.
+     * @return The ItemStack of heads desired.
+     */
     public static ItemStack PlayerSkull(String owner, int quantity){
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         return PlayerSkull(op,quantity);
     }
+    
+    /**
+     * Updates the blockstate of a head.
+     * 
+     * Originally this method also updated legacy username-based skulls to the correct owner - currently it only updates the blockstate.
+     * Since these skulls are upgraded and textured-skulls have embedded textures, this method may not be necessary and may be removed in the future.
+     * 
+     * @param skullState the blockstate to update.
+     */
     public static void updatePlayerSkullState(BlockState skullState){
         //for a skull belonging to a player drop, this shouldn't really be necessary to reset the owner.
         //and for textured mobheads, the texture is embedded, so shouldn't need updating...
@@ -122,6 +194,7 @@ public abstract class SkullManager {
         skullState.update();
     }
     /*
+    //TODO: reinvestigate these approaches as they're preferred to the deprecated username method.
     //these do not properly update head skin in server testing.
     public static ItemStack PlayerSkull(UUID owner){
         return PlayerSkull(owner,Config.defaultStackSize);

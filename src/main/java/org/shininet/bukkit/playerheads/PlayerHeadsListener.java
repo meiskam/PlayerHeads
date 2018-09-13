@@ -95,13 +95,15 @@ class PlayerHeadsListener implements Listener {
         
         if(!player.hasPermission("playerheads.canlosehead")) return;
         if(killer!=null){//player was PK'd, so killer permissions apply.
-            if(killer.hasPermission("playerheads.canbehead")) return;//peronslly, I think canbehead should override alwaysbehead.
+            if(!killer.hasPermission("playerheads.canbehead")) return;//peronslly, I think canbehead should override alwaysbehead.
             if(killer.hasPermission("playerheads.alwaysbehead")) dropchance=0.0;//alwaysbehead just changes the chance in your favor - 0.0 is within all droprate ranges.
         }
         if(killer==player || killer==null){//self-kills and mob-kills are both handled as non-pk by the original plugin
             if(plugin.configFile.getBoolean("pkonly")) return;
         }
         if(dropchance >= droprate) return;
+        //TODO: TEST
+        
                 
         String skullOwner;
         if (plugin.configFile.getBoolean("dropboringplayerheads")) {

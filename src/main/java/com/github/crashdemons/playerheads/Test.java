@@ -50,6 +50,29 @@ public class Test {
 	
 		return builder.toString();
 	}
+    public boolean testoldlogic(){
+        boolean killernull=false;
+        boolean killerself=false;
+        boolean dropchancegood=false;
+        boolean hascanlosehead=false;
+        boolean hasalwaysbehead=false;
+        boolean hascanbehead=false;
+        boolean pkonly=false;
+
+
+        if (dropchancegood && (killernull || !hasalwaysbehead)) {
+            return false;
+        }
+
+        if (!hascanlosehead) {
+            return false;
+        }
+
+        if (pkonly && (killernull || killerself || !hascanbehead)) {
+            return false;
+        }
+        return true;
+    }
     public static void testSkullTypes(){
         long count=0;
         for(EntityType type : EntityType.values()){

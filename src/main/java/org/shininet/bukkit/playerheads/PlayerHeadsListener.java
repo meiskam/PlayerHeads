@@ -160,12 +160,14 @@ class PlayerHeadsListener implements Listener {
         Double dropchance = prng.nextDouble();
         Player killer = event.getEntity().getKiller();
 
-        if ((dropchance >= droprate) && ((killer == null) || !killer.hasPermission("playerheads.alwaysbeheadmob"))) {
-            return;
+        
+        if(killer!=null){//mob was PK'd
+            if(!killer.hasPermission("playerheads.canbeheadmob")) return;//killer does not have permission to behead mobs in any case
+            if(killer.hasPermission("playerheads.alwaysbeheadmob")) dropchance=0.0;//alwaysbehead should only modify drop chances
+        }else{//mob was killed by mob
+            if(plugin.configFile.getBoolean("mobpkonly")) return;//mobs must only be beheaded by players
         }
-        if (plugin.configFile.getBoolean("mobpkonly") && ((killer == null) || !killer.hasPermission("playerheads.canbeheadmob"))) {
-            return;
-        }
+        if(dropchance >= droprate) return;
 
         boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
         

@@ -10,6 +10,7 @@ import org.shininet.bukkit.playerheads.Lang;
 import org.shininet.bukkit.playerheads.Tools;
 import java.util.HashMap;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 
 /**
  * Enumeration of skulls with associated UUID (randomly assigned) and texture string.
@@ -448,6 +449,8 @@ public enum TexturedSkullType {
     public boolean hasDedicatedItem(){
         return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead());
     }
+    
+    
     /**
      * A method used to printing internal debugging information.
      * @deprecated do not use - debug method, may be removed.

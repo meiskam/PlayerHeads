@@ -23,11 +23,11 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.shininet.bukkit.playerheads.Config;
 
 /**
- *
+ * D
  * @author crash
  * @author x7aSv
  */
-public class SkullManager {
+public abstract class SkullManager {
     
     private static void applyLore(SkullMeta headMeta,String extra){
         ArrayList<String> lore = new ArrayList<String>();

@@ -22,16 +22,17 @@ import org.json.simple.JSONValue;
 
 /**
  * Check dev.bukkit.org to find updates for a given plugin, and download the updates if needed.
- * <p/>
+ * <p>
  * <b>VERY, VERY IMPORTANT</b>: Because there are no standards for adding auto-update toggles in your plugin's config, this system provides NO CHECK WITH YOUR CONFIG to make sure the user has allowed auto-updating.
  * <br>
  * It is a <b>BUKKIT POLICY</b> that you include a boolean value in your config that prevents the auto-updater from running <b>AT ALL</b>.
  * <br>
  * If you fail to include this option in your config, your plugin will be <b>REJECTED</b> when you attempt to submit it to dev.bukkit.org.
- * <p/>
+ * </p><p>
  * An example of a good configuration option would be something similar to 'auto-update: true' - if this value is set to false you may NOT run the auto-updater.
  * <br>
  * If you are unsure about these rules, please read the plugin submission guidelines: http://goo.gl/8iU5l
+ * </p>
  *
  * @author Gravity
  * @version 2.0
@@ -203,6 +204,7 @@ public class Updater {
 
     /**
      * Get the result of the update process.
+     * @return The result
      */
     public Updater.UpdateResult getResult() {
         this.waitForThread();
@@ -211,6 +213,7 @@ public class Updater {
 
     /**
      * Get the latest version's release type (release, beta, or alpha).
+     * @return latest type string
      */
     public String getLatestType() {
         this.waitForThread();
@@ -219,6 +222,7 @@ public class Updater {
 
     /**
      * Get the latest version's game version.
+     * @return latest game version string
      */
     public String getLatestGameVersion() {
         this.waitForThread();
@@ -227,6 +231,7 @@ public class Updater {
 
     /**
      * Get the latest version's name.
+     * @return latest version name string
      */
     public String getLatestName() {
         this.waitForThread();
@@ -235,6 +240,7 @@ public class Updater {
 
     /**
      * Get the latest version's file link.
+     * @return latest file version link
      */
     public String getLatestFileLink() {
         this.waitForThread();
@@ -395,6 +401,7 @@ public class Updater {
 
     /**
      * Check if the name of a jar is one of the plugins currently installed, used for extracting the correct files out of a zip.
+     * @return true: plugin name exists, false: it does not exist.
      */
     private boolean pluginFile(String name) {
         for (final File file : new File("plugins").listFiles()) {
@@ -407,6 +414,7 @@ public class Updater {
 
     /**
      * Check to see if the program should continue by evaluation whether the plugin is already updated, or shouldn't be updated
+     * @return true: there was no version check or an update was available, false: there is no update available, or the plugin was misconfigured.
      */
     private boolean versionCheck(String title) {
         if (this.type != UpdateType.NO_VERSION_CHECK) {
@@ -434,6 +442,7 @@ public class Updater {
 
     /**
      * Evaluate whether the version number is marked showing that it should not be updated by this program
+     * @return true: the version was tagged as No-update. false: the version was not tagged.
      */
     private boolean hasTag(String version) {
         for (final String string : Updater.NO_UPDATE_TAG) {

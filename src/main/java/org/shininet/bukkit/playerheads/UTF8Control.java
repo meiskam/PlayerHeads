@@ -18,23 +18,17 @@ public class UTF8Control extends Control { // Copied from jdk1.6.0_38
     /**
      * Instantiates a resource bundle for the given bundle name of the given format and locale, using the given class loader if necessary. This method returns <code>null</code> if there is no resource bundle available for the given parameters. If a resource bundle can't be instantiated due to an unexpected error, the error must be reported by throwing an <code>Error</code> or <code>Exception</code> rather than simply returning <code>null</code>.
      * <p>
-     * <p>
      * If the <code>reload</code> flag is <code>true</code>, it indicates that this method is being called because the previously loaded resource bundle has expired.
-     * <p>
+     * </p>
      * <p>
      * The default implementation instantiates a <code>ResourceBundle</code> as follows.
-     * <p>
+     * </p>
      * <ul>
-     * <p>
      * <li>The bundle name is obtained by calling {@link #toBundleName(String, Locale) toBundleName(baseName, locale)}.</li>
-     * <p>
      * <li>If <code>format</code> is <code>"java.class"</code>, the {@link Class} specified by the bundle name is loaded by calling {@link ClassLoader#loadClass(String)}. Then, a <code>ResourceBundle</code> is instantiated by calling {@link Class#newInstance()}. Note that the <code>reload</code> flag is ignored for loading class-based resource bundles in this default implementation.</li>
-     * <p>
      * <li>If <code>format</code> is <code>"java.properties"</code>, {@link #toResourceName(String, String) toResourceName(bundlename, "properties")} is called to get the resource name. If <code>reload</code> is <code>true</code>, {@link ClassLoader#getResource(String) load.getResource} is called to get a {@link URL} for creating a {@link URLConnection}. This <code>URLConnection</code> is used to {@linkplain URLConnection#setUseCaches(boolean) disable the caches} of the underlying resource loading layers,
      * and to {@linkplain URLConnection#getInputStream() get an <code>InputStream</code>}. Otherwise, {@link ClassLoader#getResourceAsStream(String) loader.getResourceAsStream} is called to get an {@link InputStream}. Then, a {@link PropertyResourceBundle} is constructed with the <code>InputStream</code>.</li>
-     * <p>
      * <li>If <code>format</code> is neither <code>"java.class"</code> nor <code>"java.properties"</code>, an <code>IllegalArgumentException</code> is thrown.</li>
-     * <p>
      * </ul>
      *
      * @param baseName the base bundle name of the resource bundle, a fully qualified class name

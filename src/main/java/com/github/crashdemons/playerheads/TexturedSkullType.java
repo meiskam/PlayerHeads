@@ -22,6 +22,9 @@ import org.bukkit.Material;
 public enum TexturedSkullType {
     
     //Entity skull settings - big thanks to MagmaVoid_ for finding all of these textures.
+    /**
+     * Skull Type used for indicating unknown playerheads.
+     */
     PLAYER(//used for unknown player heads
         Material.PLAYER_HEAD,
         Material.PLAYER_WALL_HEAD,
@@ -262,19 +265,54 @@ public enum TexturedSkullType {
         "9cd54916-35e6-4728-aac8-1850cb91d051",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5Njg4Yjk1MGQ4ODBiNTViN2FhMmNmY2Q3NmU1YTBmYTk0YWFjNmQxNmY3OGU4MzNmNzQ0M2VhMjlmZWQzIn19fQ=="
     );
-    private final UUID owner;
-    private final String texture;
     
+    /**
+     * The associated owning UUID of the enum entry - randomly assigned.
+     */
+    private final UUID owner;
+    /**
+     * The base64-encoded string representing the texture-url tags which define the texture to display on a playerhead for the associated entity/skulltype
+     */
+    private final String texture;
+    /**
+     * The item and block material associated with the entity if one exists. Otherwise, this will be Material.PLAYER_HEAD
+     * @see org.bukkit.Material#PLAYER_HEAD
+     */
     private final Material material;
+    /**
+     * The wall-block material associated with the entity if one exists. Otherwise, this will be Material.PLAYER_WALL_HEAD
+     * @see org.bukkit.Material#PLAYER_WALL_HEAD
+     */
     private final Material wallMaterial;
     
-    
+    /**
+     * an inner class containing mapping information / lookup information for the skulltypes,materials, and UUIDs.
+     */
     private static class Mappings{
+        /**
+         * Contains the UUID associated with the Player, must available here prior to construction of enums.
+         * 
+         * Must match the UUID parameter of TexturedSkullType.PLAYER
+         * @see #PLAYER
+         */
         public static final UUID playerUUID=UUID.fromString("a1ae4481-f3f0-4af9-a83e-75d3a7f87853");//must match above
+        /**
+         * A map of UUIDs to their associated skulltype for easier lookup.
+         */
         public static final HashMap<UUID,TexturedSkullType> skullsById = new HashMap<>();
+        /**
+         * A map of Materials to their associated skulltype for easier lookup.
+         * 
+         * Note: only contains skulltypes with dedicated materials (vanilla drops) and includes Playerhead materials mapping to PLAYER.
+         */
         public static final HashMap<Material,TexturedSkullType> skullsByMaterial = new HashMap<>();
     }
     
+    /**
+     * Construct a TexturedSkullType with no associated materials (defaults to playerhead)
+     * @param ownerUUID The UUID String to associate with this skulltype and texture
+     * @param texture The Base64-encoded string representing the Texture-URL in tags
+     */
     TexturedSkullType(String ownerUUID, String texture){
         this(
                 Material.PLAYER_HEAD,
@@ -283,9 +321,23 @@ public enum TexturedSkullType {
                 texture
         );
     }    
+    /**
+     * Construct a TexturedSkullType with associated materials specific to this entity
+     * @param material The Material associated with this skulltype/entity
+     * @param wallMaterial The "Wall" block Material associated with this skulltype/entity
+     * @param ownerUUID The UUID String to associate with this skulltype and texture
+     * @param texture The Base64-encoded string representing the Texture-URL in tags
+     */
     TexturedSkullType(Material material, Material wallMaterial, String ownerUUID, String texture){
         this(material,wallMaterial,UUID.fromString(ownerUUID),texture);
     }
+    /**
+     * Construct a TexturedSkullType with associated materials specific to this entity
+     * @param material The Material associated with this skulltype/entity
+     * @param wallMaterial The "Wall" block Material associated with this skulltype/entity
+     * @param owner The UUID to associate with this skulltype and texture
+     * @param texture The Base64-encoded string representing the Texture-URL in tags
+     */
     TexturedSkullType(Material material, Material wallMaterial, UUID owner, String texture){
         this.owner=owner;
         this.texture = texture;
@@ -297,41 +349,109 @@ public enum TexturedSkullType {
             Mappings.skullsByMaterial.put(wallMaterial,this);
         }
     }
+    
+    /**
+     * Get the UUID associated with the skulltype
+     * @return The UUID
+     */
     public UUID getOwner() {
         return owner;
     }
+    /**
+     * Get the Base64-encoded texture string associated with the skulltype
+     * @return A base64 string
+     */
     public String getTexture(){
         return texture;
     }
+    /**
+     * Get the [floor] block and item Material associated with the skulltype
+     * @return The material
+     */
     public Material getMaterial(){
         return material;
     }
+    /**
+     * Get the "wall" block material associated with the skull type
+     * @return the "wall" material
+     */
     public Material getWallMaterial(){
         return wallMaterial;
     }
     
+    /**
+     * Find the skulltype associated with a provided UUID
+     * @param owner The UUID to find the skulltype for
+     * @return if found: a TexturedSkullType, otherwise: null.
+     */
     public static TexturedSkullType get(UUID owner) {
         return Mappings.skullsById.get(owner);
     }
+    /**
+     * Finds the skulltype that has the provided Material as its dedicated item or block.
+     * 
+     * Note: playerhead materials will return TexturedSkullType.PLAYER
+     * 
+     * @param mat The material to find the skulltype for.
+     * @return if found: a TexturedSkullType, otherwise: null.
+     */
     public static TexturedSkullType get(Material mat){
         return Mappings.skullsByMaterial.get(mat);
     }
     
+    /**
+     * Gets the item displayname for the associated skulltype, as defined in the "lang" file.
+     * @return A string containing the skulltype's displayname
+     */
     public String getDisplayName() {
         return Tools.format(Lang.getString("HEAD_" + name()));
     }
+    /**
+     * Gets the item displayname for a specific playerhead owner by username.
+     * 
+     * Note: This method is for resolving the displayname of PLAYER head drops, it does not support legacy username-based mobhead displaynames.
+     * 
+     * @param owner The username to get a displayname for
+     * @return A string containing the user's head displayname
+     */
     public static String getDisplayName(String owner) {
         return Tools.format(Lang.getString("HEAD_PLAYER"),owner);
     }
+    /**
+     * Get the "spawn" name for the associated skulltype, as defined in the "lang" file.
+     * 
+     * This string is used to spawn-in the skull in external commands.
+     * 
+     * @return A string containing the spawnname.
+     */
     public String getSpawnName() {
         return Lang.getString("HEAD_SPAWN_" + name());
     }
+    /**
+     * Checks whether the skulltype uses a playerhead exclusively.
+     * 
+     * This indicates that either the skulltype is PLAYER or a mob without a vanilla head item, generally.
+     * 
+     * @return true: the skulls associated material was a playerhead. false: the skull has a different associated material.
+     */
     public boolean isPlayerHead(){
         return this.material.equals(Material.PLAYER_HEAD);
     }
+    /**
+     * Checks whether the skulltype uses a specific material/item specific to it.
+     * 
+     * This indicates wither the skulltype is PLAYER (PLAYERHEAD is dedicated to it), or it has a vanilla head item associated with it, generally.
+     * 
+     * @return true: the skulltype has a dedicated item/material or is of type PLAYER.  false: the skulltype is supported as a playerhead (the mob has no special item/material associated).
+     */
     public boolean hasDedicatedItem(){
         return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead());
     }
+    /**
+     * A method used to printing internal debugging information.
+     * @deprecated do not use - debug method, may be removed.
+     */
+    @Deprecated
     public static void debug(){
         for(HashMap.Entry<Material,TexturedSkullType> entry : Mappings.skullsByMaterial.entrySet()){
             System.out.println(entry.getKey().name()+" -> "+entry.getValue().name());

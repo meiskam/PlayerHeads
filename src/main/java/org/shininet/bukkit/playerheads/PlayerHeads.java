@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import net.gravitydevelopment.updater.Updater;
 import java.util.logging.Logger;
 
 import org.bukkit.configuration.file.FileConfiguration;

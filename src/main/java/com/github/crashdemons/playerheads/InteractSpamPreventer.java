@@ -19,7 +19,7 @@ public class InteractSpamPreventer {
     volatile InteractRecord[] records = new InteractRecord[5];
     AtomicInteger next = new AtomicInteger(0);
             
-    public class InteractRecord{
+    private class InteractRecord{
         private static final long TIME_THRESHOLD_MS=1000;
         Location location=null;
         UUID playerId;

@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.InteractSpamPreventer;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
@@ -47,6 +48,7 @@ class PlayerHeadsListener implements Listener {
 
     private final Random prng = new Random();
     private final PlayerHeads plugin;
+    private final InteractSpamPreventer spamPreventer = new InteractSpamPreventer();
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -197,6 +199,8 @@ class PlayerHeadsListener implements Listener {
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
             if(skullType==null) return;
             //System.out.println(skullType.name());
+            
+            if(spamPreventer.recordEvent(event).isSpam()) return;
             
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullType) {

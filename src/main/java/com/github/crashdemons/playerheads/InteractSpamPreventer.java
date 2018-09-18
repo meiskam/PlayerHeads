@@ -16,8 +16,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
  * @author crash
  */
 public class InteractSpamPreventer {
-    volatile InteractRecord[] records = new InteractRecord[5];
-    AtomicInteger next = new AtomicInteger(0);
+    private static int RECORDS = 5;
+    private InteractRecord[] records = new InteractRecord[RECORDS];
+    private volatile int next = 0;
             
     private class InteractRecord{
         private static final long TIME_THRESHOLD_MS=1000;
@@ -56,7 +57,8 @@ public class InteractSpamPreventer {
                 break;
             }
         }
-        records[next.getAndIncrement()] = new InteractRecord(event);
+        records[next] = record;
+        next = (next+1)%RECORDS;
         return result;
     }
 }

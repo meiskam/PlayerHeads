@@ -6,7 +6,6 @@
 package com.github.crashdemons.playerheads;
 
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.player.PlayerInteractEvent;

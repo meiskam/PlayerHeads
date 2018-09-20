@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
  * @author crash
  */
 public class InteractSpamPreventer {
-    private static int RECORDS = 5;
-    private InteractRecord[] records = new InteractRecord[RECORDS];
+    private final static int RECORDS = 5;
+    private final InteractRecord[] records = new InteractRecord[RECORDS];
     private volatile int next = 0;
             
     private class InteractRecord{

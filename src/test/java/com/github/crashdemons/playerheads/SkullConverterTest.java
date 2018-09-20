@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.junit.Test;
@@ -117,4 +118,59 @@ public class SkullConverterTest {
         EntityType result = SkullConverter.entityTypeFromSkullType(skullType);
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testSkullTypeFromBlockState_NotAHead(){
+        System.out.println("testSkullTypeFromBlockState not a head");
+        BlockState state = Mocks.getMockBlockState_Stone();
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),null);
+    }
+        @Test
+    public void testSkullTypeFromBlockState_NullPlayerhead(){
+        System.out.println("testSkullTypeFromBlockState null playerhead");
+        BlockState state = Mocks.getMockBlockState_PHead(null);
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.PLAYER);
+    }
+    @Test
+    public void testSkullTypeFromBlockState_UnknownPlayerhead(){
+        System.out.println("testSkullTypeFromBlockState unknown playerhead");
+        OfflinePlayer op = Mocks.getMockOfflinePlayer("3437cf83-c9b0-4709-a686-b8632b8d6172", "crashdemons");
+        BlockState state = Mocks.getMockBlockState_PHead(op);
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.PLAYER);
+    }
+    @Test
+    public void testSkullTypeFromBlockState_SupportedPlayerhead(){
+        System.out.println("testSkullTypeFromBlockState supported playerhead");
+        String id = TexturedSkullType.ENDERMITE.getOwner().toString();
+        OfflinePlayer op = Mocks.getMockOfflinePlayer(id, null);
+        BlockState state = Mocks.getMockBlockState_PHead(op);
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.ENDERMITE);
+    }
+    @Test
+    public void testSkullTypeFromBlockState_VanillaHead(){
+        System.out.println("testSkullTypeFromBlockState not a head");
+        BlockState state = Mocks.getMockBlockState_Skull();
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.SKELETON);
+    }
+    
+    public void testSkullTypeFromBlockStateLegacy_NullPlayerhead(){
+        System.out.println("testSkullTypeFromBlockStateLegacy null playerhead");
+        BlockState state = Mocks.getMockBlockState_PHead(null);
+        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.PLAYER);
+    }
+    @Test
+    public void testSkullTypeFromBlockStateLegacy_UnknownPlayerhead(){
+        System.out.println("testSkullTypeFromBlockStateLegacy unknown playerhead");
+        OfflinePlayer op = Mocks.getMockOfflinePlayer("3437cf83-c9b0-4709-a686-b8632b8d6172", "crashdemons");
+        BlockState state = Mocks.getMockBlockState_PHead(op);
+        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.PLAYER);
+    }
+    @Test
+    public void testSkullTypeFromBlockStateLegacy_SupportedLegacyPlayerhead(){
+        System.out.println("testSkullTypeFromBlockStateLegacy supported legacy playerhead");
+        OfflinePlayer op = Mocks.getMockOfflinePlayer("1bee9df5-4f71-42a2-bf52-d97970d3fea3", "MHF_Ocelot");
+        BlockState state = Mocks.getMockBlockState_PHead(op);
+        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.OCELOT);
+    }
+    
 }

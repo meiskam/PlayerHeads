@@ -31,8 +31,8 @@ public class TexturedSkullTypeTest {
     @AfterClass
     public static void tearDownClass() {
         //these tasks aren't really test-related but there's not a better place to put them really.
-        generateLangDefinitions();
-        generateLangEntries();
+        //generateLangDefinitions();
+        //generateLangEntries();
     }
     
     @Before

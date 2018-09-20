@@ -28,7 +28,7 @@
     </issueManagement>
 
     <repositories>
-		<repository>
+	<repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
             <url>https://libraries.minecraft.net/</url>
@@ -44,7 +44,37 @@
     </repositories>
 
     <dependencies>
-		<dependency>
+        
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.powermock</groupId>
+  		<artifactId>powermock-module-junit4</artifactId>
+  		<version>1.7.4</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.powermock</groupId>
+  		<artifactId>powermock-api-mockito</artifactId>
+  		<version>1.7.4</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito-common</artifactId>     
+            <version>1.7.4</version>
+        </dependency>
+        
+        
+        
+        <dependency>
             <groupId>com.mojang</groupId>
             <artifactId>authlib</artifactId>
             <version>1.5.25</version>

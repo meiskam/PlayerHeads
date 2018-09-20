@@ -31,6 +31,7 @@ public class InteractSpamPreventer {
             if(block!=null) location=block.getLocation();
         }
         boolean closeTo(InteractRecord record){
+            if(record==null) return false;
             if(record.playerId.equals(playerId)){
                 if(record.location==null || location==null) return false;
                 if(record.location.equals(location)){

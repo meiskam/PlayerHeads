@@ -153,6 +153,7 @@ public class SkullConverterTest {
         assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.SKELETON);
     }
     
+    @Test
     public void testSkullTypeFromBlockStateLegacy_NullPlayerhead(){
         System.out.println("testSkullTypeFromBlockStateLegacy null playerhead");
         BlockState state = Mocks.getMockBlockState_PHead(null);

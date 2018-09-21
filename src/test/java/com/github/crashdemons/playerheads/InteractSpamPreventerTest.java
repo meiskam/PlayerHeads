@@ -29,20 +29,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @PrepareForTest(PlayerInteractEvent.class)
 public class InteractSpamPreventerTest {
     
-    
-    @Test
-    public void testLocationMock() {
-        System.out.println("testMockLocation");
-        Location locA = Mocks.getMockLocation(1,2,3);
-        Location locB = Mocks.getMockLocation(1,2,3);
-        Location locC = Mocks.getMockLocation(1,1,1);
-        System.out.println(locA.equals(locA));
-        System.out.println(locA.equals(locB));
-        System.out.println(locB.getY());
-    }
-    
-
-    
     public InteractSpamPreventerTest() {
     }
     

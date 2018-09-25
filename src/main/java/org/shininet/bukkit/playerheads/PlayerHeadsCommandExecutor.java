@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
+ * Defines a command handler for the plugin.
  * @author meiskam
  */
 

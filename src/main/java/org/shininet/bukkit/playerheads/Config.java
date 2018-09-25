@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,7 @@ public final class Config {
             put("mobpkonly", configType.BOOLEAN);
             for (TexturedSkullType skullType : TexturedSkullType.values()) {
                 if(skullType==TexturedSkullType.PLAYER) continue;
-                put(skullType.name().replace("_", "").toLowerCase() + "droprate", configType.DOUBLE);
+                put(SkullConverter.dropConfigFromSkullType(skullType), configType.DOUBLE);
             }
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);

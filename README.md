@@ -19,7 +19,7 @@ Credit to MagmaVoid_ for going through every single mob to find a texture.
 
 ## What's New?
 ### Textured Mobheads
-* Old, hard-to-maintain, hard-to-replace username-based heads are on the way *out*. ("Legacy Heads")
+* Old, hard-to-maintain, hard-to-replace username-based heads ("Legacy Heads") are on the way *out*. 
 * Heads with texture-urls are *in* for good. (easily searchable on many sites)
 * **Legacy heads are still recognized by the 4.x plugin, and when broken are converted to updated versions.**
 ### All current mobs supported
@@ -27,7 +27,7 @@ Credit to MagmaVoid_ for going through every single mob to find a texture.
 ### 1.13 and 1.13.1-ready
 * You need one of the shiniest versions if you want all these new heads.
 ### New configuration options
-* Control whether vanilla heads drop for support mobs
+* Control whether vanilla heads drop for supported mobs
 * Control whether heads should be converted to/from vanilla mobheads.
 ### More consistent behavior
 * `canbehead` and `canbeheadmob` permissions now actually work when `pkonly`/`mobpkonly` are set, allowing better control over configuration.

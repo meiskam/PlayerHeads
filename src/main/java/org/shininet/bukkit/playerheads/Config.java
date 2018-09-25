@@ -9,15 +9,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Defines the configuration for the plugin, keys, and datatypes.
+ * 
+ * <i>Note:</i> This documentation was inferred after the fact and may be inaccurate.
  * @author meiskam
  */
 
 public class Config {
 
+    /**
+     * The data-types used for each particular configuration value
+     */
     public enum configType {
         DOUBLE, BOOLEAN, INT
     }
 
+    /**
+     * A map of the keys supported by the plugin configuration and their associated data-type expected.
+     */
     @SuppressWarnings("serial")
     public static final Map<String, configType> configKeys = new HashMap<String, configType>() {
         {
@@ -39,9 +48,23 @@ public class Config {
             put("convertvanillaheads", configType.BOOLEAN);
         }
     };
-    public static final String configKeysString = String.join(", ", configKeys.keySet());
+    /**
+     * A string containing all of the supported configuration keys in a human-readable list.
+     */
+    public static final String configKeysString = String.join(", ", configKeys.keySet());//should this use Lang.COMMA_SPACE instead since it's used exclusively in user messages?
+    /**
+     * The default size of itemstack used when dropping or spawning heads.
+     * 
+     * (defaults to 1)
+     */
     public static final int defaultStackSize = 1;
+    /**
+     * String used to identify the plugin page on Curse (used in links)
+     */
     public static final String updateSlug = "player-heads";
+    /**
+     * The Project ID for the plugin on Curse (used by the updater)
+     */
     public static final int updateID = 46244;
 
 }

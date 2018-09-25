@@ -395,6 +395,21 @@ public enum TexturedSkullType {
     public static TexturedSkullType get(Material mat){
         return Mappings.skullsByMaterial.get(mat);
     }
+    /**
+     * Finds the skulltype that has the provided Spawn-Name associated with it
+     * 
+     * @param spawnname The spawn-name to find the skulltype for.
+     * @return if found: a TexturedSkullType, otherwise: null.
+     */
+    public static TexturedSkullType getBySpawnName(String spawnname){
+        if(spawnname.isEmpty()) return null;
+        for(TexturedSkullType type : TexturedSkullType.values()){
+            if(type.getSpawnName().equalsIgnoreCase(spawnname))
+                return type;
+        }
+        return null;
+    }
+    
     
     
     /**

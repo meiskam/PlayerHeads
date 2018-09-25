@@ -170,6 +170,34 @@ public final class SkullManager {
     }
     
     /**
+     * Spawns a skull itemstack using an input spawn string or username.
+     * 
+     * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
+     * @param spawnString the spawn string indicating the type of skull or username indicating the owner of the skull.
+     * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
+     * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
+     */
+    public static ItemStack spawnSkull(String spawnString, boolean usevanillaheads){
+        return spawnSkull(spawnString,Config.defaultStackSize,usevanillaheads);
+    }
+    
+    /**
+     * Spawns a skull itemstack using an input spawn string or username.
+     * @param spawnString the spawn string indicating the type of skull or username indicating the owner of the skull.
+     * @param quantity the number of items to spawn in this stack.
+     * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
+     * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
+     */
+    public static ItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads){
+        TexturedSkullType type = TexturedSkullType.getBySpawnName(spawnString);
+        if(type==null){
+            return PlayerSkull(spawnString,quantity);
+        }else{
+            return MobSkull(type,quantity,usevanillaheads);
+        }
+    }
+    
+    /**
      * Updates the blockstate of a head.
      * 
      * Originally this method also updated legacy username-based skulls to the correct owner - currently it only updates the blockstate.

@@ -23,7 +23,9 @@ import org.shininet.bukkit.playerheads.Config;
  * @author crash
  * @author x7aSv
  */
-public abstract class SkullManager {
+public final class SkullManager {
+    
+    private SkullManager(){}
     
     /**
      * Applies Lore text (including the PlayerHeads plugin name) to a playerhead's meta.

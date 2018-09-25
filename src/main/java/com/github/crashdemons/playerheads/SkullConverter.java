@@ -14,7 +14,9 @@ import org.shininet.bukkit.playerheads.LegacySkullType;
  * Abstract class defining methods for converting between entities, custom skullState type, and legacy username-skulls, etc.
  * @author crashdemons
  */
-public abstract class SkullConverter {
+public final class SkullConverter {
+    
+    private SkullConverter(){}
     
     /**
      * Get the droprate config name (key) for the given skulltype.

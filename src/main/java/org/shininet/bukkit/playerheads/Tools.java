@@ -21,8 +21,10 @@ import org.bukkit.inventory.PlayerInventory;
  */
 
 @SuppressWarnings("WeakerAccess")
-public class Tools {
+public final class Tools {
 
+    private Tools(){}
+    
     /**
      * Adds a head-item to a player's inventory.
      * 

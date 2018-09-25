@@ -25,7 +25,7 @@ import org.bukkit.plugin.Plugin;
  */
 
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class Lang {
+public final class Lang {
     private static final String BUNDLE_NAME = "lang";
     private static Plugin plugin;
     private static ResourceBundle RESOURCE_BUNDLE;
@@ -250,8 +250,7 @@ public class Lang {
      */
     public static String UPDATE3;
 
-    private Lang() {
-    }
+    private Lang() {}
 
     /**
      * Gets the string value associated with a given language-file (localization) key.

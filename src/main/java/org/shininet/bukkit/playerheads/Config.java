@@ -15,7 +15,9 @@ import java.util.Map;
  * @author meiskam
  */
 
-public class Config {
+public final class Config {
+    
+    private Config(){}
 
     /**
      * The data-types used for each particular configuration value

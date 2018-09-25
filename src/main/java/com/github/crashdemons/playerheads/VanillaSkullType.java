@@ -30,6 +30,8 @@ public enum VanillaSkullType {//deprecated in api, but we stll need to keep trac
     }
 
     VanillaSkullType(Material mat, Material wallMat){
+        material=mat;
+        wallMaterial=wallMat;
         Mappings.skullTypeByMaterial.put(mat, this);
         Mappings.skullTypeByMaterial.put(wallMat, this);
     }

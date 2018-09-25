@@ -6,9 +6,7 @@
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.SkullManager;
-import com.github.crashdemons.playerheads.TexturedSkullType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 /**
@@ -16,7 +14,6 @@ import org.bukkit.inventory.PlayerInventory;
  * @author meiskam
  */
 public class InventoryManager {
-    
     /**
      * Adds a head-item to a player's inventory.
      * 
@@ -50,5 +47,4 @@ public class InventoryManager {
             return true;
         }
     }
-
 }

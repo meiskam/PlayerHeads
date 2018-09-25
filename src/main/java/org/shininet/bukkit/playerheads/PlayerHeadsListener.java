@@ -41,6 +41,9 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
 /**
+ * Defines a listener for playerheads events.
+ * 
+ * <i>Note:</i> This documentation was inferred after the fact and may be inaccurate.
  * @author meiskam
  */
 
@@ -54,6 +57,12 @@ class PlayerHeadsListener implements Listener {
         this.plugin = plugin;
     }
 
+    /**
+     * Event handler for entity deaths.
+     * 
+     * Used to determine when heads should be dropped.
+     * @param event the event received
+     */
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDeath(EntityDeathEvent event) {
         Player killer = event.getEntity().getKiller();
@@ -189,7 +198,13 @@ class PlayerHeadsListener implements Listener {
             event.getDrops().add(drop);
         }
     }
-
+    
+    /**
+     * Event handler for player-block interactions.
+     * 
+     * Used to determine when information should be sent to the user, or head-blocks need updating.
+     * @param event the event received
+     */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
@@ -231,6 +246,12 @@ class PlayerHeadsListener implements Listener {
         }
     }
 
+    /**
+     * Event handler for player block-break events.
+     * 
+     * Used to determine when the associated head item for a head-block needs to be dropped, if it is broken by a player.
+     * @param event the event received
+     */
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent event) {
         if (event instanceof FakeBlockBreakEvent) {
@@ -297,7 +318,13 @@ class PlayerHeadsListener implements Listener {
             
         }
     }
-
+    
+    /**
+     * Event handler for player server join events
+     * 
+     * Used to send updater information to appropriate players on join.
+     * @param event the event received
+     */
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();

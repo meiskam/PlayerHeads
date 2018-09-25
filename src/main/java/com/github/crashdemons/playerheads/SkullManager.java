@@ -158,13 +158,15 @@ public final class SkullManager {
     /**
      * Creates a stack of playerheads for the given username.
      * 
-     * The username given is translated to an OfflinePlayer by bukkit at the time of creation.
+     * The username given is translated to an OfflinePlayer by bukkit at the time of creation. NOTE: null or empty usernames will be rejected with an IllegalArgumentException
      * 
      * @param owner The username to create a head for.
      * @param quantity The number of heads to create in the stack.
      * @return The ItemStack of heads desired.
+     * @throws IllegalArgumentException passed a null or empty username.
      */
     public static ItemStack PlayerSkull(String owner, int quantity){
+        if(owner==null || owner.isEmpty()) throw new IllegalArgumentException("Creating a playerhead with a null or empty username is not possible with this method.");
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         return PlayerSkull(op,quantity);
     }
@@ -189,7 +191,9 @@ public final class SkullManager {
      * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
      */
     public static ItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads){
-        TexturedSkullType type = TexturedSkullType.getBySpawnName(spawnString);
+        TexturedSkullType type;
+        if(spawnString.isEmpty()) type=TexturedSkullType.PLAYER;
+        else type = TexturedSkullType.getBySpawnName(spawnString);
         if(type==null){
             return PlayerSkull(spawnString,quantity);
         }else{

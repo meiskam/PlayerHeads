@@ -8,10 +8,18 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
 /**
+ * Event created by the PlayerHeads plugin when a Mob is beheaded.
+ * 
+ * Cancellable.
+ * 
  * @author meiskam
  */
-
 public class MobDropHeadEvent extends LivingEntityDropHeadEvent {
+    /**
+     * Constructs the event
+     * @param mob the mob that was beheaded
+     * @param drop the head item to be dropped.
+     */
     public MobDropHeadEvent(LivingEntity mob, ItemStack drop) {
         super(mob, drop);
     }

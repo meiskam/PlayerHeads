@@ -16,6 +16,11 @@ import java.util.ResourceBundle;
 import org.bukkit.plugin.Plugin;
 
 /**
+ * Defines localization support for the plugin in way of messages and item names.
+ * 
+ * The values of keys defined here can be changed in lang.properties. `HEAD_SPAWN_*` entries are strings used for spawning heads with the spawn command, `HEAD_*` entries are used to determine the display-name for a given head.
+ * 
+ * <i>Note:</i> This documentation was inferred after the fact and may be inaccurate.
  * @author meiskam
  */
 
@@ -26,12 +31,37 @@ public class Lang {
     private static ResourceBundle RESOURCE_BUNDLE;
     private static ResourceBundle RESOURCE_BUNDLE0;
 
+    /**
+     * The message displayed when a player is beheaded by anything besides a player.
+     * 
+     * Formatting arguments(1): player name.
+     */
     public static String BEHEAD_GENERIC;
+    /**
+     * The message displayed when a player is beheaded by another player.
+     * 
+     * Formatting arguments(2): victim name, killer name
+     */
     public static String BEHEAD_OTHER;
+    /**
+     * The message displayed when a player is beheaded by themself.
+     * 
+     * Formatting arguments(1): player name
+     */
     public static String BEHEAD_SELF;
     public static String BRACKET_LEFT;
     public static String BRACKET_RIGHT;
+    /**
+     * Message displayed when a player clicks a head belonging to another player.
+     * 
+     * Formatting arguments(1): victim name
+     */
     public static String CLICKINFO;
+    /**
+     * Message displayed when a player clicks a head beloning to an entity or mob.
+     * 
+     * Formatting arguments(1): The display-name for the head item
+     */
     public static String CLICKINFO2;
     public static String CMD_CONFIG;
     public static String CMD_GET;
@@ -56,8 +86,19 @@ public class Lang {
     public static String ERROR_PERMISSION;
     public static String ERROR_UPDATER;
     
+    /**
+     * Name for a generic head item.
+     */
     public static String HEAD;
+    /**
+     * Name for a player's head item.
+     * 
+     * Formatting arguments(1): player name
+     */
     public static String HEAD_PLAYER;
+    /**
+     * String for spawning a generic player head item.
+     */
     public static String HEAD_SPAWN_PLAYER;
     
     public static String HEAD_ELDER_GUARDIAN;
@@ -181,17 +222,44 @@ public class Lang {
     public static String OPT_RECEIVER_REQUIRED;
     public static String OPT_VALUE_OPTIONAL;
     public static String OPT_VARIABLE_REQUIRED;
+
+    /**
+     * Message displayed when a head is renamed.
+     */
     public static String RENAMED_HEAD;
     public static String SPACE;
+    /**
+     * Message displayed when a head is spawned.
+     * 
+     * Formatting arguments(1): name of head's owner.
+     */
     public static String SPAWNED_HEAD;
     public static String SUBCOMMANDS;
     public static String SYNTAX;
+
+    /**
+     * Message displayed when an update is available.
+     * 
+     * Formatting arguments(1): Name associated with the update.
+     */
     public static String UPDATE1;
+    /**
+     * Message containing any additional information about the update.
+     * 
+     * Formatting arguments(1): Additional update information (usually a link).
+     */
     public static String UPDATE3;
 
     private Lang() {
     }
 
+    /**
+     * Gets the string value associated with a given language-file (localization) key.
+     * 
+     * Note: localization strings will first be loaded from the plugin config path, and then from the default (internal) lang resource if the key is missing.
+     * @param key the key to get the message string for
+     * @return the localized message string for the key
+     */
     public static String getString(String key) {
         try {
             return RESOURCE_BUNDLE.getString(key);
@@ -204,11 +272,21 @@ public class Lang {
         }
     }
 
+    /**
+     * Associates the class with a plugin and reloads all localized strings.
+     * @param instance the plugin instance being used.
+     */
     public static void init(Plugin instance) {
         plugin = instance;
         reload();
     }
 
+    /**
+     * Reloads localization resources and reloads the values of all keys.
+     * 
+     * Note: localization strings will first be loaded from the plugin config path, and then from the default lang resource if missing.
+     * @see #reload() 
+     */
     public static void reload() {
         String locale = "";
         try {

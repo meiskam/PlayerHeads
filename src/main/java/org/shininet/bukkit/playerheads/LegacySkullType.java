@@ -7,6 +7,16 @@ package org.shininet.bukkit.playerheads;
 import java.util.HashMap;
 
 /**
+ * Defines an enum of Username-based Skulls (playerheads) associated with mobs.
+ * 
+ * (Previously named CustomSkullType) 
+ * 
+ * Each skull may be associated with multiple usernames for the purposes of recognizing and updating heads, but only one is used for spawning new heads.
+ * 
+ * This enum does not include mobs supported by vanilla skulltypes.
+ * 
+ * <i>Note:</i> This documentation was inferred after the fact and may be inaccurate.
+ * @see org.bukkit.SkullType
  * @author meiskam
  */
 
@@ -73,18 +83,35 @@ public enum LegacySkullType {
         }
     }
 
+    /**
+     * Gets the primary username used for the skull's skin.
+     * @return the skull owner's username
+     */
     public String getOwner() {
         return owner;
     }
 
+    /**
+     * Gets the localized head-item name associated with the skull.
+     * @return the display name string for the skull.
+     */
     public String getDisplayName() {
         return Tools.format(Lang.getString("HEAD_" + name()));
     }
 
+    /**
+     * Gets the "spawn" string used to spawn in this skull from a command.
+     * @return the spawn string
+     */
     public String getSpawnName() {
         return Lang.getString("HEAD_SPAWN_" + name());
     }
 
+    /**
+     * Gets the skull type associated with a given username (usually a skull owner), if it exists.
+     * @param owner the username to check
+     * @return If found: the LegacySkullType that recognizes this username.  If not found: null.
+     */
     public static LegacySkullType get(String owner) {
         return Holder.map.get(owner.toLowerCase());
     }

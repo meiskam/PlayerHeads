@@ -196,26 +196,30 @@ class PlayerHeadsListener implements Listener {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
         if (block != null && VanillaSkullType.hasBlock(block) ) {
-            Skull skullState = (Skull) block.getState();
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (VanillaSkullType.fromBlock(block)) {
                     case PLAYER:
+                        Skull skullState = (Skull) block.getState();
+                        boolean hadOwner=false;
                         if (skullState.hasOwner()) {
                             String owner = skullState.getOwningPlayer().getName();
-                            //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                            CustomSkullType skullType = CustomSkullType.get(owner);
-                            if (skullType != null) {
-                                Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
-                                if (!owner.equals(skullType.getOwner())) {
-                                    skullState.setOwner(skullType.getOwner());
-                                    skullState.update();
+                            if(owner==null) owner=skullState.getOwner();//I know this is deprecated but the above method is no longer getting the owner name NBT on custom heads.
+                            if(owner!=null){//and it can STILL be null for custom textured-heads without names, but with profile fields.
+                                hadOwner=true;//finally we can say this is true and prevent the "that's a head" message below - otherwise we would NPE on the message.
+                                //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
+                                CustomSkullType skullType = CustomSkullType.get(owner);
+                                if (skullType != null) {
+                                    Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                                    if (!owner.equals(skullType.getOwner())) {
+                                        skullState.setOwner(skullType.getOwner());
+                                        skullState.update();
+                                    }
+                                } else {
+                                    Tools.formatMsg(player, Lang.CLICKINFO, owner);
                                 }
-                            } else {
-                                Tools.formatMsg(player, Lang.CLICKINFO, owner);
                             }
-                        } else {
-                            Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
+                        if(!hadOwner) Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         break;
                     case CREEPER:
                         Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_CREEPER));
@@ -230,12 +234,17 @@ class PlayerHeadsListener implements Listener {
                         Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
                         break;
                 }
-            } else if ((VanillaSkullType.fromBlock(block) == VanillaSkullType.PLAYER) && (skullState.hasOwner())) {
-                String owner = skullState.getOwningPlayer().toString();
-                CustomSkullType skullType = CustomSkullType.get(owner);
-                if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
-                    skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));
-                    skullState.update();
+            } else if ((VanillaSkullType.fromBlock(block) == VanillaSkullType.PLAYER)) {
+                Skull skullState = (Skull) block.getState();
+                if(skullState.hasOwner()){
+                    String owner = skullState.getOwningPlayer().getName();//was toString() - this just gave the object name, not the owner.
+                    if(owner==null) owner=skullState.getOwner();//I know this is deprecated but the above method is no longer getting the owner name NBT on custom heads.
+                    if(owner!=null) return;//this can still be null for textured heads with no owner name but with a profile field set.
+                    CustomSkullType skullType = CustomSkullType.get(owner);
+                    if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
+                        skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));
+                        skullState.update();
+                    }
                 }
             }
         }

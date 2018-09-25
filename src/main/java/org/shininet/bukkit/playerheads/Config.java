@@ -39,7 +39,7 @@ public final class Config {
             put("mobpkonly", configType.BOOLEAN);
             for (TexturedSkullType skullType : TexturedSkullType.values()) {
                 if(skullType==TexturedSkullType.PLAYER) continue;
-                put(SkullConverter.dropConfigFromSkullType(skullType), configType.DOUBLE);
+                put(skullType.getConfigName(), configType.DOUBLE);
             }
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);

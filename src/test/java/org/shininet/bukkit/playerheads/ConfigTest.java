@@ -26,7 +26,7 @@ public class ConfigTest {
                 if(skullType==TexturedSkullType.PLAYER) continue;
                 String oldconfig = skullType.name().replace("_", "").toLowerCase() + "droprate";
                 if(Config.configKeys.get(oldconfig)==null){
-                    fail("skull drop config entry mismatch: "+oldconfig+" -> "+SkullConverter.dropConfigFromSkullType(skullType));
+                    fail("skull drop config entry mismatch: "+oldconfig+" -> "+skullType.getConfigName());
                 }
         }
     }

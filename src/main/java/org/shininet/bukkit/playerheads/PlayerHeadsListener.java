@@ -77,7 +77,7 @@ class PlayerHeadsListener implements Listener {
         EntityType entityType = event.getEntityType();//entity type of the thing dying.
         TexturedSkullType skullType = SkullConverter.skullTypeFromEntityType(entityType);
         if(skullType==null) return;//entity type is one we don't support - don't attempt to handle heads for it.
-        String mobDropConfig = SkullConverter.dropConfigFromSkullType(skullType);
+        String mobDropConfig = skullType.getConfigName();
         Double droprate = plugin.configFile.getDouble(mobDropConfig);
         //System.out.println(skullType);
         //System.out.println(mobDropConfig);

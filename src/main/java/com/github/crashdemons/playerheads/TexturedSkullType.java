@@ -397,6 +397,17 @@ public enum TexturedSkullType {
         return Mappings.skullsByMaterial.get(mat);
     }
     
+    
+    /**
+     * Get the droprate config name (key) for the given skulltype.
+     * @return A string containing the config entry name (key) for the skulltype
+     */
+    public String getConfigName(){
+        if(this==TexturedSkullType.PLAYER) return "droprate";
+        return name().replace("_", "").toLowerCase() + "droprate";
+    }
+    
+    
     /**
      * Gets the item displayname for the associated skulltype, as defined in the "lang" file.
      * @return A string containing the skulltype's displayname

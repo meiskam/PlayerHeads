@@ -43,6 +43,16 @@ public class TexturedSkullTypeTest {
     public void tearDown() {
     }
 
+    @Test
+    public void testSkullConfigName_Player(){
+        assertEquals(TexturedSkullType.PLAYER.getConfigName(),"droprate");
+    }
+    @Test
+    public void testSkullConfigName_Mob(){
+        assertEquals(TexturedSkullType.WITHER_SKELETON.getConfigName(),"witherskeletondroprate");
+    }
+    
+    
     /**
      * tests enum entry compatibility with org.bukkit.entity.EntityType
      */

@@ -22,11 +22,12 @@ public final class SkullConverter {
      * Get the droprate config name (key) for the given skulltype.
      * @param skullType the TexturedSkullType
      * @return A string containing the config entry name (key) for the skulltype
-     * @see TexturedSkullType
+     * @see TexturedSkullType#getConfigName() 
+     * @deprecated use TexturedSkullType.getConfigName() instead
      */
+    @Deprecated
     public static String dropConfigFromSkullType(TexturedSkullType skullType){
-        if(skullType==TexturedSkullType.PLAYER) return "droprate";
-        return skullType.name().replace("_", "").toLowerCase() + "droprate";
+        return skullType.getConfigName();
     }
     
     /**

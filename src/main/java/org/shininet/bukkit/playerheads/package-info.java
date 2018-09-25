@@ -5,6 +5,5 @@
  * 
  * @author meiskam
  * @author zand
- * @author Gravity (Updater)
  */
 package org.shininet.bukkit.playerheads;

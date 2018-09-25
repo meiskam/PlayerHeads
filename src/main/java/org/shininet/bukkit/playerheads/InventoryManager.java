@@ -46,37 +46,9 @@ public class InventoryManager {
         if (firstEmpty == -1) {
             return false;
         } else {
-            inv.setItem(firstEmpty, Skull(skullOwner, quantity, usevanillaskulls));
+            inv.setItem(firstEmpty, SkullManager.spawnSkull(skullOwner, quantity, usevanillaskulls));
             return true;
         }
-    }
-        /**
-     * Creates a skull or head itemstack as indicated by the input.
-     * @param skullOwner the owner username of the head-item, or the "spawn" string for a supported skull.
-     * @param usevanillaskulls whether vanilla mobheads are permitted (if relevant to the owner parameter).
-     * @return The itemstack desired.
-     */
-    public static ItemStack Skull(String skullOwner, boolean usevanillaskulls) {
-        return Skull(skullOwner, Config.defaultStackSize, usevanillaskulls);
-    }
-
-    /**
-     * Creates a skull or head itemstack as indicated by the input.
-     * @param skullOwner the owner username of the head-item, or the "spawn" string for a supported skull.
-     * @param quantity the number of this item to have in the stack.
-     * @param usevanillaskulls whether vanilla mobheads are permitted (if relevant to the owner parameter).
-     * @return The itemstack desired.
-     */
-    public static ItemStack Skull(String skullOwner, int quantity, boolean usevanillaskulls) {
-        String skullOwnerLC = skullOwner.toLowerCase();
-
-        for (TexturedSkullType skullType : TexturedSkullType.values()) {
-            if (skullOwnerLC.equals(skullType.getSpawnName().toLowerCase())) {
-                
-                return SkullManager.MobSkull(skullType, quantity, usevanillaskulls);
-            }
-        }
-        return SkullManager.PlayerSkull(skullOwner,quantity);
     }
 
 }

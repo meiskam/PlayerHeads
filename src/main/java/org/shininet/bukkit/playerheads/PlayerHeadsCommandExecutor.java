@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
 import java.util.List;
@@ -225,12 +226,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             ItemStack skullOutput;
             if (args.length >= 2) {
                 if (plugin.configFile.getBoolean("fixcase")) {
-                    skullOutput = InventoryManager.Skull(fixcase(args[1]),usevanillaskull);
+                    skullOutput = SkullManager.spawnSkull(fixcase(args[1]),usevanillaskull);
                 } else {
-                    skullOutput = InventoryManager.Skull(args[1],usevanillaskull);
+                    skullOutput = SkullManager.spawnSkull(args[1],usevanillaskull);
                 }
             } else {
-                skullOutput = InventoryManager.Skull("",usevanillaskull);
+                skullOutput = SkullManager.spawnSkull("",usevanillaskull);
             }
             skullOutput.setAmount(skullInput.getAmount());
             ((Player) sender).getEquipment().setItemInMainHand(skullOutput);

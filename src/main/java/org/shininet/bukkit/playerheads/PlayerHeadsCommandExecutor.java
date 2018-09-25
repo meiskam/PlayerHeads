@@ -224,15 +224,13 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             ItemStack skullOutput;
+            String spawnName="";
             if (args.length >= 2) {
-                if (plugin.configFile.getBoolean("fixcase")) {
-                    skullOutput = SkullManager.spawnSkull(fixcase(args[1]),usevanillaskull);
-                } else {
-                    skullOutput = SkullManager.spawnSkull(args[1],usevanillaskull);
-                }
-            } else {
-                skullOutput = SkullManager.spawnSkull("",usevanillaskull);
+                spawnName=args[1];
+                if (plugin.configFile.getBoolean("fixcase"))
+                    spawnName=fixcase(spawnName);
             }
+            skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull);
             skullOutput.setAmount(skullInput.getAmount());
             ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
             formatMsg(sender, scope, Lang.RENAMED_HEAD);

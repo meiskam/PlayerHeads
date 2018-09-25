@@ -4,11 +4,11 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.VanillaSkullType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -69,13 +69,13 @@ public class Tools {
         }
 
         if (skullOwnerLC.equals(Lang.HEAD_SPAWN_CREEPER)) {
-            return Skull(SkullType.CREEPER, quantity);
+            return Skull(VanillaSkullType.CREEPER, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_ZOMBIE)) {
-            return Skull(SkullType.ZOMBIE, quantity);
+            return Skull(VanillaSkullType.ZOMBIE, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_SKELETON)) {
-            return Skull(SkullType.SKELETON, quantity);
+            return Skull(VanillaSkullType.SKELETON, quantity);
         } else if (skullOwnerLC.equals(Lang.HEAD_SPAWN_WITHER)) {
-            return Skull(SkullType.WITHER, quantity);
+            return Skull(VanillaSkullType.WITHER, quantity);
         } else {
             return Skull(skullOwner, null, quantity);
         }
@@ -87,7 +87,7 @@ public class Tools {
     }
 
     public static ItemStack Skull(String skullOwner, String displayName, int quantity) {
-        ItemStack skull = new ItemStack(Material.SKULL_ITEM, quantity, (short) SkullType.PLAYER.ordinal());
+        ItemStack skull = new ItemStack(Material.PLAYER_HEAD, quantity);
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         boolean shouldSet = false;
         if ((skullOwner != null) && (!skullOwner.equals(""))) {
@@ -112,12 +112,12 @@ public class Tools {
         return Skull(type.getOwner(), type.getDisplayName(), quantity);
     }
 
-    public static ItemStack Skull(SkullType type) {
+    public static ItemStack Skull(VanillaSkullType type) {
         return Skull(type, Config.defaultStackSize);
     }
 
-    public static ItemStack Skull(SkullType type, int quantity) {
-        return new ItemStack(Material.SKULL_ITEM, quantity, (short) type.ordinal());
+    public static ItemStack Skull(VanillaSkullType type, int quantity) {
+        return new ItemStack(type.getMaterial(), quantity);
     }
 
     public static String format(String text, String... replacement) {

@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.VanillaSkullType;
 import java.util.List;
 import java.util.Random;
 
@@ -33,6 +34,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 
 /**
  * @author meiskam
@@ -90,7 +92,7 @@ class PlayerHeadsListener implements Listener {
                 return;
             }
 
-            if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
+            if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
                 Location location = player.getLocation();
                 location.getWorld().dropItemNaturally(location, drop);
             } else {
@@ -123,27 +125,27 @@ class PlayerHeadsListener implements Listener {
                 }
             }
         } else if (entityType == EntityType.CREEPER) {
-            EntityDeathHelper(event, SkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
+            EntityDeathHelper(event, VanillaSkullType.CREEPER, plugin.configFile.getDouble("creeperdroprate") * lootingrate);
         } else if (entityType == EntityType.ZOMBIE) {
-            EntityDeathHelper(event, SkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
-        } else if (entityType == EntityType.SKELETON) {
+            EntityDeathHelper(event, VanillaSkullType.ZOMBIE, plugin.configFile.getDouble("zombiedroprate") * lootingrate);
+        } else if (entityType == EntityType.SKELETON || entityType == EntityType.WITHER_SKELETON || entityType == EntityType.STRAY) {//I changed this because entitytype is now distinct for all types of skeleton
             if (event.getEntity() instanceof Stray) {
                 EntityDeathHelper(event, CustomSkullType.STRAY, plugin.configFile.getDouble("straydroprate") * lootingrate);
             } else if (event.getEntity() instanceof WitherSkeleton) {
                 if (plugin.configFile.getDouble("witherdroprate") < 0) {
                     return;
                 }
-                event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.SKULL_ITEM);
-                EntityDeathHelper(event, SkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
+                event.getDrops().removeIf(itemStack -> itemStack.getType() == Material.WITHER_SKELETON_SKULL);
+                EntityDeathHelper(event, VanillaSkullType.WITHER, plugin.configFile.getDouble("witherdroprate") * lootingrate);
             } else if (event.getEntity() instanceof Skeleton) {
-                EntityDeathHelper(event, SkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
+                EntityDeathHelper(event, VanillaSkullType.SKELETON, plugin.configFile.getDouble("skeletondroprate") * lootingrate);
             }
         } else if (entityType == EntityType.SLIME) {
             if (((Slime) event.getEntity()).getSize() == 1) {
                 EntityDeathHelper(event, CustomSkullType.SLIME, plugin.configFile.getDouble("slimedroprate") * lootingrate);
             }
         } else if (entityType == EntityType.ENDER_DRAGON) {
-            EntityDeathHelper(event, SkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
+            EntityDeathHelper(event, VanillaSkullType.DRAGON, plugin.configFile.getDouble("enderdragondroprate") * lootingrate);
         } else {
             try {
                 CustomSkullType customSkullType = CustomSkullType.valueOf(entityType.name());
@@ -166,8 +168,8 @@ class PlayerHeadsListener implements Listener {
 
         ItemStack drop;
 
-        if (type instanceof SkullType) {
-            drop = Tools.Skull((SkullType) type);
+        if (type instanceof VanillaSkullType) {
+            drop = Tools.Skull((VanillaSkullType) type);
         } else if (type instanceof CustomSkullType) {
             drop = Tools.Skull((CustomSkullType) type);
         } else {
@@ -193,10 +195,10 @@ class PlayerHeadsListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
-        if (block != null && block.getType() == Material.SKULL) {
+        if (block != null && VanillaSkullType.hasBlock(block) ) {
             Skull skullState = (Skull) block.getState();
             if (player.hasPermission("playerheads.clickinfo")) {
-                switch (skullState.getSkullType()) {
+                switch (VanillaSkullType.fromBlock(block)) {
                     case PLAYER:
                         if (skullState.hasOwner()) {
                             String owner = skullState.getOwningPlayer().getName();
@@ -228,7 +230,7 @@ class PlayerHeadsListener implements Listener {
                         Tools.formatMsg(player, Lang.CLICKINFO2, Tools.format(Lang.HEAD_ZOMBIE));
                         break;
                 }
-            } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
+            } else if ((VanillaSkullType.fromBlock(block) == VanillaSkullType.PLAYER) && (skullState.hasOwner())) {
                 String owner = skullState.getOwningPlayer().toString();
                 CustomSkullType skullType = CustomSkullType.get(owner);
                 if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
@@ -246,7 +248,7 @@ class PlayerHeadsListener implements Listener {
         }
         Block block = event.getBlock();
         Player player = event.getPlayer();
-        if ((player.getGameMode() != GameMode.CREATIVE) && (block.getType() == Material.SKULL)) {
+        if ((player.getGameMode() != GameMode.CREATIVE) && VanillaSkullType.hasBlock(block)) {
             Skull skull = (Skull) block.getState();
             if (skull.hasOwner()) {
                 //String owner = ChatColor.stripColor(skull.getOwner()); //Unnecessary?

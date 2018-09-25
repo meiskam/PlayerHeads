@@ -96,7 +96,7 @@ public enum LegacySkullType {
      * @return the display name string for the skull.
      */
     public String getDisplayName() {
-        return Tools.format(Lang.getString("HEAD_" + name()));
+        return Formatter.format(Lang.getString("HEAD_" + name()));
     }
 
     /**

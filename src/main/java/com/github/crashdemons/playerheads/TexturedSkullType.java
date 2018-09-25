@@ -3,10 +3,9 @@ package com.github.crashdemons.playerheads;
 
 import java.util.UUID;
 import org.shininet.bukkit.playerheads.Lang;
-import org.shininet.bukkit.playerheads.Tools;
 import java.util.HashMap;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
+import org.shininet.bukkit.playerheads.Formatter;
 
 /**
  * Enumeration of skulls with associated UUID (randomly assigned) and texture string.
@@ -413,7 +412,7 @@ public enum TexturedSkullType {
      * @return A string containing the skulltype's displayname
      */
     public String getDisplayName() {
-        return Tools.format(Lang.getString("HEAD_" + name()));
+        return Formatter.format(Lang.getString("HEAD_" + name()));
     }
     /**
      * Gets the item displayname for a specific playerhead owner by username.
@@ -424,7 +423,7 @@ public enum TexturedSkullType {
      * @return A string containing the user's head displayname
      */
     public static String getDisplayName(String owner) {
-        return Tools.format(Lang.getString("HEAD_PLAYER"),owner);
+        return Formatter.format(Lang.getString("HEAD_PLAYER"),owner);
     }
     /**
      * Get the "spawn" name for the associated skulltype, as defined in the "lang" file.

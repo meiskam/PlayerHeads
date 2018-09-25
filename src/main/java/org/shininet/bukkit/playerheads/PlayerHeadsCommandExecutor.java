@@ -7,8 +7,10 @@ package org.shininet.bukkit.playerheads;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
 import java.util.List;
+import org.bukkit.Bukkit;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +32,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
     }
     
     private void formatMsg(CommandSender sender, String commandscope, String message, String... replacements){
-        Tools.formatMsg(sender, Lang.BRACKET_LEFT + commandscope + Lang.BRACKET_RIGHT + Lang.SPACE + message, replacements);
+        Formatter.formatMsg(sender, Lang.BRACKET_LEFT + commandscope + Lang.BRACKET_RIGHT + Lang.SPACE + message, replacements);
     }
     
     private boolean onCommandConfigGet(CommandSender sender, Command cmd, String label, String[] args, String scope){
@@ -89,7 +91,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                             }
                             break;
                         default:
-                            plugin.logger.warning(Tools.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
+                            plugin.logger.warning(Formatter.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
                             break;
                     }
                     break;
@@ -129,9 +131,9 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             //[ph:config] Subcommands: get, set, reload
             return true;
         }
-        if (args[1].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_GET))) return onCommandConfigGet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_GET);
-        else if (args[1].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_SET))) return onCommandConfigSet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_SET);
-        else if (args[1].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_RELOAD))) return onCommandConfigReload(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_RELOAD);
+        if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_GET))) return onCommandConfigGet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_GET);
+        else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SET))) return onCommandConfigSet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_SET);
+        else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RELOAD))) return onCommandConfigReload(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_RELOAD);
         else {
             scope+=Lang.COLON + Lang.CMD_UNKNOWN;
             formatMsg(sender, scope, Lang.ERROR_INVALID_SUBCOMMAND);
@@ -188,9 +190,9 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return true;
         }
         if (plugin.configFile.getBoolean("fixcase")) {
-            skullOwner = Tools.fixcase(skullOwner);
+            skullOwner = fixcase(skullOwner);
         }
-        if (Tools.addHead(reciever, skullOwner, quantity, usevanillaskull)) {
+        if (InventoryManager.addHead(reciever, skullOwner, quantity, usevanillaskull)) {
             formatMsg(sender, scope, Lang.SPAWNED_HEAD, skullOwner);
         } else {
             formatMsg(sender, scope, Lang.ERROR_INV_FULL);
@@ -223,12 +225,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             ItemStack skullOutput;
             if (args.length >= 2) {
                 if (plugin.configFile.getBoolean("fixcase")) {
-                    skullOutput = Tools.Skull(Tools.fixcase(args[1]),usevanillaskull);
+                    skullOutput = InventoryManager.Skull(fixcase(args[1]),usevanillaskull);
                 } else {
-                    skullOutput = Tools.Skull(args[1],usevanillaskull);
+                    skullOutput = InventoryManager.Skull(args[1],usevanillaskull);
                 }
             } else {
-                skullOutput = Tools.Skull("",usevanillaskull);
+                skullOutput = InventoryManager.Skull("",usevanillaskull);
             }
             skullOutput.setAmount(skullInput.getAmount());
             ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
@@ -268,9 +270,9 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             //[ph] Subcommands: config, spawn, rename
             return true;
         }
-        if (args[0].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_CONFIG))) return onCommandConfig(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_CONFIG);
-        else if (args[0].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_SPAWN))) return onCommandSpawn(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SPAWN);
-        else if (args[0].equalsIgnoreCase(Tools.formatStrip(Lang.CMD_RENAME))) return onCommandRename(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RENAME);
+        if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_CONFIG))) return onCommandConfig(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_CONFIG);
+        else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SPAWN))) return onCommandSpawn(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SPAWN);
+        else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RENAME))) return onCommandRename(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RENAME);
         else {
             scope+=Lang.COLON + Lang.CMD_UNKNOWN;
             formatMsg(sender, scope, Lang.ERROR_INVALID_SUBCOMMAND);
@@ -290,12 +292,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             args[i] = args[i].toLowerCase();
         }
 
-        final String cmd_config = Tools.formatStrip(Lang.CMD_CONFIG);
-        final String cmd_get = Tools.formatStrip(Lang.CMD_GET);
-        final String cmd_reload = Tools.formatStrip(Lang.CMD_RELOAD);
-        final String cmd_rename = Tools.formatStrip(Lang.CMD_RENAME);
-        final String cmd_set = Tools.formatStrip(Lang.CMD_SET);
-        final String cmd_spawn = Tools.formatStrip(Lang.CMD_SPAWN);
+        final String cmd_config = Formatter.formatStrip(Lang.CMD_CONFIG);
+        final String cmd_get = Formatter.formatStrip(Lang.CMD_GET);
+        final String cmd_reload = Formatter.formatStrip(Lang.CMD_RELOAD);
+        final String cmd_rename = Formatter.formatStrip(Lang.CMD_RENAME);
+        final String cmd_set = Formatter.formatStrip(Lang.CMD_SET);
+        final String cmd_spawn = Formatter.formatStrip(Lang.CMD_SPAWN);
 
         if (args.length == 1) {
             if (cmd_config.startsWith(args[0])) {
@@ -350,5 +352,26 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         completions.sort(String.CASE_INSENSITIVE_ORDER);
         return completions;
     }
+    
+    /**
+     * Attempts to find the correct casing for the input username by searching online players, then offline players.
+     * @param inputName the username to fix
+     * @return the same username, but with the case changed, if there was a match.
+     */
+    private static String fixcase(String inputName) {
+        String inputNameLC = inputName.toLowerCase();
+        Player player = Bukkit.getServer().getPlayerExact(inputNameLC);
 
+        if (player != null) {
+            return player.getName();
+        }
+
+        for (OfflinePlayer offPlayer : Bukkit.getServer().getOfflinePlayers()) {
+            if ((offPlayer.getName() != null) && (offPlayer.getName().toLowerCase().equals(inputNameLC))) {
+                return offPlayer.getName();
+            }
+        }
+
+        return inputName;
+    }
 }

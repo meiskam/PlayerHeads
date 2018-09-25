@@ -142,11 +142,11 @@ class PlayerHeadsListener implements Listener {
         if (plugin.configFile.getBoolean("broadcast")) {
             String message;
             if (killer == null) {
-                message = Tools.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
+                message = Formatter.format(Lang.BEHEAD_GENERIC, player.getDisplayName() + ChatColor.RESET);
             } else if (killer == player) {
-                message = Tools.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
+                message = Formatter.format(Lang.BEHEAD_SELF, player.getDisplayName() + ChatColor.RESET);
             } else {
-                message = Tools.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
+                message = Formatter.format(Lang.BEHEAD_OTHER, player.getDisplayName() + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
             }
 
             int broadcastRange = plugin.configFile.getInt("broadcastrange");
@@ -230,14 +230,14 @@ class PlayerHeadsListener implements Listener {
                             if(owner==null) owner="Unknown";
                             
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
-                            Tools.formatMsg(player, Lang.CLICKINFO, owner);
+                            Formatter.formatMsg(player, Lang.CLICKINFO, owner);
                         } else {
                             //player.sendMessage("ClickInfo2 HEAD");
-                            Tools.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
+                            Formatter.formatMsg(player, Lang.CLICKINFO2, Lang.HEAD);
                         }
                         break;
                     default:
-                        Tools.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
+                        Formatter.formatMsg(player, Lang.CLICKINFO2, skullType.getDisplayName());
                         break;
                 }
             }
@@ -329,8 +329,8 @@ class PlayerHeadsListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("playerheads.update") && plugin.getUpdateReady()) {
-            Tools.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName());
-            Tools.formatMsg(player, Lang.UPDATE3, "http://curse.com/bukkit-plugins/minecraft/" + Config.updateSlug);
+            Formatter.formatMsg(player, Lang.UPDATE1, plugin.getUpdateName());
+            Formatter.formatMsg(player, Lang.UPDATE3, "http://curse.com/bukkit-plugins/minecraft/" + Config.updateSlug);
         }
     }
 }

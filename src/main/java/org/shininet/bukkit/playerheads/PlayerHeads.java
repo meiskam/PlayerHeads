@@ -16,6 +16,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
+ * Defines the main plugin class.
+ * 
+ * <i>Note:</i> This documentation was inferred after the fact and may be inaccurate.
  * @author meiskam
  */
 
@@ -26,8 +29,16 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     public FileConfiguration configFile;
     private static boolean updateReady = false;
     private static String updateName = "";
+    /**
+     * State indicating whether NoCheatPlus is enabled on the server.
+     * 
+     * Used internally to enable or disable behavior in helper classes to improve compatibility with NCP.
+     */
     public boolean NCPHook = false;
 
+    /**
+     * Executed when the plugin is enabled by the server
+     */
     @Override
     public void onEnable() {
         logger = getLogger();
@@ -44,7 +55,10 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(listener, this);
         getCommand("PlayerHeads").setExecutor(commandExecutor);
     }
-
+    
+    /**
+     * Executed when the plugin is disabled by the server
+     */
     @Override
     public void onDisable() {
         EntityDeathEvent.getHandlerList().unregister(listener);
@@ -71,10 +85,18 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         }
     }
 
+    /**
+     * Gets whether an update is available for the plugin.
+     * @return whether an update is available for the plugin.
+     */
     public boolean getUpdateReady() {
         return updateReady;
     }
 
+    /**
+     * Gets the version-name associated with the last update checked, if available
+     * @return the version-name associated with the last update checked. If not available: "".
+     */
     public String getUpdateName() {
         return updateName;
     }

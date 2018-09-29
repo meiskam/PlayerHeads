@@ -5,16 +5,16 @@ Bukkit Plugin - Drops a player's head when s/he dies, also mob heads
 * Configure drop rate chances
 * Configure whether player-kills are required to drop
 
-All original credit goes to meiskam for creating the plugin and zand, Dragoboss, any many others for maintaining it.
+All credit goes to meiskam for creating the plugin and zand, Dragoboss, any many others for maintaining it.
 
 # 4.x Branch
 Same simple plugin, new improvements.
 
-This is my personal revision attempting to modernize parts of the PlayerHeads plugin, it contains some significant behavior changes.
+This is revision attempts to modernize parts of the PlayerHeads plugin, it contains some significant behavior changes.
 
 Credit to MagmaVoid_ for going through every single mob to find a texture.
 
-**If you want a version supporting 1.13+ that tries to maintain the old behavior, see the [3.x](https://github.com/crashdemons/PlayerHeads/tree/3.x) branch or any 3.x releases** - These are builds that I have added code shimming to the original code to work with 1.13 with minimal changes.
+**If you want a version supporting 1.13+ that tries to maintain the old behavior, see the [3.x](https://github.com/meiskam/PlayerHeads/tree/3.12.13) branch or any 3.x releases** - These are builds that have added shimming to the original code to work with 1.13 with minimal changes.
 
 
 ## What's New?

@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.VanillaSkullType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -196,7 +197,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
-            if (skullInput.getType() != Material.SKULL_ITEM) {
+            if (!VanillaSkullType.hasItem(skullInput)) {
                 Tools.formatMsg(sender, Lang.BRACKET_LEFT + label + Lang.COLON + Lang.CMD_RENAME + Lang.BRACKET_RIGHT + Lang.SPACE + Lang.ERROR_NOT_A_HEAD);
                 return true;
             }

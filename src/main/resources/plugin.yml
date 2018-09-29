@@ -3,6 +3,8 @@ version: ${project.version}
 description: Drops a player's head when s/he dies, also mob heads
 authors: [meiskam, zand]
 
+api-version: 1.13
+
 main: org.shininet.bukkit.playerheads.PlayerHeads
 database: false
 

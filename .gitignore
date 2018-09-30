@@ -30,3 +30,7 @@
 *.ipr
 *.iws
 .idea/
+
+#personal
+/test-in-spigot.bat
+

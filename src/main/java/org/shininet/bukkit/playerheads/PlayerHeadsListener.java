@@ -199,7 +199,10 @@ class PlayerHeadsListener implements Listener {
                 switch (skullState.getSkullType()) {
                     case PLAYER:
                         if (skullState.hasOwner()) {
-                            String owner = skullState.getOwningPlayer().getName();
+                            String owner = null;
+                            org.bukkit.OfflinePlayer op =skullState.getOwningPlayer();
+                            if(op!=null) owner=op.getName();
+                            if(owner==null) owner=skullState.getOwner();//getOwningPlayer can't always get the name tag from the skull
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             CustomSkullType skullType = CustomSkullType.get(owner);
                             if (skullType != null) {
@@ -229,7 +232,10 @@ class PlayerHeadsListener implements Listener {
                         break;
                 }
             } else if ((skullState.getSkullType() == SkullType.PLAYER) && (skullState.hasOwner())) {
-                String owner = skullState.getOwningPlayer().toString();
+                String owner = null;
+                org.bukkit.OfflinePlayer op =skullState.getOwningPlayer();
+                if(op!=null) owner=op.getName();
+                if(owner==null) owner=skullState.getOwner();//getOwningPlayer can't always get the name tag from the skull
                 CustomSkullType skullType = CustomSkullType.get(owner);
                 if ((skullType != null) && (!owner.equals(skullType.getOwner()))) {
                     skullState.setOwningPlayer(Bukkit.getOfflinePlayer(skullType.getOwner()));

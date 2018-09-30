@@ -4,7 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.InteractSpamPreventer;
+import com.github.crashdemons.playerheads.antispam.InteractSpamPreventer;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;

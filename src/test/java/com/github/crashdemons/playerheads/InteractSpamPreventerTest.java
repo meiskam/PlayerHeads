@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.antispam.InteractSpamPreventer;
 import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -47,9 +48,9 @@ public class InteractSpamPreventerTest {
         
         InteractSpamPreventer antispam = new InteractSpamPreventer();
         
-        assertEquals(antispam.recordEvent(mockEvent).isSpam(),false);
+        assertEquals(false,antispam.recordEvent(mockEvent).isSpam());
         for(int i=0;i<100;i++)
-            assertEquals(antispam.recordEvent(mockEvent).isSpam(),true);
+            assertEquals(true,antispam.recordEvent(mockEvent).isSpam());
         
     }
     @Test

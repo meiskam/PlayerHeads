@@ -71,7 +71,7 @@
 #                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
 # convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
 #                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
-# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within 5 minutes and 5 player deaths). This alleviates some ability to farm heads.
+# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within 5 minutes and 5 player deaths). This alleviates some ability to farm heads. (version 4.3+)
 
 
 pkonly: true

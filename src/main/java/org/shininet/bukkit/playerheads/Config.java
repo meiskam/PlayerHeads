@@ -49,6 +49,7 @@ public final class Config {
             put("dropboringplayerheads", configType.BOOLEAN);
             put("dropvanillaheads", configType.BOOLEAN);
             put("convertvanillaheads", configType.BOOLEAN);
+            put("nerfdeathspam", configType.BOOLEAN);
         }
     };
     /**

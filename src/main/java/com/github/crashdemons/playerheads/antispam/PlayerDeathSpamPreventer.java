@@ -46,7 +46,7 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
         }
     }
     
-
+    @Override
     public SpamResult recordEvent(org.bukkit.event.Event event){
         if(event instanceof EntityDeathEvent)
             return recordEvent((EntityDeathEvent) event);
@@ -61,7 +61,7 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
             if(record.closeTo(otherRecord)){
                 result.toggle();
                 break;
-            }.
+            }
         }
         addRecord(record);
         return result;

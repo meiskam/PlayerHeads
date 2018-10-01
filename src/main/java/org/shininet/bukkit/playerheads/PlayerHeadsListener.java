@@ -8,6 +8,7 @@ import com.github.crashdemons.playerheads.antispam.InteractSpamPreventer;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
+import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
 
 import java.util.List;
 import java.util.Random;
@@ -51,7 +52,8 @@ class PlayerHeadsListener implements Listener {
 
     private final Random prng = new Random();
     private final PlayerHeads plugin;
-    private final InteractSpamPreventer spamPreventer = new InteractSpamPreventer();
+    private final InteractSpamPreventer clickSpamPreventer = new InteractSpamPreventer();
+    private final PlayerDeathSpamPreventer deathSpamPreventer = new PlayerDeathSpamPreventer();
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -83,6 +85,8 @@ class PlayerHeadsListener implements Listener {
         //System.out.println(mobDropConfig);
         switch (skullType) {
             case PLAYER:
+                if (plugin.configFile.getBoolean("nerfdeathspam"))
+                    if(deathSpamPreventer.recordEvent(event).isSpam()) return;
                 PlayerDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             case WITHER_SKELETON:
@@ -113,7 +117,8 @@ class PlayerHeadsListener implements Listener {
             if(plugin.configFile.getBoolean("pkonly")) return;
         }
         if(dropchance >= droprate) return;
-        //TODO: TEST
+        
+        
         
                 
         String skullOwner;
@@ -215,7 +220,7 @@ class PlayerHeadsListener implements Listener {
             if(skullType==null) return;
             //System.out.println(skullType.name());
             
-            if(spamPreventer.recordEvent(event).isSpam()) return;
+            if(clickSpamPreventer.recordEvent(event).isSpam()) return;
             
             if (player.hasPermission("playerheads.clickinfo")) {
                 switch (skullType) {

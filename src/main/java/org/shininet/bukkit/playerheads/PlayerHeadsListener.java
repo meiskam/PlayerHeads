@@ -81,8 +81,6 @@ class PlayerHeadsListener implements Listener {
         if(skullType==null) return;//entity type is one we don't support - don't attempt to handle heads for it.
         String mobDropConfig = skullType.getConfigName();
         Double droprate = plugin.configFile.getDouble(mobDropConfig);
-        //System.out.println(skullType);
-        //System.out.println(mobDropConfig);
         switch (skullType) {
             case PLAYER:
                 if (plugin.configFile.getBoolean("nerfdeathspam"))

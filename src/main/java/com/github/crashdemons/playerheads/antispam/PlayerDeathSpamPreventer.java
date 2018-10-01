@@ -31,7 +31,6 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
                     killerId=null;
                 else
                     killerId=killer.getUniqueId();
-                System.out.println("PlayerDeath "+victimId+" by "+killerId);
             }
         }
         boolean sameKiller(PlayerDeathRecord record){ 
@@ -39,16 +38,9 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
             return killerId.equals(record.killerId);
         }
         boolean closeTo(PlayerDeathRecord record){
-            if(record==null){
-                System.out.println("null comparison");
-                return false;
-            }
-            System.out.println("Comparing "+victimId+" by "+killerId+" :: "+record.victimId+" by "+record.killerId);
-            if(victimId.equals(record.victimId) && sameKiller(record)){
-                System.out.println("  comparison timing");
+            if(record==null) return false;
+            if(victimId.equals(record.victimId) && sameKiller(record))
                 return super.closeTo(record, TIME_THRESHOLD_MS);
-            }
-            System.out.println("  comparison mismatch");
             return false;
         }
     }

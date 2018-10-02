@@ -78,6 +78,7 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito-common</artifactId>     
             <version>1.7.4</version>
+            <scope>test</scope>
         </dependency>
         
         
@@ -170,7 +171,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
+                    <compilerArgument>-Xlint:all</compilerArgument>
                 </configuration>
             </plugin>
             <plugin>

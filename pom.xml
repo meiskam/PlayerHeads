@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>4.3.0-SNAPSHOT</version>
+    <version>4.3.1-SNAPSHOT</version>
     <name>PlayerHeads</name>
 
     <organization>
@@ -118,9 +118,6 @@
     <build>
         <finalName>${project.name}-${project.version}</finalName>
         <resources>
-            <resource>
-                <directory>${basedir}/src/main/java</directory>
-            </resource>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>

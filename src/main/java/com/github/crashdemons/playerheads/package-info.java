@@ -1,7 +1,7 @@
 
 
 /**
- * Package containing my 4.x code contributions, reorganization, and textured-head support for mobs.
+ * Package containing 4.x code contributions, reorganization, and textured-head support for mobs.
  * 
  * @author crashdemons
  */

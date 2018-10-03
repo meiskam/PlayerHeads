@@ -129,7 +129,8 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                     <notimestamp>true</notimestamp>
+                    <excludePackageNames>net.gravitydevelopment.*</excludePackageNames>
+                    <notimestamp>true</notimestamp>
                 </configuration>
                 <executions>
                     <execution>

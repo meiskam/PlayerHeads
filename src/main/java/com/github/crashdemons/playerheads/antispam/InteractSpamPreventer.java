@@ -43,8 +43,11 @@ public class InteractSpamPreventer extends EventSpamPreventer{
     
     /**
      * Records an interaction event internally and prepares a result after analyzing the event.
+     * 
+     * For the current implementation, a click to the same block location by the same user within 1 second is considered spam (within 5 click records).
      * @param event The PlayerInteractEvent to send to the spam-preventer.
      * @return The Spam-detection Result object
+     * @see EventSpamPreventer#recordEvent(org.bukkit.event.Event) 
      */
     public synchronized SpamResult recordEvent(PlayerInteractEvent event){
         SpamResult result = new SpamResult(false);

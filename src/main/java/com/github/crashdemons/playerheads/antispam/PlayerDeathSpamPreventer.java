@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 /**
- *
+ * Helper class that records and detects player deaths being spammed repeatedly (to farm heads, etc).
  * @author crash
  */
 public class PlayerDeathSpamPreventer extends EventSpamPreventer{
@@ -52,6 +52,14 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
         return new SpamResult(false);
     }
     
+    /**
+     * Records an interaction event internally and prepares a result after analyzing the event.
+     * 
+     * For the current implementation, a death by the same person to the same killer (player or null) within 5 minutes is considered spam (within 5 death records).
+     * @param event The EntityDeathEvent to send to the spam-preventer, this is expected to be a player death.
+     * @return The Spam-detection Result object
+     * @see EventSpamPreventer#recordEvent(org.bukkit.event.Event) 
+     */
     public synchronized SpamResult recordEvent(EntityDeathEvent event){
         SpamResult result = new SpamResult(false);
         PlayerDeathRecord record = new PlayerDeathRecord(event);

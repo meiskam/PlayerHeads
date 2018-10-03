@@ -209,6 +209,9 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
+                                <delete>
+                                    <fileset dir="${basedir}/docs" includes="**/*" />
+                                </delete>
                                 <copy todir="${basedir}/docs">
                                     <fileset dir="${project.build.directory}/apidocs" includes="**/*" />
                                 </copy>

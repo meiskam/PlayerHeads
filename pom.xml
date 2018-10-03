@@ -129,6 +129,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
+                     <notimestamp>true</notimestamp>
                 </configuration>
                 <executions>
                     <execution>
@@ -196,6 +197,20 @@
                             <target>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>copy-repo-docs</id>
+                        <phase>install</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${basedir}/docs">
+                                    <fileset dir="${project.build.directory}/apidocs" includes="**/*" />
+                                </copy>
                             </target>
                         </configuration>
                         <goals>

@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
 @SuppressWarnings("ALL")
-public class UTF8Control extends Control { // Copied from jdk1.6.0_38
+class UTF8Control extends Control { // Copied from jdk1.6.0_38
     /**
      * Instantiates a resource bundle for the given bundle name of the given format and locale, using the given class loader if necessary. This method returns <code>null</code> if there is no resource bundle available for the given parameters. If a resource bundle can't be instantiated due to an unexpected error, the error must be reported by throwing an <code>Error</code> or <code>Exception</code> rather than simply returning <code>null</code>.
      * <p>

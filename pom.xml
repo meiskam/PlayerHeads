@@ -209,7 +209,7 @@
                         <phase>install</phase>
                         <configuration>
                             <target>
-                                <delete>
+                                <delete includeEmptyDirs="true" failonerror="false">
                                     <fileset dir="${basedir}/docs" includes="**/*" />
                                 </delete>
                                 <copy todir="${basedir}/docs">

@@ -41,6 +41,7 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
         }
         boolean closeTo(PlayerDeathRecord record){
             if(record==null) return false;
+            if(victimId==null) return false;//this shouldn't be null if the event was properly from a player
             if(victimId.equals(record.victimId) && sameKiller(record))
                 return super.closeTo(record, TIME_THRESHOLD_MS);
             return false;

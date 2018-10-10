@@ -33,9 +33,11 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
                     killerId=killer.getUniqueId();
             }
         }
-        boolean sameKiller(PlayerDeathRecord record){ 
-            if(killerId==null && record.killerId==null) return true;
-            return killerId.equals(record.killerId);
+        boolean sameKiller(PlayerDeathRecord record){
+            if(record==null) return false;//can't match against null record - NPE protection
+            if(killerId==null && record.killerId==null) return true;//if both null (mob death) then they're considered to match.
+            if(killerId==null || record.killerId==null) return false;//killerid null but other killer wasn't null above, then they don't match - prevent NPE on either object below
+            return killerId.equals(record.killerId);//ceck if UUD's match
         }
         boolean closeTo(PlayerDeathRecord record){
             if(record==null) return false;

@@ -11,7 +11,7 @@ import org.bukkit.SkullType;
  *
  * @author crash
  */
-public enum Material {
+public enum FutureMaterial {
     CREEPER_HEAD(SkullType.CREEPER),
     CREEPER_WALL_HEAD(SkullType.CREEPER),
     
@@ -41,7 +41,7 @@ public enum Material {
     private SkullType skullType=null;
     
     
-    Material(SkullType oldSkullType){
+    FutureMaterial(SkullType oldSkullType){
         skullType = oldSkullType;
     }
     

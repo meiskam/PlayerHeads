@@ -1,6 +1,7 @@
 
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.backports.Backports;
 import java.util.Map;
 import java.util.UUID;
 import org.bukkit.Material;
@@ -80,9 +81,12 @@ public final class SkullConverter {
         if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
         //if it's a playerhead, then we need to resolve further
         Skull skullState = (Skull) state;
+        /*
         OfflinePlayer op =skullState.getOwningPlayer();
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
+        */
+        UUID owner = Backports.getOwningUuidDirtyStorageHack(skullState.getOwner());
         if(owner==null) return TexturedSkullType.PLAYER;
         TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
         if(match==null) return TexturedSkullType.PLAYER;

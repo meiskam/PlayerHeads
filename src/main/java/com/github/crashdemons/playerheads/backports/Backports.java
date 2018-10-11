@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.backports;
 
+import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -12,9 +13,9 @@ import java.util.function.Predicate;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.SkullType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.material.MaterialData;
 
 
 /**
@@ -50,5 +51,22 @@ final public class Backports {
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);
     }
+    public static void setOwningPlayer_ByName(SkullMeta meta, OfflinePlayer op){
+        String name = op.getName();
+        meta.setOwner(name);
+    }
     
+    public static SkullType getDedicatedItem(FutureMaterial futureMaterial){
+        return futureMaterial.getSkullType();
+    }
+    public static boolean isDedicatedItem(FutureMaterial futureMaterial){
+        return futureMaterial.getSkullType()!=null;
+    }
+    
+    public static void setOwningUuidDirtyStorageHack(SkullMeta headMeta,UUID id){
+        headMeta.setOwner(id.toString());
+    }
+    public static UUID getOwningUuidDirtyStorageHack(String owner){
+        try{ return UUID.fromString(owner); }catch(Exception e){ return null; }
+    }
 }

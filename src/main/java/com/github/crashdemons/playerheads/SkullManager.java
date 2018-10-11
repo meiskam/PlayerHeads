@@ -1,6 +1,7 @@
 
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.backports.Backports;
 import java.util.UUID;
 import java.lang.reflect.Field;
 
@@ -10,10 +11,10 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import org.bukkit.Material;
+import com.github.crashdemons.playerheads.backports.FutureMaterial;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
-import org.bukkit.inventory.ItemStack;
+import com.github.crashdemons.playerheads.backports.FutureItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import org.shininet.bukkit.playerheads.Config;
@@ -46,7 +47,8 @@ public final class SkullManager {
      * @param owner The OfflinePlayer owning to own the head.
      */
     private static void applyOwningPlayer(SkullMeta headMeta,OfflinePlayer owner){
-        headMeta.setOwningPlayer( owner );
+        //headMeta.setOwningPlayer( owner );
+        Backports.setOwningPlayer_ByName(headMeta, owner);//pretty ugly solution
     }
     /**
      * Sets a display name for the playerhead item's meta
@@ -77,6 +79,7 @@ public final class SkullManager {
             error.printStackTrace();
             return false;
         }
+        Backports.setOwningUuidDirtyStorageHack(headMeta, uuid);
        // System.out.println("done applying.");
         return true;
     }
@@ -88,10 +91,10 @@ public final class SkullManager {
      * 
      * @param type The TexturedSkullType to create heads of.
      * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
-     * @return The ItemStack of heads desired.
+     * @return The FutureItemStack of heads desired.
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
-    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads){
+    public static FutureItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads){
         return MobSkull(type,Config.defaultStackSize, useVanillaHeads);
     }
     
@@ -100,20 +103,20 @@ public final class SkullManager {
      * @param type The TexturedSkullType to create heads of.
      * @param quantity the number of heads to create in the stack
      * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
-     * @return The ItemStack of heads desired.
+     * @return The FutureItemStack of heads desired.
      */
-    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads){
-        Material mat = type.getMaterial();
+    public static FutureItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads){
+        FutureMaterial mat = type.getMaterial();
         
         
         if(type.hasDedicatedItem()){
             if(useVanillaHeads)
-                return new ItemStack(mat,quantity);
-            else mat=Material.PLAYER_HEAD;
+                return new FutureItemStack(mat,quantity);
+            else mat=FutureMaterial.PLAYER_HEAD;
         }
         
         //System.out.println("Player-head");
-        ItemStack stack = new ItemStack(mat,quantity);
+        FutureItemStack stack = new FutureItemStack(mat,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
         applyTexture(headMeta,type.getOwner(),type.getTexture());
@@ -122,11 +125,11 @@ public final class SkullManager {
         stack.setItemMeta(headMeta);
         return stack;
     }
-    private static ItemStack PlayerSkull(OfflinePlayer owner){
+    private static FutureItemStack PlayerSkull(OfflinePlayer owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
-    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity){
-        ItemStack stack = new ItemStack(Material.PLAYER_HEAD,quantity);
+    private static FutureItemStack PlayerSkull(OfflinePlayer owner, int quantity){
+        FutureItemStack stack = new FutureItemStack(FutureMaterial.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         String name=null;
         if(owner!=null){
@@ -149,10 +152,10 @@ public final class SkullManager {
      * 
      * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
      * @param owner The username to create a head for.
-     * @return The ItemStack of heads desired.
+     * @return The FutureItemStack of heads desired.
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
-    public static ItemStack PlayerSkull(String owner){
+    public static FutureItemStack PlayerSkull(String owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
     /**
@@ -162,10 +165,10 @@ public final class SkullManager {
      * 
      * @param owner The username to create a head for.
      * @param quantity The number of heads to create in the stack.
-     * @return The ItemStack of heads desired.
+     * @return The FutureItemStack of heads desired.
      * @throws IllegalArgumentException passed a null or empty username.
      */
-    public static ItemStack PlayerSkull(String owner, int quantity){
+    public static FutureItemStack PlayerSkull(String owner, int quantity){
         if(owner==null || owner.isEmpty()) throw new IllegalArgumentException("Creating a playerhead with a null or empty username is not possible with this method.");
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         return PlayerSkull(op,quantity);
@@ -179,7 +182,7 @@ public final class SkullManager {
      * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
      * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
      */
-    public static ItemStack spawnSkull(String spawnString, boolean usevanillaheads){
+    public static FutureItemStack spawnSkull(String spawnString, boolean usevanillaheads){
         return spawnSkull(spawnString,Config.defaultStackSize,usevanillaheads);
     }
     
@@ -190,7 +193,7 @@ public final class SkullManager {
      * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
      * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
      */
-    public static ItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads){
+    public static FutureItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads){
         TexturedSkullType type;
         if(spawnString.isEmpty()) type=TexturedSkullType.PLAYER;
         else type = TexturedSkullType.getBySpawnName(spawnString);
@@ -226,11 +229,11 @@ public final class SkullManager {
     /*
     //TODO: reinvestigate these approaches as they're preferred to the deprecated username method.
     //these do not properly update head skin in server testing.
-    public static ItemStack PlayerSkull(UUID owner){
+    public static FutureItemStack PlayerSkull(UUID owner){
         return PlayerSkull(owner,Config.defaultStackSize);
     }
     
-    public static ItemStack PlayerSkull(UUID owner, int quantity){
+    public static FutureItemStack PlayerSkull(UUID owner, int quantity){
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
         //this is great but it doesn't update the texture
         return PlayerSkull(op,quantity);

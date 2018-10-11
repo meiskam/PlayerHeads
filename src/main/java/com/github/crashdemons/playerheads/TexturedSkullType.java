@@ -1,11 +1,12 @@
 
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.backports.Backports;
 import java.util.UUID;
 import org.shininet.bukkit.playerheads.Lang;
 import java.util.HashMap;
-//import org.bukkit.Material;
-import com.github.crashdemons.playerheads.backports.Material;
+//import org.bukkit.FutureMaterial;
+import com.github.crashdemons.playerheads.backports.FutureMaterial;
 import org.shininet.bukkit.playerheads.Formatter;
 
 /**
@@ -24,8 +25,8 @@ public enum TexturedSkullType {
      * Skull Type used for indicating unknown playerheads.
      */
     PLAYER(//used for unknown player heads
-        Material.PLAYER_HEAD,
-        Material.PLAYER_WALL_HEAD,
+        FutureMaterial.PLAYER_HEAD,
+        FutureMaterial.PLAYER_WALL_HEAD,
         "a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
@@ -34,8 +35,8 @@ public enum TexturedSkullType {
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWM3OTc0ODJhMTRiZmNiODc3MjU3Y2IyY2ZmMWI2ZTZhOGI4NDEzMzM2ZmZiNGMyOWE2MTM5Mjc4YjQzNmIifX19"
     ),
     WITHER_SKELETON(
-        Material.WITHER_SKELETON_SKULL,
-        Material.WITHER_SKELETON_WALL_SKULL,
+        FutureMaterial.WITHER_SKELETON_SKULL,
+        FutureMaterial.WITHER_SKELETON_WALL_SKULL,
         "c5b5a5a5-8a1d-4c0b-8e9f-5dd4ac8ab9d6",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk1M2I2YzY4NDQ4ZTdlNmI2YmY4ZmIyNzNkNzIwM2FjZDhlMWJlMTllODE0ODFlYWQ1MWY0NWRlNTlhOCJ9fX0="
     ),
@@ -84,14 +85,14 @@ public enum TexturedSkullType {
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTEyNTEyZTdkMDE2YTIzNDNhN2JmZjFhNGNkMTUzNTdhYjg1MTU3OWYxMzg5YmQ0ZTNhMjRjYmViODhiIn19fQ=="
     ),
     CREEPER(
-        Material.CREEPER_HEAD,
-        Material.CREEPER_WALL_HEAD,
+        FutureMaterial.CREEPER_HEAD,
+        FutureMaterial.CREEPER_WALL_HEAD,
         "c66c91fd-6fb5-414f-b70e-39c19edf3d28",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQyNTQ4MzhjMzNlYTIyN2ZmY2EyMjNkZGRhYWJmZTBiMDIxNWY3MGRhNjQ5ZTk0NDQ3N2Y0NDM3MGNhNjk1MiJ9fX0="
     ),
     SKELETON(
-        Material.SKELETON_SKULL,
-        Material.SKELETON_WALL_SKULL,
+        FutureMaterial.SKELETON_SKULL,
+        FutureMaterial.SKELETON_WALL_SKULL,
         "69708f16-9c00-4aa4-9089-247ec1c8d013",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzAxMjY4ZTljNDkyZGExZjBkODgyNzFjYjQ5MmE0YjMwMjM5NWY1MTVhN2JiZjc3ZjRhMjBiOTVmYzAyZWIyIn19fQ=="
     ),
@@ -100,8 +101,8 @@ public enum TexturedSkullType {
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Q1NDE1NDFkYWFmZjUwODk2Y2QyNThiZGJkZDRjZjgwYzNiYTgxNjczNTcyNjA3OGJmZTM5MzkyN2U1N2YxIn19fQ=="
     ),
     ZOMBIE(
-        Material.ZOMBIE_HEAD,
-        Material.ZOMBIE_WALL_HEAD,
+        FutureMaterial.ZOMBIE_HEAD,
+        FutureMaterial.ZOMBIE_WALL_HEAD,
         "a1985e68-5743-42f5-b67a-8e8dd3f8eb11",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZmYzg1NGJiODRjZjRiNzY5NzI5Nzk3M2UwMmI3OWJjMTA2OTg0NjBiNTFhNjM5YzYwZTVlNDE3NzM0ZTExIn19fQ=="
     ),
@@ -138,8 +139,8 @@ public enum TexturedSkullType {
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzg5NTdkNTAyM2M5MzdjNGM0MWFhMjQxMmQ0MzQxMGJkYTIzY2Y3OWE5ZjZhYjM2Yjc2ZmVmMmQ3YzQyOSJ9fX0="
     ),
     ENDER_DRAGON(
-        Material.DRAGON_HEAD,
-        Material.DRAGON_WALL_HEAD,
+        FutureMaterial.DRAGON_HEAD,
+        FutureMaterial.DRAGON_WALL_HEAD,
         "069773eb-ed19-4a82-8ea7-b38a7224e10b",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRlY2MwNDA3ODVlNTQ2NjNlODU1ZWYwNDg2ZGE3MjE1NGQ2OWJiNGI3NDI0YjczODFjY2Y5NWIwOTVhIn19fQ=="
     ),
@@ -273,15 +274,15 @@ public enum TexturedSkullType {
      */
     private final String texture;
     /**
-     * The item and block material associated with the entity if one exists. Otherwise, this will be Material.PLAYER_HEAD
+     * The item and block material associated with the entity if one exists. Otherwise, this will be FutureMaterial.PLAYER_HEAD
      * @see org.bukkit.Material#PLAYER_HEAD
      */
-    private final Material material;
+    private final FutureMaterial material;
     /**
-     * The wall-block material associated with the entity if one exists. Otherwise, this will be Material.PLAYER_WALL_HEAD
+     * The wall-block material associated with the entity if one exists. Otherwise, this will be FutureMaterial.PLAYER_WALL_HEAD
      * @see org.bukkit.Material#PLAYER_WALL_HEAD
      */
-    private final Material wallMaterial;
+    private final FutureMaterial wallMaterial;
     
     /**
      * an inner class containing mapping information / lookup information for the skulltypes,materials, and UUIDs.
@@ -303,7 +304,7 @@ public enum TexturedSkullType {
          * 
          * Note: only contains skulltypes with dedicated materials (vanilla drops) and includes Playerhead materials mapping to PLAYER.
          */
-        public static final HashMap<Material,TexturedSkullType> skullsByMaterial = new HashMap<>();
+        public static final HashMap<FutureMaterial,TexturedSkullType> skullsByMaterial = new HashMap<>();
     }
     
     /**
@@ -312,31 +313,30 @@ public enum TexturedSkullType {
      * @param texture The Base64-encoded string representing the Texture-URL in tags
      */
     TexturedSkullType(String ownerUUID, String texture){
-        this(
-                Material.PLAYER_HEAD,
-                Material.PLAYER_WALL_HEAD,
+        this(FutureMaterial.PLAYER_HEAD,
+                FutureMaterial.PLAYER_WALL_HEAD,
                 UUID.fromString(ownerUUID),
                 texture
         );
     }    
     /**
      * Construct a TexturedSkullType with associated materials specific to this entity
-     * @param material The Material associated with this skulltype/entity
-     * @param wallMaterial The "Wall" block Material associated with this skulltype/entity
+     * @param material The FutureMaterial associated with this skulltype/entity
+     * @param wallMaterial The "Wall" block FutureMaterial associated with this skulltype/entity
      * @param ownerUUID The UUID String to associate with this skulltype and texture
      * @param texture The Base64-encoded string representing the Texture-URL in tags
      */
-    TexturedSkullType(Material material, Material wallMaterial, String ownerUUID, String texture){
+    TexturedSkullType(FutureMaterial material, FutureMaterial wallMaterial, String ownerUUID, String texture){
         this(material,wallMaterial,UUID.fromString(ownerUUID),texture);
     }
     /**
      * Construct a TexturedSkullType with associated materials specific to this entity
-     * @param material The Material associated with this skulltype/entity
-     * @param wallMaterial The "Wall" block Material associated with this skulltype/entity
+     * @param material The FutureMaterial associated with this skulltype/entity
+     * @param wallMaterial The "Wall" block FutureMaterial associated with this skulltype/entity
      * @param owner The UUID to associate with this skulltype and texture
      * @param texture The Base64-encoded string representing the Texture-URL in tags
      */
-    TexturedSkullType(Material material, Material wallMaterial, UUID owner, String texture){
+    TexturedSkullType(FutureMaterial material, FutureMaterial wallMaterial, UUID owner, String texture){
         this.owner=owner;
         this.texture = texture;
         this.material=material;
@@ -363,17 +363,17 @@ public enum TexturedSkullType {
         return texture;
     }
     /**
-     * Get the [floor] block and item Material associated with the skulltype
+     * Get the [floor] block and item FutureMaterial associated with the skulltype
      * @return The material
      */
-    public Material getMaterial(){
+    public FutureMaterial getMaterial(){
         return material;
     }
     /**
      * Get the "wall" block material associated with the skull type
      * @return the "wall" material
      */
-    public Material getWallMaterial(){
+    public FutureMaterial getWallMaterial(){
         return wallMaterial;
     }
     
@@ -386,14 +386,14 @@ public enum TexturedSkullType {
         return Mappings.skullsById.get(owner);
     }
     /**
-     * Finds the skulltype that has the provided Material as its dedicated item or block.
+     * Finds the skulltype that has the provided FutureMaterial as its dedicated item or block.
      * 
      * Note: playerhead materials will return TexturedSkullType.PLAYER
      * 
      * @param mat The material to find the skulltype for.
      * @return if found: a TexturedSkullType, otherwise: null.
      */
-    public static TexturedSkullType get(Material mat){
+    public static TexturedSkullType get(FutureMaterial mat){
         return Mappings.skullsByMaterial.get(mat);
     }
     /**
@@ -459,7 +459,7 @@ public enum TexturedSkullType {
      * @return true: the skulls associated material was a playerhead. false: the skull has a different associated material.
      */
     public boolean isPlayerHead(){
-        return this.material.equals(Material.PLAYER_HEAD);
+        return this.material.equals(FutureMaterial.PLAYER_HEAD);
     }
     /**
      * Checks whether the skulltype uses a specific material/item specific to it.
@@ -469,7 +469,8 @@ public enum TexturedSkullType {
      * @return true: the skulltype has a dedicated item/material or is of type PLAYER.  false: the skulltype is supported as a playerhead (the mob has no special item/material associated).
      */
     public boolean hasDedicatedItem(){
-        return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead());
+        return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead())
+                && Backports.isDedicatedItem(material);
     }
     
     
@@ -479,7 +480,7 @@ public enum TexturedSkullType {
      */
     @Deprecated
     public static void debug(){
-        for(HashMap.Entry<Material,TexturedSkullType> entry : Mappings.skullsByMaterial.entrySet()){
+        for(HashMap.Entry<FutureMaterial,TexturedSkullType> entry : Mappings.skullsByMaterial.entrySet()){
             System.out.println(entry.getKey().name()+" -> "+entry.getValue().name());
         }
     }

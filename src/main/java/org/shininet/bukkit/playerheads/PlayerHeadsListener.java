@@ -9,6 +9,7 @@ import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
+import com.github.crashdemons.playerheads.backports.Backports;
 
 import java.util.List;
 import java.util.Random;
@@ -37,8 +38,6 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
-import java.util.function.Predicate;
-import org.bukkit.GameRule;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
@@ -55,13 +54,6 @@ class PlayerHeadsListener implements Listener {
     private final PlayerHeads plugin;
     private final InteractSpamPreventer clickSpamPreventer = new InteractSpamPreventer();
     private final PlayerDeathSpamPreventer deathSpamPreventer = new PlayerDeathSpamPreventer();
-    
-    private final Predicate<ItemStack> isWitherSkeletonSkull = new Predicate<ItemStack>(){
-        @Override
-        public boolean test(ItemStack itemStack){
-            return itemStack.getType() == Material.WITHER_SKELETON_SKULL;
-        }
-    };
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -98,7 +90,7 @@ class PlayerHeadsListener implements Listener {
             case WITHER_SKELETON:
                 if (droprate < 0) return;//if droprate is <0, don't modify drops
                 
-                event.getDrops().removeIf(isWitherSkeletonSkull);
+                event.getDrops().removeIf(Backports.isVanillaSkull);
                 MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             default:

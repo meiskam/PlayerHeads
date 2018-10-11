@@ -132,7 +132,7 @@ class PlayerHeadsListener implements Listener {
         }   
         
         //drop item naturally if the drops will be modified by another plugin or gamerule.
-        if (plugin.configFile.getBoolean("antideathchest") || player.getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY)) {
+        if (plugin.configFile.getBoolean("antideathchest") || Boolean.valueOf(player.getWorld().getGameRuleValue("keepInventory"))) {
             Location location = player.getLocation();
             location.getWorld().dropItemNaturally(location, drop);
         } else {

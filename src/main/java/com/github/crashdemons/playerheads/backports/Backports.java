@@ -5,7 +5,6 @@
  */
 package com.github.crashdemons.playerheads.backports;
 
-import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -14,6 +13,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Skull;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -68,5 +69,18 @@ final public class Backports {
     }
     public static UUID getOwningUuidDirtyStorageHack(String owner){
         try{ return UUID.fromString(owner); }catch(Exception e){ return null; }
+    }
+    
+    
+    public static FutureMaterial getFutureMaterialFromBlockState(BlockState bs){
+        if(isVanillaSkull(bs.getType())){
+            Skull state = (Skull) bs;
+            SkullType type = state.getSkullType();
+            for(FutureMaterial mat : FutureMaterial.values()){
+                if(mat.getSkullType()==type)
+                    return mat;
+            }
+        }
+        return null;
     }
 }

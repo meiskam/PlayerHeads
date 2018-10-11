@@ -2,7 +2,7 @@
 package com.github.crashdemons.playerheads;
 
 import com.github.crashdemons.playerheads.backports.Backports;
-import java.util.Map;
+import com.github.crashdemons.playerheads.backports.FutureMaterial;
 import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -56,8 +56,8 @@ public final class SkullConverter {
      * @param mat The material to check.
      * @return true: the material is a playerhead. false: the material is not a playerhead.
      */
-    public static boolean isPlayerHead(Material mat){
-        return (mat==Material.PLAYER_HEAD || mat==Material.PLAYER_WALL_HEAD);
+    public static boolean isPlayerHead(FutureMaterial mat){
+        return (mat==FutureMaterial.PLAYER_HEAD || mat==FutureMaterial.PLAYER_WALL_HEAD);
     }
     
     /**
@@ -73,7 +73,8 @@ public final class SkullConverter {
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
     public static TexturedSkullType skullTypeFromBlockState(BlockState state){
-        TexturedSkullType type = TexturedSkullType.get(state.getType());//guess skullState by material
+        FutureMaterial mat = Backports.getFutureMaterialFromBlockState(state);
+        TexturedSkullType type = TexturedSkullType.get(mat);//guess skullState by material
         if(type==null){
             //System.out.println("Material not found "+state.getType().name());
             return null;
@@ -114,10 +115,11 @@ public final class SkullConverter {
         if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
         //now we're checking legacy player skulls
         Material mat = state.getType();
-        if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
+        FutureMaterial fmat = Backports.getFutureMaterialFromBlockState(state);
+        if(fmat!=FutureMaterial.PLAYER_HEAD && fmat!=FutureMaterial.PLAYER_WALL_HEAD) return null;
         Skull skullState = (Skull) state;
         String owner=null;
-        OfflinePlayer op = skullState.getOwningPlayer();
+        OfflinePlayer op = null;//skullState.getOwningPlayer();
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player

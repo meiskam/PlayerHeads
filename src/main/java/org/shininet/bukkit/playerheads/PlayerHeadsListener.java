@@ -10,6 +10,7 @@ import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
 import com.github.crashdemons.playerheads.backports.Backports;
+import com.github.crashdemons.playerheads.backports.FutureMaterial;
 
 import java.util.List;
 import java.util.Random;
@@ -38,7 +39,6 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
 /**
@@ -301,7 +301,8 @@ class PlayerHeadsListener implements Listener {
                             item = SkullManager.PlayerSkull(skull.getOwner());
                             break;
                         default:
-                            boolean blockIsSkinned = SkullConverter.isPlayerHead( block.getType() );
+                            FutureMaterial mat = Backports.getFutureMaterialFromBlockState(state);
+                            boolean blockIsSkinned = SkullConverter.isPlayerHead( mat );
                             boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
                             boolean convertvanillahead = plugin.configFile.getBoolean("convertvanillaheads");
                             

@@ -46,4 +46,5 @@ public enum FutureMaterial {
     }
     
     SkullType getSkullType(){return skullType;}
+    
 }

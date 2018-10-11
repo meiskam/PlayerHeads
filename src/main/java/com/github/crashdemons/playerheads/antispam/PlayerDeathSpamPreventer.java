@@ -26,7 +26,7 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
             if(victimEntity instanceof Player){
                 Player victim = (Player) victimEntity;
                 victimId = victim.getUniqueId();
-                if(victimId==null){
+                if(victimId!=null){
                     Player killer = victim.getKiller();
                     if(killer==null)
                         killerId=null;

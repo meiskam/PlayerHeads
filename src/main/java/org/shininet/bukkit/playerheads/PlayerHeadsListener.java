@@ -79,7 +79,7 @@ class PlayerHeadsListener implements Listener {
         double lootingrate = 1;
 
         if (killer != null) {
-            ItemStack weapon = killer.getEquipment().getItemInMainHand();
+            ItemStack weapon = killer.getEquipment().getItemInHand();
             if (weapon != null) {
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
@@ -285,7 +285,7 @@ class PlayerHeadsListener implements Listener {
                 }
 
                 plugin.getServer().getPluginManager().callEvent(new PlayerAnimationEvent(player));
-                plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getEquipment().getItemInMainHand(), true));
+                plugin.getServer().getPluginManager().callEvent(new BlockDamageEvent(player, block, player.getEquipment().getItemInHand(), true));
 
                 FakeBlockBreakEvent fakebreak = new FakeBlockBreakEvent(block, player);
                 plugin.getServer().getPluginManager().callEvent(fakebreak);

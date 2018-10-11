@@ -217,7 +217,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
                 return true;
             }
-            ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
+            ItemStack skullInput = ((Player) sender).getEquipment().getItemInHand();
             Material inputType = skullInput.getType();
             if ( TexturedSkullType.get(skullInput.getType())==null ) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
@@ -232,7 +232,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             }
             skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull);
             skullOutput.setAmount(skullInput.getAmount());
-            ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
+            ((Player) sender).getEquipment().setItemInHand(skullOutput);
             formatMsg(sender, scope, Lang.RENAMED_HEAD);
             return true;
     }

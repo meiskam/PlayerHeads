@@ -5,8 +5,8 @@
  */
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.backports.FutureMaterial;
 import java.util.UUID;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,7 +60,11 @@ public class TexturedSkullTypeTest {
     public void testEntityCompatibility(){
         System.out.println("testEntityCompatibility (skull maps to entity correctly)");
         for(TexturedSkullType skull : TexturedSkullType.values()){
-            EntityType type2 = EntityType.valueOf( skull.name().toUpperCase() );//throws IllegalArgumentException if conversion fails
+            try{
+                    EntityType type2 = EntityType.valueOf( skull.name().toUpperCase() );//throws IllegalArgumentException if conversion fails
+            }catch(Exception e){
+                System.out.println("   Entity missing for mob skull: "+skull.name()+"  (nonfatal)");
+            }
         }
         
     }
@@ -102,7 +106,7 @@ public class TexturedSkullTypeTest {
     @Test
     public void testGet_Material() {
         System.out.println("get by Material");
-        Material mat = null;
+        FutureMaterial mat = null;
         TexturedSkullType expResult = null;
         TexturedSkullType result = TexturedSkullType.get(mat);
         assertEquals(expResult, result);

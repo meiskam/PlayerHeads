@@ -67,15 +67,15 @@ abstract public class Mocks {
         String name = null;
         if(owningPlayer!=null) name = owningPlayer.getName();
         Skull state = PowerMockito.mock(Skull.class);
-        when(state.getType()).thenReturn(Material.PLAYER_HEAD);
-        when(state.getOwningPlayer()).thenReturn(owningPlayer);
+        when(state.getType()).thenReturn(Material.SKULL);
+        //when(state.getOwningPlayer()).thenReturn(owningPlayer);
         when(state.getOwner()).thenReturn(name);
         
         return state;
     }
     public static BlockState getMockBlockState_Skull(){
         BlockState state = PowerMockito.mock(BlockState.class);
-        when(state.getType()).thenReturn(Material.SKELETON_SKULL);
+        when(state.getType()).thenReturn(Material.SKULL);
         return state;
     }
     

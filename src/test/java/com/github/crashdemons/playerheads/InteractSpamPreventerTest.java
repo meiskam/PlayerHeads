@@ -41,7 +41,7 @@ public class InteractSpamPreventerTest {
         
         Player playerA = Mocks.getMockPlayer("3437cf83-c9b0-4709-a686-b8632b8d6172", "crashdemons", 1, 2, 3);
         
-        Block blockA = Mocks.getMockBlock(Material.PLAYER_HEAD, 7, 8, 9);
+        Block blockA = Mocks.getMockBlock(Material.SKULL, 7, 8, 9);
         
         when(mockEvent.getPlayer()).thenReturn(playerA);
         when(mockEvent.getClickedBlock()).thenReturn(blockA);
@@ -62,7 +62,7 @@ public class InteractSpamPreventerTest {
         InteractSpamPreventer antispam = new InteractSpamPreventer();
         for(int i=0;i<100;i++){
             PlayerInteractEvent mockEvent = PowerMockito.mock(PlayerInteractEvent.class);
-            Block blockA = Mocks.getMockBlock(Material.PLAYER_HEAD, i, i+1, i+2);
+            Block blockA = Mocks.getMockBlock(Material.SKULL, i, i+1, i+2);
             when(mockEvent.getPlayer()).thenReturn(playerA);
             when(mockEvent.getClickedBlock()).thenReturn(blockA);
             assertEquals(antispam.recordEvent(mockEvent).isSpam(),false);
@@ -77,7 +77,7 @@ public class InteractSpamPreventerTest {
         for(int i=100;i<200;i++){
             PlayerInteractEvent mockEvent = PowerMockito.mock(PlayerInteractEvent.class);
             Player playerA = Mocks.getMockPlayer("3437cf83-c9b0-4709-a686-b8632b8d6"+i, "user"+i, i, i+1, i+2);
-            Block blockA = Mocks.getMockBlock(Material.PLAYER_HEAD, 1, 2, 3);
+            Block blockA = Mocks.getMockBlock(Material.SKULL, 1, 2, 3);
             when(mockEvent.getPlayer()).thenReturn(playerA);
             when(mockEvent.getClickedBlock()).thenReturn(blockA);
             assertEquals(antispam.recordEvent(mockEvent).isSpam(),false);

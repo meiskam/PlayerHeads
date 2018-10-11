@@ -31,7 +31,11 @@ public enum Material {
     
     
     PLAYER_HEAD(SkullType.PLAYER),
-    PLAYER_WALL_HEAD(SkullType.PLAYER);
+    PLAYER_WALL_HEAD(SkullType.PLAYER),
+    
+    
+    UNSUPPORTED(null);
+    
     
     
     private SkullType skullType=null;

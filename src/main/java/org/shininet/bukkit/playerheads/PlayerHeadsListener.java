@@ -208,6 +208,8 @@ class PlayerHeadsListener implements Listener {
      */
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
+        //this is disabled until we can find a way to get a UUID from a block.
+        /*
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
         if (block != null) {
@@ -224,6 +226,8 @@ class PlayerHeadsListener implements Listener {
                         Skull skullState=(Skull) block.getState();
                         if (skullState.hasOwner()) {
                             String owner=null;
+                            
+                            
                             
                             OfflinePlayer op = skullState.getOwningPlayer();
                             if(op!=null) owner=op.getName();
@@ -243,8 +247,8 @@ class PlayerHeadsListener implements Listener {
                 }
             }
             SkullManager.updatePlayerSkullState(state);
-            
         }
+        */
     }
 
     /**

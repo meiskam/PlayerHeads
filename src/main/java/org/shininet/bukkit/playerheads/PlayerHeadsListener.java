@@ -37,6 +37,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import java.util.function.Predicate;
 import org.bukkit.GameRule;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -54,6 +55,13 @@ class PlayerHeadsListener implements Listener {
     private final PlayerHeads plugin;
     private final InteractSpamPreventer clickSpamPreventer = new InteractSpamPreventer();
     private final PlayerDeathSpamPreventer deathSpamPreventer = new PlayerDeathSpamPreventer();
+    
+    private final Predicate<ItemStack> isWitherSkeletonSkull = new Predicate<ItemStack>(){
+        @Override
+        public boolean test(ItemStack itemStack){
+            return itemStack.getType() == Material.WITHER_SKELETON_SKULL;
+        }
+    };
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -89,10 +97,8 @@ class PlayerHeadsListener implements Listener {
                 break;
             case WITHER_SKELETON:
                 if (droprate < 0) return;//if droprate is <0, don't modify drops
-                event.getDrops().removeIf(
-                        itemStack -> 
-                                itemStack.getType() == Material.WITHER_SKELETON_SKULL
-                );
+                
+                event.getDrops().removeIf(isWitherSkeletonSkull);
                 MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             default:

@@ -4,7 +4,8 @@ package com.github.crashdemons.playerheads;
 import java.util.UUID;
 import org.shininet.bukkit.playerheads.Lang;
 import java.util.HashMap;
-import org.bukkit.Material;
+//import org.bukkit.Material;
+import com.github.crashdemons.playerheads.backports.Material;
 import org.shininet.bukkit.playerheads.Formatter;
 
 /**

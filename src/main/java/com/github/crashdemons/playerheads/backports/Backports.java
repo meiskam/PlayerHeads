@@ -31,7 +31,7 @@ final public class Backports {
         return (mat==Material.SKULL || mat==Material.SKULL_ITEM);
     }
     
-    public static OfflinePlayer getOwningPlayer(SkullMeta headMeta){
+    public static UUID getOwningUUID(SkullMeta headMeta){
         GameProfile profile = null;
         try {
             Field profileField = headMeta.getClass().getDeclaredField("profile");
@@ -42,7 +42,10 @@ final public class Backports {
             return null;
         }
         if(profile==null) return null;
-        UUID id = profile.getId();
+        return profile.getId();
+    }
+    public static OfflinePlayer getOwningPlayer(SkullMeta headMeta){
+        UUID id = getOwningUUID(headMeta);
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);
     }

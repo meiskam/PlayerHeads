@@ -230,7 +230,7 @@ class PlayerHeadsListener implements Listener {
                             OfflinePlayer op = skullState.getOwningPlayer();
                             if(op!=null) owner=op.getName();
                             if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
-                            if(owner==null) owner="Unknown";
+                            if(owner==null) return;//this is an unsupported custom-texture head. don't print anything.
                             
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             Formatter.formatMsg(player, Lang.CLICKINFO, owner);

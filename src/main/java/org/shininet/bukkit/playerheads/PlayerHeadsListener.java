@@ -39,6 +39,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 
 /**
@@ -210,7 +211,6 @@ class PlayerHeadsListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent event) {
         //this is disabled until we can find a way to get a UUID from a block.
-        /*
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
         if (block != null) {
@@ -230,7 +230,7 @@ class PlayerHeadsListener implements Listener {
                             
                             
                             
-                            OfflinePlayer op = skullState.getOwningPlayer();
+                            OfflinePlayer op = null;//skullState.getOwningPlayer(); //doesn't exist yet
                             if(op!=null) owner=op.getName();
                             if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
                             if(owner==null) owner="Unknown";
@@ -249,7 +249,6 @@ class PlayerHeadsListener implements Listener {
             }
             SkullManager.updatePlayerSkullState(state);
         }
-        */
     }
 
     /**

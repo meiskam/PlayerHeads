@@ -87,7 +87,7 @@ public final class SkullConverter {
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         */
-        UUID owner = Backports.getOwningUuidDirtyStorageHack(skullState.getOwner());
+        UUID owner = Backports.getOwningUUID(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;
         TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
         if(match==null) return TexturedSkullType.PLAYER;
@@ -119,7 +119,7 @@ public final class SkullConverter {
         if(fmat!=FutureMaterial.PLAYER_HEAD && fmat!=FutureMaterial.PLAYER_WALL_HEAD) return null;
         Skull skullState = (Skull) state;
         String owner=null;
-        OfflinePlayer op = null;//skullState.getOwningPlayer();
+        OfflinePlayer op = Backports.getOwningPlayer(skullState);//skullState.getOwningPlayer();
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player

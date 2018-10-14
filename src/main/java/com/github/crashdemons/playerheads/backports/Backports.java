@@ -39,7 +39,20 @@ final public class Backports {
         try {
             Field profileField = headMeta.getClass().getDeclaredField("profile");
             profileField.setAccessible(true);
-            profileField.get(headMeta);
+            profile = (GameProfile) profileField.get(headMeta);
+        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
+            error.printStackTrace();
+            return null;
+        }
+        if(profile==null) return null;
+        return profile.getId();
+    }
+    public static UUID getOwningUUID(Skull skullBlockState){
+        GameProfile profile = null;
+        try {
+            Field profileField = skullBlockState.getClass().getDeclaredField("profile");
+            profileField.setAccessible(true);
+            profile = (GameProfile) profileField.get(skullBlockState);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             error.printStackTrace();
             return null;
@@ -49,6 +62,11 @@ final public class Backports {
     }
     public static OfflinePlayer getOwningPlayer(SkullMeta headMeta){
         UUID id = getOwningUUID(headMeta);
+        if(id==null) return null;
+        return Bukkit.getOfflinePlayer(id);
+    }
+    public static OfflinePlayer getOwningPlayer(Skull skullBlockState){
+        UUID id = getOwningUUID(skullBlockState);
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);
     }
@@ -64,12 +82,6 @@ final public class Backports {
         return futureMaterial.getSkullType()!=null;
     }
     
-    public static void setOwningUuidDirtyStorageHack(SkullMeta headMeta,UUID id){
-        headMeta.setOwner(id.toString());
-    }
-    public static UUID getOwningUuidDirtyStorageHack(String owner){
-        try{ return UUID.fromString(owner); }catch(Exception e){ return null; }
-    }
     
     
     public static FutureMaterial getFutureMaterialFromBlockState(BlockState bs){

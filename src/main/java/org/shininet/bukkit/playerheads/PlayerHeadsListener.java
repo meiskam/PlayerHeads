@@ -216,6 +216,7 @@ class PlayerHeadsListener implements Listener {
         if (block != null) {
             BlockState state = block.getState();
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+            System.out.println("Interact skull type: "+skullType);
             if(skullType==null) return;
             //System.out.println(skullType.name());
             
@@ -230,7 +231,7 @@ class PlayerHeadsListener implements Listener {
                             
                             
                             
-                            OfflinePlayer op = null;//skullState.getOwningPlayer(); //doesn't exist yet
+                            OfflinePlayer op = Backports.getOwningPlayer(skullState);//null;//skullState.getOwningPlayer(); //doesn't exist yet
                             if(op!=null) owner=op.getName();
                             if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
                             if(owner==null) owner="Unknown";
@@ -298,6 +299,7 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
+                            System.out.println("playerskull owner: "+skull.getOwner());
                             item = SkullManager.PlayerSkull(skull.getOwner());
                             break;
                         default:

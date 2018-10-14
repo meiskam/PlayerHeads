@@ -79,7 +79,6 @@ public final class SkullManager {
             error.printStackTrace();
             return false;
         }
-        Backports.setOwningUuidDirtyStorageHack(headMeta, uuid);
        // System.out.println("done applying.");
         return true;
     }

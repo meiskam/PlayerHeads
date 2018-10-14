@@ -221,7 +221,7 @@ class PlayerHeadsListener implements Listener {
         if (block != null) {
             BlockState state = block.getState();
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
-            System.out.println("Interact skull type: "+skullType);
+            //System.out.println("Interact skull type: "+skullType);
             if(skullType==null) return;
             //System.out.println(skullType.name());
             
@@ -304,8 +304,8 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
-                            System.out.println("playerskull owner: "+skull.getOwner());
-                            item = SkullManager.PlayerSkull(skull.getOwner());
+                            //System.out.println("playerskull owner: "+skull.getOwner());
+                            item = SkullManager.PlayerSkull(skull.getOwner());//TODO: this is unchecked.
                             break;
                         default:
                             FutureMaterial mat = Backports.getFutureMaterialFromBlockState(state);

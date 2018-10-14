@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -177,14 +177,18 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#getOwningUUID-org.bukkit.inventory.meta.SkullMeta-">getOwningUUID</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;headMeta)</code>&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#isDedicatedItem-com.github.crashdemons.playerheads.backports.FutureMaterial-">isDedicatedItem</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/backports/FutureMaterial.html" title="enum in com.github.crashdemons.playerheads.backports">FutureMaterial</a>&nbsp;futureMaterial)</code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#getSkullTypeFromSkeletonEntity-org.bukkit.entity.Skeleton-">getSkullTypeFromSkeletonEntity</a></span>(org.bukkit.entity.Skeleton&nbsp;entity)</code>&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#isVanillaSkull-org.bukkit.Material-">isVanillaSkull</a></span>(org.bukkit.Material&nbsp;mat)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#isDedicatedItem-com.github.crashdemons.playerheads.backports.FutureMaterial-">isDedicatedItem</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/backports/FutureMaterial.html" title="enum in com.github.crashdemons.playerheads.backports">FutureMaterial</a>&nbsp;futureMaterial)</code>&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#isVanillaSkull-org.bukkit.Material-">isVanillaSkull</a></span>(org.bukkit.Material&nbsp;mat)</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/backports/Backports.html#setOwningPlayer_ByName-org.bukkit.inventory.meta.SkullMeta-org.bukkit.OfflinePlayer-">setOwningPlayer_ByName</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;meta,
                       org.bukkit.OfflinePlayer&nbsp;op)</code>&nbsp;</td>
@@ -228,6 +232,15 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getSkullTypeFromSkeletonEntity-org.bukkit.entity.Skeleton-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSkullTypeFromSkeletonEntity</h4>
+<pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a>&nbsp;getSkullTypeFromSkeletonEntity(org.bukkit.entity.Skeleton&nbsp;entity)</pre>
+</li>
+</ul>
 <a name="isVanillaSkull-org.bukkit.Material-">
 <!--   -->
 </a>

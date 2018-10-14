@@ -15,6 +15,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public class FutureItemStack extends org.bukkit.inventory.ItemStack{
     public FutureItemStack(FutureMaterial futureMaterial, int quantity){
-        super(Material.SKULL_ITEM, quantity, (short) futureMaterial.getSkullType().ordinal());
+        super(Material.SKULL_ITEM, quantity, (short) futureMaterial.getSkullTypeSafe().ordinal());
     }
 }

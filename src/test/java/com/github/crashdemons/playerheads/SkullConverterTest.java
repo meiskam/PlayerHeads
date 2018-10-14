@@ -113,6 +113,7 @@ public class SkullConverterTest {
         assertEquals(expResult, result);
     }
     /*
+    //1.13 test only
     @Test
     public void testEntityTypeFromSkullType_Mob_1_13() {
         System.out.println("entityTypeFromSkullType Mob 1.13");

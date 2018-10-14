@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.backports;
 
+import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -15,6 +16,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -29,6 +31,17 @@ final public class Backports {
         @Override
         public boolean test(ItemStack itemStack){ return isVanillaSkull(itemStack.getType()); }
     };
+    
+    public static TexturedSkullType getSkullTypeFromSkeletonEntity(Skeleton entity){
+        switch(entity.getSkeletonType()){
+            case WITHER:
+                return TexturedSkullType.WITHER_SKELETON;
+            case NORMAL:
+                return TexturedSkullType.SKELETON;
+        }
+        return TexturedSkullType.SKELETON;
+    }
+    
     
     public static boolean isVanillaSkull(Material mat){
         return (mat==Material.SKULL || mat==Material.SKULL_ITEM);

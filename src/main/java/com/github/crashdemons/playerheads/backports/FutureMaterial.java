@@ -45,6 +45,12 @@ public enum FutureMaterial {
         skullType = oldSkullType;
     }
     
-    SkullType getSkullType(){return skullType;}
+    SkullType getSkullType(){
+        return skullType;
+    }
+    SkullType getSkullTypeSafe(){
+        if(skullType==null) return SkullType.PLAYER;
+        return skullType;
+    }
     
 }

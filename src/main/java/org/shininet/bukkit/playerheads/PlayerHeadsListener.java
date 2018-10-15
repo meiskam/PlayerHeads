@@ -239,7 +239,7 @@ class PlayerHeadsListener implements Listener {
                             OfflinePlayer op = Backports.getOwningPlayer(skullState);//null;//skullState.getOwningPlayer(); //doesn't exist yet
                             if(op!=null) owner=op.getName();
                             if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
-                            if(owner==null) owner="Unknown";
+                            if(owner==null) return;//we do not modify click behavior from unsupported custom-textured heads without owners. (from 4.3.3)
                             
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             Formatter.formatMsg(player, Lang.CLICKINFO, owner);
@@ -304,8 +304,9 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
-                            //System.out.println("playerskull owner: "+skull.getOwner());
-                            item = SkullManager.PlayerSkull(skull.getOwner());//TODO: this is unchecked.
+                            String owner = skull.getOwner();
+                            if(owner==null) return;//we do not modify drop behavior from unsupported custom-textured heads without owners. (from 4.3.3)
+                            item = SkullManager.PlayerSkull(owner);//TODO: this is unchecked.
                             break;
                         default:
                             FutureMaterial mat = Backports.getFutureMaterialFromBlockState(state);

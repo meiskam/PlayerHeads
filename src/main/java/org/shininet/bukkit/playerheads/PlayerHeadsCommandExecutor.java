@@ -219,7 +219,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             }
             ItemStack skullInput = ((Player) sender).getEquipment().getItemInHand();
             Material inputType = skullInput.getType();
-            if ( Backports.isVanillaSkull(inputType)) {//only vanilla skull items are heads in 1.8 - until 1.9 when the ender dragon is a distinct item - then in 1.13 when every one is split into distinct items.
+            if ( !Backports.isVanillaSkull(inputType)) {//only vanilla skull items are heads in 1.8 - until 1.9 when the ender dragon is a distinct item - then in 1.13 when every one is split into distinct items.
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
                 return true;
             }

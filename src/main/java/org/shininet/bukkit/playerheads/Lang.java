@@ -295,6 +295,7 @@ public final class Lang {
                 locale = "_".concat(locale);
             }
         } catch (MissingResourceException ignored) {
+            if(plugin!=null) plugin.getLogger().warning("Internal language resource bundle missing");
         }
 
         Locale environment_locale = Locale.getDefault();

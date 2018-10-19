@@ -297,16 +297,18 @@ public final class Lang {
         } catch (MissingResourceException ignored) {
         }
 
+        Locale environment_locale = Locale.getDefault();
+        
         try {
             URL[] urls = {plugin.getDataFolder().toURI().toURL()};
-            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
+            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environment_locale, new URLClassLoader(urls), new UTF8Control());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (MissingResourceException e) {
             plugin.saveResource(BUNDLE_NAME.concat(locale).replace('.', '/').concat(".properties"), false);
             try {
                 URL[] urls = {plugin.getDataFolder().toURI().toURL()};
-                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), new URLClassLoader(urls), new UTF8Control());
+                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environment_locale, new URLClassLoader(urls), new UTF8Control());
             } catch (Exception e2) {
                 e2.printStackTrace();
             }

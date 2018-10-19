@@ -299,6 +299,8 @@ public final class Lang {
         }
 
         Locale environment_locale = Locale.getDefault();
+        if(plugin!=null) plugin.getLogger().info("Internal plugin locale: "+internal_locale);
+        if(plugin!=null) plugin.getLogger().info("Environment locale: "+environment_locale.toString()+" / "+environment_locale.toLanguageTag());
         
         try {
             URL[] urls = {plugin.getDataFolder().toURI().toURL()};

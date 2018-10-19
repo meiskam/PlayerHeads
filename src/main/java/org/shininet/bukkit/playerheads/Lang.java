@@ -287,12 +287,12 @@ public final class Lang {
      * @see #reload() 
      */
     public static void reload() {
-        String locale = "";
+        String internal_locale = "";
         try {
             RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME, new UTF8Control());
-            locale = RESOURCE_BUNDLE0.getLocale().toString();
-            if (!(locale.equals(""))) {
-                locale = "_".concat(locale);
+            internal_locale = RESOURCE_BUNDLE0.getLocale().toString();
+            if (!(internal_locale.equals(""))) {
+                internal_locale = "_".concat(internal_locale);
             }
         } catch (MissingResourceException ignored) {
             if(plugin!=null) plugin.getLogger().warning("Internal language resource bundle missing");
@@ -306,7 +306,7 @@ public final class Lang {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (MissingResourceException e) {
-            plugin.saveResource(BUNDLE_NAME.concat(locale).replace('.', '/').concat(".properties"), false);
+            plugin.saveResource(BUNDLE_NAME.concat(internal_locale).replace('.', '/').concat(".properties"), false);
             try {
                 URL[] urls = {plugin.getDataFolder().toURI().toURL()};
                 RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environment_locale, new URLClassLoader(urls), new UTF8Control());

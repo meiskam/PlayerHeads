@@ -2,10 +2,6 @@
 package com.github.crashdemons.playerheads;
 
 import java.util.UUID;
-import java.lang.reflect.Field;
-
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -65,20 +61,8 @@ public final class SkullManager {
      * @return true: the information was properly set on the playerhead; false: there was an error setting the profile field.
      * @author x7aSv
      */
-    private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){//credit to x7aSv
-        //System.out.println("Applying texture...");
-        GameProfile profile = new GameProfile(uuid, null);
-        profile.getProperties().put("textures", new Property("textures", texture));
-        try {
-            Field profileField = headMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(headMeta, profile);
-        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            error.printStackTrace();
-            return false;
-        }
-       // System.out.println("done applying.");
-        return true;
+    private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){
+        return ProfileUtils.setProfile(headMeta, uuid, texture);
     }
     
     /**

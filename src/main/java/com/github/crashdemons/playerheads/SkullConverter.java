@@ -17,7 +17,9 @@ import org.shininet.bukkit.playerheads.LegacySkullType;
  */
 public final class SkullConverter {
     
+    
     private SkullConverter(){}
+    
     
     /**
      * Get the droprate config name (key) for the given skulltype.
@@ -61,6 +63,31 @@ public final class SkullConverter {
     }
     
     /**
+     * Gets the owner player from a playerhead.
+     * 
+     * If there is no OwningPlayer result, this infers one from head's "profile" field.
+     * @param skullMeta ItemMeta for a playerhead item
+     * @return the owning player of the skull
+     */
+    public static OfflinePlayer getSkullOwningPlayer(SkullMeta skullMeta){
+        OfflinePlayer op = skullMeta.getOwningPlayer();
+        if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skullMeta);
+    }
+    /**
+     * Gets the owner username from a playerhead.
+     * 
+     * If there is no OwningPlayer result, this infers one from head's "profile" field.
+     * @param skullBlockState BlockState for a playerhead block
+     * @return the username of the head's owner
+     */
+    public static OfflinePlayer getSkullOwningPlayer(Skull skullBlockState){
+        OfflinePlayer op = skullBlockState.getOwningPlayer();
+        if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skullBlockState);
+    }
+    
+    /**
      * Gets the owner username from a playerhead.
      * @param skullMeta ItemMeta for a playerhead item
      * @return the username of the head's owner
@@ -68,6 +95,7 @@ public final class SkullConverter {
     public static String getSkullOwner(SkullMeta skullMeta){
         String owner=null;
         OfflinePlayer op = skullMeta.getOwningPlayer();
+        if(op==null) op = ProfileUtils.getProfilePlayer(skullMeta);//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullMeta.getOwner();
         return owner;
@@ -80,6 +108,7 @@ public final class SkullConverter {
     public static String getSkullOwner(Skull skullBlockState){
         String owner=null;
         OfflinePlayer op = skullBlockState.getOwningPlayer();
+        if(op==null) op = ProfileUtils.getProfilePlayer(skullBlockState);
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullBlockState.getOwner();
         return owner;
@@ -100,17 +129,20 @@ public final class SkullConverter {
     public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
         TexturedSkullType type = TexturedSkullType.get(stack.getType());//guess skullState by material
         if(type==null){
-            //System.out.println("Material not found "+state.getType().name());
+            System.out.println("Material not found "+stack.getType().name());
             return null;
         }
         if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
         //if it's a playerhead, then we need to resolve further
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        OfflinePlayer op =skullState.getOwningPlayer();
+        OfflinePlayer op =getSkullOwningPlayer(skullState);//skullState.getOwningPlayer();
+        if(op==null) System.out.println("OwningPlayer Null");
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
+        if(owner==null) System.out.println("owner UUID null");
         if(owner==null) return TexturedSkullType.PLAYER;
         TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
+        if(match==null) System.out.println("get-by-uuid null (from "+owner.toString()+")");
         if(match==null) return TexturedSkullType.PLAYER;
         return match;//if match was not null
     }
@@ -169,7 +201,7 @@ public final class SkullConverter {
         if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
         //if it's a playerhead, then we need to resolve further
         Skull skullState = (Skull) state;
-        OfflinePlayer op =skullState.getOwningPlayer();
+        OfflinePlayer op =getSkullOwningPlayer(skullState);//skullState.getOwningPlayer();
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         if(owner==null) return TexturedSkullType.PLAYER;

@@ -138,10 +138,7 @@ public final class SkullConverter {
         Material mat = stack.getType();
         if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        String owner=null;
-        OfflinePlayer op = skullState.getOwningPlayer();
-        if(op!=null) owner=op.getName();
-        if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
+        String owner=getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
         
         LegacySkullType oldtype = LegacySkullType.get(owner);
@@ -204,10 +201,7 @@ public final class SkullConverter {
         Material mat = state.getType();
         if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
         Skull skullState = (Skull) state;
-        String owner=null;
-        OfflinePlayer op = skullState.getOwningPlayer();
-        if(op!=null) owner=op.getName();
-        if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
+        String owner=getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
         
         LegacySkullType oldtype = LegacySkullType.get(owner);

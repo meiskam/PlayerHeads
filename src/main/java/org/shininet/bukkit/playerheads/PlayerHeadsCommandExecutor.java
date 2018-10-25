@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.ArrayList;
@@ -218,8 +219,10 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
+            
             Material inputType = skullInput.getType();
-            if ( TexturedSkullType.get(skullInput.getType())==null ) {
+            TexturedSkullType skullType = SkullConverter.skullTypeFromItemStackLegacy(skullInput);//TexturedSkullType.get(skullInput.getType());
+            if ( skullType==null ) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
                 return true;
             }
@@ -247,16 +250,16 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if(args.length==1){
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.ENDER_DRAGON, 3));
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.COD, 4));
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.SALMON, 5));
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.TROPICAL_FISH, 6));
-                p.getInventory().addItem(SkullManager.MobSkull(TexturedSkullType.HUSK, 7));
-                p.getInventory().addItem(SkullManager.PlayerSkull("xMojooo",8));
+                sender.sendMessage("RN "+sender.hasPermission("playerheads.rename"));
+                sender.sendMessage("RN* "+sender.hasPermission("playerheads.rename.*"));
+                sender.sendMessage("RNM "+sender.hasPermission("playerheads.rename.mob"));
+                sender.sendMessage("RNP "+sender.hasPermission("playerheads.rename.player"));
+                sender.sendMessage("SP "+sender.hasPermission("playerheads.spawn"));
+                sender.sendMessage("SPO"+sender.hasPermission("playerheads.spawn.own"));
+                sender.sendMessage("SPFO"+sender.hasPermission("playerheads.spawn.forothers"));
                 return true;
             }
-        }
-        */
+        }*/
         
         String scope=label;
         

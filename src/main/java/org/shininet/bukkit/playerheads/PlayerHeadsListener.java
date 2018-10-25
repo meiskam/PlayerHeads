@@ -225,11 +225,7 @@ class PlayerHeadsListener implements Listener {
                     case PLAYER:
                         Skull skullState=(Skull) block.getState();
                         if (skullState.hasOwner()) {
-                            String owner=null;
-                            
-                            OfflinePlayer op = skullState.getOwningPlayer();
-                            if(op!=null) owner=op.getName();
-                            if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT.
+                            String owner=SkullConverter.getSkullOwner(skullState);
                             if(owner==null) return;//this is an unsupported custom-texture head. don't print anything.
                             
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
@@ -296,7 +292,7 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
-                            String owner = skull.getOwner();
+                            String owner = SkullConverter.getSkullOwner(skull);//TODO: test breaking playerheads since this change introduces extended checking.
                             if(owner==null) return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
                             item = SkullManager.PlayerSkull(owner);
                             break;

@@ -61,6 +61,31 @@ public final class SkullConverter {
     }
     
     /**
+     * Gets the owner username from a playerhead.
+     * @param skullMeta ItemMeta for a playerhead item
+     * @return the username of the head's owner
+     */
+    public static String getSkullOwner(SkullMeta skullMeta){
+        String owner=null;
+        OfflinePlayer op = skullMeta.getOwningPlayer();
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=skullMeta.getOwner();
+        return owner;
+    }
+    /**
+     * Gets the owner username from a playerhead.
+     * @param skullBlockState BlockState for a playerhead block
+     * @return the username of the head's owner
+     */
+    public static String getSkullOwner(Skull skullBlockState){
+        String owner=null;
+        OfflinePlayer op = skullBlockState.getOwningPlayer();
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=skullBlockState.getOwner();
+        return owner;
+    }
+    
+    /**
      * Attempts to determine a TexturedSkullType from an itemstack's information.
      * 
      * This first attempts to guess the skulltype from the stacks's Material (whether it is a player or vanilla head drop).

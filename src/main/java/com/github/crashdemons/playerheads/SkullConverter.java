@@ -129,20 +129,17 @@ public final class SkullConverter {
     public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
         TexturedSkullType type = TexturedSkullType.get(stack.getType());//guess skullState by material
         if(type==null){
-            System.out.println("Material not found "+stack.getType().name());
+            //System.out.println("Material not found "+stack.getType().name());
             return null;
         }
         if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
         //if it's a playerhead, then we need to resolve further
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
         OfflinePlayer op =getSkullOwningPlayer(skullState);//skullState.getOwningPlayer();
-        if(op==null) System.out.println("OwningPlayer Null");
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
-        if(owner==null) System.out.println("owner UUID null");
         if(owner==null) return TexturedSkullType.PLAYER;
         TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
-        if(match==null) System.out.println("get-by-uuid null (from "+owner.toString()+")");
         if(match==null) return TexturedSkullType.PLAYER;
         return match;//if match was not null
     }

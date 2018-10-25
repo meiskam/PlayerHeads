@@ -1,13 +1,14 @@
 
 package com.github.crashdemons.playerheads;
 
-import java.util.Map;
 import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.shininet.bukkit.playerheads.LegacySkullType;
 
 /**
@@ -57,6 +58,72 @@ public final class SkullConverter {
      */
     public static boolean isPlayerHead(Material mat){
         return (mat==Material.PLAYER_HEAD || mat==Material.PLAYER_WALL_HEAD);
+    }
+    
+    /**
+     * Attempts to determine a TexturedSkullType from an itemstack's information.
+     * 
+     * This first attempts to guess the skulltype from the stacks's Material (whether it is a player or vanilla head drop).
+     * If it is a player-head, then it checks whether the associated UUID matches a TexturedSkullType entry.
+     * 
+     * 
+     * @param stack The stack to determine the skulltype of.
+     * @return <ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
+     *         <li>null (if the material is unsupported)</li>
+     *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
+     */
+    public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
+        TexturedSkullType type = TexturedSkullType.get(stack.getType());//guess skullState by material
+        if(type==null){
+            //System.out.println("Material not found "+state.getType().name());
+            return null;
+        }
+        if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
+        //if it's a playerhead, then we need to resolve further
+        SkullMeta skullState = (SkullMeta) stack.getItemMeta();
+        OfflinePlayer op =skullState.getOwningPlayer();
+        if(op==null) return TexturedSkullType.PLAYER;
+        UUID owner = op.getUniqueId();
+        if(owner==null) return TexturedSkullType.PLAYER;
+        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
+        if(match==null) return TexturedSkullType.PLAYER;
+        return match;//if match was not null
+    }
+    
+    /**
+     * Attempts to determine a TexturedSkullType from a itemstack's information, with support for legacy username-based mobheads.
+     * 
+     * This method first checks skullTypeFromItemStack() for skulltype.
+     * If the skulltype returned is TexturedSkullType.PLAYER (unknown playerhead), 
+     * then this method attempts to associate the head's username with a LegacySkullType and upgrade it to the respective TexturedSkullType.
+     * 
+     * @param stack The stack to determine the skulltype of.
+     * @return <ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
+     *         <li>null (if the material is unsupported)</li>
+     *         <li>TexturedSkullType.PLAYER (if a playerhead UUID and username was not associated with any mob)</li></ul>
+     * @see #skullTypeFromItemStack(org.bukkit.inventory.ItemStack) 
+     * @see org.shininet.bukkit.playerheads.LegacySkullType
+     * @deprecated Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term, skullTypeFromBlockState should be used if legacy support is not needed.
+     */
+    @Deprecated
+    public static TexturedSkullType skullTypeFromItemStackLegacy(ItemStack stack){//with legacy name matching support
+        TexturedSkullType type = skullTypeFromItemStack(stack);
+        if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
+        //now we're checking legacy player skulls
+        Material mat = stack.getType();
+        if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
+        SkullMeta skullState = (SkullMeta) stack.getItemMeta();
+        String owner=null;
+        OfflinePlayer op = skullState.getOwningPlayer();
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=skullState.getOwner();//this is deprecated, but the above method does NOT get the name tag from the NBT unless user has logged in!
+        if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
+        
+        LegacySkullType oldtype = LegacySkullType.get(owner);
+        if(oldtype==null) return TexturedSkullType.PLAYER;//we can't resolve a legacy type for this playerhead so...
+        
+        return upgradeSkullTypeLegacy(oldtype);
+        
     }
     
     /**

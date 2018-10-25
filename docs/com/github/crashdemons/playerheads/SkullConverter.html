@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":41,"i1":9,"i2":9,"i3":9,"i4":41,"i5":9,"i6":41};
+var methods = {"i0":41,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":41,"i9":9,"i10":9,"i11":41,"i12":41};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../com/github/crashdemons/playerheads/ProfileUtils.html" title="class in com.github.crashdemons.playerheads"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../com/github/crashdemons/playerheads/SkullManager.html" title="class in com.github.crashdemons.playerheads"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -149,18 +149,42 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#getSkullOwner-org.bukkit.block.Skull-">getSkullOwner</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>
+<div class="block">Gets the owner username from a playerhead.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#getSkullOwner-org.bukkit.inventory.meta.SkullMeta-">getSkullOwner</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullMeta)</code>
+<div class="block">Gets the owner username from a playerhead.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static org.bukkit.OfflinePlayer</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#getSkullOwningPlayer-org.bukkit.block.Skull-">getSkullOwningPlayer</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>
+<div class="block">Gets the owner username from a playerhead.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static org.bukkit.OfflinePlayer</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#getSkullOwningPlayer-org.bukkit.inventory.meta.SkullMeta-">getSkullOwningPlayer</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullMeta)</code>
+<div class="block">Gets the owner player from a playerhead.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#isPlayerHead-org.bukkit.Material-">isPlayerHead</a></span>(org.bukkit.Material&nbsp;mat)</code>
 <div class="block">Checks if the material provided is a player-head type of any description.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromBlockState-org.bukkit.block.BlockState-">skullTypeFromBlockState</a></span>(org.bukkit.block.BlockState&nbsp;state)</code>
 <div class="block">Attempts to determine a TexturedSkullType from a block's blockstate information.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromBlockStateLegacy-org.bukkit.block.BlockState-">skullTypeFromBlockStateLegacy</a></span>(org.bukkit.block.BlockState&nbsp;state)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
@@ -168,13 +192,27 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromEntityType-org.bukkit.entity.EntityType-">skullTypeFromEntityType</a></span>(org.bukkit.entity.EntityType&nbsp;entityType)</code>
 <div class="block">Convert an entity type to a TexturedSkullType.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromItemStack-org.bukkit.inventory.ItemStack-">skullTypeFromItemStack</a></span>(org.bukkit.inventory.ItemStack&nbsp;stack)</code>
+<div class="block">Attempts to determine a TexturedSkullType from an itemstack's information.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromItemStackLegacy-org.bukkit.inventory.ItemStack-">skullTypeFromItemStackLegacy</a></span>(org.bukkit.inventory.ItemStack&nbsp;stack)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term, skullTypeFromBlockState should be used if legacy support is not needed.</span></div>
+</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#upgradeSkullTypeLegacy-org.shininet.bukkit.playerheads.LegacySkullType-">upgradeSkullTypeLegacy</a></span>(<a href="../../../../org/shininet/bukkit/playerheads/LegacySkullType.html" title="enum in org.shininet.bukkit.playerheads">LegacySkullType</a>&nbsp;oldType)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
@@ -258,6 +296,122 @@ public static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/
 <dd><code>mat</code> - The material to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>true: the material is a playerhead. false: the material is not a playerhead.</dd>
+</dl>
+</li>
+</ul>
+<a name="getSkullOwningPlayer-org.bukkit.inventory.meta.SkullMeta-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSkullOwningPlayer</h4>
+<pre>public static&nbsp;org.bukkit.OfflinePlayer&nbsp;getSkullOwningPlayer(org.bukkit.inventory.meta.SkullMeta&nbsp;skullMeta)</pre>
+<div class="block">Gets the owner player from a playerhead.
+ 
+ If there is no OwningPlayer result, this infers one from head's "profile" field.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullMeta</code> - ItemMeta for a playerhead item</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the owning player of the skull</dd>
+</dl>
+</li>
+</ul>
+<a name="getSkullOwningPlayer-org.bukkit.block.Skull-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSkullOwningPlayer</h4>
+<pre>public static&nbsp;org.bukkit.OfflinePlayer&nbsp;getSkullOwningPlayer(org.bukkit.block.Skull&nbsp;skullBlockState)</pre>
+<div class="block">Gets the owner username from a playerhead.
+ 
+ If there is no OwningPlayer result, this infers one from head's "profile" field.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - BlockState for a playerhead block</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the username of the head's owner</dd>
+</dl>
+</li>
+</ul>
+<a name="getSkullOwner-org.bukkit.inventory.meta.SkullMeta-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSkullOwner</h4>
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getSkullOwner(org.bukkit.inventory.meta.SkullMeta&nbsp;skullMeta)</pre>
+<div class="block">Gets the owner username from a playerhead.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullMeta</code> - ItemMeta for a playerhead item</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the username of the head's owner</dd>
+</dl>
+</li>
+</ul>
+<a name="getSkullOwner-org.bukkit.block.Skull-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSkullOwner</h4>
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getSkullOwner(org.bukkit.block.Skull&nbsp;skullBlockState)</pre>
+<div class="block">Gets the owner username from a playerhead.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - BlockState for a playerhead block</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the username of the head's owner</dd>
+</dl>
+</li>
+</ul>
+<a name="skullTypeFromItemStack-org.bukkit.inventory.ItemStack-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>skullTypeFromItemStack</h4>
+<pre>public static&nbsp;<a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a>&nbsp;skullTypeFromItemStack(org.bukkit.inventory.ItemStack&nbsp;stack)</pre>
+<div class="block">Attempts to determine a TexturedSkullType from an itemstack's information.
+ 
+ This first attempts to guess the skulltype from the stacks's Material (whether it is a player or vanilla head drop).
+ If it is a player-head, then it checks whether the associated UUID matches a TexturedSkullType entry.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>stack</code> - The stack to determine the skulltype of.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
+         <li>null (if the material is unsupported)</li>
+         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul></dd>
+</dl>
+</li>
+</ul>
+<a name="skullTypeFromItemStackLegacy-org.bukkit.inventory.ItemStack-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>skullTypeFromItemStackLegacy</h4>
+<pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
+public static&nbsp;<a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a>&nbsp;skullTypeFromItemStackLegacy(org.bukkit.inventory.ItemStack&nbsp;stack)</pre>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term, skullTypeFromBlockState should be used if legacy support is not needed.</span></div>
+<div class="block">Attempts to determine a TexturedSkullType from a itemstack's information, with support for legacy username-based mobheads.
+ 
+ This method first checks skullTypeFromItemStack() for skulltype.
+ If the skulltype returned is TexturedSkullType.PLAYER (unknown playerhead), 
+ then this method attempts to associate the head's username with a LegacySkullType and upgrade it to the respective TexturedSkullType.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>stack</code> - The stack to determine the skulltype of.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
+         <li>null (if the material is unsupported)</li>
+         <li>TexturedSkullType.PLAYER (if a playerhead UUID and username was not associated with any mob)</li></ul></dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromItemStack-org.bukkit.inventory.ItemStack-"><code>skullTypeFromItemStack(org.bukkit.inventory.ItemStack)</code></a>, 
+<a href="../../../../org/shininet/bukkit/playerheads/LegacySkullType.html" title="enum in org.shininet.bukkit.playerheads"><code>LegacySkullType</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -382,7 +536,7 @@ public static&nbsp;<a href="../../../../com/github/crashdemons/playerheads/Textu
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../com/github/crashdemons/playerheads/ProfileUtils.html" title="class in com.github.crashdemons.playerheads"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../com/github/crashdemons/playerheads/SkullManager.html" title="class in com.github.crashdemons.playerheads"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

@@ -292,7 +292,7 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
-                            String owner = SkullConverter.getSkullOwner(skull);//TODO: test breaking playerheads since this change introduces extended checking.
+                            String owner = SkullConverter.getSkullOwner(skull);
                             if(owner==null) return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
                             item = SkullManager.PlayerSkull(owner);
                             break;

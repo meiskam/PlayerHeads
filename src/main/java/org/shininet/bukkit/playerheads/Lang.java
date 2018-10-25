@@ -67,6 +67,9 @@ public final class Lang {
     public static String CMD_GET;
     public static String CMD_RELOAD;
     public static String CMD_RENAME;
+    public static String CMD_RENAME_SCOPE_MOB;
+    public static String CMD_RENAME_SCOPE_PLAYER;
+    public static String CMD_RENAME_SCOPE_ALL;
     public static String CMD_SET;
     public static String CMD_SPAWN;
     public static String CMD_UNKNOWN;

@@ -43,6 +43,25 @@ permissions:
   playerheads.config.set:
     description: Allows user to set or reload configs
     default: op
+  playerheads.rename.*:
+    description: Allows a user to rename any head in their hands to any other head
+    default: op
+    children:
+      playerheads.rename: true
+      playerheads.rename.mob: true
+      playerheads.rename.player: true
+  playerheads.rename:
+    description: Allows a user to rename any head in their hands to any other head
+    default: op
+    children:
+      playerheads.rename.mob: true
+      playerheads.rename.player: true
+  playerheads.rename.mob:
+    description: User can rename mob-heads to other mob-heads
+    default: op
+  playerheads.rename.player:
+    description: User can rename player-heads to other player-heads
+    default: op
   playerheads.spawn.*:
     description: Spawn player heads
     default: op
@@ -59,9 +78,6 @@ permissions:
     default: op
   playerheads.spawn.forother:
     description: Spawn a head into someone elses inventory
-    default: op
-  playerheads.rename:
-    description: User can change the skin of the player head in their hand
     default: op
   playerheads.canbehead:
     description: User can remove heads from others

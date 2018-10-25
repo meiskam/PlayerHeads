@@ -210,7 +210,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 formatMsg(sender, scope, Lang.ERROR_CONSOLE_SPAWN);
                 return true;
             }
-            if (!sender.hasPermission("playerheads.rename")) {
+            if (!sender.hasPermission("playerheads.rename") && !sender.hasPermission("playerheads.rename.mob") && !sender.hasPermission("playerheads.rename.player")) {
                 formatMsg(sender, scope, Lang.ERROR_PERMISSION);
                 return true;
             }
@@ -218,14 +218,17 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
                 return true;
             }
-            ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
             
+            //input item processing (from inventory)
+            ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
             Material inputType = skullInput.getType();
-            TexturedSkullType skullType = SkullConverter.skullTypeFromItemStackLegacy(skullInput);//TexturedSkullType.get(skullInput.getType());
-            if ( skullType==null ) {
+            TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStackLegacy(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
+            if ( inputSkullType==null ) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
                 return true;
             }
+            
+            //output item processing (to spawnname)
             ItemStack skullOutput;
             String spawnName="";
             if (args.length >= 2) {
@@ -233,6 +236,34 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 if (plugin.configFile.getBoolean("fixcase"))
                     spawnName=fixcase(spawnName);
             }
+            TexturedSkullType outputSkullType = TexturedSkullType.getBySpawnName(spawnName);//here null means it's not a mob head. #player->PLAYER can be a "mob head"
+
+            boolean fromPlayerhead = inputSkullType==TexturedSkullType.PLAYER;//PLAYER here means steve "Player" Heads or XXXXX's Head
+            boolean toPlayerhead = outputSkullType==TexturedSkullType.PLAYER || outputSkullType==null;//PLAYER here means steve "Player" Heads, null==XXXXX's head
+            
+            boolean mobRename=!fromPlayerhead && !toPlayerhead;
+            boolean playerRename = fromPlayerhead && toPlayerhead;
+            
+            boolean hasPermission=false;
+            
+            /*String inName=(inputSkullType==null?"null":inputSkullType.name());
+            String outName=(outputSkullType==null?"null":outputSkullType.name());
+            sender.sendMessage("FSK: "+inName + " " + fromPlayerhead);
+            sender.sendMessage("TSK: "+outName + " " + toPlayerhead);
+            sender.sendMessage("RNM: "+mobRename);
+            sender.sendMessage("RNP: "+playerRename);*/
+            
+            if(mobRename){ hasPermission=sender.hasPermission("playerheads.rename.mob"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_MOB; }
+            else if(playerRename){ hasPermission=sender.hasPermission("playerheads.rename.player"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_PLAYER; }
+            else{ hasPermission=sender.hasPermission("playerheads.rename"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_ALL; }
+            
+            if(!hasPermission){
+                formatMsg(sender, scope, Lang.ERROR_PERMISSION);
+                return true;
+            }
+            
+            
+            
             skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull);
             skullOutput.setAmount(skullInput.getAmount());
             ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
@@ -246,8 +277,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
             return false;
         }
-        /*
-        if(args.length==1){
+        
+        /*if(args.length==1){
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
                 sender.sendMessage("RN "+sender.hasPermission("playerheads.rename"));

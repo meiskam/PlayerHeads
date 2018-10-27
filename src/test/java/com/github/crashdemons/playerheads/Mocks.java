@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads;
 
 import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import static org.powermock.api.mockito.PowerMockito.when;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
@@ -23,7 +25,19 @@ import org.powermock.modules.junit4.PowerMockRunner;
  * @author crash
  */
 @RunWith(PowerMockRunner.class)
+@PrepareForTest({Bukkit.class})
 abstract public class Mocks {
+    
+    public static void setupFakeServerVersion(){
+        try{
+            PowerMockito.mockStatic(Bukkit.class);
+            when(Bukkit.getVersion()).thenReturn("git-SomeWackyServerFork-4454-4ad3bc (MC: 1.13.1)");
+        }catch(Exception e){
+            e.printStackTrace();
+            
+        }
+    }
+    
     
     public static Location getMockLocation(double x, double y, double z){
         Location loc = PowerMockito.mock(Location.class);

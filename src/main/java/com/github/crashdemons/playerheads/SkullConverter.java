@@ -1,11 +1,13 @@
 
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import java.util.UUID;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -20,46 +22,22 @@ public final class SkullConverter {
     
     private SkullConverter(){}
     
-    
-    /**
-     * Get the droprate config name (key) for the given skulltype.
-     * @param skullType the TexturedSkullType
-     * @return A string containing the config entry name (key) for the skulltype
-     * @see TexturedSkullType#getConfigName() 
-     * @deprecated use TexturedSkullType.getConfigName() instead
-     */
-    @Deprecated
-    public static String dropConfigFromSkullType(TexturedSkullType skullType){
-        return skullType.getConfigName();
-    }
-    
     /**
      * Convert an entity type to a TexturedSkullType.  Most mobs (and the player) have a 1:1 mapping.
      * 
      * Note: At the time of writing in 1.13.1 all entities with isAlive() have associated TexturedSkullType's with the exception of GIANT and ARMOR_STAND.
      * Not all entities will have an associated skulltype, not all living entities will have an associated skulltype.
      * 
-     * @param entityType The type of entity to get a skull for
+     * @param entity The entity to get a skull for
      * @return The associated TexturedSkullType, if one exists. Otherwise, null.
      */
-    public static TexturedSkullType skullTypeFromEntityType(EntityType entityType){
-        String entityName = entityType.name().toUpperCase();
+    public static TexturedSkullType skullTypeFromEntity(Entity entity){
+        String entityName = Compatibility.getProvider().getCompatibleNameFromEntity(entity);
         try{
             return TexturedSkullType.valueOf(entityName);
         }catch(IllegalArgumentException e){
             return null;
         }
-    }
-    
-    /**
-     * Checks if the material provided is a player-head type of any description.
-     * 
-     * Checks whether the material is a Player Head or a Player Wall-Head.
-     * @param mat The material to check.
-     * @return true: the material is a playerhead. false: the material is not a playerhead.
-     */
-    public static boolean isPlayerHead(Material mat){
-        return (mat==Material.PLAYER_HEAD || mat==Material.PLAYER_WALL_HEAD);
     }
     
     /**
@@ -70,7 +48,7 @@ public final class SkullConverter {
      * @return the owning player of the skull
      */
     public static OfflinePlayer getSkullOwningPlayer(SkullMeta skullMeta){
-        OfflinePlayer op = skullMeta.getOwningPlayer();
+        OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullMeta);//skullMeta.getOwningPlayer();
         if(op!=null) return op;
         return ProfileUtils.getProfilePlayer(skullMeta);
     }
@@ -82,7 +60,7 @@ public final class SkullConverter {
      * @return the username of the head's owner
      */
     public static OfflinePlayer getSkullOwningPlayer(Skull skullBlockState){
-        OfflinePlayer op = skullBlockState.getOwningPlayer();
+        OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullBlockState);//skullBlockState.getOwningPlayer();
         if(op!=null) return op;
         return ProfileUtils.getProfilePlayer(skullBlockState);
     }
@@ -94,7 +72,7 @@ public final class SkullConverter {
      */
     public static String getSkullOwner(SkullMeta skullMeta){
         String owner=null;
-        OfflinePlayer op = skullMeta.getOwningPlayer();
+        OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullMeta);//skullMeta.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skullMeta);//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullMeta.getOwner();
@@ -107,7 +85,7 @@ public final class SkullConverter {
      */
     public static String getSkullOwner(Skull skullBlockState){
         String owner=null;
-        OfflinePlayer op = skullBlockState.getOwningPlayer();
+        OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullBlockState);//skullBlockState.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skullBlockState);
         if(op!=null) owner=op.getName();
         if(owner==null) owner=skullBlockState.getOwner();
@@ -127,15 +105,11 @@ public final class SkullConverter {
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
     public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
-        TexturedSkullType type = TexturedSkullType.get(stack.getType());//guess skullState by material
-        if(type==null){
-            //System.out.println("Material not found "+stack.getType().name());
-            return null;
-        }
-        if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
-        //if it's a playerhead, then we need to resolve further
+        CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(stack);
+        if(mat==null) return null;
+        if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        OfflinePlayer op =getSkullOwningPlayer(skullState);//skullState.getOwningPlayer();
+        OfflinePlayer op =getSkullOwningPlayer(skullState);
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         if(owner==null) return TexturedSkullType.PLAYER;
@@ -164,8 +138,8 @@ public final class SkullConverter {
         TexturedSkullType type = skullTypeFromItemStack(stack);
         if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
         //now we're checking legacy player skulls
-        Material mat = stack.getType();
-        if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
+        
+        if(!Compatibility.getProvider().isPlayerhead(stack)) return null;
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
         String owner=getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
@@ -190,15 +164,11 @@ public final class SkullConverter {
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
     public static TexturedSkullType skullTypeFromBlockState(BlockState state){
-        TexturedSkullType type = TexturedSkullType.get(state.getType());//guess skullState by material
-        if(type==null){
-            //System.out.println("Material not found "+state.getType().name());
-            return null;
-        }
-        if(type.hasDedicatedItem() && type!=TexturedSkullType.PLAYER) return type;//if it's not a player then it's a dedicated skullState item reserved for the mob
-        //if it's a playerhead, then we need to resolve further
+        CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(state);
+        if(mat==null) return null;
+        if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         Skull skullState = (Skull) state;
-        OfflinePlayer op =getSkullOwningPlayer(skullState);//skullState.getOwningPlayer();
+        OfflinePlayer op =getSkullOwningPlayer(skullState);
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         if(owner==null) return TexturedSkullType.PLAYER;
@@ -227,8 +197,8 @@ public final class SkullConverter {
         TexturedSkullType type = skullTypeFromBlockState(state);
         if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
         //now we're checking legacy player skulls
-        Material mat = state.getType();
-        if(mat!=Material.PLAYER_HEAD && mat!=Material.PLAYER_WALL_HEAD) return null;
+        
+        if(!Compatibility.getProvider().isPlayerhead(state)) return null;
         Skull skullState = (Skull) state;
         String owner=getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player

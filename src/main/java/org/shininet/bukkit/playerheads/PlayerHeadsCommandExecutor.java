@@ -7,11 +7,11 @@ package org.shininet.bukkit.playerheads;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -220,8 +220,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             }
             
             //input item processing (from inventory)
-            ItemStack skullInput = ((Player) sender).getEquipment().getItemInMainHand();
-            Material inputType = skullInput.getType();
+            ItemStack skullInput = Compatibility.getProvider().getItemInMainHand((Player) sender);//.getEquipment().getItemInMainHand();
+            
             TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStackLegacy(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
             if ( inputSkullType==null ) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
@@ -266,7 +266,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             
             skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull);
             skullOutput.setAmount(skullInput.getAmount());
-            ((Player) sender).getEquipment().setItemInMainHand(skullOutput);
+            Compatibility.getProvider().setItemInMainHand((Player) sender,skullOutput);//.getEquipment().setItemInMainHand(skullOutput);
             formatMsg(sender, scope, Lang.RENAMED_HEAD);
             return true;
     }

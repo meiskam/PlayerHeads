@@ -1,4 +1,6 @@
 com.github.crashdemons.playerheads
 com.github.crashdemons.playerheads.antispam
+com.github.crashdemons.playerheads.compatibility
+com.github.crashdemons.playerheads.compatibility.bukkit_1_13
 org.shininet.bukkit.playerheads
 org.shininet.bukkit.playerheads.events

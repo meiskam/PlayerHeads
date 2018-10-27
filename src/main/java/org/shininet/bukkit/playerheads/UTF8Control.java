@@ -47,6 +47,7 @@ class UTF8Control extends Control { // Copied from jdk1.6.0_38
      * @throws IOException                 if an error occurred when reading resources using any I/O operations
      */
     @SuppressWarnings("unchecked")
+    
     public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader, boolean reload) throws IllegalAccessException, InstantiationException, IOException {
         String bundleName = toBundleName(baseName, locale);
         ResourceBundle bundle = null;
@@ -68,24 +69,31 @@ class UTF8Control extends Control { // Copied from jdk1.6.0_38
             final boolean reloadFlag = reload;
             InputStream stream = null;
             try {
-                stream = AccessController.doPrivileged((PrivilegedExceptionAction<InputStream>) () -> {
-                    InputStream is = null;
-                    if (reloadFlag) {
-                        URL url = classLoader.getResource(resourceName);
-                        if (url != null) {
-                            URLConnection connection = url.openConnection();
-                            if (connection != null) {
-                                // Disable caches to get fresh data for reloading.
-                                connection.setUseCaches(false);
-                                is = connection.getInputStream();
+                
+                PrivilegedExceptionAction<InputStream> action = new PrivilegedExceptionAction<InputStream>() {
+                    @Override
+                    public InputStream run() throws IOException {
+                        InputStream is = null;
+                        if (reloadFlag) {
+                            URL url = classLoader.getResource(resourceName);
+                            if (url != null) {
+                                URLConnection connection = url.openConnection();
+                                if (connection != null) {
+                                    // Disable caches to get fresh data for reloading.
+                                    connection.setUseCaches(false);
+                                    is = connection.getInputStream();
+                                }
                             }
+                        } else {
+                            is = classLoader.getResourceAsStream(resourceName);
                         }
-                    } else {
-                        is = classLoader.getResourceAsStream(resourceName);
+                        return is;
                     }
-                    return is;
-                });
-            } catch (PrivilegedActionException e) {
+                };
+                stream = AccessController.doPrivileged(action);
+                
+                
+            }catch (PrivilegedActionException e) {
                 throw (IOException) e.getException();
             }
             if (stream != null) {

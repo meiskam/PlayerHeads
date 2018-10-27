@@ -4,6 +4,9 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import java.util.ServiceLoader;
 import net.gravitydevelopment.updater.Updater;
 import java.util.logging.Logger;
 
@@ -35,6 +38,11 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      * Used internally to enable or disable behavior in helper classes to improve compatibility with NCP.
      */
     public boolean NCPHook = false;
+    
+    public PlayerHeads(){
+        super();
+        Compatibility.init();
+    }
 
     /**
      * Executed when the plugin is enabled by the server
@@ -42,6 +50,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         logger = getLogger();
+        
         configFile = getConfig();
         configFile.options().copyDefaults(true);
         saveDefaultConfig();
@@ -54,6 +63,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         PlayerHeadsCommandExecutor commandExecutor = new PlayerHeadsCommandExecutor(this);
         getServer().getPluginManager().registerEvents(listener, this);
         getCommand("PlayerHeads").setExecutor(commandExecutor);
+        
+        
+        logger.info("Compatibility-Provider: "+Compatibility.getProvider().getVersion());
     }
     
     /**

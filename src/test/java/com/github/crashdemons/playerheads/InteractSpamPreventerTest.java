@@ -6,18 +6,16 @@
 package com.github.crashdemons.playerheads;
 
 import com.github.crashdemons.playerheads.antispam.InteractSpamPreventer;
-import java.util.UUID;
-import org.bukkit.Location;
+import com.github.crashdemons.playerheads.compatibility.bukkit_1_13.Provider;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
-import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -28,9 +26,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(PlayerInteractEvent.class)
+@Ignore
 public class InteractSpamPreventerTest {
     
     public InteractSpamPreventerTest() {
+        Provider x;
     }
     
 

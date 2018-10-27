@@ -5,8 +5,10 @@
  */
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
+import com.github.crashdemons.playerheads.compatibility.bukkit_1_13.Provider;
 import java.util.UUID;
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,14 +16,23 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  * Tests TexturedSkullType
  * @author crash
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({Bukkit.class})
+@Ignore
 public class TexturedSkullTypeTest {
     
     public TexturedSkullTypeTest() {
+        Provider x;
+        Mocks.setupFakeServerVersion();
     }
     
     @BeforeClass
@@ -102,7 +113,7 @@ public class TexturedSkullTypeTest {
     @Test
     public void testGet_Material() {
         System.out.println("get by Material");
-        Material mat = null;
+        CompatibleSkullMaterial mat = null;
         TexturedSkullType expResult = null;
         TexturedSkullType result = TexturedSkullType.get(mat);
         assertEquals(expResult, result);

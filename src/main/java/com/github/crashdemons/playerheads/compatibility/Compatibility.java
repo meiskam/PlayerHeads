@@ -33,7 +33,7 @@ public class Compatibility {
         }
         if(bestprovider==null) throw new CompatibilityUnavailableException("No suitable compatibility provider could be found.");
         registerProvider(bestprovider);
-        return isUsingFallback;
+        return !isUsingFallback;
     }
     
     public static void registerProvider(CompatibilityProvider obj){

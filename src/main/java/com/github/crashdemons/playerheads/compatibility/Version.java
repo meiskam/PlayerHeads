@@ -33,6 +33,10 @@ public class Version {
         return (versionMajor==major && versionMinor==minor);
     }
     
+    public static String getRawServerVersion(){
+        return Bukkit.getVersion();
+    }
+    
     public static String getString(){
         return versionMajor + "." + versionMinor;
     }
@@ -48,7 +52,7 @@ public class Version {
     }
     
     private static String getMCVersion(){
-        String ver = Bukkit.getVersion();
+        String ver = getRawServerVersion();
         int pos = ver.indexOf("MC: ");
         if(pos==-1) return "";
         String ver_mc_untrimmed=ver.substring(pos+"MC: ".length());

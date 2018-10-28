@@ -73,7 +73,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
             logCompatibilityError("Your server version is not supported for this plugin build.");
             throw e;
         }catch(CompatibilityUnavailableException e){
-            logCompatibilityBug("No compatibility support was found for your server version.");
+            logCompatibilityError("No compatibility support available for your server version - this plugin may have been made for a newer server version. Did you mean to use a backport instead?");
             throw e;
         }
         
@@ -88,10 +88,13 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     
     public PlayerHeads(){
         super();
+    }
+    
+    @Override
+    public void onLoad(){
         logger = getLogger();
+        Lang.init(this);
         initializeCompatibility();
-        
-
     }
 
     /**
@@ -104,7 +107,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         configFile.options().copyDefaults(true);
         saveDefaultConfig();
 
-        Lang.init(this);
         initUpdater();
         initNCPHook();
 

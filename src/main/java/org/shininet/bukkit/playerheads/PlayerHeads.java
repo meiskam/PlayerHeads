@@ -42,12 +42,14 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      */
     public boolean NCPHook = false;
     
+    public boolean compatibilityFailed=false;
     
     private void logCompatibilityIssue(String description, String reportcomment){
         logger.severe(description);
         logger.severe("  Raw server version string: "+Version.getRawServerVersion());
         logger.severe("  Detected server version: "+Version.getString());
         logger.severe(reportcomment);
+        compatibilityFailed=true;
     }
     private void logCompatibilityBug(String description){
         logCompatibilityIssue(
@@ -102,6 +104,11 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      */
     @Override
     public void onEnable() {
+        if(compatibilityFailed){
+            logger.severe("Incompatible plugin - disabling...");
+            this.getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
         
         configFile = getConfig();
         configFile.options().copyDefaults(true);

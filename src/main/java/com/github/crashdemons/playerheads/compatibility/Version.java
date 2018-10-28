@@ -37,7 +37,7 @@ public class Version {
         return versionMajor + "." + versionMinor;
     }
     
-    public static synchronized void init(){
+    public static synchronized void init() throws UnknownVersionException,IncompatibleVersionException{
         if(isInit) return;
         int[] mcver = getMCVersionParts();
         if(mcver==null) throw new UnknownVersionException("The current Bukkit build did not supply a version string that could be understood.");

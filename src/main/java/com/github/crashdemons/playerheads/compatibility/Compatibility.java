@@ -24,7 +24,7 @@ public class Compatibility {
     };
     private static int[] recommendedVersion=null;
     
-    public static synchronized boolean init(){ 
+    public static synchronized boolean init() throws UnknownVersionException,IncompatibleVersionException,CompatibilityUnavailableException,CompatibilityConflictException{ 
         Version.init(); 
         boolean isUsingFallback = false;
         
@@ -38,12 +38,12 @@ public class Compatibility {
         return !isUsingFallback;
     }
     
-    public static void registerProvider(CompatibilityProvider obj){
+    public static void registerProvider(CompatibilityProvider obj) throws CompatibilityConflictException{
         if(provider!=null) throw new CompatibilityConflictException("This project has been misconfigured because multiple compatibility-providers were registered - only one is supported at a time.");
         provider=obj;
     }
-    public static CompatibilityProvider getProvider(){
-        if(provider==null) throw new CompatibilityUnregisteredException("Requested compatibility provider before any were registered.");
+    public static CompatibilityProvider getProvider() throws CompatibilityUnregisteredException{
+        if(provider==null) throw new CompatibilityUnregisteredException("Requested compatibility provider before any were registered - Compatibility.init must run first.");
         return provider;
     }
     
@@ -57,7 +57,11 @@ public class Compatibility {
             int[] ver=supportedVersions[i];
             if(Version.checkAtLeast(ver[0], ver[1])){
                 recommendedVersion=ver;
-                return loadProviderByVersion(ver[0],ver[1]);
+                try{
+                    return loadProviderByVersion(ver[0],ver[1]);
+                }catch(CompatibilityUnavailableException e){
+                    return null;
+                }
             }
         }
         return null;

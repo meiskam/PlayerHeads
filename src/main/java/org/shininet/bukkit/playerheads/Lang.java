@@ -31,6 +31,18 @@ public final class Lang {
     private static ResourceBundle RESOURCE_BUNDLE;
     private static ResourceBundle RESOURCE_BUNDLE0;
 
+    public static String ERROR_COMPATIBILITY;
+    public static String ERROR_COMPATIBILITY_UNKNOWN_VERSION;
+    public static String ERROR_COMPATIBILITY_SERVER_VERSION;
+    public static String ERROR_COMPATIBILITY_NOT_FOUND;
+    public static String WARNING_COMPATIBILITY_DIFFERENT;
+    public static String COMPATIBILITY_REPORT_BUG;
+    public static String COMPATIBILITY_REPORT_ERROR;
+    public static String COMPATIBILITY_VERSION_RAW;
+    public static String COMPATIBILITY_VERSION_DETECTED;
+    public static String COMPATIBILITY_VERSION_RECOMMENDED;
+    public static String COMPATIBILITY_VERSION_CURRENT;
+    
     /**
      * The message displayed when a player is beheaded by anything besides a player.
      * 

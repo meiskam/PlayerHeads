@@ -6,7 +6,6 @@ package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.Version;
-import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityConflictException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnavailableException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.IncompatibleVersionException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
@@ -46,21 +45,21 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     
     private void logCompatibilityIssue(String description, String reportcomment){
         logger.severe(description);
-        logger.severe("  Raw server version string: "+Version.getRawServerVersion());
-        logger.severe("  Detected server version: "+Version.getString());
+        logger.severe("  "+Lang.COMPATIBILITY_VERSION_RAW+Lang.COLON_SPACE+Version.getRawServerVersion());
+        logger.severe("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getString());
         logger.severe(reportcomment);
         compatibilityFailed=true;
     }
     private void logCompatibilityBug(String description){
         logCompatibilityIssue(
                 description,
-                "Please report this as a bug at https://dev.bukkit.org/projects/player-heads/issues with your log file."
+                Lang.COMPATIBILITY_REPORT_BUG
         );
     }
     private void logCompatibilityError(String description){
         logCompatibilityIssue(
                 description,
-                "(If you believe this is incorrect, please report this as a bug at https://dev.bukkit.org/projects/player-heads/issues with your log)"
+                Lang.COMPATIBILITY_REPORT_ERROR
         );
     }
     
@@ -69,21 +68,21 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         try{
             isUsingRecommendedVersion = Compatibility.init();
         }catch(UnknownVersionException e){
-            logCompatibilityBug("The server supplied a version string the plugin could not understand.");
+            logCompatibilityBug(Lang.ERROR_COMPATIBILITY_UNKNOWN_VERSION);
             throw e;//ensure the plugin is not loaded
         }catch(IncompatibleVersionException e){
-            logCompatibilityError("Your server version is not supported for this plugin build.");
+            logCompatibilityError(Lang.ERROR_COMPATIBILITY_SERVER_VERSION);
             throw e;
         }catch(CompatibilityUnavailableException e){
-            logCompatibilityError("No compatibility support available for your server version - this plugin may have been made for a newer server version. Did you mean to use a backport instead?");
+            logCompatibilityError(Lang.ERROR_COMPATIBILITY_NOT_FOUND);
             throw e;
         }
         
         if(!isUsingRecommendedVersion){ 
-            logger.warning("This plugin was made for different server version and may not operate properly:");
-            logger.warning("  Your server version: "+Version.getString());
-            logger.warning("  Recommended plugin version: "+Compatibility.getRecommendedProviderVersion()+" (or better)");
-            logger.warning("  Current plugin version: "+Compatibility.getProvider().getVersion());
+            logger.warning(Lang.WARNING_COMPATIBILITY_DIFFERENT);
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getString());
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_RECOMMENDED+Lang.COLON_SPACE+Compatibility.getRecommendedProviderVersion()+" (or better)");
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getVersion());
         }
     }
     
@@ -105,7 +104,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         if(compatibilityFailed){
-            logger.severe("Incompatible plugin - disabling...");
+            logger.severe(Lang.ERROR_COMPATIBILITY);
             this.getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -123,7 +122,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         getCommand("PlayerHeads").setExecutor(commandExecutor);
         
         
-        logger.info("Compatibility-Provider: "+Compatibility.getProvider().getVersion());
+        logger.info(Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getVersion());
     }
     
     /**

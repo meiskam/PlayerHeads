@@ -5,6 +5,8 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import com.github.crashdemons.playerheads.compatibility.exceptions.IncompatibleVersionException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import org.bukkit.Bukkit;
 
 /**
@@ -36,10 +38,10 @@ public class Version {
     public static synchronized void init(){
         if(isInit) return;
         int[] mcver = getMCVersionParts();
-        if(mcver==null) throw new IllegalStateException("The current Bukkit build did not supply a version string that could be understood.");
+        if(mcver==null) throw new UnknownVersionException("The current Bukkit build did not supply a version string that could be understood.");
         versionMajor=mcver[0];
         versionMinor=mcver[1];
-        if(versionMajor<1 || (versionMajor==1 && versionMinor<8)) throw new IllegalStateException("Server versions under 1.8 are not supported.");
+        if(versionMajor<1 || (versionMajor==1 && versionMinor<8)) throw new IncompatibleVersionException("Server versions under 1.8 are not supported.");
         isInit=true;
     }
     

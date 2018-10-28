@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import com.github.crashdemons.playerheads.compatibility.exceptions.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -25,16 +26,16 @@ public class Compatibility {
     public static synchronized void init(){ 
         Version.init(); 
         CompatibilityProvider bestprovider = getBestProvider();
-        if(bestprovider==null) throw new IllegalStateException("No suitable compatibility provider could be found.");
+        if(bestprovider==null) throw new CompatibilityUnavailableException("No suitable compatibility provider could be found.");
         registerProvider(bestprovider);
     }
     
     public static void registerProvider(CompatibilityProvider obj){
-        if(provider!=null) throw new IllegalStateException("This project has been misconfigured because it contains multiple compatibility-providers.");
+        if(provider!=null) throw new CompatibilityConflictException("This project has been misconfigured because multiple compatibility-providers were registered - only one is supported at a time.");
         provider=obj;
     }
     public static CompatibilityProvider getProvider(){
-        if(provider==null) throw new IllegalStateException("Requested compatibility provider before any were registered.");
+        if(provider==null) throw new CompatibilityUnregisteredException("Requested compatibility provider before any were registered.");
         return provider;
     }
     
@@ -45,7 +46,7 @@ public class Compatibility {
         }
         return null;
     }
-    private static CompatibilityProvider getProviderByVersion(int major,int minor){
+    private static CompatibilityProvider getProviderByVersion(int major,int minor) throws CompatibilityUnavailableException{
         String classname = "com.github.crashdemons.playerheads.compatibility.bukkit_"+major+"_"+minor+".Provider";
         try {
             Class<?> providerClass = Class.forName(classname);
@@ -53,7 +54,7 @@ public class Compatibility {
             Object provider = ctor.newInstance();
             return (CompatibilityProvider) provider;
         } catch (InvocationTargetException | IllegalAccessException | InstantiationException | NoSuchMethodException | ClassNotFoundException e) {
-            throw new IllegalStateException("Missing compatibility provider: "+classname,e);
+            throw new CompatibilityUnavailableException("Missing compatibility provider: "+classname,e);
         }
     }
 }

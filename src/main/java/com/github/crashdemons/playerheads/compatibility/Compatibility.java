@@ -22,14 +22,16 @@ public class Compatibility {
         {1,13},
         {1,8}
     };
+    private static int[] recommendedVersion=null;
     
     public static synchronized boolean init(){ 
         Version.init(); 
         boolean isUsingFallback = false;
-        CompatibilityProvider bestprovider = getBestProvider();
+        
+        CompatibilityProvider bestprovider = loadRecommendedProvider();
         if(bestprovider==null){
             isUsingFallback = true;
-            bestprovider = getFallbackProvider();
+            bestprovider = loadFallbackProvider();
         }
         if(bestprovider==null) throw new CompatibilityUnavailableException("No suitable compatibility provider could be found.");
         registerProvider(bestprovider);
@@ -45,19 +47,29 @@ public class Compatibility {
         return provider;
     }
     
-    private static CompatibilityProvider getBestProvider(){
+    public static String getRecommendedProviderVersion(){
+        if(recommendedVersion==null) return "";
+        return recommendedVersion[0]+"."+recommendedVersion[1];
+    }
+    
+    private static CompatibilityProvider loadRecommendedProvider(){
         for(int i=0;i<supportedVersions.length;i++){
             int[] ver=supportedVersions[i];
-            if(Version.checkAtLeast(ver[0], ver[1])) return getProviderByVersion(ver[0],ver[1]);
+            if(Version.checkAtLeast(ver[0], ver[1])){
+                recommendedVersion=ver;
+                return loadProviderByVersion(ver[0],ver[1]);
+            }
         }
         return null;
     }
-    private static CompatibilityProvider getFallbackProvider(){
+    
+    
+    private static CompatibilityProvider loadFallbackProvider(){
         for(int i=0;i<supportedVersions.length;i++){
             int[] ver=supportedVersions[i];
             if(Version.checkAtLeast(ver[0], ver[1])){
                 try{
-                    return getProviderByVersion(ver[0],ver[1]);
+                    return loadProviderByVersion(ver[0],ver[1]);
                 }catch(CompatibilityUnavailableException e){
                     //do nothing - continue instead
                 }
@@ -65,7 +77,7 @@ public class Compatibility {
         }
         return null;
     }
-    private static CompatibilityProvider getProviderByVersion(int major,int minor) throws CompatibilityUnavailableException{
+    private static CompatibilityProvider loadProviderByVersion(int major,int minor) throws CompatibilityUnavailableException{
         String classname = "com.github.crashdemons.playerheads.compatibility.bukkit_"+major+"_"+minor+".Provider";
         try {
             Class<?> providerClass = Class.forName(classname);

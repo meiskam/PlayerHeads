@@ -33,6 +33,10 @@ public class Version {
         return (versionMajor==major && versionMinor==minor);
     }
     
+    public static String getString(){
+        return versionMajor + "." + versionMinor;
+    }
+    
     public static synchronized void init(){
         if(isInit) return;
         int[] mcver = getMCVersionParts();

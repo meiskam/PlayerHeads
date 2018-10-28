@@ -23,11 +23,17 @@ public class Compatibility {
         {1,8}
     };
     
-    public static synchronized void init(){ 
+    public static synchronized boolean init(){ 
         Version.init(); 
+        boolean isUsingFallback = false;
         CompatibilityProvider bestprovider = getBestProvider();
+        if(bestprovider==null){
+            isUsingFallback = true;
+            bestprovider = getFallbackProvider();
+        }
         if(bestprovider==null) throw new CompatibilityUnavailableException("No suitable compatibility provider could be found.");
         registerProvider(bestprovider);
+        return isUsingFallback;
     }
     
     public static void registerProvider(CompatibilityProvider obj){
@@ -43,6 +49,19 @@ public class Compatibility {
         for(int i=0;i<supportedVersions.length;i++){
             int[] ver=supportedVersions[i];
             if(Version.checkAtLeast(ver[0], ver[1])) return getProviderByVersion(ver[0],ver[1]);
+        }
+        return null;
+    }
+    private static CompatibilityProvider getFallbackProvider(){
+        for(int i=0;i<supportedVersions.length;i++){
+            int[] ver=supportedVersions[i];
+            if(Version.checkAtLeast(ver[0], ver[1])){
+                try{
+                    return getProviderByVersion(ver[0],ver[1]);
+                }catch(CompatibilityUnavailableException e){
+                    //do nothing - continue instead
+                }
+            }
         }
         return null;
     }

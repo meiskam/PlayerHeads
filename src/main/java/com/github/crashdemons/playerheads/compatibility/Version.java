@@ -18,8 +18,6 @@ public class Version {
     private static int versionMinor = 0;
     private static boolean isInit=false;
     
-    static{ init(); }
-    
     private Version(){}
     
     public static boolean checkAtLeast(int major, int minor){

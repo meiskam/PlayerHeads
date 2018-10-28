@@ -5,8 +5,11 @@
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
-import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
-import java.util.ServiceLoader;
+import com.github.crashdemons.playerheads.compatibility.Version;
+import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityConflictException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnavailableException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.IncompatibleVersionException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import net.gravitydevelopment.updater.Updater;
 import java.util.logging.Logger;
 
@@ -39,9 +42,56 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      */
     public boolean NCPHook = false;
     
+    
+    private void logCompatibilityIssue(String description, String reportcomment){
+        logger.severe(description);
+        logger.severe("  Raw server version string: "+Version.getRawServerVersion());
+        logger.severe("  Detected server version: "+Version.getString());
+        logger.severe(reportcomment);
+    }
+    private void logCompatibilityBug(String description){
+        logCompatibilityIssue(
+                description,
+                "Please report this as a bug at https://dev.bukkit.org/projects/player-heads/issues with your log file."
+        );
+    }
+    private void logCompatibilityError(String description){
+        logCompatibilityIssue(
+                description,
+                "(If you believe this is incorrect, please report this as a bug at https://dev.bukkit.org/projects/player-heads/issues with your log)"
+        );
+    }
+    
+    private void initializeCompatibility(){
+        boolean isUsingRecommendedVersion=true;
+        try{
+            isUsingRecommendedVersion = Compatibility.init();
+        }catch(UnknownVersionException e){
+            logCompatibilityBug("The server supplied a version string the plugin could not understand.");
+            throw e;//ensure the plugin is not loaded
+        }catch(IncompatibleVersionException e){
+            logCompatibilityError("Your server version is not supported for this plugin build.");
+            throw e;
+        }catch(CompatibilityUnavailableException e){
+            logCompatibilityBug("No compatibility support was found for your server version.");
+            throw e;
+        }
+        
+        if(!isUsingRecommendedVersion){ 
+            logger.warning("This plugin was made for different server version and may not operate properly:");
+            logger.warning("  Your server version: "+Version.getString());
+            logger.warning("  Recommended plugin version: "+Compatibility.getRecommendedProviderVersion()+" (or better)");
+            logger.warning("  Current plugin version: "+Compatibility.getProvider().getVersion());
+        }
+    }
+    
+    
     public PlayerHeads(){
         super();
-        Compatibility.init();
+        logger = getLogger();
+        initializeCompatibility();
+        
+
     }
 
     /**
@@ -49,7 +99,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      */
     @Override
     public void onEnable() {
-        logger = getLogger();
         
         configFile = getConfig();
         configFile.options().copyDefaults(true);

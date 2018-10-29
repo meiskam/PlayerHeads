@@ -10,6 +10,7 @@ import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 
 import java.util.List;
 import java.util.Random;
@@ -39,6 +40,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
+import java.util.function.Predicate;
 
 /**
  * Defines a listener for playerheads events.
@@ -53,6 +55,11 @@ class PlayerHeadsListener implements Listener {
     private final PlayerHeads plugin;
     private final InteractSpamPreventer clickSpamPreventer = new InteractSpamPreventer();
     private final PlayerDeathSpamPreventer deathSpamPreventer = new PlayerDeathSpamPreventer();
+    
+    private final Predicate<ItemStack> isVanillaHead = new Predicate<ItemStack>(){//we only need this because of java 7 support
+        @Override
+        public boolean test(ItemStack itemStack){ return Compatibility.getProvider().isHead(itemStack); }
+    };
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
@@ -88,11 +95,7 @@ class PlayerHeadsListener implements Listener {
                 break;
             case WITHER_SKELETON:
                 if (droprate < 0) return;//if droprate is <0, don't modify drops
-                //TODO: XXXXX FIX THIS XXXXX
-                /*event.getDrops().removeIf(
-                        itemStack -> 
-                                SkullConverter.skullTypeFromItemStack(itemStack)==TexturedSkullType.WITHER_SKELETON
-                );*/
+                event.getDrops().removeIf(isVanillaHead);
                 MobDeathHelper(event, skullType, droprate * lootingrate);
                 break;
             default:

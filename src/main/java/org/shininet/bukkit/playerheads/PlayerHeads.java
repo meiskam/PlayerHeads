@@ -41,7 +41,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
      */
     public boolean NCPHook = false;
     
-    public boolean compatibilityFailed=false;
+    private boolean compatibilityFailed=false;
     
     private void logCompatibilityIssue(String description, String reportcomment){
         logger.severe(description);

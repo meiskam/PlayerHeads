@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import org.shininet.bukkit.playerheads.Config;
+import org.shininet.bukkit.playerheads.Lang;
 
 /**
  * Defines an abstract class of methods for creating, updating, and applying information to heads managed by the plugin.
@@ -102,7 +103,7 @@ public final class SkullManager {
         //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
         applyTexture(headMeta,type.getOwner(),type.getTexture());
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
-        applyLore(headMeta,ChatColor.GREEN+"Mob Drop");
+        applyLore(headMeta,ChatColor.GREEN+Lang.LORE_HEAD_MOB);
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -119,7 +120,7 @@ public final class SkullManager {
         }
         if(name==null) name="Unknown";//only used for display purposes.
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
-        applyLore(headMeta,ChatColor.RED+"Player Drop");
+        applyLore(headMeta,ChatColor.RED+Lang.LORE_HEAD_PLAYER);
         stack.setItemMeta(headMeta);
         return stack;
     }

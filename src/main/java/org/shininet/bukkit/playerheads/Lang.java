@@ -43,6 +43,9 @@ public final class Lang {
     public static String COMPATIBILITY_VERSION_RECOMMENDED;
     public static String COMPATIBILITY_VERSION_CURRENT;
     
+    public static String LORE_HEAD_MOB;
+    public static String LORE_HEAD_PLAYER;
+    
     /**
      * The message displayed when a player is beheaded by anything besides a player.
      * 

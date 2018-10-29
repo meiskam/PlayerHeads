@@ -229,6 +229,14 @@ public final class Lang {
     public static String HEAD_DOLPHIN;
     public static String HEAD_SPAWN_DOLPHIN;
     
+    //1.14 mobs - names for these are NOT final
+    public static String HEAD_PILLAGER;
+    public static String HEAD_PANDA;
+    public static String HEAD_ILLAGER_BEAST;
+    public static String HEAD_SPAWN_PILLAGER;
+    public static String HEAD_SPAWN_PANDA;
+    public static String HEAD_SPAWN_ILLAGER_BEAST;
+    
     
     public static String OPT_AMOUNT_OPTIONAL;
     public static String OPT_HEADNAME_OPTIONAL;

@@ -23,7 +23,7 @@ public final class SkullConverter {
     private SkullConverter(){}
     
     /**
-     * Convert an entity type to a TexturedSkullType.  Most mobs (and the player) have a 1:1 mapping.
+     * Determine the TexturedSkullType best corresponding to an entity.  Most mobs (and the player) have a 1:1 mapping by their name.
      * 
      * Note: At the time of writing in 1.13.1 all entities with isAlive() have associated TexturedSkullType's with the exception of GIANT and ARMOR_STAND.
      * Not all entities will have an associated skulltype, not all living entities will have an associated skulltype.

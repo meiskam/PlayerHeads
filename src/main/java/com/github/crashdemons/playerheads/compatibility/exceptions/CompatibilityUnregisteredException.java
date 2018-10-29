@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating that a compatibility-provider implementation isn't registered at a time when it is required.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityUnregisteredException extends IllegalStateException  {

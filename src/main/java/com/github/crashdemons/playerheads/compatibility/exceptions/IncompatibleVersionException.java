@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating a server version that is incompatible with the available implementations.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class IncompatibleVersionException extends IllegalStateException {

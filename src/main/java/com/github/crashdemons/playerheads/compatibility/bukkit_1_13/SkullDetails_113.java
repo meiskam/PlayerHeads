@@ -12,7 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 /**
- *
+ * SkullDetails implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
 class SkullDetails_113 implements SkullDetails{

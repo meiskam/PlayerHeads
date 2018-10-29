@@ -30,17 +30,29 @@ public enum TexturedSkullType {
         "a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
-    //1.14 mobs - names here are NOT final
+    
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
     @Deprecated
     PILLAGER(
         "c64b8af5-b547-4a15-abf9-12d3eb052f37",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmRlYWVjMzQ0YWIwOTViNDhjZWFkNzUyN2Y3ZGVlNjFiMDYzZmY3OTFmNzZhOGZhNzY2NDJjODY3NmUyMTczIn19fQ=="
     ),
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
     @Deprecated
     ILLAGER_BEAST(
         "3a9cb258-fb4e-47e5-811f-a00e8f0cd6fc",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2I2MjUwMWNkMWI4N2IzN2Y2MjgwMTgyMTBlYzU0MDBjYjY1YTRkMWFhYjc0ZTZhM2Y3ZjYyYWE4NWRiOTdlZSJ9fX0="
     ),
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
     @Deprecated
     PANDA(
         "b59c247f-30fc-418b-a123-44f7018ab492",

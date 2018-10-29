@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating that an implementation providing compatibility for the current server couldn't be found or is otherwise unavailable.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityUnavailableException extends IllegalStateException {

@@ -10,7 +10,7 @@ import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersio
 import org.bukkit.Bukkit;
 
 /**
- *
+ * A class providing methods related to the current server's version.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class Version {
@@ -20,34 +20,65 @@ public class Version {
     
     private Version(){}
     
+    /**
+     * Checks whether the current server version is at least the version supplied
+     * @param major the major version number to check
+     * @param minor the minor version number to check
+     * @return whether the check is true
+     */
     public static boolean checkAtLeast(int major, int minor){
         init();
         return (versionMajor>major) || (versionMajor==major && versionMinor>=minor);
     }
+    /**
+     * Checks whether the current server version is less than the version supplied
+     * @param major the major version number to check
+     * @param minor the minor version number to check
+     * @return whether the check is true
+     */
     public static boolean checkUnder(int major, int minor){
         init();
         return (versionMajor<major) || (versionMajor==major && versionMinor<minor);
     }
+    /**
+     * Checks whether the current server version is exactly the version supplied
+     * @param major the major version number to check
+     * @param minor the minor version number to check
+     * @return whether the check is true
+     */
     public static boolean checkEquals(int major, int minor){
         init();
         return (versionMajor==major && versionMinor==minor);
     }
     
+    /**
+     * Gets the raw version string supplied by the server
+     * @return the version string
+     */
     public static String getRawServerVersion(){
         return Bukkit.getVersion();
     }
     
+    /**
+     * Gets the detected server version string in the format Major.Minor
+     * @return the version string
+     */
     public static String getString(){
         return versionMajor + "." + versionMinor;
     }
     
+    /**
+     * Initialize the version class and detect the server version.
+     * @throws UnknownVersionException If the version string supplied by the server could not be understood.
+     * @throws IncompatibleVersionException If the version supplied by the server is not supportable by this plugin
+     */
     public static synchronized void init() throws UnknownVersionException,IncompatibleVersionException{
         if(isInit) return;
         int[] mcver = getMCVersionParts();
         if(mcver==null) throw new UnknownVersionException("The current Bukkit build did not supply a version string that could be understood.");
         versionMajor=mcver[0];
         versionMinor=mcver[1];
-        if(versionMajor<1 || (versionMajor==1 && versionMinor<8)) throw new IncompatibleVersionException("Server versions under 1.8 are not supported.");
+        if(versionMajor<1 || (versionMajor==1 && versionMinor<8)) throw new IncompatibleVersionException("Server versions under 1.8 are not supported.");// this exception may need to be moved to a more relevant class like Compatibility - it's not the version class's job to decide what is compatible.
         isInit=true;
     }
     

@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating that there is a conflict between multiple compatibility-provider implementations.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityConflictException extends IllegalStateException  {

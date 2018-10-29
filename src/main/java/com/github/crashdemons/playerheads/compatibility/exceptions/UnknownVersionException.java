@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating a server version that could not be retrieved or understood.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class UnknownVersionException extends IllegalStateException {

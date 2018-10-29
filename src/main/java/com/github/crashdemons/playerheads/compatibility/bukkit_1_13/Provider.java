@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
- *
+ * CompatibilityProvider Implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
 public class Provider implements CompatibilityProvider {

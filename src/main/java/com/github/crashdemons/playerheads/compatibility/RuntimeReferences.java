@@ -8,7 +8,7 @@ package com.github.crashdemons.playerheads.compatibility;
 import org.bukkit.Material;
 
 /**
- *
+ * Provides methods to perform runtime lookups of values by name (eg: enums)
  * @author crashdemons (crashenator at gmail.com)
  */
 public class RuntimeReferences {

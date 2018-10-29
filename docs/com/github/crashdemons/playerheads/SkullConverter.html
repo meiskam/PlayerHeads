@@ -181,7 +181,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/github/crashdemons/playerheads/SkullConverter.html#skullTypeFromEntity-org.bukkit.entity.Entity-">skullTypeFromEntity</a></span>(org.bukkit.entity.Entity&nbsp;entity)</code>
-<div class="block">Convert an entity type to a TexturedSkullType.</div>
+<div class="block">Determine the TexturedSkullType best corresponding to an entity.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -235,7 +235,7 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>skullTypeFromEntity</h4>
 <pre>public static&nbsp;<a href="../../../../com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a>&nbsp;skullTypeFromEntity(org.bukkit.entity.Entity&nbsp;entity)</pre>
-<div class="block">Convert an entity type to a TexturedSkullType.  Most mobs (and the player) have a 1:1 mapping.
+<div class="block">Determine the TexturedSkullType best corresponding to an entity.  Most mobs (and the player) have a 1:1 mapping by their name.
  
  Note: At the time of writing in 1.13.1 all entities with isAlive() have associated TexturedSkullType's with the exception of GIANT and ARMOR_STAND.
  Not all entities will have an associated skulltype, not all living entities will have an associated skulltype.</div>

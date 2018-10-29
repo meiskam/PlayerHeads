@@ -102,6 +102,11 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">SkullDetails</span></pre>
+<div class="block">Defines an interface of implementation-specific details and methods relating to a skull item/block.
+ 
+ Generally, a set of Skull implementation details is available for each vanilla skull type.
+ 
+ Depending on implemnentation, some of the block and item materials returned by methods here may be the same or different.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -126,31 +131,45 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>org.bukkit.inventory.ItemStack</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#createItemStack-int-">createItemStack</a></span>(int&nbsp;quantity)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#createItemStack-int-">createItemStack</a></span>(int&nbsp;quantity)</code>
+<div class="block">Create an ItemStack of a given quantity for this specific skull implementation.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>org.bukkit.Material</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getFloorMaterial--">getFloorMaterial</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getFloorMaterial--">getFloorMaterial</a></span>()</code>
+<div class="block">Gets the bukkit material corresponding to a block of this skull placed on a floor (not against a wall)</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>org.bukkit.Material</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getItemMaterial--">getItemMaterial</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getItemMaterial--">getItemMaterial</a></span>()</code>
+<div class="block">Gets the bukkit material corresponding to an Item of this skull</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>org.bukkit.Material</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getWallMaterial--">getWallMaterial</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getWallMaterial--">getWallMaterial</a></span>()</code>
+<div class="block">Gets the bukkit material corresponding to a block of this skull placed against a wall (not on a floor or other placement)</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isBackedByPlayerhead--">isBackedByPlayerhead</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isBackedByPlayerhead--">isBackedByPlayerhead</a></span>()</code>
+<div class="block">Gets whether the skull must be implemented with a playerhead</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isSkinnable--">isSkinnable</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isSkinnable--">isSkinnable</a></span>()</code>
+<div class="block">Gets whether this skull, as implemented, is texturable or username-skinnable.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isVariant--">isVariant</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isVariant--">isVariant</a></span>()</code>
+<div class="block">Gets whether the skull is a variant type</div>
+</td>
 </tr>
 </table>
 </li>
@@ -174,6 +193,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isVariant</h4>
 <pre>boolean&nbsp;isVariant()</pre>
+<div class="block">Gets whether the skull is a variant type</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the skull is a variant type</dd>
+</dl>
 </li>
 </ul>
 <a name="isBackedByPlayerhead--">
@@ -183,6 +207,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isBackedByPlayerhead</h4>
 <pre>boolean&nbsp;isBackedByPlayerhead()</pre>
+<div class="block">Gets whether the skull must be implemented with a playerhead</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the skull must be implemented with a playerhead</dd>
+</dl>
 </li>
 </ul>
 <a name="isSkinnable--">
@@ -192,6 +221,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isSkinnable</h4>
 <pre>boolean&nbsp;isSkinnable()</pre>
+<div class="block">Gets whether this skull, as implemented, is texturable or username-skinnable.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether this skull, as implemented, is texturable or username-skinnable.</dd>
+</dl>
 </li>
 </ul>
 <a name="createItemStack-int-">
@@ -201,6 +235,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>createItemStack</h4>
 <pre>org.bukkit.inventory.ItemStack&nbsp;createItemStack(int&nbsp;quantity)</pre>
+<div class="block">Create an ItemStack of a given quantity for this specific skull implementation.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>quantity</code> - the number of skulls to create in the stack</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the itemstack that was created</dd>
+</dl>
 </li>
 </ul>
 <a name="getItemMaterial--">
@@ -210,6 +251,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getItemMaterial</h4>
 <pre>org.bukkit.Material&nbsp;getItemMaterial()</pre>
+<div class="block">Gets the bukkit material corresponding to an Item of this skull</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the material requested</dd>
+</dl>
 </li>
 </ul>
 <a name="getFloorMaterial--">
@@ -219,6 +265,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getFloorMaterial</h4>
 <pre>org.bukkit.Material&nbsp;getFloorMaterial()</pre>
+<div class="block">Gets the bukkit material corresponding to a block of this skull placed on a floor (not against a wall)</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the material requested</dd>
+</dl>
 </li>
 </ul>
 <a name="getWallMaterial--">
@@ -228,6 +279,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getWallMaterial</h4>
 <pre>org.bukkit.Material&nbsp;getWallMaterial()</pre>
+<div class="block">Gets the bukkit material corresponding to a block of this skull placed against a wall (not on a floor or other placement)</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the material requested</dd>
+</dl>
 </li>
 </ul>
 </li>

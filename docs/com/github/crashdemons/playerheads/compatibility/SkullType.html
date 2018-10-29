@@ -120,9 +120,18 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">SkullType</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&gt;</pre>
+<div class="block">An enumeration of skulls and heads that are supported in vanilla servers.
+ 
+ This enum corresponds in ordinal value to entries of the deprecated Bukkit SkullType enum,
+ however the names here instead generally correspond to the vanilla item name (Material).
+ 
+ This enum adds information to entries about whether each type is a proper skull or a head - which is relevant to specific implementation materials and naming.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>Material</code>, 
+<code>SkullType</code></dd>
 </dl>
 </li>
 </ul>
@@ -176,7 +185,9 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?i
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html#isSkull">isSkull</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html#isSkull">isSkull</a></span></code>
+<div class="block">A property specifying whether the skulltype entry is a proper skull or a head.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -304,6 +315,7 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>isSkull</h4>
 <pre>public final&nbsp;boolean isSkull</pre>
+<div class="block">A property specifying whether the skulltype entry is a proper skull or a head.</div>
 </li>
 </ul>
 </li>

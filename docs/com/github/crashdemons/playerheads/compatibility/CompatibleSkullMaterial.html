@@ -120,9 +120,18 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">CompatibleSkullMaterial</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a>&gt;</pre>
+<div class="block">An enumeration of vanilla skull/head materials (items and blocks) that can possibly be supported.
+ 
+ This abstracts both new materials and old materials+datavalues (skull variants) into matching categories by enum along with their implementation-specific details.
+ 
+ Entries from newer versions may appear here, but are backed by playerhead materials if they are not supported - which can be checked with isSupported().
+ Generally this corresponds with an entry for each entry in SkullType</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#isSupported--"><code>isSupported()</code></a>, 
+<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility"><code>SkullType</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -145,7 +154,9 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?i
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#CREEPER">CREEPER</a></span></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#ENDER_DRAGON">ENDER_DRAGON</a></span></code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#ENDER_DRAGON">ENDER_DRAGON</a></span></code>
+<div class="block">1.9 dragon head</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#PLAYER">PLAYER</a></span></code>&nbsp;</td>
@@ -176,23 +187,33 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?i
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-org.bukkit.block.BlockState-">get</a></span>(org.bukkit.block.BlockState&nbsp;state)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-org.bukkit.block.BlockState-">get</a></span>(org.bukkit.block.BlockState&nbsp;state)</code>
+<div class="block">Finds a skull material enum entry that best fits with the provided BlockState.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-org.bukkit.inventory.ItemStack-">get</a></span>(org.bukkit.inventory.ItemStack&nbsp;stack)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-org.bukkit.inventory.ItemStack-">get</a></span>(org.bukkit.inventory.ItemStack&nbsp;stack)</code>
+<div class="block">Finds a skull material enum entry that best fits with the provided ItemStack.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-com.github.crashdemons.playerheads.compatibility.SkullType-">get</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#get-com.github.crashdemons.playerheads.compatibility.SkullType-">get</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</code>
+<div class="block">Finds a skull material enum entry associated with the vanilla skull-type.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#getDetails--">getDetails</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#getDetails--">getDetails</a></span>()</code>
+<div class="block">Gets a class describing implementation-specific details about a vanilla skull</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#isSupported--">isSupported</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html#isSupported--">isSupported</a></span>()</code>
+<div class="block">Whether this skull material is supported as a vanilla item/block type.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a></code></td>
@@ -288,6 +309,7 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ENDER_DRAGON</h4>
 <pre>public static final&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a> ENDER_DRAGON</pre>
+<div class="block">1.9 dragon head</div>
 </li>
 </ul>
 </li>
@@ -347,6 +369,11 @@ not permitted.)</div>
 <li class="blockList">
 <h4>getDetails</h4>
 <pre>public&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a>&nbsp;getDetails()</pre>
+<div class="block">Gets a class describing implementation-specific details about a vanilla skull</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the object with details about the skull</dd>
+</dl>
 </li>
 </ul>
 <a name="isSupported--">
@@ -356,6 +383,15 @@ not permitted.)</div>
 <li class="blockList">
 <h4>isSupported</h4>
 <pre>public&nbsp;boolean&nbsp;isSupported()</pre>
+<div class="block">Whether this skull material is supported as a vanilla item/block type.
+ 
+ If this returns false, the skull is only supported as a playerhead (the PLAYER type will return true however).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the skull is supported as a vanilla type</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isBackedByPlayerhead--"><code>SkullDetails.isBackedByPlayerhead()</code></a></dd>
+</dl>
 </li>
 </ul>
 <a name="get-com.github.crashdemons.playerheads.compatibility.SkullType-">
@@ -365,6 +401,13 @@ not permitted.)</div>
 <li class="blockList">
 <h4>get</h4>
 <pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a>&nbsp;get(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</pre>
+<div class="block">Finds a skull material enum entry associated with the vanilla skull-type.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - the vanilla skull type to reference</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the skull material enum entry</dd>
+</dl>
 </li>
 </ul>
 <a name="get-org.bukkit.inventory.ItemStack-">
@@ -374,6 +417,17 @@ not permitted.)</div>
 <li class="blockList">
 <h4>get</h4>
 <pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a>&nbsp;get(org.bukkit.inventory.ItemStack&nbsp;stack)</pre>
+<div class="block">Finds a skull material enum entry that best fits with the provided ItemStack.
+ 
+ Heads that are not supported in the current server version will return PLAYER using this method, instead of their original enum entry.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>stack</code> - the itemstack to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the skull material enum entry</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.inventory.ItemStack-"><code>CompatibilityProvider.getSkullType(org.bukkit.inventory.ItemStack)</code></a></dd>
+</dl>
 </li>
 </ul>
 <a name="get-org.bukkit.block.BlockState-">
@@ -383,6 +437,17 @@ not permitted.)</div>
 <li class="blockList">
 <h4>get</h4>
 <pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a>&nbsp;get(org.bukkit.block.BlockState&nbsp;state)</pre>
+<div class="block">Finds a skull material enum entry that best fits with the provided BlockState.
+ 
+ Heads that are not supported in the current server version will return PLAYER using this method, instead of their original enum entry.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>state</code> - the blockstate to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the skull material enum entry</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.block.BlockState-"><code>CompatibilityProvider.getSkullType(org.bukkit.block.BlockState)</code></a></dd>
+</dl>
 </li>
 </ul>
 </li>

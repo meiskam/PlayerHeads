@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -111,6 +111,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">Version</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<div class="block">A class providing methods related to the current server's version.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -136,21 +137,41 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#checkAtLeast-int-int-">checkAtLeast</a></span>(int&nbsp;major,
-            int&nbsp;minor)</code>&nbsp;</td>
+            int&nbsp;minor)</code>
+<div class="block">Checks whether the current server version is at least the version supplied</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#checkEquals-int-int-">checkEquals</a></span>(int&nbsp;major,
-           int&nbsp;minor)</code>&nbsp;</td>
+           int&nbsp;minor)</code>
+<div class="block">Checks whether the current server version is exactly the version supplied</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#checkUnder-int-int-">checkUnder</a></span>(int&nbsp;major,
-          int&nbsp;minor)</code>&nbsp;</td>
+          int&nbsp;minor)</code>
+<div class="block">Checks whether the current server version is less than the version supplied</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#getRawServerVersion--">getRawServerVersion</a></span>()</code>
+<div class="block">Gets the raw version string supplied by the server</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#getString--">getString</a></span>()</code>
+<div class="block">Gets the detected server version string in the format Major.Minor</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#init--">init</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Version.html#init--">init</a></span>()</code>
+<div class="block">Initialize the version class and detect the server version.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -182,6 +203,14 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <h4>checkAtLeast</h4>
 <pre>public static&nbsp;boolean&nbsp;checkAtLeast(int&nbsp;major,
                                    int&nbsp;minor)</pre>
+<div class="block">Checks whether the current server version is at least the version supplied</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>major</code> - the major version number to check</dd>
+<dd><code>minor</code> - the minor version number to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the check is true</dd>
+</dl>
 </li>
 </ul>
 <a name="checkUnder-int-int-">
@@ -192,6 +221,14 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <h4>checkUnder</h4>
 <pre>public static&nbsp;boolean&nbsp;checkUnder(int&nbsp;major,
                                  int&nbsp;minor)</pre>
+<div class="block">Checks whether the current server version is less than the version supplied</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>major</code> - the major version number to check</dd>
+<dd><code>minor</code> - the minor version number to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the check is true</dd>
+</dl>
 </li>
 </ul>
 <a name="checkEquals-int-int-">
@@ -202,6 +239,42 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <h4>checkEquals</h4>
 <pre>public static&nbsp;boolean&nbsp;checkEquals(int&nbsp;major,
                                   int&nbsp;minor)</pre>
+<div class="block">Checks whether the current server version is exactly the version supplied</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>major</code> - the major version number to check</dd>
+<dd><code>minor</code> - the minor version number to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the check is true</dd>
+</dl>
+</li>
+</ul>
+<a name="getRawServerVersion--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRawServerVersion</h4>
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getRawServerVersion()</pre>
+<div class="block">Gets the raw version string supplied by the server</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the version string</dd>
+</dl>
+</li>
+</ul>
+<a name="getString--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getString</h4>
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getString()</pre>
+<div class="block">Gets the detected server version string in the format Major.Minor</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the version string</dd>
+</dl>
 </li>
 </ul>
 <a name="init--">
@@ -210,7 +283,15 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>init</h4>
-<pre>public static&nbsp;void&nbsp;init()</pre>
+<pre>public static&nbsp;void&nbsp;init()
+                 throws <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a>,
+                        <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/IncompatibleVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">IncompatibleVersionException</a></pre>
+<div class="block">Initialize the version class and detect the server version.</div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a></code> - If the version string supplied by the server could not be understood.</dd>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/IncompatibleVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">IncompatibleVersionException</a></code> - If the version supplied by the server is not supportable by this plugin</dd>
+</dl>
 </li>
 </ul>
 </li>

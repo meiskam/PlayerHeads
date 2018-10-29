@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -111,6 +111,9 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">Compatibility</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<div class="block">Compatibility class controlling implementation and version support.
+ 
+ This class forms the basis of most plugin access to the compatibility package methods through chaining.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -135,15 +138,27 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#getProvider--">getProvider</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#getProvider--">getProvider</a></span>()</code>
+<div class="block">Gets the currently registered compatibility provider (bukkit-version-specific implementation of required methods)</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#init--">init</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#getRecommendedProviderVersion--">getRecommendedProviderVersion</a></span>()</code>
+<div class="block">Gets the recommended bukkit-specific implementation version string for your server based on the supported implementations.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#init--">init</a></span>()</code>
+<div class="block">Initialize compatibility support.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#registerProvider-com.github.crashdemons.playerheads.compatibility.CompatibilityProvider-">registerProvider</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;obj)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#registerProvider-com.github.crashdemons.playerheads.compatibility.CompatibilityProvider-">registerProvider</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;obj)</code>
+<div class="block">Registers an compatibility provider (a bukkit-version-specific implementation) with the compatibility class.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -173,7 +188,24 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>init</h4>
-<pre>public static&nbsp;void&nbsp;init()</pre>
+<pre>public static&nbsp;boolean&nbsp;init()
+                    throws <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a>,
+                           <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/IncompatibleVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">IncompatibleVersionException</a>,
+                           <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnavailableException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnavailableException</a>,
+                           <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></pre>
+<div class="block">Initialize compatibility support.
+ 
+ This method initializes server version-detection and selects compatibility providers (specific Bukkit implementations) for use later.
+ This method also makes a determination as to what the recommended implementation version is.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Whether the recommended implementation version was used. True: the best implementation version for your server that was supported was loaded. False: a fallback implementation was used - possibly because you loaded a backport implementation onto a newer server improperly.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a></code> - If the server version string could not be understood during detection.</dd>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/IncompatibleVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">IncompatibleVersionException</a></code> - If the server version was lower than is supported by the compatibility package (minimum 1.8)</dd>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnavailableException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnavailableException</a></code> - If no implementation could be found that is compatible with your server. This happens when you load an implementation onto a server where the implementation is too new for the server - possibly because you didn't properly use a backport.</dd>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></code> - If an implementation provider was already registered - this happens when there is more than one call to init and registerProvider.</dd>
+</dl>
 </li>
 </ul>
 <a name="registerProvider-com.github.crashdemons.playerheads.compatibility.CompatibilityProvider-">
@@ -182,16 +214,57 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>registerProvider</h4>
-<pre>public static&nbsp;void&nbsp;registerProvider(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;obj)</pre>
+<pre>public static&nbsp;void&nbsp;registerProvider(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;obj)
+                             throws <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></pre>
+<div class="block">Registers an compatibility provider (a bukkit-version-specific implementation) with the compatibility class.
+ 
+ You should either use this or init(), but not both and not more than once - providers cannot be unregistered at this time.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>obj</code> - The implementation to register</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></code> - If an implementation is already registered when you called this function.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility"><code>CompatibilityProvider</code></a>, 
+<a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#init--"><code>init()</code></a></dd>
+</dl>
 </li>
 </ul>
 <a name="getProvider--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getProvider</h4>
-<pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;getProvider()</pre>
+<pre>public static&nbsp;<a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;getProvider()
+                                         throws <a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnregisteredException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnregisteredException</a></pre>
+<div class="block">Gets the currently registered compatibility provider (bukkit-version-specific implementation of required methods)</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the class object implementing the compatibility-provider methods.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnregisteredException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnregisteredException</a></code> - If this method was called before registering an implementation (eg: with init() or registerProvider() )</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility"><code>CompatibilityProvider</code></a>, 
+<a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#init--"><code>init()</code></a>, 
+<a href="../../../../../com/github/crashdemons/playerheads/compatibility/Compatibility.html#registerProvider-com.github.crashdemons.playerheads.compatibility.CompatibilityProvider-"><code>registerProvider(com.github.crashdemons.playerheads.compatibility.CompatibilityProvider)</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="getRecommendedProviderVersion--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getRecommendedProviderVersion</h4>
+<pre>public static&nbsp;<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getRecommendedProviderVersion()</pre>
+<div class="block">Gets the recommended bukkit-specific implementation version string for your server based on the supported implementations.
+ 
+ If you call this before init(), it will always return an empty string.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The version string, or an empty string if it is not yet available.</dd>
+</dl>
 </li>
 </ul>
 </li>

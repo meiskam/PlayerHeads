@@ -106,6 +106,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">CompatibilityProvider</span></pre>
+<div class="block">An interface specifying all of the methods we need for our plugin that require differing Bukkit-specific implementations which we wish to abstract from our plugin code.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -130,96 +131,140 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getCompatibleNameFromEntity-org.bukkit.entity.Entity-">getCompatibleNameFromEntity</a></span>(org.bukkit.entity.Entity&nbsp;e)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getCompatibleNameFromEntity-org.bukkit.entity.Entity-">getCompatibleNameFromEntity</a></span>(org.bukkit.entity.Entity&nbsp;e)</code>
+<div class="block">Gets a forward-portable name of an entity.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>org.bukkit.inventory.ItemStack</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getItemInMainHand-org.bukkit.entity.Player-">getItemInMainHand</a></span>(org.bukkit.entity.Player&nbsp;p)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getItemInMainHand-org.bukkit.entity.Player-">getItemInMainHand</a></span>(org.bukkit.entity.Player&nbsp;p)</code>
+<div class="block">Gets the itemstack in the [main] hand of a player</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getKeepInventory-org.bukkit.World-">getKeepInventory</a></span>(org.bukkit.World&nbsp;world)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getKeepInventory-org.bukkit.World-">getKeepInventory</a></span>(org.bukkit.World&nbsp;world)</code>
+<div class="block">Checks whether the keepinventory gamerule is enabled for a given world</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwner-org.bukkit.block.Skull-">getOwner</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwner-org.bukkit.block.Skull-">getOwner</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>
+<div class="block">Gets the owner username of a skull</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwner-org.bukkit.inventory.meta.SkullMeta-">getOwner</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwner-org.bukkit.inventory.meta.SkullMeta-">getOwner</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</code>
+<div class="block">Gets the owner username of a skull</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>org.bukkit.OfflinePlayer</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwningPlayer-org.bukkit.block.Skull-">getOwningPlayer</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwningPlayer-org.bukkit.block.Skull-">getOwningPlayer</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState)</code>
+<div class="block">Gets the owning player of a skull</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>org.bukkit.OfflinePlayer</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwningPlayer-org.bukkit.inventory.meta.SkullMeta-">getOwningPlayer</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwningPlayer-org.bukkit.inventory.meta.SkullMeta-">getOwningPlayer</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</code>
+<div class="block">Gets the owning player of a skull</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullDetails-com.github.crashdemons.playerheads.compatibility.SkullType-">getSkullDetails</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullDetails-com.github.crashdemons.playerheads.compatibility.SkullType-">getSkullDetails</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</code>
+<div class="block">Gets a class describing implementation-specific details about a vanilla skull type</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.block.BlockState-">getSkullType</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.block.BlockState-">getSkullType</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>
+<div class="block">Gets the vanilla skulltype best associated with the BlockState provided.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.inventory.ItemStack-">getSkullType</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullType-org.bukkit.inventory.ItemStack-">getSkullType</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>
+<div class="block">Gets the vanilla skulltype best associated with the ItemStack provided.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getVersion--">getVersion</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getVersion--">getVersion</a></span>()</code>
+<div class="block">Retrieve the version string associated with the specific Compatibility Provider implementation.</div>
+</td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isHead-org.bukkit.block.BlockState-">isHead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isHead-org.bukkit.block.BlockState-">isHead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>
+<div class="block">Checks whether the blockstate corresponds a vanilla head or skull of some type.</div>
+</td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isHead-org.bukkit.inventory.ItemStack-">isHead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isHead-org.bukkit.inventory.ItemStack-">isHead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>
+<div class="block">Checks whether the itemstack corresponds a vanilla head or skull of some type.</div>
+</td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isMobhead-org.bukkit.block.BlockState-">isMobhead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isMobhead-org.bukkit.block.BlockState-">isMobhead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>
+<div class="block">Checks whether the blockstate corresponds to a vanilla head or skull and is not a player-head type</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isMobhead-org.bukkit.inventory.ItemStack-">isMobhead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isMobhead-org.bukkit.inventory.ItemStack-">isMobhead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>
+<div class="block">Checks whether the itemstack corresponds to a vanilla head or skull and is not a player-head type</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isPlayerhead-org.bukkit.block.BlockState-">isPlayerhead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isPlayerhead-org.bukkit.block.BlockState-">isPlayerhead</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>
+<div class="block">Checks whether the blockstate corresponds to a vanilla player-head type</div>
+</td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isPlayerhead-org.bukkit.inventory.ItemStack-">isPlayerhead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#isPlayerhead-org.bukkit.inventory.ItemStack-">isPlayerhead</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>
+<div class="block">Checks whether the itemstack corresponds to a vanilla player-head type</div>
+</td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setItemInMainHand-org.bukkit.entity.Player-org.bukkit.inventory.ItemStack-">setItemInMainHand</a></span>(org.bukkit.entity.Player&nbsp;p,
-                 org.bukkit.inventory.ItemStack&nbsp;s)</code>&nbsp;</td>
+                 org.bukkit.inventory.ItemStack&nbsp;s)</code>
+<div class="block">Sets the itemstack in the [main] hand of a player</div>
+</td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setOwner-org.bukkit.inventory.meta.SkullMeta-java.lang.String-">setOwner</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta,
-        <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</code>&nbsp;</td>
+        <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</code>
+<div class="block">Sets the owner username of a skull</div>
+</td>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setOwner-org.bukkit.block.Skull-java.lang.String-">setOwner</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState,
-        <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</code>&nbsp;</td>
+        <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</code>
+<div class="block">Sets the owner username of a skull</div>
+</td>
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setOwningPlayer-org.bukkit.inventory.meta.SkullMeta-org.bukkit.OfflinePlayer-">setOwningPlayer</a></span>(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta,
-               org.bukkit.OfflinePlayer&nbsp;op)</code>&nbsp;</td>
+               org.bukkit.OfflinePlayer&nbsp;op)</code>
+<div class="block">Sets the player owning a skull</div>
+</td>
 </tr>
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setOwningPlayer-org.bukkit.block.Skull-org.bukkit.OfflinePlayer-">setOwningPlayer</a></span>(org.bukkit.block.Skull&nbsp;skullBlockState,
-               org.bukkit.OfflinePlayer&nbsp;op)</code>&nbsp;</td>
+               org.bukkit.OfflinePlayer&nbsp;op)</code>
+<div class="block">Sets the player owning a skull</div>
+</td>
 </tr>
 </table>
 </li>
@@ -243,6 +288,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getVersion</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getVersion()</pre>
+<div class="block">Retrieve the version string associated with the specific Compatibility Provider implementation.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the version string</dd>
+</dl>
 </li>
 </ul>
 <a name="getOwningPlayer-org.bukkit.inventory.meta.SkullMeta-">
@@ -252,6 +302,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getOwningPlayer</h4>
 <pre>org.bukkit.OfflinePlayer&nbsp;getOwningPlayer(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</pre>
+<div class="block">Gets the owning player of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullItemMeta</code> - the ItemMeta of the skull</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the player owning the skull, or null if none could be retrieved.</dd>
+</dl>
 </li>
 </ul>
 <a name="getOwningPlayer-org.bukkit.block.Skull-">
@@ -261,6 +318,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getOwningPlayer</h4>
 <pre>org.bukkit.OfflinePlayer&nbsp;getOwningPlayer(org.bukkit.block.Skull&nbsp;skullBlockState)</pre>
+<div class="block">Gets the owning player of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - the BlockState of the skull</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the player owning the skull, or null if none could be retrieved.</dd>
+</dl>
 </li>
 </ul>
 <a name="getOwner-org.bukkit.inventory.meta.SkullMeta-">
@@ -270,6 +334,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getOwner</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getOwner(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta)</pre>
+<div class="block">Gets the owner username of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullItemMeta</code> - the ItemMeta of the skull</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the owner name</dd>
+</dl>
 </li>
 </ul>
 <a name="getOwner-org.bukkit.block.Skull-">
@@ -279,6 +350,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getOwner</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getOwner(org.bukkit.block.Skull&nbsp;skullBlockState)</pre>
+<div class="block">Gets the owner username of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - the BlockState of the skull</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the owner name</dd>
+</dl>
 </li>
 </ul>
 <a name="setOwningPlayer-org.bukkit.inventory.meta.SkullMeta-org.bukkit.OfflinePlayer-">
@@ -289,6 +367,14 @@ var activeTableTab = "activeTableTab";
 <h4>setOwningPlayer</h4>
 <pre>boolean&nbsp;setOwningPlayer(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta,
                         org.bukkit.OfflinePlayer&nbsp;op)</pre>
+<div class="block">Sets the player owning a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullItemMeta</code> - the ItemMeta of a skull</dd>
+<dd><code>op</code> - the owning player</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the process succeeded</dd>
+</dl>
 </li>
 </ul>
 <a name="setOwningPlayer-org.bukkit.block.Skull-org.bukkit.OfflinePlayer-">
@@ -299,6 +385,12 @@ var activeTableTab = "activeTableTab";
 <h4>setOwningPlayer</h4>
 <pre>void&nbsp;setOwningPlayer(org.bukkit.block.Skull&nbsp;skullBlockState,
                      org.bukkit.OfflinePlayer&nbsp;op)</pre>
+<div class="block">Sets the player owning a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - the BlockState of a skull</dd>
+<dd><code>op</code> - the owning player</dd>
+</dl>
 </li>
 </ul>
 <a name="setOwner-org.bukkit.inventory.meta.SkullMeta-java.lang.String-">
@@ -309,6 +401,14 @@ var activeTableTab = "activeTableTab";
 <h4>setOwner</h4>
 <pre>boolean&nbsp;setOwner(org.bukkit.inventory.meta.SkullMeta&nbsp;skullItemMeta,
                  <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</pre>
+<div class="block">Sets the owner username of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullItemMeta</code> - the ItemMeta of a skull</dd>
+<dd><code>owner</code> - the owner username to set</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the process succeeded</dd>
+</dl>
 </li>
 </ul>
 <a name="setOwner-org.bukkit.block.Skull-java.lang.String-">
@@ -319,6 +419,14 @@ var activeTableTab = "activeTableTab";
 <h4>setOwner</h4>
 <pre>boolean&nbsp;setOwner(org.bukkit.block.Skull&nbsp;skullBlockState,
                  <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;owner)</pre>
+<div class="block">Sets the owner username of a skull</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skullBlockState</code> - the BlockState of a skull</dd>
+<dd><code>owner</code> - the owner username to set</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the process succeeded</dd>
+</dl>
 </li>
 </ul>
 <a name="getItemInMainHand-org.bukkit.entity.Player-">
@@ -328,6 +436,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getItemInMainHand</h4>
 <pre>org.bukkit.inventory.ItemStack&nbsp;getItemInMainHand(org.bukkit.entity.Player&nbsp;p)</pre>
+<div class="block">Gets the itemstack in the [main] hand of a player</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p</code> - the player to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The ItemStack if found, or null</dd>
+</dl>
 </li>
 </ul>
 <a name="setItemInMainHand-org.bukkit.entity.Player-org.bukkit.inventory.ItemStack-">
@@ -338,6 +453,12 @@ var activeTableTab = "activeTableTab";
 <h4>setItemInMainHand</h4>
 <pre>void&nbsp;setItemInMainHand(org.bukkit.entity.Player&nbsp;p,
                        org.bukkit.inventory.ItemStack&nbsp;s)</pre>
+<div class="block">Sets the itemstack in the [main] hand of a player</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>p</code> - the player to change</dd>
+<dd><code>s</code> - the itemstack to set in their hand</dd>
+</dl>
 </li>
 </ul>
 <a name="getSkullDetails-com.github.crashdemons.playerheads.compatibility.SkullType-">
@@ -347,6 +468,15 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getSkullDetails</h4>
 <pre><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a>&nbsp;getSkullDetails(<a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</pre>
+<div class="block">Gets a class describing implementation-specific details about a vanilla skull type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - the type of vanilla head or skull to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the object containing details about the skull type</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility"><code>SkullType</code></a></dd>
+</dl>
 </li>
 </ul>
 <a name="getKeepInventory-org.bukkit.World-">
@@ -356,6 +486,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getKeepInventory</h4>
 <pre>boolean&nbsp;getKeepInventory(org.bukkit.World&nbsp;world)</pre>
+<div class="block">Checks whether the keepinventory gamerule is enabled for a given world</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>world</code> - the world to check in</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the gamerule is enabled</dd>
+</dl>
 </li>
 </ul>
 <a name="getSkullType-org.bukkit.inventory.ItemStack-">
@@ -365,6 +502,16 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getSkullType</h4>
 <pre><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;getSkullType(org.bukkit.inventory.ItemStack&nbsp;s)</pre>
+<div class="block">Gets the vanilla skulltype best associated with the ItemStack provided.
+ 
+ Note: this method does not perform any username, UUID, or texture checks, so any skull that is not directly supported in the current server (such as a dragon head in 1.8) will return SkullType.PLAYER instead.
+ It only determines what skulltype is associated with the vanilla types available.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - The itemstack to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the skulltype associated with the object.</dd>
+</dl>
 </li>
 </ul>
 <a name="getSkullType-org.bukkit.block.BlockState-">
@@ -374,6 +521,16 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getSkullType</h4>
 <pre><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;getSkullType(org.bukkit.block.BlockState&nbsp;s)</pre>
+<div class="block">Gets the vanilla skulltype best associated with the BlockState provided.
+ 
+ Note: this method does not perform any username, UUID, or texture checks, so any skull that is not directly supported in the current server (such as a dragon head in 1.8) will return SkullType.PLAYER instead.
+ It only determines what skulltype is associated with the vanilla types available.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - The blockstate to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the skulltype associated with the object.</dd>
+</dl>
 </li>
 </ul>
 <a name="isHead-org.bukkit.inventory.ItemStack-">
@@ -383,6 +540,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isHead</h4>
 <pre>boolean&nbsp;isHead(org.bukkit.inventory.ItemStack&nbsp;s)</pre>
+<div class="block">Checks whether the itemstack corresponds a vanilla head or skull of some type.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the itemstack to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a head</dd>
+</dl>
 </li>
 </ul>
 <a name="isHead-org.bukkit.block.BlockState-">
@@ -392,6 +556,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isHead</h4>
 <pre>boolean&nbsp;isHead(org.bukkit.block.BlockState&nbsp;s)</pre>
+<div class="block">Checks whether the blockstate corresponds a vanilla head or skull of some type.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the blockstate to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a head</dd>
+</dl>
 </li>
 </ul>
 <a name="isPlayerhead-org.bukkit.inventory.ItemStack-">
@@ -401,6 +572,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isPlayerhead</h4>
 <pre>boolean&nbsp;isPlayerhead(org.bukkit.inventory.ItemStack&nbsp;s)</pre>
+<div class="block">Checks whether the itemstack corresponds to a vanilla player-head type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the itemstack to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a playerhead</dd>
+</dl>
 </li>
 </ul>
 <a name="isPlayerhead-org.bukkit.block.BlockState-">
@@ -410,6 +588,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isPlayerhead</h4>
 <pre>boolean&nbsp;isPlayerhead(org.bukkit.block.BlockState&nbsp;s)</pre>
+<div class="block">Checks whether the blockstate corresponds to a vanilla player-head type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the blockstate to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a playerhead</dd>
+</dl>
 </li>
 </ul>
 <a name="isMobhead-org.bukkit.inventory.ItemStack-">
@@ -419,6 +604,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isMobhead</h4>
 <pre>boolean&nbsp;isMobhead(org.bukkit.inventory.ItemStack&nbsp;s)</pre>
+<div class="block">Checks whether the itemstack corresponds to a vanilla head or skull and is not a player-head type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the itemstack to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a mobhead</dd>
+</dl>
 </li>
 </ul>
 <a name="isMobhead-org.bukkit.block.BlockState-">
@@ -428,6 +620,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isMobhead</h4>
 <pre>boolean&nbsp;isMobhead(org.bukkit.block.BlockState&nbsp;s)</pre>
+<div class="block">Checks whether the blockstate corresponds to a vanilla head or skull and is not a player-head type</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>s</code> - the blockstate to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the object is a mobhead</dd>
+</dl>
 </li>
 </ul>
 <a name="getCompatibleNameFromEntity-org.bukkit.entity.Entity-">
@@ -437,6 +636,18 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getCompatibleNameFromEntity</h4>
 <pre><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getCompatibleNameFromEntity(org.bukkit.entity.Entity&nbsp;e)</pre>
+<div class="block">Gets a forward-portable name of an entity.
+ 
+ This gets the name of the entity as it appears in the EntityType enum of newer bukkit versions, even if the mob is a variant in the current version.
+ This value can be used to correspond entities to their heads.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>e</code> - the entity to check</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the portable name of the string.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><code>EntityType</code></dd>
+</dl>
 </li>
 </ul>
 </li>

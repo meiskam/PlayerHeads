@@ -147,3 +147,8 @@ tropicalfishdroprate: 0.002
 drowneddroprate: 0.002
 dolphindroprate: 0.002
 
+#speculative drop rates with 1.14 mobs - these names are NOT final
+pillagerdroprate: 0.002
+illagerbeastdroprate: 0.005
+pandadroprate: 0.002
+

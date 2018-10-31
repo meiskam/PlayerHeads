@@ -36,6 +36,15 @@ public enum TexturedSkullType {
      * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
      */
     @Deprecated
+    CAT(
+        "7f0a98d3-dc52-46c7-ac4f-cdf71a38c32e",
+        "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDVmNDdjZDgyMGIxOTc0ZGE2NmNkZjkwYmViNzk4MjBlY2E5ZjRjYmUwMjFiMTc4M2EzMGI3NTAyNWQxIn19fQ=="
+    ),
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
+    @Deprecated
     PILLAGER(
         "c64b8af5-b547-4a15-abf9-12d3eb052f37",
         "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmRlYWVjMzQ0YWIwOTViNDhjZWFkNzUyN2Y3ZGVlNjFiMDYzZmY3OTFmNzZhOGZhNzY2NDJjODY3NmUyMTczIn19fQ=="

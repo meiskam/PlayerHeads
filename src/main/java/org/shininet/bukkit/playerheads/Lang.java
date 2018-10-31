@@ -232,7 +232,12 @@ public final class Lang {
     public static String HEAD_DOLPHIN;
     public static String HEAD_SPAWN_DOLPHIN;
     
-    
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
+    @Deprecated
+    public static String HEAD_CAT;
     /**
      * 
      * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
@@ -251,6 +256,12 @@ public final class Lang {
      */
     @Deprecated
     public static String HEAD_ILLAGER_BEAST;
+    /**
+     * 
+     * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!
+     */
+    @Deprecated
+    public static String HEAD_SPAWN_CAT;
     /**
      * 
      * @deprecated Speculative entry for 1.14 mob before bukkit support - this entry may change unexpectedly!

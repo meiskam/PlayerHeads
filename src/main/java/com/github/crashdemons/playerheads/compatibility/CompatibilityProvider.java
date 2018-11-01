@@ -25,25 +25,33 @@ public interface CompatibilityProvider {
      */
     public String getVersion();
     /**
-     * Gets the owning player of a skull
+     * Gets the owning player of a skull.
+     * 
+     * This method may not result in the same information as getOwner, you should check both.
      * @param skullItemMeta the ItemMeta of the skull
      * @return the player owning the skull, or null if none could be retrieved.
      */
     public OfflinePlayer getOwningPlayer(SkullMeta skullItemMeta);
     /**
-     * Gets the owning player of a skull
+     * Gets the owning player of a skull.
+     * 
+     * This method may not result in the same information as getOwner, you should check both.
      * @param skullBlockState the BlockState of the skull
      * @return the player owning the skull, or null if none could be retrieved.
      */
     public OfflinePlayer getOwningPlayer(Skull skullBlockState);
     /**
-     * Gets the owner username of a skull
+     * Gets the owner username of a skull.
+     * 
+     * This method may not result in the same information as getOwningPlayer, you should check both.
      * @param skullItemMeta the ItemMeta of the skull
      * @return the owner name
      */
     public String getOwner(SkullMeta skullItemMeta);
     /**
-     * Gets the owner username of a skull
+     * Gets the owner username of a skull.
+     * 
+     * This method may not result in the same information as getOwningPlayer, you should check both.
      * @param skullBlockState the BlockState of the skull
      * @return the owner name
      */

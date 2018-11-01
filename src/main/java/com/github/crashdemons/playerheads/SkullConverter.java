@@ -75,7 +75,7 @@ public final class SkullConverter {
         OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullMeta);//skullMeta.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skullMeta);//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
-        if(owner==null) owner=skullMeta.getOwner();
+        if(owner==null) owner=Compatibility.getProvider().getOwner(skullMeta);//skullMeta.getOwner();
         return owner;
     }
     /**
@@ -88,7 +88,7 @@ public final class SkullConverter {
         OfflinePlayer op = Compatibility.getProvider().getOwningPlayer(skullBlockState);//skullBlockState.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skullBlockState);
         if(op!=null) owner=op.getName();
-        if(owner==null) owner=skullBlockState.getOwner();
+        if(owner==null) owner=Compatibility.getProvider().getOwner(skullBlockState);//skullBlockState.getOwner();
         return owner;
     }
     

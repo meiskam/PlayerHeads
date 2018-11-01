@@ -5,6 +5,8 @@
  */
 package com.github.crashdemons.playerheads.compatibility.bukkit_1_13;
 
+import com.github.crashdemons.playerheads.ProfileUtils;
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
@@ -48,6 +50,37 @@ public class Provider implements CompatibilityProvider {
     @Override public boolean isMobhead(ItemStack s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
     @Override public boolean isMobhead(BlockState s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
     @Override public String getCompatibleNameFromEntity(Entity e){ return e.getType().name().toUpperCase(); }
+    
+    
+    @Override public OfflinePlayer getOwningPlayerExtended(SkullMeta skull){
+        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skull);
+    }
+    @Override public OfflinePlayer getOwningPlayerExtended(Skull skull){
+        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skull);
+    }
+    
+    
+    @Override public String getOwnerExhaustive(SkullMeta skull){
+        String owner=null;
+        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=getOwner(skull);//skullMeta.getOwner();
+        return owner;
+    }
+    @Override public String getOwnerExhaustive(Skull skull){
+        String owner=null;
+        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
+        if(op!=null) owner=op.getName();
+        if(owner==null) owner=getOwner(skull);//skullMeta.getOwner();
+        return owner;
+    }
+    
     
     private SkullType getSkullType(Material mat){
         String typeName = mat.name();

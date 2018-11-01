@@ -47,11 +47,11 @@ public final class SkullConverter {
      * @param skullMeta ItemMeta for a playerhead item
      * @return the owning player of the skull
      * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwnerExhaustive(org.bukkit.inventory.meta.SkullMeta) 
+     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
      */
     @Deprecated
     public static OfflinePlayer getSkullOwningPlayer(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwningPlayerExtended(skullMeta);
+        return Compatibility.getProvider().getOwningPlayer(skullMeta);
     }
     /**
      * Gets the owner username from a playerhead.
@@ -60,11 +60,11 @@ public final class SkullConverter {
      * @param skullBlockState BlockState for a playerhead block
      * @return the username of the head's owner
      * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwningPlayerExtended(org.bukkit.block.Skull) 
+     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwningPlayer(org.bukkit.block.Skull) 
      */
     @Deprecated
     public static OfflinePlayer getSkullOwningPlayer(Skull skullBlockState){
-        return Compatibility.getProvider().getOwningPlayerExtended(skullBlockState);
+        return Compatibility.getProvider().getOwningPlayer(skullBlockState);
     }
     
     /**
@@ -72,20 +72,20 @@ public final class SkullConverter {
      * @param skullMeta ItemMeta for a playerhead item
      * @return the username of the head's owner
      * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwnerExhaustive(org.bukkit.inventory.meta.SkullMeta) 
+     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
      */
     public static String getSkullOwner(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwnerExhaustive(skullMeta);
+        return Compatibility.getProvider().getOwner(skullMeta);
     }
     /**
      * Gets the owner username from a playerhead.
      * @param skullBlockState BlockState for a playerhead block
      * @return the username of the head's owner
      * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwnerExhaustive(org.bukkit.block.Skull) 
+     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.block.Skull) 
      */
     public static String getSkullOwner(Skull skullBlockState){
-        return Compatibility.getProvider().getOwnerExhaustive(skullBlockState);
+        return Compatibility.getProvider().getOwner(skullBlockState);
     }
     
     /**
@@ -105,7 +105,7 @@ public final class SkullConverter {
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        OfflinePlayer op =Compatibility.getProvider().getOwningPlayerExtended(skullState);//getSkullOwningPlayer(skullState);
+        OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         if(owner==null) return TexturedSkullType.PLAYER;
@@ -137,7 +137,7 @@ public final class SkullConverter {
         
         if(!Compatibility.getProvider().isPlayerhead(stack)) return null;
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        String owner=Compatibility.getProvider().getOwnerExhaustive(skullState);//getSkullOwner(skullState);
+        String owner=Compatibility.getProvider().getOwner(skullState);//getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
         
         LegacySkullType oldtype = LegacySkullType.get(owner);
@@ -164,7 +164,7 @@ public final class SkullConverter {
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         Skull skullState = (Skull) state;
-        OfflinePlayer op =Compatibility.getProvider().getOwningPlayerExtended(skullState);//getSkullOwningPlayer(skullState);
+        OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
         if(op==null) return TexturedSkullType.PLAYER;
         UUID owner = op.getUniqueId();
         if(owner==null) return TexturedSkullType.PLAYER;
@@ -196,7 +196,7 @@ public final class SkullConverter {
         
         if(!Compatibility.getProvider().isPlayerhead(state)) return null;
         Skull skullState = (Skull) state;
-        String owner=Compatibility.getProvider().getOwnerExhaustive(skullState);//getSkullOwner(skullState);
+        String owner=Compatibility.getProvider().getOwner(skullState);//getSkullOwner(skullState);
         if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
         
         LegacySkullType oldtype = LegacySkullType.get(owner);

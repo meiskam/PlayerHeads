@@ -25,76 +25,84 @@ public interface CompatibilityProvider {
      */
     public String getVersion();
     /**
-     * Gets the owning player of a skull.
+     * Gets the owning player of a skull as direct as possible from the relevant API - this may not always reliably get the player.
      * 
      * This method may not result in the same information as getOwner, you should check both.
+     * @param skullItemMeta the ItemMeta of the skull
+     * @return the player owning the skull, or null if none could be retrieved.
+     * @deprecated This method does not include extended checking, you probably dont want the direct method.
+     */
+    @Deprecated
+    public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta);
+    /**
+     * Gets the owning player of a skull as direct as possible from the relevant API - this may not always reliably get the player.
+     * 
+     * This method may not result in the same information as getOwner, you should check both.
+     * @param skullBlockState the BlockState of the skull
+     * @return the player owning the skull, or null if none could be retrieved.
+     * @deprecated This method does not include extended checking, you probably dont want the direct method.
+     */
+    @Deprecated
+    public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState);
+    
+    /**
+     * Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.
+     * 
+     * This method may not result in the same information as getOwner, you should check both.
+     * This method does not exhaustively attempt to derive players from usernames.
      * @param skullItemMeta the ItemMeta of the skull
      * @return the player owning the skull, or null if none could be retrieved.
      */
     public OfflinePlayer getOwningPlayer(SkullMeta skullItemMeta);
     /**
-     * Gets the owning player of a skull.
+     * Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.
      * 
      * This method may not result in the same information as getOwner, you should check both.
+     * This method does not exhaustively attempt to derive players from usernames.
      * @param skullBlockState the BlockState of the skull
      * @return the player owning the skull, or null if none could be retrieved.
      */
     public OfflinePlayer getOwningPlayer(Skull skullBlockState);
     
-    /**
-     * Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.
-     * 
-     * This method may not result in the same information as getOwner, you should check both.
-     * This method does not exhaustively attempt to derive players from usernames.
-     * @param skullItemMeta the ItemMeta of the skull
-     * @return the player owning the skull, or null if none could be retrieved.
-     */
-    public OfflinePlayer getOwningPlayerExtended(SkullMeta skullItemMeta);
-    /**
-     * Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.
-     * 
-     * This method may not result in the same information as getOwner, you should check both.
-     * This method does not exhaustively attempt to derive players from usernames.
-     * @param skullBlockState the BlockState of the skull
-     * @return the player owning the skull, or null if none could be retrieved.
-     */
-    public OfflinePlayer getOwningPlayerExtended(Skull skullBlockState);
-    
     
     /**
-     * Gets the owner username of a skull.
+     * Gets the owner username of a skull as direct as possible from the relevant API - this may not always reliably get the username.
      * 
-     * This method may not result in the same information as getOwningPlayer, you should check both.
+     * This method may not result in the same information as getOwningPlayerDirect, you should check both.
      * @param skullItemMeta the ItemMeta of the skull
      * @return the owner name
+     * @deprecated This method does not include extended checking, you probably dont want the direct method.
      */
-    public String getOwner(SkullMeta skullItemMeta);
+    @Deprecated
+    public String getOwnerDirect(SkullMeta skullItemMeta);
     /**
-     * Gets the owner username of a skull.
+     * Gets the owner username of a skull as direct as possible from the relevant API - this may not always reliably get the username.
      * 
-     * This method may not result in the same information as getOwningPlayer, you should check both.
+     * This method may not result in the same information as getOwningPlayerDirect, you should check both.
      * @param skullBlockState the BlockState of the skull
      * @return the owner name
+     * @deprecated This method does not include extended checking, you probably dont want the direct method.
      */
-    public String getOwner(Skull skullBlockState);
+    @Deprecated
+    public String getOwnerDirect(Skull skullBlockState);
     /**
      * Gets the owner username of a skull by any means necessary.
      * 
-     * Because of differing results between getOwningPlayer().getName() and getOwner(), it may be necessary to use both or check the profile field, which this method should do.
+     * Because of differing results between getOwningPlayer().getName() and getOwnerDirect(), it may be necessary to use both or check the profile field, which this method should do.
      * This method must be implemented with the following defined order: getOwningPlayer and getProfilePlayer if necessary to check name, then getOwner to check name.
      * @param skullItemMeta the itemmeta of the skull to check
      * @return the owner name or null if none could be found.
      */
-    public String getOwnerExhaustive(SkullMeta skullItemMeta);
+    public String getOwner(SkullMeta skullItemMeta);
     /**
      * Gets the owner username of a skull by any means necessary.
      * 
-     * Because of differing results between getOwningPlayer().getName() and getOwner(), it may be necessary to use both or check the profile field, which this method should do.
+     * Because of differing results between getOwningPlayer().getName() and getOwnerDirect(), it may be necessary to use both or check the profile field, which this method should do.
      * This method must be implemented with the following defined order: getOwningPlayer and getProfilePlayer if necessary to check name, then getOwner to check name.
      * @param skullBlockState the blockstate of the skull to check
      * @return the owner name or null if none could be found.
      */
-    public String getOwnerExhaustive(Skull skullBlockState);
+    public String getOwner(Skull skullBlockState);
     /**
      * Sets the player owning a skull
      * @param skullItemMeta the ItemMeta of a skull

@@ -26,13 +26,14 @@ import org.bukkit.inventory.meta.SkullMeta;
  * CompatibilityProvider Implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
+@SuppressWarnings( "deprecation" )
 public class Provider implements CompatibilityProvider {
     public Provider(){}
     @Override public String getVersion(){ return "1.13"; }
-    @Override public OfflinePlayer getOwningPlayer(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
-    @Override public OfflinePlayer getOwningPlayer(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }
-    @Override public String getOwner(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
-    @Override public String getOwner(Skull skullBlockState){ return skullBlockState.getOwner(); }
+    @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
+    @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }
+    @Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
+    @Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
     @Override public boolean setOwningPlayer(SkullMeta skullItemMeta, OfflinePlayer op){ return skullItemMeta.setOwningPlayer(op); }
     @Override public void    setOwningPlayer(Skull skullBlockState, OfflinePlayer op){ skullBlockState.setOwningPlayer(op); }
     @Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return skullItemMeta.setOwner(owner); }
@@ -52,32 +53,32 @@ public class Provider implements CompatibilityProvider {
     @Override public String getCompatibleNameFromEntity(Entity e){ return e.getType().name().toUpperCase(); }
     
     
-    @Override public OfflinePlayer getOwningPlayerExtended(SkullMeta skull){
-        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){
+        OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op!=null) return op;
         return ProfileUtils.getProfilePlayer(skull);
     }
-    @Override public OfflinePlayer getOwningPlayerExtended(Skull skull){
-        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+    @Override public OfflinePlayer getOwningPlayer(Skull skull){
+        OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op!=null) return op;
         return ProfileUtils.getProfilePlayer(skull);
     }
     
     
-    @Override public String getOwnerExhaustive(SkullMeta skull){
+    @Override public String getOwner(SkullMeta skull){
         String owner=null;
-        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
-        if(owner==null) owner=getOwner(skull);//skullMeta.getOwner();
+        if(owner==null) owner=getOwnerDirect(skull);//skullMeta.getOwner();
         return owner;
     }
-    @Override public String getOwnerExhaustive(Skull skull){
+    @Override public String getOwner(Skull skull){
         String owner=null;
-        OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
-        if(owner==null) owner=getOwner(skull);//skullMeta.getOwner();
+        if(owner==null) owner=getOwnerDirect(skull);//skullMeta.getOwner();
         return owner;
     }
     

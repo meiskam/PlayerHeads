@@ -228,7 +228,7 @@ class PlayerHeadsListener implements Listener {
                     case PLAYER:
                         Skull skullState=(Skull) block.getState();
                         if (skullState.hasOwner()) {
-                            String owner=SkullConverter.getSkullOwner(skullState);
+                            String owner=Compatibility.getProvider().getOwnerExhaustive(skullState);//SkullConverter.getSkullOwner(skullState);
                             if(owner==null) return;//this is an unsupported custom-texture head. don't print anything.
                             
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
@@ -295,7 +295,7 @@ class PlayerHeadsListener implements Listener {
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
-                            String owner = SkullConverter.getSkullOwner(skull);
+                            String owner = Compatibility.getProvider().getOwnerExhaustive(skull);//SkullConverter.getSkullOwner(skull);
                             if(owner==null) return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
                             item = SkullManager.PlayerSkull(owner);
                             break;

@@ -44,7 +44,17 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         }
         if (args.length == 3) {
             String key = args[2].toLowerCase();
-            formatMsg(sender, scope, key + Lang.COLON_SPACE + plugin.configFile.get(key));
+            String message = key + Lang.COLON_SPACE + plugin.configFile.get(key);
+            if(key.endsWith("droprate")){
+                try{
+                    double d = Double.parseDouble(scope);
+                    message+=" ("+d+")";
+                }
+                catch(Exception e){
+                    message+=" (?)";
+                }
+            }
+            formatMsg(sender, scope, message);
         } else {
             formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED);//Syntax: ph config get <whatever>
             formatMsg(sender, scope, Lang.CONFIG_VARIABLES + Lang.COLON_SPACE + Config.configKeysString);//Config variables: x, y, z

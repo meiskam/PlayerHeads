@@ -47,7 +47,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             String message = key + Lang.COLON_SPACE + plugin.configFile.get(key);
             if(key.endsWith("droprate")){
                 try{
-                    double d = Double.parseDouble(scope);
+                    double d = plugin.configFile.getDouble(key);
                     message+=" ("+d+")";
                 }
                 catch(Exception e){

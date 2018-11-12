@@ -204,7 +204,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (plugin.configFile.getBoolean("fixcase")) {
             skullOwner = fixcase(skullOwner);
         }
-        if (InventoryManager.addHead(reciever, skullOwner, quantity, usevanillaskull)) {
+        boolean addLore = plugin.configFile.getBoolean("addlore");
+        if (InventoryManager.addHead(reciever, skullOwner, quantity, usevanillaskull, addLore)) {
             formatMsg(sender, scope, Lang.SPAWNED_HEAD, skullOwner);
         } else {
             formatMsg(sender, scope, Lang.ERROR_INV_FULL);
@@ -272,9 +273,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
             
-            
-            
-            skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull);
+            boolean addLore = plugin.configFile.getBoolean("addlore");
+            skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull,addLore);
             skullOutput.setAmount(skullInput.getAmount());
             Compatibility.getProvider().setItemInMainHand((Player) sender,skullOutput);//.getEquipment().setItemInMainHand(skullOutput);
             formatMsg(sender, scope, Lang.RENAMED_HEAD);

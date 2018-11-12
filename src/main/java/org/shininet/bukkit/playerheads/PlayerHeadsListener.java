@@ -129,7 +129,8 @@ class PlayerHeadsListener implements Listener {
             skullOwner = player.getName();
         }
         
-        ItemStack drop = SkullManager.PlayerSkull(skullOwner);
+        boolean addLore = plugin.configFile.getBoolean("addlore");
+        ItemStack drop = SkullManager.PlayerSkull(skullOwner,addLore);
         PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
         if (dropHeadEvent.isCancelled()) {
@@ -188,7 +189,8 @@ class PlayerHeadsListener implements Listener {
 
         boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
         
-        ItemStack drop = SkullManager.MobSkull(type,usevanillaskull);
+        boolean addLore = plugin.configFile.getBoolean("addlore");
+        ItemStack drop = SkullManager.MobSkull(type,usevanillaskull,addLore);
 
         MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
@@ -292,12 +294,13 @@ class PlayerHeadsListener implements Listener {
                 } else {
                     Location location = block.getLocation();
                     ItemStack item = null;
+                    boolean addLore = plugin.configFile.getBoolean("addlore");
                     switch(skullType){
                         case PLAYER:
                             Skull skull = (Skull) block.getState();
                             String owner = Compatibility.getProvider().getOwner(skull);//SkullConverter.getSkullOwner(skull);
                             if(owner==null) return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
-                            item = SkullManager.PlayerSkull(owner);
+                            item = SkullManager.PlayerSkull(owner,addLore);
                             break;
                         default:
                             boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(block.getState());
@@ -309,8 +312,7 @@ class PlayerHeadsListener implements Listener {
                             boolean conversionCanHappen = (blockIsSkinnable && usevanillaskull) || (!blockIsSkinnable && !usevanillaskull);
                             if(conversionCanHappen && !convertvanillahead)
                                 usevanillaskull=!usevanillaskull;//change the drop to the state that avoids converting it.
-                            
-                            item = SkullManager.MobSkull(skullType,usevanillaskull);
+                            item = SkullManager.MobSkull(skullType,usevanillaskull,addLore);
                             break;
                     }
 

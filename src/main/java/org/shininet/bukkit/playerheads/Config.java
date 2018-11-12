@@ -4,7 +4,6 @@
 
 package org.shininet.bukkit.playerheads;
 
-import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,6 +49,7 @@ public final class Config {
             put("dropvanillaheads", configType.BOOLEAN);
             put("convertvanillaheads", configType.BOOLEAN);
             put("nerfdeathspam", configType.BOOLEAN);
+            put("addlore", configType.BOOLEAN);
         }
     };
     /**

@@ -21,12 +21,13 @@ public class InventoryManager {
      * @param player the player receiving the head.
      * @param skullOwner the owner username of the head-item, or the "spawn" string for a supported skull.
      * @param usevanillaskulls whether vanilla mobheads are permitted (if relevant to the owner parameter).
+     * @param addLore controls whether lore text can be added to the head by the plugin
      * @return true: the head was added successfully. false: there was no empty inventory slot to add the item.
      * @see Config#defaultStackSize
      */
     @SuppressWarnings("unused")
-    public static boolean addHead(Player player, String skullOwner, boolean usevanillaskulls) {
-        return addHead(player, skullOwner, Config.defaultStackSize, usevanillaskulls);
+    public static boolean addHead(Player player, String skullOwner, boolean usevanillaskulls, boolean addLore) {
+        return addHead(player, skullOwner, Config.defaultStackSize, usevanillaskulls, addLore);
     }
 
     /**
@@ -35,15 +36,16 @@ public class InventoryManager {
      * @param skullOwner the owner username of the head-item, or the "spawn" string for a supported skull.
      * @param quantity the number of this item to add
      * @param usevanillaskulls whether vanilla mobheads are permitted (if relevant to the owner parameter).
+     * @param addLore controls whether lore text can be added to the head by the plugin
      * @return true: the head was added successfully. false: there was no empty inventory slot to add the item.
      */
-    public static boolean addHead(Player player, String skullOwner, int quantity, boolean usevanillaskulls) {
+    public static boolean addHead(Player player, String skullOwner, int quantity, boolean usevanillaskulls,boolean addLore) {
         PlayerInventory inv = player.getInventory();
         int firstEmpty = inv.firstEmpty();
         if (firstEmpty == -1) {
             return false;
         } else {
-            inv.setItem(firstEmpty, SkullManager.spawnSkull(skullOwner, quantity, usevanillaskulls));
+            inv.setItem(firstEmpty, SkullManager.spawnSkull(skullOwner, quantity, usevanillaskulls, addLore));
             return true;
         }
     }

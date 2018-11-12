@@ -18,7 +18,6 @@ import org.shininet.bukkit.playerheads.Lang;
 /**
  * Defines an abstract class of methods for creating, updating, and applying information to heads managed by the plugin.
  * @author crash
- * @author x7aSv
  */
 public final class SkullManager {
     
@@ -73,11 +72,12 @@ public final class SkullManager {
      * 
      * @param type The TexturedSkullType to create heads of.
      * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
+     * @param addLore controls whether any lore text should be added to the head (is currently applied only to custom heads).
      * @return The ItemStack of heads desired.
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
-    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads){
-        return MobSkull(type,Config.defaultStackSize, useVanillaHeads);
+    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads, boolean addLore){
+        return MobSkull(type,Config.defaultStackSize, useVanillaHeads, addLore);
     }
     
     /**
@@ -85,9 +85,10 @@ public final class SkullManager {
      * @param type The TexturedSkullType to create heads of.
      * @param quantity the number of heads to create in the stack
      * @param useVanillaHeads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs.
+     * @param addLore controls whether any lore text should be added to the head (is currently applied only to custom heads).
      * @return The ItemStack of heads desired.
      */
-    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads){
+    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads, boolean addLore){
         CompatibleSkullMaterial mat = type.getCompatibleMaterial();
         
         
@@ -103,14 +104,15 @@ public final class SkullManager {
         //applyOwningPlayer(headMeta,Bukkit.getOfflinePlayer(type.getOwner()));
         applyTexture(headMeta,type.getOwner(),type.getTexture());
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
-        applyLore(headMeta,ChatColor.GREEN+Lang.LORE_HEAD_MOB);
+        //System.out.println("DEBUG: addlore "+addLore);
+        if(addLore) applyLore(headMeta,ChatColor.GREEN+Lang.LORE_HEAD_MOB);
         stack.setItemMeta(headMeta);
         return stack;
     }
-    private static ItemStack PlayerSkull(OfflinePlayer owner){
-        return PlayerSkull(owner,Config.defaultStackSize);
+    private static ItemStack PlayerSkull(OfflinePlayer owner, boolean addLore){
+        return PlayerSkull(owner,Config.defaultStackSize, addLore);
     }
-    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity){
+    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity, boolean addLore){
         ItemStack stack = CompatibleSkullMaterial.PLAYER.getDetails().createItemStack(quantity);//new ItemStack(Material.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         String name=null;
@@ -120,7 +122,8 @@ public final class SkullManager {
         }
         if(name==null) name="Unknown";//only used for display purposes.
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
-        applyLore(headMeta,ChatColor.RED+Lang.LORE_HEAD_PLAYER);
+        //System.out.println("DEBUG: addlore "+addLore);
+        if(addLore) applyLore(headMeta,ChatColor.RED+Lang.LORE_HEAD_PLAYER);
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -134,11 +137,12 @@ public final class SkullManager {
      * 
      * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
      * @param owner The username to create a head for.
+     * @param addLore controls whether any lore text should be added to the head.
      * @return The ItemStack of heads desired.
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
-    public static ItemStack PlayerSkull(String owner){
-        return PlayerSkull(owner,Config.defaultStackSize);
+    public static ItemStack PlayerSkull(String owner, boolean addLore){
+        return PlayerSkull(owner,Config.defaultStackSize, addLore);
     }
     /**
      * Creates a stack of playerheads for the given username.
@@ -147,13 +151,14 @@ public final class SkullManager {
      * 
      * @param owner The username to create a head for.
      * @param quantity The number of heads to create in the stack.
+     * @param addLore controls whether any lore text should be added to the head.
      * @return The ItemStack of heads desired.
      * @throws IllegalArgumentException passed a null or empty username.
      */
-    public static ItemStack PlayerSkull(String owner, int quantity){
+    public static ItemStack PlayerSkull(String owner, int quantity, boolean addLore){
         if(owner==null || owner.isEmpty()) throw new IllegalArgumentException("Creating a playerhead with a null or empty username is not possible with this method.");
         OfflinePlayer op = Bukkit.getOfflinePlayer(owner);
-        return PlayerSkull(op,quantity);
+        return PlayerSkull(op,quantity, addLore);
     }
     
     /**
@@ -162,10 +167,11 @@ public final class SkullManager {
      * The quantity of heads will be defined by Config.defaultStackSize (usually 1)
      * @param spawnString the spawn string indicating the type of skull or username indicating the owner of the skull.
      * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
+     * @param addLore controls whether any lore text should be added to the head. (currently only applied to custom mobheads and player heads)
      * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
      */
-    public static ItemStack spawnSkull(String spawnString, boolean usevanillaheads){
-        return spawnSkull(spawnString,Config.defaultStackSize,usevanillaheads);
+    public static ItemStack spawnSkull(String spawnString, boolean usevanillaheads, boolean addLore){
+        return spawnSkull(spawnString,Config.defaultStackSize,usevanillaheads,addLore);
     }
     
     /**
@@ -173,16 +179,17 @@ public final class SkullManager {
      * @param spawnString the spawn string indicating the type of skull or username indicating the owner of the skull.
      * @param quantity the number of items to spawn in this stack.
      * @param usevanillaheads Whether to permit vanilla head-items to be used in place of custom playerheads for supported mobs. (if the spawn string is recognized)
+     * @param addLore controls whether any lore text should be added to the head. (currently only applied to custom mobheads and player heads)
      * @return The skull itemstack desired. If the spawn string is recognized, this will be the corresponding entity's head, otherwise it will be a playerhead for the name supplied.
      */
-    public static ItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads){
+    public static ItemStack spawnSkull(String spawnString, int quantity, boolean usevanillaheads,boolean addLore){
         TexturedSkullType type;
         if(spawnString.isEmpty()) type=TexturedSkullType.PLAYER;
         else type = TexturedSkullType.getBySpawnName(spawnString);
         if(type==null){
-            return PlayerSkull(spawnString,quantity);
+            return PlayerSkull(spawnString,quantity,addLore);
         }else{
-            return MobSkull(type,quantity,usevanillaheads);
+            return MobSkull(type,quantity,usevanillaheads,addLore);
         }
     }
     

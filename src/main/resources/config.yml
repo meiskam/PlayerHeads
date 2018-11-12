@@ -87,6 +87,7 @@ dropboringplayerheads: false
 dropvanillaheads: true
 convertvanillaheads: false
 nerfdeathspam: false
+addlore: true
 
 creeperdroprate: 0.005
 zombiedroprate: 0.002

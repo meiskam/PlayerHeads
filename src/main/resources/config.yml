@@ -73,6 +73,9 @@
 #                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
 # nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within 5 minutes and 5 player deaths). This alleviates some ability to farm heads. (version 4.3+)
 #                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
+# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore.
+#
+
 
 pkonly: true
 droprate: 0.05

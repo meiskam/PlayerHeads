@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>4.5.3-SNAPSHOT</version>
+    <version>4.6.0-SNAPSHOT</version>
     <name>PlayerHeads</name>
 
     <organization>

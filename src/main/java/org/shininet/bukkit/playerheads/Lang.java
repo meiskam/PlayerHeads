@@ -43,6 +43,7 @@ public final class Lang {
     public static String COMPATIBILITY_VERSION_RECOMMENDED;
     public static String COMPATIBILITY_VERSION_CURRENT;
     
+    public static String LORE_PLUGIN_NAME;
     public static String LORE_HEAD_MOB;
     public static String LORE_HEAD_PLAYER;
     

@@ -31,7 +31,7 @@ public final class SkullManager {
     private static void applyLore(SkullMeta headMeta,String extra){
         ArrayList<String> lore = new ArrayList<String>();
         lore.add(" ");
-        lore.add(ChatColor.BLUE+""+ChatColor.ITALIC+"PlayerHeads");
+        if(!Lang.LORE_PLUGIN_NAME.isEmpty()) lore.add(ChatColor.BLUE+""+ChatColor.ITALIC+Lang.LORE_PLUGIN_NAME);
         if(!extra.isEmpty()) lore.add(extra);
         headMeta.setLore(lore);
     }

@@ -11,9 +11,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
  * @author crash
  */
 public class InteractSpamPreventer extends EventSpamPreventer{
+    
+    private final long INTERACT_THRESHOLD_MS;
+    
+    public InteractSpamPreventer(int numRecords, long timeMS){
+        super(numRecords);
+        INTERACT_THRESHOLD_MS=timeMS;
+    }
             
     private class InteractRecord extends EventSpamRecord{
-        private static final long TIME_THRESHOLD_MS=1000;
         Location location=null;
         UUID playerId;
         public InteractRecord(PlayerInteractEvent event){
@@ -27,7 +33,7 @@ public class InteractSpamPreventer extends EventSpamPreventer{
             if(record.playerId.equals(playerId)){
                 if(record.location==null || location==null) return false;
                 if(record.location.equals(location)){
-                    if(super.closeTo(record,TIME_THRESHOLD_MS)) return true;
+                    if(super.closeTo(record,INTERACT_THRESHOLD_MS)) return true;
                 }
             }
             return false;

@@ -16,8 +16,14 @@ import org.bukkit.event.entity.EntityDeathEvent;
  */
 public class PlayerDeathSpamPreventer extends EventSpamPreventer{
     
+    private final long DEATH_THRESHOLD_MS;
+    
+    public PlayerDeathSpamPreventer(int numRecords, long timeMS){
+        super(numRecords);
+        DEATH_THRESHOLD_MS=timeMS;
+    }
+    
     private class PlayerDeathRecord extends EventSpamRecord{
-        private static final long TIME_THRESHOLD_MS=300000;
         private UUID victimId=null;
         private UUID killerId=null;
         public PlayerDeathRecord(EntityDeathEvent event){
@@ -45,7 +51,7 @@ public class PlayerDeathSpamPreventer extends EventSpamPreventer{
             if(record==null) return false;
             if(victimId==null) return false;//this shouldn't be null if the event was properly from a player
             if(victimId.equals(record.victimId) && sameKiller(record))
-                return super.closeTo(record, TIME_THRESHOLD_MS);
+                return super.closeTo(record, DEATH_THRESHOLD_MS);
             return false;
         }
     }

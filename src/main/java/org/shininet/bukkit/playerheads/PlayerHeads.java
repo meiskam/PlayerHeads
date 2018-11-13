@@ -135,6 +135,10 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         PlayerJoinEvent.getHandlerList().unregister(listener);
         BlockBreakEvent.getHandlerList().unregister(listener);
     }
+    
+    public void onConfigReloaded(){
+        listener.reloadConfig();
+    }
 
     private void initUpdater() {
         try {

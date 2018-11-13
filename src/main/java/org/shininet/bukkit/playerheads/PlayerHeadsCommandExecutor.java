@@ -136,6 +136,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         plugin.reloadConfig();
         plugin.configFile = plugin.getConfig();
         Lang.reload();
+        plugin.onConfigReloaded();
         formatMsg(sender, scope, Lang.CONFIG_RELOADED);
         return true;
     }

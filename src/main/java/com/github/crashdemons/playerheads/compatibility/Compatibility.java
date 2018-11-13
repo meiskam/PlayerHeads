@@ -118,7 +118,8 @@ public class Compatibility {
         return null;
     }
     private static CompatibilityProvider loadProviderByVersion(int major,int minor) throws CompatibilityUnavailableException{
-        String classname = "com.github.crashdemons.playerheads.compatibility.bukkit_"+major+"_"+minor+".Provider";
+        String pkg = Compatibility.class.getPackage().getName();
+        String classname = pkg+".bukkit_"+major+"_"+minor+".Provider";
         try {
             Class<?> providerClass = Class.forName(classname);
             Constructor<?> ctor = providerClass.getConstructor();

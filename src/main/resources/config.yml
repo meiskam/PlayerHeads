@@ -71,14 +71,13 @@
 #                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
 # convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
 #                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
-# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within 5 minutes and 5 player deaths). This alleviates some ability to farm heads. (version 4.3+)
+# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within a threshold). This alleviates some ability to farm heads. (version 4.3+)
 #                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
-# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore.
-#
-# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam
-# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam
-# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam
-# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam
+# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore. (version 4.6+)
+# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam  (version 4.7+)
+# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam  (version 4.7+)
+# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam  (version 4.7+)
+# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam  (version 4.7+)
 
 pkonly: true
 droprate: 0.05

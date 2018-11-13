@@ -102,6 +102,13 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                                 formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
                             }
                             break;
+                        case LONG:
+                            try {
+                                plugin.configFile.set(key, Long.parseLong(value));
+                            } catch (NumberFormatException e) {
+                                formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
+                            }
+                            break;
                         default:
                             plugin.logger.warning(Formatter.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
                             break;

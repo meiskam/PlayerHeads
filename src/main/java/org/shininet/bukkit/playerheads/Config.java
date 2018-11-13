@@ -23,7 +23,7 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT
+        DOUBLE, BOOLEAN, INT, LONG
     }
 
     /**
@@ -50,6 +50,12 @@ public final class Config {
             put("convertvanillaheads", configType.BOOLEAN);
             put("nerfdeathspam", configType.BOOLEAN);
             put("addlore", configType.BOOLEAN);
+            
+            
+            put("clickspamcount", configType.INT);
+            put("clickspamthreshold", configType.LONG);
+            put("deathspamcount", configType.INT);
+            put("deathspamthreshold", configType.LONG);
         }
     };
     /**

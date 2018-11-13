@@ -75,7 +75,10 @@
 #                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
 # addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore.
 #
-
+# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam
+# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam
+# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam
+# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam
 
 pkonly: true
 droprate: 0.05
@@ -91,6 +94,10 @@ dropvanillaheads: true
 convertvanillaheads: false
 nerfdeathspam: false
 addlore: true
+clickspamcount: 5
+clickspamthreshold: 1000
+deathspamcount: 5
+deathspamthreshold: 300000
 
 creeperdroprate: 0.005
 zombiedroprate: 0.002

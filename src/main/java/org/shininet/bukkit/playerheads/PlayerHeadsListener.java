@@ -53,8 +53,8 @@ class PlayerHeadsListener implements Listener {
 
     private final Random prng = new Random();
     private final PlayerHeads plugin;
-    private final InteractSpamPreventer clickSpamPreventer = new InteractSpamPreventer();
-    private final PlayerDeathSpamPreventer deathSpamPreventer = new PlayerDeathSpamPreventer();
+    private final InteractSpamPreventer clickSpamPreventer;
+    private final PlayerDeathSpamPreventer deathSpamPreventer;
     
     private final Predicate<ItemStack> isVanillaHead = new Predicate<ItemStack>(){//we only need this because of java 7 support
         @Override
@@ -63,6 +63,9 @@ class PlayerHeadsListener implements Listener {
 
     protected PlayerHeadsListener(PlayerHeads plugin) {
         this.plugin = plugin;
+        org.bukkit.configuration.file.FileConfiguration cfg=plugin.configFile;//just to make the following more readable
+        clickSpamPreventer = new InteractSpamPreventer(cfg.getInt("clickspamcount"), cfg.getLong("clickspamthreshold"));
+        deathSpamPreventer = new PlayerDeathSpamPreventer(cfg.getInt("deathspamcount"), cfg.getLong("deathspamthreshold"));
     }
 
     /**

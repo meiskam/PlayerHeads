@@ -54,7 +54,7 @@ public class Compatibility {
             isUsingFallback = true;
             bestprovider = loadFallbackProvider(recommendedType);
         }
-        if(bestprovider==null){//if THAT provider isn't available, try any lower/equal version (with "craftbukkit" implementation)
+        if(bestprovider==null && !recommendedType.equals(fallbackType)){//if THAT provider isn't available, try any lower/equal version (with "craftbukkit" implementation)
             bestprovider = loadFallbackProvider(fallbackType);
         }
         if(bestprovider==null) throw new CompatibilityUnavailableException("No suitable compatibility provider could be found.");

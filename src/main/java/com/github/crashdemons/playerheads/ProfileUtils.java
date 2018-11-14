@@ -18,7 +18,9 @@ import org.bukkit.inventory.meta.SkullMeta;
 /**
  * Provides methods for working with profiles on items and blocks.
  * @author crashdemons (crashenator at gmail.com)
+ * @deprecated This class is server implementation-specific and should not be used directly if possible, the namespace may change in the future.
  */
+@Deprecated
 public class ProfileUtils {
     
     /**

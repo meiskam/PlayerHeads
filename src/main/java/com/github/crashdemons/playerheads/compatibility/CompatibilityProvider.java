@@ -20,6 +20,12 @@ import org.bukkit.inventory.meta.SkullMeta;
  */
 public interface CompatibilityProvider {
     /**
+     * Retrieve the server type the provider implements code for.
+     * @return the server type string
+     */
+    public String getType();
+    
+    /**
      * Retrieve the version string associated with the specific Compatibility Provider implementation.
      * @return the version string
      */

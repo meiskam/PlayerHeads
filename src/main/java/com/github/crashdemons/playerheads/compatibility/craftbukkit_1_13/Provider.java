@@ -29,6 +29,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 @SuppressWarnings( "deprecation" )
 public class Provider implements CompatibilityProvider {
     public Provider(){}
+    @Override public String getType(){ return "craftbukkit"; }
     @Override public String getVersion(){ return "1.13"; }
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
     @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }

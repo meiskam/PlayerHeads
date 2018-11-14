@@ -46,7 +46,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
     private void logCompatibilityIssue(String description, String reportcomment){
         logger.severe(description);
         logger.severe("  "+Lang.COMPATIBILITY_VERSION_RAW+Lang.COLON_SPACE+Version.getRawServerVersion());
-        logger.severe("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getString());
+        logger.severe("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getType()+" "+Version.getString());
         logger.severe(reportcomment);
         compatibilityFailed=true;
     }
@@ -80,9 +80,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         
         if(!isUsingRecommendedVersion){ 
             logger.warning(Lang.WARNING_COMPATIBILITY_DIFFERENT);
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getString());
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_RECOMMENDED+Lang.COLON_SPACE+Compatibility.getRecommendedProviderVersion()+" (or better)");
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getVersion());
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getType()+" "+Version.getString());
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_RECOMMENDED+Lang.COLON_SPACE+Compatibility.getRecommendedProviderType()+" "+Compatibility.getRecommendedProviderVersion()+" (or better)");
+            logger.warning("  "+Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getType()+" "+Compatibility.getProvider().getVersion());
         }
     }
     
@@ -122,7 +122,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         getCommand("PlayerHeads").setExecutor(commandExecutor);
         
         
-        logger.info(Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getVersion());
+        logger.info(Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getType()+" "+Compatibility.getProvider().getVersion());
     }
     
     /**

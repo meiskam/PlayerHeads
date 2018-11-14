@@ -8,8 +8,7 @@ package com.github.crashdemons.playerheads.compatibility;
 import com.github.crashdemons.playerheads.compatibility.exceptions.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Compatibility class controlling implementation and version support.
@@ -21,18 +20,23 @@ public class Compatibility {
     private Compatibility(){}
     
     private static CompatibilityProvider provider=null;
-    private final static int[][] supportedVersions = new int[][]{
-        {1,13},
-        {1,8}
-    };
-    private final static List<String> supportedTypes = Arrays.asList(
-        "craftbukkit"
-    );
+    
+    private static final HashMap<String,Integer[][]> support;
+
     private final static String fallbackType="craftbukkit";
     
     
-    private static int[] recommendedVersion=null;
+    private static Integer[] recommendedVersion=null;
     private static String recommendedType="";
+    
+    
+    static{
+        support=new HashMap<>();
+        support.put("craftbukkit", new Integer[][]{
+            {1,13},
+            {1,8}
+        });
+    }
     
     /**
      * Initialize compatibility support.
@@ -108,9 +112,9 @@ public class Compatibility {
         return recommendedVersion[0]+"."+recommendedVersion[1];
     }
     
-    private static String determineRecommendedType(){
+    private static String determineRecommendedType(){//MUST return a supported type key
         String nativeType = Version.getType();
-        if(supportedTypes.contains(nativeType)) return nativeType;
+        if(support.keySet().contains(nativeType)) return nativeType;
         switch(nativeType){
             case "glowstone":
                 throw new CompatibilityUnsupportedException("Glowstone servers are not supported by this build (missing authlib).");
@@ -121,8 +125,10 @@ public class Compatibility {
     
     private static CompatibilityProvider loadRecommendedProvider(){
         recommendedType=determineRecommendedType();
+        Integer[][] supportedVersions = support.get(recommendedType);
+        if(supportedVersions==null) return null;
         for(int i=0;i<supportedVersions.length;i++){
-            int[] ver=supportedVersions[i];
+            Integer[] ver=supportedVersions[i];
             if(Version.checkAtLeast(ver[0], ver[1])){
                 recommendedVersion=ver;
                 try{
@@ -136,8 +142,10 @@ public class Compatibility {
     }
     
     private static CompatibilityProvider loadFallbackProvider(String type){
+        Integer[][] supportedVersions = support.get(type);
+        if(supportedVersions==null) return null;
         for(int i=0;i<supportedVersions.length;i++){
-            int[] ver=supportedVersions[i];
+            Integer[] ver=supportedVersions[i];
             if(Version.checkAtLeast(ver[0], ver[1])){
                 try{
                     return loadProviderByVersion(type,ver[0],ver[1]);

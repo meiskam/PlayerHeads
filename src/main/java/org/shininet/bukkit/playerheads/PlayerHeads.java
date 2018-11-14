@@ -7,7 +7,7 @@ package org.shininet.bukkit.playerheads;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.Version;
 import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnavailableException;
-import com.github.crashdemons.playerheads.compatibility.exceptions.IncompatibleVersionException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnsupportedException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import net.gravitydevelopment.updater.Updater;
 import java.util.logging.Logger;
@@ -70,7 +70,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener {
         }catch(UnknownVersionException e){
             logCompatibilityBug(Lang.ERROR_COMPATIBILITY_UNKNOWN_VERSION);
             throw e;//ensure the plugin is not loaded
-        }catch(IncompatibleVersionException e){
+        }catch(CompatibilityUnsupportedException e){
             logCompatibilityError(Lang.ERROR_COMPATIBILITY_SERVER_VERSION);
             throw e;
         }catch(CompatibilityUnavailableException e){

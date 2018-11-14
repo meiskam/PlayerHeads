@@ -33,14 +33,15 @@ public class Compatibility {
      * This method also makes a determination as to what the recommended implementation version is.
      * @return Whether the recommended implementation version was used. True: the best implementation version for your server that was supported was loaded. False: a fallback implementation was used - possibly because you loaded a backport implementation onto a newer server improperly.
      * @throws UnknownVersionException If the server version string could not be understood during detection.
-     * @throws IncompatibleVersionException If the server version was lower than is supported by the compatibility package (minimum 1.8)
+     * @throws CompatibilityUnsupportedException If the server version was lower than is supported by the compatibility package (minimum 1.8)
      * @throws CompatibilityUnavailableException If no implementation could be found that is compatible with your server. This happens when you load an implementation onto a server where the implementation is too new for the server - possibly because you didn't properly use a backport.
      * @throws CompatibilityConflictException If an implementation provider was already registered - this happens when there is more than one call to init and registerProvider.
      */
-    public static synchronized boolean init() throws UnknownVersionException,IncompatibleVersionException,CompatibilityUnavailableException,CompatibilityConflictException{ 
+    public static synchronized boolean init() throws UnknownVersionException,CompatibilityUnsupportedException,CompatibilityUnavailableException,CompatibilityConflictException{ 
         Version.init(); 
+        if(Version.checkUnder(1, 8)) throw new CompatibilityUnsupportedException("Server versions under 1.8 are not supported.");// this exception may need to be moved to a more relevant class like Compatibility - it's not the version class's job to decide what is compatible.
+
         boolean isUsingFallback = false;
-        
         CompatibilityProvider bestprovider = loadRecommendedProvider();
         if(bestprovider==null){
             isUsingFallback = true;

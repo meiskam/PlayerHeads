@@ -9,7 +9,7 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  * Exception indicating a server version that is incompatible with the available implementations.
  * @author crashdemons (crashenator at gmail.com)
  */
-public class IncompatibleVersionException extends VersionException {
-    public IncompatibleVersionException(String s, Exception e){ super(s,e); }
-    public IncompatibleVersionException(String s){ super(s); }
+public class CompatibilityUnsupportedException extends CompatibilityException {
+    public CompatibilityUnsupportedException(String s, Exception e){ super(s,e); }
+    public CompatibilityUnsupportedException(String s){ super(s); }
 }

@@ -5,7 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
-import com.github.crashdemons.playerheads.compatibility.exceptions.IncompatibleVersionException;
+import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnsupportedException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import org.bukkit.Bukkit;
 
@@ -14,6 +14,7 @@ import org.bukkit.Bukkit;
  * @author crashdemons (crashenator at gmail.com)
  */
 public class Version {
+    private static String serverType ="";
     private static int versionMajor = 0;
     private static int versionMinor = 0;
     private static boolean isInit=false;
@@ -66,19 +67,26 @@ public class Version {
     public static String getString(){
         return versionMajor + "." + versionMinor;
     }
+    /**
+     * The type of server.
+     * @return the server type string
+     */
+    public static String getType(){
+        return serverType;
+    }
     
     /**
      * Initialize the version class and detect the server version.
      * @throws UnknownVersionException If the version string supplied by the server could not be understood.
-     * @throws IncompatibleVersionException If the version supplied by the server is not supportable by this plugin
+     * @throws CompatibilityUnsupportedException If the version supplied by the server is not supportable by this plugin
      */
-    public static synchronized void init() throws UnknownVersionException,IncompatibleVersionException{
+    public static synchronized void init() throws UnknownVersionException,CompatibilityUnsupportedException{
         if(isInit) return;
         int[] mcver = getMCVersionParts();
         if(mcver==null) throw new UnknownVersionException("The current Bukkit build did not supply a version string that could be understood.");
         versionMajor=mcver[0];
         versionMinor=mcver[1];
-        if(versionMajor<1 || (versionMajor==1 && versionMinor<8)) throw new IncompatibleVersionException("Server versions under 1.8 are not supported.");// this exception may need to be moved to a more relevant class like Compatibility - it's not the version class's job to decide what is compatible.
+        serverType=getServerType();
         isInit=true;
     }
     
@@ -100,5 +108,8 @@ public class Version {
         }catch(NumberFormatException e){
             return null;
         }
+    }
+    private static String getServerType(){
+        return (getRawServerVersion()+"  ").split(" ", 2)[0].toLowerCase();
     }
 }

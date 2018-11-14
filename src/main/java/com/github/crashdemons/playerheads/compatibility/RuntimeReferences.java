@@ -34,4 +34,12 @@ public class RuntimeReferences {
             return null;
         }
     }
+    public static boolean hasClass(String classname){
+        try {
+            Class<?> providerClass = Class.forName(classname);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

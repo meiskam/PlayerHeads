@@ -19,6 +19,15 @@ public class Version {
     private static int versionMinor = 0;
     private static boolean isInit=false;
     
+    private static String[][] serverTypeByClass = {
+        {"net.glowstone.GlowServer","glowstone"},
+        {"org.github.paperspigot.PaperSpigotConfig","paper"},
+        {"com.destroystokyo.paper.PaperConfig","paper"},
+        {"org.spigotmc.SpigotConfig","spigot"},
+        {"org.bukkit.craftbukkit.Main","craftbukkit"}
+    };
+    
+    
     private Version(){}
     
     /**
@@ -110,6 +119,11 @@ public class Version {
         }
     }
     private static String getServerType(){
-        return (getRawServerVersion()+"  ").split(" ", 2)[0].toLowerCase();
+        //return (getRawServerVersion()+"  ").split(" ", 2)[0].toLowerCase();//this doesn't work because most servers don't return the full version string.
+        for(int i=0;i<serverTypeByClass.length;i++){
+            if(RuntimeReferences.hasClass(serverTypeByClass[i][0]))
+                return serverTypeByClass[i][1];
+        }
+        return "unknown";
     }
 }

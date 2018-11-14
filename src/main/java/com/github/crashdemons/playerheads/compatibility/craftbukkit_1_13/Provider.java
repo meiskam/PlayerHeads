@@ -11,6 +11,7 @@ import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import java.util.UUID;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -20,6 +21,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
@@ -83,10 +85,18 @@ public class Provider implements CompatibilityProvider {
         return owner;
     }
     
+    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
+        return ProfileUtils.setProfile(headMeta, uuid, texture);
+    }
+    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
+        return ProfileUtils.setProfile(headBlockState, uuid, texture);
+    }
     
     private SkullType getSkullType(Material mat){
         String typeName = mat.name();
         typeName=typeName.replaceFirst("_WALL", "").replaceFirst("_HEAD", "").replaceFirst("_SKULL", "");
         return RuntimeReferences.getSkullTypeByName(typeName);
     }
+    
+    
 }

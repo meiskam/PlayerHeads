@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
@@ -12,6 +13,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
@@ -226,4 +228,20 @@ public interface CompatibilityProvider {
      * @see org.bukkit.entity.EntityType
      */
     public String getCompatibleNameFromEntity(Entity e);//determine forward-portable name of entity even if they are variants.
+    /**
+     * Set a profile field in the supplied item meta using a UUID and Texture string
+     * @param headMeta the item meta to apply the profile on
+     * @param uuid A UUID to be associated with this profile and texture
+     * @param texture The Base64-encoded Texture-URL tags.
+     * @return True: the profile was successfully set. False: the profile could not be set.
+     */
+    public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture);
+    /**
+     * Set a profile field in the supplied block state using a UUID and Texture string
+     * @param headBlockState the block state to apply the profile on
+     * @param uuid A UUID to be associated with this profile and texture
+     * @param texture The Base64-encoded Texture-URL tags.
+     * @return True: the profile was successfully set. False: the profile could not be set.
+     */
+    public boolean setProfile(Skull headBlockState, UUID uuid, String texture);
 }

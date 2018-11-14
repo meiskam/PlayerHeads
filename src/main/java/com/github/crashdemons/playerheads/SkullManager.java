@@ -62,7 +62,7 @@ public final class SkullManager {
      * @author x7aSv
      */
     private static boolean applyTexture(SkullMeta headMeta, UUID uuid, String texture){
-        return ProfileUtils.setProfile(headMeta, uuid, texture);
+        return Compatibility.getProvider().setProfile(headMeta, uuid, texture);
     }
     
     /**

@@ -5,7 +5,7 @@
  */
 package com.github.crashdemons.playerheads;
 
-import com.github.crashdemons.playerheads.compatibility.bukkit_1_13.Provider;
+import com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13.Provider;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;

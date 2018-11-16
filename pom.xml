@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads</artifactId>
+    <artifactId>PlayerHeads-crosscompatible</artifactId>
     <packaging>jar</packaging>
     <version>4.7.2-SNAPSHOT</version>
-    <name>PlayerHeads</name>
+    <name>PlayerHeads-crosscompatible</name>
 
     <organization>
         <name>ShiniNet</name>
@@ -13,11 +13,11 @@
     </organization>
     
     <licenses>
-      <license>
-        <name>Mozilla Public License 2.0</name>
-        <url>http://mozilla.org/MPL/2.0/</url>
-        <distribution>repo</distribution>
-      </license>
+        <license>
+            <name>Mozilla Public License 2.0</name>
+            <url>http://mozilla.org/MPL/2.0/</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
 
     <properties>
@@ -27,7 +27,7 @@
     <scm>
         <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
         <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
-        <url>https://github.com/crashdemons/PlayerHeads/tree/master/</url>
+        <url>https://github.com/crashdemons/PlayerHeads/tree/crossversion-compatibility/</url>
     </scm>
 
     <issueManagement>
@@ -36,7 +36,7 @@
     </issueManagement>
 
     <repositories>
-	<repository>
+        <repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
             <url>https://libraries.minecraft.net/</url>
@@ -56,27 +56,92 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-core</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-impl-craftbukkit-1.13</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-impl-craftbukkit-1.8</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-impl-glowstone-1.12</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.12</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.powermock</groupId>
-  		<artifactId>powermock-module-junit4</artifactId>
-  		<version>1.7.4</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.powermock</groupId>
-  		<artifactId>powermock-api-mockito</artifactId>
-  		<version>1.7.4</version>
-  		<type>jar</type>
-  		<scope>test</scope>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.7.4</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.7.4</version>
+            <type>jar</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
@@ -95,12 +160,12 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.13.2-R0.1-SNAPSHOT</version>
+            <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>fr.neatmonster</groupId>
@@ -129,23 +194,6 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <excludePackageNames>net.gravitydevelopment.*</excludePackageNames>
-                    <notimestamp>true</notimestamp>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -162,7 +210,7 @@
                             <allowSnapshots>true</allowSnapshots>
                         </configuration>
                         <goals>
-                            <goal>use-latest-versions</goal>
+                            <!--<goal>use-latest-versions</goal>-->
                         </goals>
                     </execution>
                 </executions>
@@ -199,7 +247,7 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>install</phase>
                         <configuration>
                             <target>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
@@ -210,25 +258,41 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
                     <execution>
-                        <id>copy-repo-docs</id>
-                        <phase>install</phase>
-                        <configuration>
-                            <target>
-                                <delete includeEmptyDirs="true" failonerror="false">
-                                    <fileset dir="${basedir}/docs" includes="**/*" />
-                                </delete>
-                                <copy todir="${basedir}/docs">
-                                    <fileset dir="${project.build.directory}/apidocs" includes="**/*" />
-                                </copy>
-                            </target>
-                        </configuration>
+                        <phase>package</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-impl-craftbukkit-1.13:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-impl-craftbukkit-1.8:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
+                                </includes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>org.shininet.bukkit:PlayerHeads:jar:</artifact>
+                                    <excludes>
+                                        <!--<exclude>com/github/crashdemons/playerheads/compatibility/bukkit*/**</exclude>-->
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+            
         </plugins>
         <pluginManagement>
             <plugins>

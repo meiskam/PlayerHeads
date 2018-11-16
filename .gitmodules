@@ -1,4 +1,4 @@
 [submodule "docs"]
 	path = docs
-	url = git@github.com:crashdemons/PlayerHeads.git
+	url = https://github.com/crashdemons/PlayerHeads.git
 	branch = docs

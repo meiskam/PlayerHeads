@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads-crosscompatible</artifactId>
+    <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
     <version>4.7.2-SNAPSHOT</version>
-    <name>PlayerHeads-crosscompatible</name>
+    <name>PlayerHeads</name>
 
     <organization>
         <name>ShiniNet</name>

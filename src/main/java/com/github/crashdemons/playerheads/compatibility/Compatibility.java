@@ -36,6 +36,9 @@ public class Compatibility {
             {1,13},
             {1,8}
         });
+        support.put("glowstone", new Integer[][]{
+            {1,12}
+        });
     }
     
     /**
@@ -116,8 +119,8 @@ public class Compatibility {
         String nativeType = Version.getType();
         if(support.keySet().contains(nativeType)) return nativeType;
         switch(nativeType){
-            case "glowstone":
-                throw new CompatibilityUnsupportedException("Glowstone servers are not supported by this build (missing authlib).");
+            //case "glowstone":
+            //    throw new CompatibilityUnsupportedException("Glowstone servers are not supported by this build (missing authlib).");
             default:
                 return fallbackType;
         }

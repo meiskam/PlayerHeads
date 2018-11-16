@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.shininet.bukkit</groupId>
-  <artifactId>PlayerHeads-crosscompatible</artifactId>
-  <name>PlayerHeads-crosscompatible</name>
+  <artifactId>PlayerHeads</artifactId>
+  <name>PlayerHeads</name>
   <version>4.7.2-SNAPSHOT</version>
   <issueManagement>
     <system>GitHub</system>
@@ -19,7 +19,7 @@
   <scm>
     <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
     <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
-    <url>https://github.com/crashdemons/PlayerHeads/tree/4.x-backport-1.8/</url>
+    <url>https://github.com/crashdemons/PlayerHeads/tree/crossversion-compatibility/</url>
   </scm>
   <organization>
     <name>ShiniNet</name>
@@ -136,7 +136,10 @@
             <configuration>
               <artifactSet>
                 <includes>
-                  <include>org.shininet.bukkit:PlayerHeads:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-impl-craftbukkit-1.13:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-impl-craftbukkit-1.8:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
                 </includes>
               </artifactSet>
               <filters>
@@ -168,6 +171,10 @@
     <repository>
       <id>md_5-releases</id>
       <url>http://repo.md-5.net/content/repositories/releases/</url>
+    </repository>
+    <repository>
+      <id>crashdemons-repo</id>
+      <url>https://meme.tips/java-repos/</url>
     </repository>
   </repositories>
   <dependencies>

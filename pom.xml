@@ -27,7 +27,7 @@
     <scm>
         <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
         <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
-        <url>https://github.com/crashdemons/PlayerHeads/tree/crossversion-compatibility/</url>
+        <url>https://github.com/crashdemons/PlayerHeads/tree/master/</url>
     </scm>
 
     <issueManagement>

@@ -253,14 +253,6 @@
                                     <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
                                 </includes>
                             </artifactSet>
-                            <filters>
-                                <filter>
-                                    <artifact>org.shininet.bukkit:PlayerHeads:jar:</artifact>
-                                    <excludes>
-                                        <!--<exclude>com/github/crashdemons/playerheads/compatibility/bukkit*/**</exclude>-->
-                                    </excludes>
-                                </filter>
-                            </filters>
                         </configuration>
                     </execution>
                 </executions>

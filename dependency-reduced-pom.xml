@@ -19,7 +19,7 @@
   <scm>
     <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
     <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
-    <url>https://github.com/crashdemons/PlayerHeads/tree/crossversion-compatibility/</url>
+    <url>https://github.com/crashdemons/PlayerHeads/tree/master/</url>
   </scm>
   <organization>
     <name>ShiniNet</name>
@@ -70,6 +70,9 @@
           <execution>
             <id>versions</id>
             <phase>validate</phase>
+            <goals>
+              <goal>use-latest-versions</goal>
+            </goals>
             <configuration>
               <allowSnapshots>true</allowSnapshots>
             </configuration>
@@ -94,17 +97,6 @@
               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
             </manifestEntries>
           </archive>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-          <compilerArgs>
-            <arg>-Xlint:all</arg>
-          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -142,12 +134,6 @@
                   <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
                 </includes>
               </artifactSet>
-              <filters>
-                <filter>
-                  <artifact>org.shininet.bukkit:PlayerHeads:jar:</artifact>
-                  <excludes />
-                </filter>
-              </filters>
             </configuration>
           </execution>
         </executions>

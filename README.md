@@ -16,4 +16,4 @@ The main project here combines different code from branches, and does not have i
 
 For the code behind core plugin behavior and classes that can be used as an API, and for documentation, see the [**core** branch](https://github.com/meiskam/PlayerHeads/tree/core) of this repository.
 
-Otherwise, you can check out the **-support** branches for any server-specific implementation code
+Otherwise, you can check out the [**-support** branches](https://github.com/meiskam/PlayerHeads/branches) for any server-specific implementation code

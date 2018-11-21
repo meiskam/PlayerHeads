@@ -100,6 +100,17 @@
         </configuration>
       </plugin>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.8</version>
         <executions>
@@ -134,6 +145,14 @@
                   <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
                 </includes>
               </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>org.shininet.bukkit:PlayerHeads-core:jar:</artifact>
+                  <excludes>
+                    <exclude>com/github/crashdemons/playerheads/compatibility/CompatibilitySupport*</exclude>
+                  </excludes>
+                </filter>
+              </filters>
             </configuration>
           </execution>
         </executions>

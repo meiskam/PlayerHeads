@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>4.7.2-SNAPSHOT</version>
+    <version>4.7.3-SNAPSHOT</version>
     <name>PlayerHeads</name>
 
     <organization>
@@ -201,7 +201,6 @@
                     </archive>
                 </configuration>
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -214,7 +213,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-            -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.8</version>
@@ -253,6 +251,14 @@
                                     <include>org.shininet.bukkit:PlayerHeads-impl-glowstone-1.12:jar:</include>
                                 </includes>
                             </artifactSet>
+                            <filters>
+                              <filter>
+                                <artifact>org.shininet.bukkit:PlayerHeads-core:jar:</artifact>
+                                <excludes>
+                                  <exclude>com/github/crashdemons/playerheads/compatibility/CompatibilitySupport*</exclude>
+                                </excludes>
+                              </filter>
+                            </filters>
                         </configuration>
                     </execution>
                 </executions>

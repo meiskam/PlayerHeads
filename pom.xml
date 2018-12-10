@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>jar</packaging>
-    <version>4.7.4-SNAPSHOT</version>
+    <version>4.8.0-SNAPSHOT</version>
     <name>PlayerHeads</name>
 
     <organization>
@@ -79,7 +79,7 @@
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-impl-craftbukkit-1.13</artifactId>
-            <version>4.7.4-SNAPSHOT</version>
+            <version>4.8.0-SNAPSHOT</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-impl-craftbukkit-1.8</artifactId>
-            <version>4.7.4-SNAPSHOT</version>
+            <version>4.8.0-SNAPSHOT</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -111,7 +111,7 @@
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-impl-glowstone-1.12</artifactId>
-            <version>4.7.4-SNAPSHOT</version>
+            <version>4.8.0-SNAPSHOT</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>

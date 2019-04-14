@@ -9,7 +9,8 @@ import java.util.HashMap;
 
 /**
  * Class that holds supported compatibility implementations in this release.
- * By default, before shading, this is mostly empty and it is up to the downstream projects to add support.
+ * NOTE: This is an implementation-specific replacement of the core class, meant to replace it during shading.
+ * By default, before shading, this is mostly empty and it is up to the downstream projects (like this one) to add support.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilitySupport {

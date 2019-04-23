@@ -81,7 +81,6 @@
         <configuration>
           <includes>
             <include>org.bukkit</include>
-            <include>org.spigotmc</include>
             <include>org.shininet.bukkit</include>
           </includes>
         </configuration>
@@ -185,6 +184,22 @@
     </repository>
   </repositories>
   <dependencies>
+    <dependency>
+      <groupId>org.shininet.bukkit</groupId>
+      <artifactId>PlayerHeads-impl-craftbukkit-1.14</artifactId>
+      <version>4.9.3-SNAPSHOT</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>bukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>craftbukkit</artifactId>
+          <groupId>org.bukkit</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

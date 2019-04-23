@@ -78,6 +78,22 @@
         </dependency>
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-impl-craftbukkit-1.14</artifactId>
+            <version>4.8.0-SNAPSHOT</version>
+            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-impl-craftbukkit-1.13</artifactId>
             <version>4.8.0-SNAPSHOT</version>
             <type>jar</type>

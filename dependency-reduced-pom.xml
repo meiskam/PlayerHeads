@@ -81,6 +81,7 @@
         <configuration>
           <includes>
             <include>org.bukkit</include>
+            <include>org.spigotmc</include>
             <include>org.shininet.bukkit</include>
           </includes>
         </configuration>

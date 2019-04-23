@@ -21,6 +21,7 @@ public class CompatibilitySupport {
     static{
         versions=new HashMap<>();
         versions.put("craftbukkit", new Integer[][]{
+            {1,14},
             {1,13},
             {1,8}
         });

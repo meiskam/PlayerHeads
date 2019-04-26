@@ -1,0 +1,102 @@
+name: PlayerHeads
+version: ${project.version}
+description: Drops a player's head when s/he dies, also mob heads
+authors: [meiskam, zand, crashdemons]
+
+api-version: 1.13
+
+main: org.shininet.bukkit.playerheads.PlayerHeads
+database: false
+
+softdepend: [NoCheatPlus,BountyHunters]
+
+commands:
+  PlayerHeads:
+    description: Spawn a playerhead or edit playerheads config
+    aliases: ph
+    
+permissions:
+  playerheads.*:
+    description: Gives all PlayerHeads permissions
+    default: false
+    children:
+      playerheads.config.*: true
+      playerheads.spawn.*: true
+      playerheads.update: true
+      playerheads.rename: true
+      playerheads.canbehead: true
+      playerheads.canlosehead: true
+      playerheads.canbeheadmob: true
+      playerheads.update: true
+      playerheads.alwaysbehead: true
+      playerheads.alwaysbeheadmob: true
+      playerheads.clickinfo: true
+  playerheads.config.*:
+    description: Allows user to edit, save, or reload configs
+    default: op
+    children:
+      playerheads.config.get: true
+      playerheads.config.set: true
+  playerheads.config.get:
+    description: Allows user to get configs
+    default: op
+  playerheads.config.set:
+    description: Allows user to set or reload configs
+    default: op
+  playerheads.rename.*:
+    description: Allows a user to rename any head in their hands to any other head
+    default: op
+    children:
+      playerheads.rename: true
+      playerheads.rename.mob: true
+      playerheads.rename.player: true
+  playerheads.rename:
+    description: Allows a user to rename any head in their hands to any other head
+    default: op
+    children:
+      playerheads.rename.mob: true
+      playerheads.rename.player: true
+  playerheads.rename.mob:
+    description: User can rename mob-heads to other mob-heads
+    default: op
+  playerheads.rename.player:
+    description: User can rename player-heads to other player-heads
+    default: op
+  playerheads.spawn.*:
+    description: Spawn player heads
+    default: op
+    children:
+      playerheads.spawn: true
+      playerheads.spawn.forother: true
+  playerheads.spawn:
+    description: Spawn any player head
+    default: op
+    children:
+      playerheads.spawn.own: true
+  playerheads.spawn.own:
+    description: Spawn your own head
+    default: op
+  playerheads.spawn.forother:
+    description: Spawn a head into someone elses inventory
+    default: op
+  playerheads.canbehead:
+    description: User can remove heads from others
+    default: true
+  playerheads.canlosehead:
+    description: User can have their head removed
+    default: true
+  playerheads.canbeheadmob:
+    description: User can remove heads from mobs
+    default: true
+  playerheads.update:
+    description: When update available, can view notice and manually update
+    default: op
+  playerheads.alwaysbehead:
+    description: Ignore drop rate for player heads and drop 100% of the time
+    default: false
+  playerheads.alwaysbeheadmob:
+    description: Ignore drop rate for mob heads and drop 100% of the time
+    default: false
+  playerheads.clickinfo:
+    description: When a player head is clicked the player name will be displayed
+    default: false

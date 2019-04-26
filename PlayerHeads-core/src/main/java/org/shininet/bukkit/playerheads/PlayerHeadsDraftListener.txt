@@ -1,0 +1,69 @@
+/*
+ *  This Source Code Form is subject to the terms of the Mozilla Public
+ *  License, v. 2.0. If a copy of the MPL was not distributed with this
+ *  file, You can obtain one at http://mozilla.org/MPL/2.0/ .
+ */
+package org.shininet.bukkit.playerheads;
+
+
+//doesn't seem to be firing yet on newest craftbukkit 2018-12-10 - leaving this code for another day.
+
+/*
+import com.github.crashdemons.playerheads.SkullConverter;
+import com.github.crashdemons.playerheads.TexturedSkullType;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Item;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockDropItemEvent;
+import org.bukkit.inventory.ItemStack;
+*/
+/*
+ * (UNUSED) Listens for draft-API events to correct issues with normal operation - only to be used conditionally.
+ * @author crashdemons (crashenator at gmail.com)
+ */
+/*
+@Deprecated
+class PlayerHeadsDraftListener implements Listener {
+    private final PlayerHeadsListener normalListener;
+    private final PlayerHeads plugin;
+    
+    public PlayerHeadsDraftListener(PlayerHeadsListener listener,PlayerHeads plugin){
+        normalListener = listener;
+        this.plugin=plugin;
+    }
+    
+    public void registerAll(){
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+    
+    public void unregisterAll(){
+        BlockDropItemEvent.getHandlerList().unregister(this);
+    }
+    
+    @SuppressWarnings( "deprecation" )
+    @EventHandler(priority = EventPriority.LOWEST)
+    //use draft API (conditionally) to correct problems with breaking heads.
+    public void onBlockDropItemEvent(BlockDropItemEvent event){
+        System.out.println("BlockDropItem");
+        try{
+            Item item = event.getItem();
+            ItemStack stack = item.getItemStack();
+            TexturedSkullType type = SkullConverter.skullTypeFromItemStackLegacy(stack);
+            if(type==null){
+                System.out.println("   not a head");
+                return;
+            }//not a head
+            Block block = event.getBlock();
+            BlockState state = block.getState();
+            event.setCancelled(true);
+            normalListener.blockDrop(event,block,state);
+        }catch(Exception e){
+            //we can catch some errors about bad references - this is a Draft API anyway so we can't expect it to always be available.
+            plugin.getLogger().warning("Exception with BlockDropItem support "+e.getMessage());
+        }
+    }
+}
+*/

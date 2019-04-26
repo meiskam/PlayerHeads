@@ -51,7 +51,7 @@ public class ConfigTest {
         out.println("testConfigExistence");
         YamlConfiguration config = new YamlConfiguration();
         
-        String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path = new File( getClass().getProtectionDomain().getCodeSource().getLocation().toURI() ).getPath();
         out.println(path);
         File resource = new File(path+"/config.yml");
 

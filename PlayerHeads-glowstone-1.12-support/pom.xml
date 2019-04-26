@@ -64,7 +64,7 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>PlayerHeads-core</artifactId>
             <version>${project.version}</version>
             <exclusions>
                 <exclusion>

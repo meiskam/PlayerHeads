@@ -9,6 +9,7 @@
     
     <!-- sub modules -->
     <modules>
+        <module>PlayerHeads-api</module>
         <module>PlayerHeads-core</module>
         <module>PlayerHeads-craftbukkit-1.14-support</module>
         <module>PlayerHeads-craftbukkit-1.13-support</module>

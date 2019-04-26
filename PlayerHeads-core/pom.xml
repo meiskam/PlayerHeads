@@ -62,6 +62,12 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>

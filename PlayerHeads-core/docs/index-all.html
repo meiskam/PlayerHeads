@@ -104,14 +104,6 @@
 <dd>
 <div class="block">The message displayed when a player is beheaded by themself.</div>
 </dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">BlockDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Event created by the PlayerHeads plugin when a block is broken by hand (mined) and dropping a head.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#BlockDropHeadEvent-org.bukkit.block.Block-org.bukkit.inventory.ItemStack-">BlockDropHeadEvent(Block, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Construct the event</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#BRACKET_LEFT">BRACKET_LEFT</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#BRACKET_RIGHT">BRACKET_RIGHT</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
@@ -314,10 +306,6 @@
 <dd>
 <div class="block">The default size of itemstack used when dropping or spawning heads.</div>
 </dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html" title="interface in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">DropHeadEvent</span></a> - Interface in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Interface for events that drop a plugin-supported head.</div>
-</dd>
 </dl>
 <a name="I:E">
 <!--   -->
@@ -382,17 +370,6 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
-<dt><a href="org/shininet/bukkit/playerheads/events/FakeBlockBreakEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">FakeBlockBreakEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>
-<div class="block"><span class="deprecationComment">you should use SimulatedBlockBreakEvent instead, this class may be removed in the future</span></div>
-</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/FakeBlockBreakEvent.html#FakeBlockBreakEvent-org.bukkit.block.Block-org.bukkit.entity.Player-">FakeBlockBreakEvent(Block, Player)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/FakeBlockBreakEvent.html" title="class in org.shininet.bukkit.playerheads.events">FakeBlockBreakEvent</a></dt>
-<dd>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
-<div class="block">Constructs a simulated block break event</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Formatter.html#format-java.lang.String-java.lang.String...-">format(String, String...)</a></span> - Static method in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Formatter.html" title="class in org.shininet.bukkit.playerheads">Formatter</a></dt>
 <dd>
 <div class="block">Formats a message with arguments with a list of parameters to use as replacements for those arguments.</div>
@@ -481,63 +458,9 @@
 <div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 <div class="block">Gets the localized head-item name associated with the skull.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#getDrop--">getDrop()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Gets the item that will drop from the beheading.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html#getDrop--">getDrop()</a></span> - Method in interface org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html" title="interface in org.shininet.bukkit.playerheads.events">DropHeadEvent</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getDrop--">getDrop()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Gets the item that will drop from the beheading.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getDropSuccess--">getDropSuccess()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Whether the effective drop roll was determined to be a success.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getEffectiveDropRate--">getEffectiveDropRate()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets the configured droprate for the target as a fractional probability, after modification by looting.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getEffectiveDropRoll--">getEffectiveDropRoll()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets the effective drop roll value after modification by PlayerHeads.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getEntity--">getEntity()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Gets the entity that was beheaded</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html#getEntity--">getEntity()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">PlayerDropHeadEvent</a></dt>
-<dd>
-<div class="block">Gets the player that was beheaded.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/SkullDetails.html#getFloorMaterial--">getFloorMaterial()</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></dt>
 <dd>
 <div class="block">Gets the bukkit material corresponding to a block of this skull placed on a floor (not against a wall)</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#getHandlerList--">getHandlerList()</a></span> - Static method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getHandlerList--">getHandlerList()</a></span> - Static method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getHandlerList--">getHandlerList()</a></span> - Static method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#getHandlers--">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getHandlers--">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getHandlers--">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Get a list of handlers for the event.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getItemInMainHand-org.bukkit.entity.Player-">getItemInMainHand(Player)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
@@ -550,18 +473,6 @@
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getKeepInventory-org.bukkit.World-">getKeepInventory(World)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
 <div class="block">Checks whether the keepinventory gamerule is enabled for a given world</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getKiller--">getKiller()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Get the Killer's entity that may have done the beheading.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getKillerAlwaysBeheads--">getKillerAlwaysBeheads()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets whether the killer was configured to always behead this type of target.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getLootingModifier--">getLootingModifier()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets the looting modifier (multiplier) that modified the effective droprate.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/RuntimeReferences.html#getMaterialByName-java.lang.String-">getMaterialByName(String)</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/RuntimeReferences.html" title="class in com.github.crashdemons.playerheads.compatibility">RuntimeReferences</a></dt>
 <dd>&nbsp;</dd>
@@ -576,14 +487,6 @@
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOfflinePlayerByName-java.lang.String-">getOfflinePlayerByName(String)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
 <div class="block">Gets a player by their username</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getOriginalDropRate--">getOriginalDropRate()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets the configured droprate for the target as a fractional probability, unmodified.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getOriginalDropRoll--">getOriginalDropRoll()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Gets the original PRNG-generated random value of the drop roll, uniform between 0 and 1 inclusively.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getOwner-org.bukkit.inventory.meta.SkullMeta-">getOwner(SkullMeta)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
@@ -728,10 +631,6 @@
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#getString-java.lang.String-">getString(String)</a></span> - Static method in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
 <dd>
 <div class="block">Gets the string value associated with a given language-file (localization) key.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getTarget--">getTarget()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Get the Target's entity that may have been beheaded</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/TexturedSkullType.html#getTexture--">getTexture()</a></span> - Method in enum com.github.crashdemons.playerheads.<a href="com/github/crashdemons/playerheads/TexturedSkullType.html" title="enum in com.github.crashdemons.playerheads">TexturedSkullType</a></dt>
 <dd>
@@ -1077,14 +976,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#HEAD_ZOMBIE_VILLAGER">HEAD_ZOMBIE_VILLAGER</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">HeadRollEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Event created by PlayerHeads (4.9.2+) to indicate that a head dropchance roll has occurred and the success/failure has been determined.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#HeadRollEvent-org.bukkit.entity.Entity-org.bukkit.entity.Entity-boolean-double-double-double-double-double-boolean-">HeadRollEvent(Entity, Entity, boolean, double, double, double, double, double, boolean)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Creates the Head dropchance event for PlayerHeads.</div>
-</dd>
 </dl>
 <a name="I:I">
 <!--   -->
@@ -1122,14 +1013,6 @@
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/SkullDetails.html#isBackedByPlayerhead--">isBackedByPlayerhead()</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></dt>
 <dd>
 <div class="block">Gets whether the skull must be implemented with a playerhead</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#isCancelled--">isCancelled()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Whether the event has been cancelled.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#isCancelled--">isCancelled()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Whether the event has been cancelled.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/plugins/NoCheatPlusCompatibility.html#isExemptFastbreak-org.bukkit.entity.Player-">isExemptFastbreak(Player)</a></span> - Method in class com.github.crashdemons.playerheads.compatibility.plugins.<a href="com/github/crashdemons/playerheads/compatibility/plugins/NoCheatPlusCompatibility.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">NoCheatPlusCompatibility</a></dt>
 <dd>
@@ -1217,10 +1100,6 @@
 <dd>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 </dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">LivingEntityDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Event created by the PlayerHeads plugin when a [living] entity is beheaded.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/PlayerHeads.html#logger">logger</a></span> - Variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/PlayerHeads.html" title="class in org.shininet.bukkit.playerheads">PlayerHeads</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#LORE_HEAD_MOB">LORE_HEAD_MOB</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
@@ -1235,14 +1114,6 @@
 </a>
 <h2 class="title">M</h2>
 <dl>
-<dt><a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">MobDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Event created by the PlayerHeads plugin when a Mob is beheaded.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html#MobDropHeadEvent-org.bukkit.entity.LivingEntity-org.bukkit.inventory.ItemStack-">MobDropHeadEvent(LivingEntity, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">MobDropHeadEvent</a></dt>
-<dd>
-<div class="block">Constructs the event</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/SkullManager.html#MobSkull-com.github.crashdemons.playerheads.TexturedSkullType-boolean-boolean-">MobSkull(TexturedSkullType, boolean, boolean)</a></span> - Static method in class com.github.crashdemons.playerheads.<a href="com/github/crashdemons/playerheads/SkullManager.html" title="class in com.github.crashdemons.playerheads">SkullManager</a></dt>
 <dd>
 <div class="block">Creates a stack of heads for the specified Mob's SkullType.</div>
@@ -1311,10 +1182,6 @@
 <dd>
 <div class="block">Package containing code from or derived from the original PlayerHeads plugin</div>
 </dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a> - package org.shininet.bukkit.playerheads.events</dt>
-<dd>
-<div class="block">Defines events created by the PlayerHeads plugin, including beheadings.</div>
-</dd>
 </dl>
 <a name="I:P">
 <!--   -->
@@ -1329,14 +1196,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/antispam/PlayerDeathSpamPreventer.html#PlayerDeathSpamPreventer-int-long-">PlayerDeathSpamPreventer(int, long)</a></span> - Constructor for class com.github.crashdemons.playerheads.antispam.<a href="com/github/crashdemons/playerheads/antispam/PlayerDeathSpamPreventer.html" title="class in com.github.crashdemons.playerheads.antispam">PlayerDeathSpamPreventer</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="typeNameLink">PlayerDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
-<dd>
-<div class="block">Event created by the PlayerHeads plugin when a Player is beheaded.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html#PlayerDropHeadEvent-org.bukkit.entity.Player-org.bukkit.inventory.ItemStack-">PlayerDropHeadEvent(Player, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">PlayerDropHeadEvent</a></dt>
-<dd>
-<div class="block">Constructs the event</div>
-</dd>
 <dt><a href="org/shininet/bukkit/playerheads/PlayerHeads.html" title="class in org.shininet.bukkit.playerheads"><span class="typeNameLink">PlayerHeads</span></a> - Class in <a href="org/shininet/bukkit/playerheads/package-summary.html">org.shininet.bukkit.playerheads</a></dt>
 <dd>
 <div class="block">Defines the main plugin class.</div>
@@ -1433,18 +1292,6 @@
 </a>
 <h2 class="title">S</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#setCancelled-boolean-">setCancelled(boolean)</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
-<dd>
-<div class="block">Sets whether the event should be cancelled.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#setCancelled-boolean-">setCancelled(boolean)</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
-<dd>
-<div class="block">Sets whether the event should be cancelled.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#setDropSuccess-boolean-">setDropSuccess(boolean)</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Sets whether the drop roll should be considered a success.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#setItemInMainHand-org.bukkit.entity.Player-org.bukkit.inventory.ItemStack-">setItemInMainHand(Player, ItemStack)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
 <div class="block">Sets the itemstack in the [main] hand of a player</div>
@@ -1555,10 +1402,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#SUBCOMMANDS">SUBCOMMANDS</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#succeeded--">succeeded()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
-<dd>
-<div class="block">Whether the effective drop roll was determined to be a success.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/shininet/bukkit/playerheads/Lang.html#SYNTAX">SYNTAX</a></span> - Static variable in class org.shininet.bukkit.playerheads.<a href="org/shininet/bukkit/playerheads/Lang.html" title="class in org.shininet.bukkit.playerheads">Lang</a></dt>
 <dd>&nbsp;</dd>
 </dl>

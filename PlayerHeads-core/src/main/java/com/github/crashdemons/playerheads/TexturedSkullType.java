@@ -1,6 +1,7 @@
 
 package com.github.crashdemons.playerheads;
 
+import com.github.crashdemons.playerheads.api.Head;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import java.util.UUID;
 import org.shininet.bukkit.playerheads.Lang;
@@ -16,7 +17,7 @@ import org.shininet.bukkit.playerheads.Formatter;
  * @author crashdemons
  * @author MagmaVoid_
  */
-public enum TexturedSkullType {
+public enum TexturedSkullType implements Head{
     
     //Entity skull settings - big thanks to MagmaVoid_ for finding all of these textures.
     /**
@@ -498,4 +499,8 @@ public enum TexturedSkullType {
         return (this.owner.equals(Mappings.playerUUID) || !isPlayerHead());
     }
     
+    @Override
+    public boolean equals(Head head){
+        return this.owner.equals(head.getOwner());
+    }
 }

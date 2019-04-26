@@ -24,7 +24,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author meiskam
  */
 
-public final class PlayerHeads extends JavaPlugin implements Listener {
+public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHeadsPlugin {
 
     private PlayerHeadsListener listener;
     //private PlayerHeadsDraftListener draftListener=null;

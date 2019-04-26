@@ -12,8 +12,8 @@ Same simple plugin, new improvements.
 
 
 # Where's the Source!?
-The main project here combines different code from branches, and does not have its own code, starting with v4.7.2.
+The main project combines different code from multiple modules - you need to look into those module directories for the code.
 
-For the code behind core plugin behavior and classes that can be used as an API, and for documentation, see the [**core** branch](https://github.com/meiskam/PlayerHeads/tree/core) of this repository.
+For the code behind core plugin behavior and classes that can be used as an API, and for documentation, see the **PlayerHeads-core** module.
 
-Otherwise, you can check out the [**-support** branches](https://github.com/meiskam/PlayerHeads/branches) for any server-specific implementation code
+Otherwise, you can check out the **-support** modules for any server-specific implementation code

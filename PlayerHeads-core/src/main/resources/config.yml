@@ -1,0 +1,174 @@
+# PlayerHeads Configuration
+# IMPORTANT NOTE: heads dropped by charged creepers are not modified by this plugin nor the below settings.
+# Defaults/explanation:
+# pkonly: true                  [true/false]    When true trophies only drop when a player kills another player (as opposed to self drowning, etc)
+# droprate: 0.05                [0.0 -> 1.0]    Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
+# lootingrate: 0.2              [0.0 -> 1.0]    Increases all droprates by lootingrate percent per looting level when a enchanted weapon is used
+# mobpkonly: true               [true/false]    When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
+# creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
+# zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
+# skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
+# witherskeletondroprate: 0.025 [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither skeleton dies. (NOTE: if this is negative, wither skeleton will use vanilla drop behavior and items instead.)
+# spiderdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a spider dies
+# endermandroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when an enderman dies
+# blazedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a blaze dies
+# horsedroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a horse dies
+# donkeydroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a donkey dies
+# squiddroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a squid dies
+# silverfishdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a silverfish dies
+# enderdragondroprate: 0.05     [0.0 -> 1.0]    Chance that a mob trophy will drop when an ender dragon dies
+# slimedroprate: 0.001          [0.0 -> 1.0]    Chance that a mob trophy will drop when a slime dies
+# irongolemdroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when an iron golem dies
+# mushroomcowdroprate: 0.002    [0.0 -> 1.0]    Chance that a mob trophy will drop when a mushroom cow dies
+# batdroprate: 0.005            [0.0 -> 1.0]    Chance that a mob trophy will drop when a bat dies
+# pigzombiedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig zombie dies
+# snowmandroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a snowman dies
+# ghastdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a ghast dies
+# pigdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig dies
+# villagerdroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a villager dies
+# sheepdroprate: 0.002          [0.0 -> 1.0]    Chance that a mob trophy will drop when a sheep dies
+# cowdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cow dies
+# chickendroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a chicken dies
+# ocelotdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an ocelot dies
+# witchdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a witch dies
+# magmacubedroprate: 0.001      [0.0 -> 1.0]    Chance that a mob trophy will drop when a magma cube dies
+# wolfdroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a wolf dies
+# cavespiderdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a cave spider dies
+# rabbitdroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a rabbit dies
+# guardiandroprate: 0.025       [0.0 -> 1.0]    Chance that a mob trophy will drop when a guardian dies
+# elderguardiandroprate: 0.030  [0.0 -> 1.0]    Chance that a mob trophy will drop when an elder guardian dies
+# polarbeardroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when a polarbear dies
+# shulkerdroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a shulker dies
+# straydroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a stray dies
+# endermitedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a endermite dies
+# evokerdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when an evoker dies
+# illusionerdroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when an illusioner dies
+# vindicatordroprate: 0.005     [0.0 -> 1.0]    Chance that a mob trophy will drop when a vindicator dies
+# witherdroprate: 0.005         [0.0 -> 1.0]    Chance that a mob trophy will drop when a wither(boss) dies
+# vexdroprate: 0.004            [0.0 -> 1.0]    Chance that a mob trophy will drop when a vex dies
+# llamadroprate: 0.008          [0.0 -> 1.0]    Chance that a mob trophy will drop when a llama dies
+# parrotdroprate: 0.008         [0.0 -> 1.0]    Chance that a mob trophy will drop when a parrot dies
+# huskdroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a husk dies (version 4.0+)
+# zombievillagerdroprate: 0.002 [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie villager dies (version 4.0+)
+# skeletonhorsedroprate: 0.002  [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton horse dies (version 4.0+)
+# zombiehorsedroprate: 0.002    [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie horse dies (version 4.0+)
+# muledroprate: 0.002           [0.0 -> 1.0]    Chance that a mob trophy will drop when a mule dies (version 4.0+)
+# turtledroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a turtle dies (version 4.0+)
+# phantomdroprate: 0.001        [0.0 -> 1.0]    Chance that a mob trophy will drop when a phasntom dies (version 4.0+)
+# coddroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a cod dies (version 4.0+)
+# salmondroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a salmon dies (version 4.0+)
+# pufferfishdroprate: 0.002     [0.0 -> 1.0]    Chance that a mob trophy will drop when a pufferfish dies (version 4.0+)
+# tropicalfishdroprate: 0.002   [0.0 -> 1.0]    Chance that a mob trophy will drop when a tropical fish dies (version 4.0+)
+# drowneddroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a drowned dies (version 4.0+)
+# dolphindroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a dolphin dies (version 4.0+)
+# fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
+# updatecheck: true             [true/false]    Checks for update on startup and alerts admins
+# broadcast: true               [true/false]    Sends a message when someone gets beheaded
+# broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
+# antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
+# dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
+# dropvanillaheads: true        [true/false]    Drop vanilla mob heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)
+#                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
+# convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
+#                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
+# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within a threshold). This alleviates some ability to farm heads. (version 4.3+)
+#                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
+# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore. (version 4.6+)
+# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam  (version 4.7+)
+# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam  (version 4.7+)
+# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam  (version 4.7+)
+# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam  (version 4.7+)
+# fixdroppedheads: true         [true/false]    Whether or not to update the name,lore on dropped head items (fixes heads broken by pistons/water) (version v4.9+)
+
+pkonly: true
+droprate: 0.05
+lootingrate: 0.2
+mobpkonly: true
+fixcase: false
+updatecheck: true
+broadcast: true
+broadcastrange: 0
+antideathchest: false
+dropboringplayerheads: false
+dropvanillaheads: true
+convertvanillaheads: false
+nerfdeathspam: false
+addlore: true
+clickspamcount: 5
+clickspamthreshold: 1000
+deathspamcount: 5
+deathspamthreshold: 300000
+fixdroppedheads: true
+
+creeperdroprate: 0.005
+zombiedroprate: 0.002
+skeletondroprate: 0.002
+witherskeletondroprate: 0.025
+spiderdroprate: 0.002
+endermandroprate: 0.002
+blazedroprate: 0.002
+horsedroprate: 0.002
+donkeydroprate: 0.002
+squiddroprate: 0.005
+silverfishdroprate: 0.005
+enderdragondroprate: 0.05
+slimedroprate: 0.001
+irongolemdroprate: 0.005
+mushroomcowdroprate: 0.002
+batdroprate: 0.005
+pigzombiedroprate: 0.002
+snowmandroprate: 0.002
+ghastdroprate: 0.005
+pigdroprate: 0.002
+villagerdroprate: 0.002
+sheepdroprate: 0.002
+cowdroprate: 0.002
+chickendroprate: 0.002
+ocelotdroprate: 0.005
+witchdroprate: 0.005
+magmacubedroprate: 0.001
+wolfdroprate: 0.002
+cavespiderdroprate: 0.002
+rabbitdroprate: 0.002
+guardiandroprate: 0.025
+elderguardiandroprate: 0.030
+polarbeardroprate: 0.005
+shulkerdroprate: 0.002
+straydroprate: 0.002
+endermitedroprate: 0.005
+evokerdroprate: 0.005
+illusionerdroprate: 0.005
+vindicatordroprate: 0.005
+witherdroprate: 0.005
+vexdroprate: 0.004
+llamadroprate: 0.008
+parrotdroprate: 0.008
+
+#new drop rates supported since the 4.x redesign
+huskdroprate: 0.002
+zombievillagerdroprate: 0.002
+skeletonhorsedroprate: 0.002
+zombiehorsedroprate: 0.002
+muledroprate: 0.002
+turtledroprate: 0.002
+phantomdroprate: 0.001
+coddroprate: 0.002
+salmondroprate: 0.002
+pufferfishdroprate: 0.002
+tropicalfishdroprate: 0.002
+drowneddroprate: 0.002
+dolphindroprate: 0.002
+
+#remaining living-entity entries - disabled by default
+giantdroprate: 0.0
+armorstanddroprate: 0.0
+
+#speculative drop rates with 1.14 mobs - these names are NOT final
+pillagerdroprate: 0.002
+ravagerdroprate: 0.005
+pandadroprate: 0.002
+catdroprate: 0.002
+foxdroprate: 0.002
+traderllamadroprate: 0.005
+wanderingtraderdroprate: 0.005
+

@@ -10,7 +10,8 @@ import java.util.UUID;
 import org.jetbrains.annotations.NotNull;
 
 /**
- *
+ * Object representing the type of Head supported by PlayerHeads.
+ * You can obtain the headtype for various things through API methods - to compare head types, you can use equals()
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface HeadType {

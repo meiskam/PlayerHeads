@@ -5,8 +5,7 @@
  */
 
 /**
- * Package supplying cross-version compiling compatibility to the plugin.
+ * Package supplying inter-plugin compatibility and events to the plugin.
  * 
- * This functions by providing a common interface of required methods, with differing implementations based on bukkit version.
  */
 package com.github.crashdemons.playerheads.compatibility.plugins;

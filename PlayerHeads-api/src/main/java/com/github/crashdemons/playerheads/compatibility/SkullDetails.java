@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public interface SkullDetails {
     /**
-     * Gets whether the skull is a variant type 
+     * Gets whether the skull is a variant type (legacy heads based on skeleton skull variants).
      * @return whether the skull is a variant type 
      */
     public boolean isVariant();

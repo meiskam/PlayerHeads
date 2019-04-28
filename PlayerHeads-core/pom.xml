@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>4.10.0-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
     
 
@@ -62,7 +62,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>${project.version}</version>
+            <version>5.0.0-SNAPSHOT</version>
         </dependency>
   	<dependency>
   		<groupId>junit</groupId>
@@ -151,7 +151,7 @@
             </testResource>
         </testResources>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
@@ -168,7 +168,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
@@ -231,23 +231,6 @@
                             <target>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>copy-repo-docs</id>
-                        <phase>install</phase>
-                        <configuration>
-                            <target>
-                                <delete includeEmptyDirs="true" failonerror="false">
-                                    <fileset dir="${basedir}/docs" includes="**/*" />
-                                </delete>
-                                <copy todir="${basedir}/docs">
-                                    <fileset dir="${project.build.directory}/apidocs" includes="**/*" />
-                                </copy>
                             </target>
                         </configuration>
                         <goals>

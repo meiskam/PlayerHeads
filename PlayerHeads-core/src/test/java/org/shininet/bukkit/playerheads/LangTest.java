@@ -8,9 +8,11 @@ package org.shininet.bukkit.playerheads;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.testutils.Mocks;
 import com.github.crashdemons.playerheads.testutils.TestOutput;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Properties;
 import org.bukkit.Bukkit;
 import org.junit.Test;
@@ -33,12 +35,12 @@ public class LangTest {
     }
 
     @Test
-    public void testLangExistence() throws FileNotFoundException,IOException {
+    public void testLangExistence() throws FileNotFoundException,IOException,URISyntaxException {
         out.println("testLangExistence");
         
         Properties props = new Properties();
         
-        String path = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+        String path = new File( getClass().getProtectionDomain().getCodeSource().getLocation().toURI() ).getPath();
         out.println(path);
         FileInputStream resource = new FileInputStream(path+"/lang.properties");
         props.load(resource);

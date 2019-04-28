@@ -14,6 +14,8 @@ Same simple plugin, new improvements.
 # Where's the Source!?
 The main project combines different code from multiple modules - you need to look into those module directories for the code.
 
-For the code behind core plugin behavior and classes that can be used as an API, and for documentation, see the **PlayerHeads-core** module.
+For the code behind core plugin behavior see the **PlayerHeads-core** module.
+
+For an API to use the plugin from your own plugins there is also a lighter-weight API available from the **PlayerHeads-api** module.
 
 Otherwise, you can check out the **-support** modules for any server-specific implementation code

@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
  * SkullDetails implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
-class SkullDetails_113 extends SkullDetails_common implements SkullDetails{
+public class SkullDetails_113 extends SkullDetails_common implements SkullDetails{
     Material material;
     Material materialWall;
     //private final SkullType skullType;

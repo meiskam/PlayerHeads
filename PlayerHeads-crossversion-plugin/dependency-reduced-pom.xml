@@ -3,7 +3,7 @@
   <parent>
     <artifactId>PlayerHeads</artifactId>
     <groupId>org.shininet.bukkit</groupId>
-    <version>4.9.4-SNAPSHOT</version>
+    <version>4.10.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.shininet.bukkit</groupId>
@@ -146,6 +146,7 @@
             <configuration>
               <artifactSet>
                 <includes>
+                  <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>

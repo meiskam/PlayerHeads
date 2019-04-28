@@ -37,6 +37,7 @@ import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -146,22 +147,8 @@ class PlayerHeadsListener implements Listener {
         plugin.getServer().getPluginManager().callEvent(rollEvent);
         if(!rollEvent.succeeded()) return;//allow plugins a chance to modify the success
         
-                
-        String skullOwner;
-        if (plugin.configFile.getBoolean("dropboringplayerheads")) {
-            skullOwner = "";
-        } else {
-            skullOwner = player.getName();
-        }
         
-        boolean addLore = plugin.configFile.getBoolean("addlore");
-        
-        ItemStack drop;
-        if(skullOwner.isEmpty()){
-            drop = SkullManager.PlayerSkull(addLore);
-        }else{
-            drop = SkullManager.PlayerSkull(skullOwner,addLore);
-        }
+        ItemStack drop = plugin.api.getHeadDrop(player);
         
         PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
@@ -210,6 +197,7 @@ class PlayerHeadsListener implements Listener {
         Double droprate = droprateOriginal*lootingModifier;
         Double dropchanceRand = prng.nextDouble();
         Double dropchance = dropchanceRand;
+        Entity entity = event.getEntity();
         Player killer = event.getEntity().getKiller();
 
         boolean killerAlwaysBeheads = false;
@@ -226,11 +214,8 @@ class PlayerHeadsListener implements Listener {
         plugin.getServer().getPluginManager().callEvent(rollEvent);
         if(!rollEvent.succeeded()) return;//allow plugins a chance to modify the success
         
-
-        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
         
-        boolean addLore = plugin.configFile.getBoolean("addlore");
-        ItemStack drop = SkullManager.MobSkull(type,usevanillaskull,addLore);
+        ItemStack drop = plugin.api.getHeadDrop(entity);
 
         MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);

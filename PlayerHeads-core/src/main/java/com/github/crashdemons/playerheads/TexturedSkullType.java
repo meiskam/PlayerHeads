@@ -1,12 +1,13 @@
 
 package com.github.crashdemons.playerheads;
 
-import com.github.crashdemons.playerheads.api.Head;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import java.util.UUID;
 import org.shininet.bukkit.playerheads.Lang;
 import java.util.HashMap;
 import org.shininet.bukkit.playerheads.Formatter;
+import com.github.crashdemons.playerheads.api.HeadType;
+import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 
 /**
  * Enumeration of skulls with associated UUID (randomly assigned) and texture string.
@@ -17,7 +18,7 @@ import org.shininet.bukkit.playerheads.Formatter;
  * @author crashdemons
  * @author MagmaVoid_
  */
-public enum TexturedSkullType implements Head{
+public enum TexturedSkullType implements HeadType{
     
     //Entity skull settings - big thanks to MagmaVoid_ for finding all of these textures.
     /**
@@ -390,6 +391,7 @@ public enum TexturedSkullType implements Head{
      * Get the UUID associated with the skulltype
      * @return The UUID
      */
+    @Override
     public UUID getOwner() {
         return owner;
     }
@@ -397,6 +399,7 @@ public enum TexturedSkullType implements Head{
      * Get the Base64-encoded texture string associated with the skulltype
      * @return A base64 string
      */
+    @Override
     public String getTexture(){
         return texture;
     }
@@ -454,6 +457,7 @@ public enum TexturedSkullType implements Head{
      * Gets the item displayname for the associated skulltype, as defined in the "lang" file.
      * @return A string containing the skulltype's displayname
      */
+    @Override
     public String getDisplayName() {
         return Formatter.format(Lang.getString("HEAD_" + name()));
     }
@@ -485,6 +489,7 @@ public enum TexturedSkullType implements Head{
      * 
      * @return true: the skulls associated material was a playerhead. false: the skull has a different associated material.
      */
+    @Override
     public boolean isPlayerHead(){
         return this.material.getDetails().isBackedByPlayerhead();
     }
@@ -500,7 +505,21 @@ public enum TexturedSkullType implements Head{
     }
     
     @Override
-    public boolean equals(Head head){
+    public boolean isVanilla(){
+        //Note: heads that never had items are set to Player materials
+        // this.material.isSupported() gives us whether other types of vanilla head are 'supported' but this checks the same conditions as hasDedicatedItem:
+        //    this==PLAYER || !getDetails().isBackedByPlayerhead();
+        return hasDedicatedItem();
+    }
+    
+    @Override
+    public SkullDetails getImplementationDetails(){
+        return this.material.getDetails();
+    }
+    
+    @Override
+    public boolean equals(HeadType head){
+        if(head==null) return false;
         return this.owner.equals(head.getOwner());
     }
 }

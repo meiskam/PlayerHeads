@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.api.ApiProvider;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
 import com.github.crashdemons.playerheads.compatibility.Version;
@@ -30,6 +31,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     //private PlayerHeadsDraftListener draftListener=null;
     public Logger logger;
     public FileConfiguration configFile;
+    public final ApiProvider api;
     private static boolean updateReady = false;
     private static String updateName = "";
     /**
@@ -92,6 +94,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     
     public PlayerHeads(){
         super();
+        api=new ApiProvider(this);
+        com.github.crashdemons.playerheads.api.PlayerHeads.setApiInstance(api);
         //hasBlockDropItemSupport = RuntimeReferences.hasClass("org.bukkit.event.block.BlockDropItemEvent");
         
     }

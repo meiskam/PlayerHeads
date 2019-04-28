@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>4.9.4-SNAPSHOT</version>
+        <version>4.10.0-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -65,6 +65,12 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
@@ -220,6 +226,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
+                                    <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>

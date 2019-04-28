@@ -4,7 +4,7 @@
     <groupId>org.shininet.bukkit</groupId>
     <artifactId>PlayerHeads</artifactId>
     <packaging>pom</packaging>
-    <version>4.9.4-SNAPSHOT</version>
+    <version>4.10.0-SNAPSHOT</version>
     <name>PlayerHeads</name>
     
     <!-- sub modules -->
@@ -16,6 +16,7 @@
         <module>PlayerHeads-craftbukkit-1.8-support</module>
         <module>PlayerHeads-glowstone-1.12-support</module>
         <module>PlayerHeads-crossversion-plugin</module>
+        <module>PlayerHeads-craftbukkit-support</module>
     </modules>
     
 
@@ -47,27 +48,4 @@
         <url>https://github.com/crashdemons/PlayerHeads/issues</url>
     </issueManagement>
 
-    <repositories>
-        <repository>
-            <id>mojang</id>
-            <name>Mojang's Repository</name>
-            <url>https://libraries.minecraft.net/</url>
-        </repository>
-        <repository>
-            <id>spigot-group-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>md_5-releases</id>
-            <url>http://repo.md-5.net/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>crashdemons-repo</id>
-            <url>https://meme.tips/java-repos/</url>
-        </repository>
-    </repositories>
 </project>

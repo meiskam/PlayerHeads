@@ -151,6 +151,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     public void onDisable() {
         //if(hasBlockDropItemSupport && draftListener!=null) draftListener.unregisterAll();
         listener.unregisterAll();
+        logger.info("disabled");
     }
     
     public void onConfigReloaded(){

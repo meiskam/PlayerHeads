@@ -241,7 +241,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             //input item processing (from inventory)
             ItemStack skullInput = Compatibility.getProvider().getItemInMainHand((Player) sender);//.getEquipment().getItemInMainHand();
             
-            TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStackLegacy(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
+            TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStack(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
             if ( inputSkullType==null ) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
                 return true;

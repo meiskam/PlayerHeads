@@ -11,7 +11,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.shininet.bukkit.playerheads.LegacySkullType;
 
 /**
  * Abstract class defining methods for converting between entities, custom skullState type, and legacy username-skulls, etc.
@@ -114,38 +113,7 @@ public final class SkullConverter {
         return match;//if match was not null
     }
     
-    /**
-     * Attempts to determine a TexturedSkullType from a itemstack's information, with support for legacy username-based mobheads.
-     * 
-     * This method first checks skullTypeFromItemStack() for skulltype.
-     * If the skulltype returned is TexturedSkullType.PLAYER (unknown playerhead), 
-     * then this method attempts to associate the head's username with a LegacySkullType and upgrade it to the respective TexturedSkullType.
-     * 
-     * @param stack The stack to determine the skulltype of.
-     * @return <ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
-     *         <li>null (if the material is unsupported)</li>
-     *         <li>TexturedSkullType.PLAYER (if a playerhead UUID and username was not associated with any mob)</li></ul>
-     * @see #skullTypeFromItemStack(org.bukkit.inventory.ItemStack) 
-     * @see org.shininet.bukkit.playerheads.LegacySkullType
-     * @deprecated Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term, skullTypeFromBlockState should be used if legacy support is not needed.
-     */
-    @Deprecated
-    public static TexturedSkullType skullTypeFromItemStackLegacy(ItemStack stack){//with legacy name matching support
-        TexturedSkullType type = skullTypeFromItemStack(stack);
-        if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
-        //now we're checking legacy player skulls
-        
-        if(!Compatibility.getProvider().isPlayerhead(stack)) return null;
-        SkullMeta skullState = (SkullMeta) stack.getItemMeta();
-        String owner=Compatibility.getProvider().getOwner(skullState);//getSkullOwner(skullState);
-        if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
-        
-        LegacySkullType oldtype = LegacySkullType.get(owner);
-        if(oldtype==null) return TexturedSkullType.PLAYER;//we can't resolve a legacy type for this playerhead so...
-        
-        return upgradeSkullTypeLegacy(oldtype);
-        
-    }
+
     
     /**
      * Attempts to determine a TexturedSkullType from a block's blockstate information.
@@ -173,62 +141,6 @@ public final class SkullConverter {
         return match;//if match was not null
     }
     
-    /**
-     * Attempts to determine a TexturedSkullType from a block's blockstate information, with support for legacy username-based mobheads.
-     * 
-     * This method first checks skullTypeFromBlockState() for skulltype.
-     * If the skulltype returned is TexturedSkullType.PLAYER (unknown playerhead), 
-     * then this method attempts to associate the head's username with a LegacySkullType and upgrade it to the respective TexturedSkullType.
-     * 
-     * @param state The state associated with a block to determine the skulltype of.
-     * @return <ul><li>A TexturedSkullType associated with the mob (if material or UUID matched),</li>
-     *         <li>null (if the material is unsupported)</li>
-     *         <li>TexturedSkullType.PLAYER (if a playerhead UUID and username was not associated with any mob)</li></ul>
-     * @see #skullTypeFromBlockState(org.bukkit.block.BlockState) 
-     * @see org.shininet.bukkit.playerheads.LegacySkullType
-     * @deprecated Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term, skullTypeFromBlockState should be used if legacy support is not needed.
-     */
-    @Deprecated
-    public static TexturedSkullType skullTypeFromBlockStateLegacy(BlockState state){//with legacy name matching support
-        TexturedSkullType type = skullTypeFromBlockState(state);
-        if(type==null || type!=TexturedSkullType.PLAYER) return type;//don't really need to check null here, but it's more explicit this way.
-        //now we're checking legacy player skulls
-        
-        if(!Compatibility.getProvider().isPlayerhead(state)) return null;
-        Skull skullState = (Skull) state;
-        String owner=Compatibility.getProvider().getOwner(skullState);//getSkullOwner(skullState);
-        if(owner==null) return TexturedSkullType.PLAYER;//we cannot resolve an owner name for this playerhead, so it can only be considered a Player
-        
-        LegacySkullType oldtype = LegacySkullType.get(owner);
-        if(oldtype==null) return TexturedSkullType.PLAYER;//we can't resolve a legacy type for this playerhead so...
-        
-        return upgradeSkullTypeLegacy(oldtype);
-        
-    }
-    
-    /**
-     * Attempts to convert a LegacySkullType (username-based mobhead) to TexturedSkullType (texture-based mobhead).
-     * 
-     * Simple enum name conversion is used in this method.
-     * 
-     * Note: since 3.x changes making CustomSkullType (now LegacySkullType) uniform with bukkit's EntityType naming scheme, 
-     * all enum names in LegacySkullType should be present in TexturedSkullType.
-     * 
-     * @param oldType The LegacySkullType to convert
-     * @return The associated TexturedSkullType for the mobhead, or TexturedSkullType.PLAYER if no conversion was supported.
-     * @see org.shininet.bukkit.playerheads.LegacySkullType
-     * @see com.github.crashdemons.playerheads.TexturedSkullType
-     * @deprecated Legacy username-based mobheads are supported for backwards-compatibility reasons but are deprecated in the long term.
-     */
-    @Deprecated
-    public static TexturedSkullType upgradeSkullTypeLegacy(LegacySkullType oldType){
-        try{
-            return TexturedSkullType.valueOf(oldType.name().toUpperCase());
-        }catch(IllegalArgumentException e){
-            System.out.println("ERROR - Could not upgrade head: "+oldType.name());
-            return TexturedSkullType.PLAYER;
-        }
-    }
     
     /**
      * Attempts to get a bukkit EntityType from the given TexturedSkullType.

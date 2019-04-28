@@ -18,7 +18,6 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.shininet.bukkit.playerheads.LegacySkullType;
 
 /**
  *
@@ -75,14 +74,14 @@ public class SkullConverterTest {
     }
     */
     
-    @Test
+    /*@Test
     public void testUpgradeSkullTypeLegacy_Valid() {
         out.println("upgradeSkullTypeLegacy Valid");
         LegacySkullType oldType = LegacySkullType.IRON_GOLEM;
         TexturedSkullType expResult = TexturedSkullType.IRON_GOLEM;
         TexturedSkullType result = SkullConverter.upgradeSkullTypeLegacy(oldType);
         assertEquals(expResult, result);
-    }
+    }*/
 
     @Test
     public void testEntityTypeFromSkullType_Player() {
@@ -150,21 +149,21 @@ public class SkullConverterTest {
     public void testSkullTypeFromBlockStateLegacy_NullPlayerhead(){
         out.println("testSkullTypeFromBlockStateLegacy null playerhead");
         BlockState state = Mocks.getMockBlockState_PHead(null);
-        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.PLAYER);
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.PLAYER);
     }
     @Test
     public void testSkullTypeFromBlockStateLegacy_UnknownPlayerhead(){
         out.println("testSkullTypeFromBlockStateLegacy unknown playerhead");
         OfflinePlayer op = Mocks.getMockOfflinePlayer("3437cf83-c9b0-4709-a686-b8632b8d6172", "crashdemons");
         BlockState state = Mocks.getMockBlockState_PHead(op);
-        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.PLAYER);
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.PLAYER);
     }
-    @Test
+    /*@Test
     public void testSkullTypeFromBlockStateLegacy_SupportedLegacyPlayerhead(){
         out.println("testSkullTypeFromBlockStateLegacy supported legacy playerhead");
         OfflinePlayer op = Mocks.getMockOfflinePlayer("1bee9df5-4f71-42a2-bf52-d97970d3fea3", "MHF_Ocelot");
         BlockState state = Mocks.getMockBlockState_PHead(op);
-        assertEquals(SkullConverter.skullTypeFromBlockStateLegacy(state),TexturedSkullType.OCELOT);
-    }
+        assertEquals(SkullConverter.skullTypeFromBlockState(state),TexturedSkullType.OCELOT);
+    }*/
     
 }

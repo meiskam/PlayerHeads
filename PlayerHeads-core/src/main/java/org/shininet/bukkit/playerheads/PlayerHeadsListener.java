@@ -244,7 +244,7 @@ class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null) {
             BlockState state = block.getState();
-            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
             if(skullType==null) return;
             //System.out.println(skullType.name());
             
@@ -281,7 +281,7 @@ class PlayerHeadsListener implements Listener {
         //Location location = event.getEntity().getLocation();
         boolean fixDroppedHeads = plugin.configFile.getBoolean("fixdroppedheads");
         if(!fixDroppedHeads) return;
-        TexturedSkullType skullType = SkullConverter.skullTypeFromItemStackLegacy(stack);
+        TexturedSkullType skullType = SkullConverter.skullTypeFromItemStack(stack);
         if(skullType==null) return;
         ItemStack newstack = null;
         boolean addLore = plugin.configFile.getBoolean("addlore");
@@ -324,7 +324,7 @@ class PlayerHeadsListener implements Listener {
     //drop a head based on a block being broken in some fashion
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
     private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state){
-        TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+        TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
         Location location = block.getLocation();
         ItemStack item = null;
         boolean addLore = plugin.configFile.getBoolean("addlore");
@@ -365,7 +365,7 @@ class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (player.getGameMode() != GameMode.CREATIVE) {
             BlockState state = block.getState();
-            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockStateLegacy(state);
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
             if(skullType==null){
                 
                 //removed code - don't even attempt to drop or modify events from unknown heads

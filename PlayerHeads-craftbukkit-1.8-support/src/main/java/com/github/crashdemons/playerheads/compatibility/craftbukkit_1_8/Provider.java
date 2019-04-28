@@ -7,25 +7,10 @@ package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_8;
 
 import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
-import com.github.crashdemons.playerheads.compatibility.SkullDetails;
-import com.github.crashdemons.playerheads.compatibility.SkullType;
-import com.github.crashdemons.playerheads.compatibility.Version;
-import com.github.crashdemons.playerheads.compatibility.common.Provider_common;
+import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
 import java.util.UUID;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Ocelot;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Skeleton.SkeletonType;
-import org.bukkit.entity.Zombie;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -34,12 +19,29 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider extends Provider_common implements CompatibilityProvider {
+public class Provider extends Provider_legacy implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "craftbukkit"; }
     @Override public String getVersion(){ return "1.8"; }
+    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
+        return ProfileUtils.setProfile(headMeta, uuid, texture);
+    }
+    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
+        return ProfileUtils.setProfile(headBlockState, uuid, texture);
+    }
+    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){
+        //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        //if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
+    }
+    @Override public OfflinePlayer getOwningPlayer(Skull skull){
+        //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
+        //if(op!=null) return op;
+        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
+    }
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return ProfileUtils.getProfilePlayer(skullItemMeta); }
     @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return ProfileUtils.getProfilePlayer(skullBlockState); }
+    /*
     //@Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
     //@Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
     @Override public boolean setOwningPlayer(SkullMeta skullItemMeta, OfflinePlayer op){ return skullItemMeta.setOwner(op.getName()); }
@@ -48,7 +50,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     //@Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInHand(); }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInHand(s); }
-    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_18(type); }
+    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_legacy(type); }
     @Override public boolean getKeepInventory(World world){ return Boolean.valueOf(world.getGameRuleValue("keepInventory")); }
     @Override public SkullType getSkullType(ItemStack s){
         if(s.getType()!=Material.SKULL_ITEM) return null;
@@ -65,16 +67,6 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         return adaptSkullType(skullState.getSkullType());
     }
     
-    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){
-        //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
-        //if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
-    }
-    @Override public OfflinePlayer getOwningPlayer(Skull skull){
-        //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
-        //if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
-    }
     
     @Override public String getOwner(SkullMeta skull){
         String owner=null;
@@ -131,27 +123,21 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         return super.getCompatibleNameFromEntity(e);
     }
     
-    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
-        return ProfileUtils.setProfile(headMeta, uuid, texture);
-    }
-    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
-        return ProfileUtils.setProfile(headBlockState, uuid, texture);
-    }
     @Override public OfflinePlayer getOfflinePlayerByName(String username){ return Bukkit.getOfflinePlayer(username); }
     
-    private SkullType adaptSkullType(org.bukkit.SkullType bukkitType){
+    protected SkullType adaptSkullType(org.bukkit.SkullType bukkitType){
         try{
             return SkullType.values()[bukkitType.ordinal()];
         }catch(Exception e){
             return null;
         }
     }
-    private org.bukkit.SkullType adaptSkullType(SkullType compatType){
+    protected org.bukkit.SkullType adaptSkullType(SkullType compatType){
         if(compatType==SkullType.DRAGON && Version.checkUnder(1, 9)) return org.bukkit.SkullType.PLAYER;
         try{
             return org.bukkit.SkullType.values()[compatType.ordinal()];
         }catch(Exception e){
             return null;
         }
-    }
+    }*/
 }

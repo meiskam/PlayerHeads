@@ -2,6 +2,7 @@ com.github.crashdemons.playerheads
 com.github.crashdemons.playerheads.antispam
 com.github.crashdemons.playerheads.api
 com.github.crashdemons.playerheads.compatibility
+com.github.crashdemons.playerheads.compatibility.common
 com.github.crashdemons.playerheads.compatibility.exceptions
 com.github.crashdemons.playerheads.compatibility.plugins
 org.shininet.bukkit.playerheads

@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
+import com.github.crashdemons.playerheads.compatibility.common.SkullDetails_common;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
@@ -15,10 +16,10 @@ import org.bukkit.inventory.ItemStack;
  * SkullDetails implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
-class SkullDetails_113 implements SkullDetails{
+class SkullDetails_113 extends SkullDetails_common implements SkullDetails{
     Material material;
     Material materialWall;
-    private final SkullType skullType;
+    //private final SkullType skullType;
     public SkullDetails_113(SkullType type){
         if(type==null){
             type=SkullType.PLAYER;
@@ -36,12 +37,15 @@ class SkullDetails_113 implements SkullDetails{
             materialWall=Material.PLAYER_WALL_HEAD;
         }
         this.skullType=type;
+        this.materialItem=material;
+        
+        
     }
     @Override public boolean isVariant(){ return false; }
     @Override public boolean isBackedByPlayerhead(){ return material==Material.PLAYER_HEAD; }
-    @Override public boolean isSkinnable(){ return isBackedByPlayerhead(); }
+    //@Override public boolean isSkinnable(){ return isBackedByPlayerhead(); }
     @Override public ItemStack createItemStack(int quantity){ return new ItemStack(material,quantity); }
-    @Override public Material getItemMaterial(){ return material; }
+    //@Override public Material getItemMaterial(){ return material; }
     @Override public Material getFloorMaterial(){ return material; }
     @Override public Material getWallMaterial(){ return materialWall; }
 }

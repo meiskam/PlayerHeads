@@ -86,6 +86,12 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-legacy-support</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -236,6 +242,7 @@
                                     <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>

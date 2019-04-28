@@ -80,6 +80,12 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-support</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -200,6 +206,7 @@
                             <target>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
+                                
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${basedir}/../target/PlayerHeads-${project.version}.${project.packaging}"/>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
@@ -228,6 +235,7 @@
                                 <includes>
                                     <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>

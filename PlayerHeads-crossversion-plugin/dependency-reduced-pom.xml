@@ -148,6 +148,7 @@
                 <includes>
                   <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>

@@ -5,7 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
-import com.github.crashdemons.playerheads.compatibility.ProfileUtils;
+import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
@@ -22,6 +22,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Tameable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -107,10 +108,11 @@ public class Provider implements CompatibilityProvider {
     
     
     private boolean isLegacyCat(Entity e){
-        if(e instanceof Ocelot){
-            Ocelot eo = (Ocelot) e;
-            return eo.isTamed();
-        }
+        if(e instanceof Ocelot)
+            if(e instanceof Tameable)
+                return ((Tameable)e).isTamed();
+            
+        
         return false;
     }
 }

@@ -5,7 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_14;
 
-import com.github.crashdemons.playerheads.compatibility.ProfileUtils;
+import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;

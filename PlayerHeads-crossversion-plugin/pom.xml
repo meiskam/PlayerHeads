@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>4.10.0-SNAPSHOT</version>
+        <version>5.0.0-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -41,6 +41,7 @@
     </issueManagement>
 
     <repositories>
+        <!--
         <repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
@@ -51,16 +52,17 @@
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
         </repository>
+        -->
         <repository>
             <id>crashdemons-repo</id>
             <url>https://meme.tips/java-repos/</url>
+        </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
@@ -69,49 +71,75 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>${project.version}</version>
+            <version>5.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-core</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-legacy-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.14-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-glowstone-1.12-support</artifactId>
-            <version>${project.version}</version>
+            <version>4.10.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowstone</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -139,6 +167,12 @@
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito-common</artifactId>     
             <version>1.7.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.14-R0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

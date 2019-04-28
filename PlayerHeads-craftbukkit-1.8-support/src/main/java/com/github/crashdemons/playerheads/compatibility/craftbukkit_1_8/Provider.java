@@ -10,6 +10,7 @@ import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
 import com.github.crashdemons.playerheads.compatibility.Version;
+import com.github.crashdemons.playerheads.compatibility.common.Provider_common;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -33,18 +34,18 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider implements CompatibilityProvider {
+public class Provider extends Provider_common implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "craftbukkit"; }
     @Override public String getVersion(){ return "1.8"; }
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return ProfileUtils.getProfilePlayer(skullItemMeta); }
     @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return ProfileUtils.getProfilePlayer(skullBlockState); }
-    @Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
-    @Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
+    //@Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
+    //@Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
     @Override public boolean setOwningPlayer(SkullMeta skullItemMeta, OfflinePlayer op){ return skullItemMeta.setOwner(op.getName()); }
     @Override public void    setOwningPlayer(Skull skullBlockState, OfflinePlayer op){ skullBlockState.setOwner(op.getName()); }
-    @Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return skullItemMeta.setOwner(owner); }
-    @Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
+    //@Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return skullItemMeta.setOwner(owner); }
+    //@Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInHand(); }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInHand(s); }
     @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_18(type); }
@@ -94,14 +95,13 @@ public class Provider implements CompatibilityProvider {
     
     
     
-    @Override public boolean isHead(ItemStack s){ return getSkullType(s)!=null; }
-    @Override public boolean isHead(BlockState s){ return getSkullType(s)!=null; }
-    @Override public boolean isPlayerhead(ItemStack s){ return getSkullType(s)==SkullType.PLAYER; }
-    @Override public boolean isPlayerhead(BlockState s){ return getSkullType(s)==SkullType.PLAYER; }
-    @Override public boolean isMobhead(ItemStack s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
-    @Override public boolean isMobhead(BlockState s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
+    //@Override public boolean isHead(ItemStack s){ return getSkullType(s)!=null; }
+    //@Override public boolean isHead(BlockState s){ return getSkullType(s)!=null; }
+    //@Override public boolean isPlayerhead(ItemStack s){ return getSkullType(s)==SkullType.PLAYER; }
+    //@Override public boolean isPlayerhead(BlockState s){ return getSkullType(s)==SkullType.PLAYER; }
+    //@Override public boolean isMobhead(ItemStack s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
+   // @Override public boolean isMobhead(BlockState s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
     @Override public String getCompatibleNameFromEntity(Entity e){
-        if(isLegacyCat(e)) return "CAT";
         if(Version.checkUnder(1, 11)){//skeleton and zombie variants were separated after 1.11, and have their own EntityType
             if(e instanceof Horse){
                 Horse.Variant var = ((Horse) e).getVariant();
@@ -128,7 +128,7 @@ public class Provider implements CompatibilityProvider {
                 else if(skeleType.name().equalsIgnoreCase("STRAY")) return "STRAY";//added in 1.10, since this in 1.8 code we can't directly reference it.
             }
         }
-        return e.getType().name().toUpperCase();
+        return super.getCompatibleNameFromEntity(e);
     }
     
     @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
@@ -153,12 +153,5 @@ public class Provider implements CompatibilityProvider {
         }catch(Exception e){
             return null;
         }
-    }
-    private boolean isLegacyCat(Entity e){
-        if(e instanceof Ocelot){
-            Ocelot eo = (Ocelot) e;
-            return eo.isTamed();
-        }
-        return false;
     }
 }

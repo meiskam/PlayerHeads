@@ -6,41 +6,50 @@
 package com.github.crashdemons.playerheads.compatibility.glowstone_1_12;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
-import com.github.crashdemons.playerheads.compatibility.SkullDetails;
-import com.github.crashdemons.playerheads.compatibility.SkullType;
-import com.github.crashdemons.playerheads.compatibility.Version;
 import java.util.UUID;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.World;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Skeleton.SkeletonType;
-import org.bukkit.entity.Zombie;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 //import net.glowstone.entity.meta.profile.GlowPlayerProfile;
 import com.destroystokyo.paper.profile.*;
-import com.github.crashdemons.playerheads.compatibility.common.Provider_common;
-import org.bukkit.entity.Ocelot;
+import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
 
 /**
  * CompatibilityProvider Implementation for 1.12 support.
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider extends Provider_common implements CompatibilityProvider {
+public class Provider extends Provider_legacy implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "glowstone"; }
     @Override public String getVersion(){ return "1.12"; }
+    private PlayerProfile createProfile(UUID uuid, String textures){
+        com.destroystokyo.paper.profile.PlayerProfile profile = Bukkit.createProfile(uuid);
+        profile.setProperty(new ProfileProperty("textures",textures));
+        
+        profile.complete();
+        return profile;
+    }
+    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
+        SkullMeta skullMeta = (SkullMeta) headMeta;
+        skullMeta.setPlayerProfile(createProfile(uuid,texture));//from paper interface/glowstone API
+        return true;
+    }
+    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
+        //return ProfileUtils.setProfile(headBlockState, uuid, texture);
+        //TODO: find glowstone implementations for texturing!
+        //OfflinePlayer op=Bukkit.getOfflinePlayer(uuid);
+        //setPlayerProfile(headBlockState, createProfile(uuid,texture));
+        //headBlockState.setPlayerProfile(createProfile(uuid,texture));// doesn't exist in this version of paper-api
+        return false;
+    }
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
     @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }
+    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){ return getOwningPlayerDirect(skull); }
+    @Override public OfflinePlayer getOwningPlayer(Skull skull){ return getOwningPlayerDirect(skull); }
+    /*
     //@Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
     //@Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
     @Override public boolean setOwningPlayer(SkullMeta skullItemMeta, OfflinePlayer op){ return skullItemMeta.setOwner(op.getName()); }
@@ -49,7 +58,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     //@Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInHand(); }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInHand(s); }
-    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_18(type); }
+    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_legacy(type); }
     @Override public boolean getKeepInventory(World world){ return Boolean.valueOf(world.getGameRuleValue("keepInventory")); }
     @Override public SkullType getSkullType(ItemStack s){
         if(s.getType()!=Material.SKULL_ITEM) return null;
@@ -66,8 +75,6 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         return adaptSkullType(skullState.getSkullType());
     }
     
-    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){ return getOwningPlayerDirect(skull); }
-    @Override public OfflinePlayer getOwningPlayer(Skull skull){ return getOwningPlayerDirect(skull); }
     
     @Override public String getOwner(SkullMeta skull){
         String owner=null;
@@ -124,26 +131,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         return super.getCompatibleNameFromEntity(e);
     }
     
-    private PlayerProfile createProfile(UUID uuid, String textures){
-        com.destroystokyo.paper.profile.PlayerProfile profile = Bukkit.createProfile(uuid);
-        profile.setProperty(new ProfileProperty("textures",textures));
-        
-        profile.complete();
-        return profile;
-    }
-    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
-        SkullMeta skullMeta = (SkullMeta) headMeta;
-        skullMeta.setPlayerProfile(createProfile(uuid,texture));//from paper interface/glowstone API
-        return true;
-    }
-    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
-        //return ProfileUtils.setProfile(headBlockState, uuid, texture);
-        //TODO: find glowstone implementations for texturing!
-        //OfflinePlayer op=Bukkit.getOfflinePlayer(uuid);
-        //setPlayerProfile(headBlockState, createProfile(uuid,texture));
-        //headBlockState.setPlayerProfile(createProfile(uuid,texture));// doesn't exist in this version of paper-api
-        return false;
-    }
+
     //@Override public OfflinePlayer getOfflinePlayerByName(String username){ return Bukkit.getOfflinePlayer(username); }
     
     
@@ -162,5 +150,5 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         }catch(Exception e){
             return null;
         }
-    }
+    }*/
 }

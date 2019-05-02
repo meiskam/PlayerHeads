@@ -85,7 +85,6 @@
         <configuration>
           <includes>
             <include>org.bukkit</include>
-            <include>org.shininet.bukkit</include>
           </includes>
         </configuration>
       </plugin>

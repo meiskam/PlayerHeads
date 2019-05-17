@@ -83,13 +83,13 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-legacy-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -101,7 +101,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -113,19 +113,19 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.14-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-glowstone-1.12-support</artifactId>
-            <version>4.10.0-SNAPSHOT</version>
+            <version>5.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>

@@ -163,6 +163,12 @@
                     <exclude>com/github/crashdemons/playerheads/compatibility/CompatibilitySupport*</exclude>
                   </excludes>
                 </filter>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/maven/**</exclude>
+                  </excludes>
+                </filter>
               </filters>
             </configuration>
           </execution>

@@ -80,7 +80,7 @@ public interface HeadType {
      * @param h the headtype to check
      * @return whether the types were equal
      */
-    public boolean equals(HeadType h);
+    public boolean equals(Object h);
     
     @Override
     public int hashCode();

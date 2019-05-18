@@ -44,6 +44,8 @@ public final class Config {
             put("updatecheck", configType.BOOLEAN);
             put("broadcast", configType.BOOLEAN);
             put("broadcastrange", configType.INT);
+            put("broadcastmob", configType.BOOLEAN);
+            put("broadmobcastrange", configType.INT);
             put("antideathchest", configType.BOOLEAN);
             put("dropboringplayerheads", configType.BOOLEAN);
             put("dropvanillaheads", configType.BOOLEAN);

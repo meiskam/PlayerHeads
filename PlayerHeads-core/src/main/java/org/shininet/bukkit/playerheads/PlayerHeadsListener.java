@@ -36,7 +36,7 @@ import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -256,6 +256,29 @@ class PlayerHeadsListener implements Listener {
             location.getWorld().dropItemNaturally(location, drop);
         } else {
             event.getDrops().add(drop);
+        }
+        //broadcast message about the beheading.
+        if (plugin.configFile.getBoolean("broadcastmob") && killer!=null) { //mob-on-mob broadcasts would be extremely annoying!
+            String entityName = entity.getCustomName​();
+            if (entityName==null) entityName = entity.getName(); //notnull
+            
+            
+            String message = Formatter.format(Lang.BEHEAD_OTHER, entityName + ChatColor.RESET, killer.getDisplayName() + ChatColor.RESET);
+
+            int broadcastRange = plugin.configFile.getInt("broadcastmobrange");
+            if (broadcastRange > 0) {
+                broadcastRange *= broadcastRange;
+                Location location = entity.getLocation();
+                List<Player> players = entity.getWorld().getPlayers();
+
+                for (Player loopPlayer : players) {
+                    if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                        loopPlayer.sendMessage(message);
+                    }
+                }
+            } else {
+                plugin.getServer().broadcastMessage(message);
+            }
         }
     }
 

@@ -5,6 +5,27 @@
 # droprate: 0.05                [0.0 -> 1.0]    Chance that a trophy will drop when a player dies (1 is 100%, 0 is never)
 # lootingrate: 0.2              [0.0 -> 1.0]    Increases all droprates by lootingrate percent per looting level when a enchanted weapon is used
 # mobpkonly: true               [true/false]    When true mob trophies only drop when a player kills the mob (as opposed to a lava blade or fall death)
+# fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
+# updatecheck: true             [true/false]    Checks for update on startup and alerts admins
+# broadcast: true               [true/false]    Sends a message when someone gets beheaded
+# broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
+# broadcastmob: false           [true/false]    Sends a message when a mob gets beheaded
+# broadcastmobrange: 0          [positive int]  Radial distance in meters in which other players will hear the mob broadcast message (0 is unlimited)
+# antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
+# dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
+# dropvanillaheads: true        [true/false]    Drop vanilla mob heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)
+#                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
+# convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
+#                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
+# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within a threshold). This alleviates some ability to farm heads. (version 4.3+)
+#                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
+# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore. (version 4.6+)
+# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam  (version 4.7+)
+# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam  (version 4.7+)
+# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam  (version 4.7+)
+# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam  (version 4.7+)
+# fixdroppedheads: true         [true/false]    Whether or not to update the name,lore on dropped head items (fixes heads broken by pistons/water) (version v4.9+)
+
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
@@ -61,24 +82,8 @@
 # tropicalfishdroprate: 0.002   [0.0 -> 1.0]    Chance that a mob trophy will drop when a tropical fish dies (version 4.0+)
 # drowneddroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a drowned dies (version 4.0+)
 # dolphindroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a dolphin dies (version 4.0+)
-# fixcase: true                 [true/false]    When spawning/renaming heads, will attempt to make the input case insensitive
-# updatecheck: true             [true/false]    Checks for update on startup and alerts admins
-# broadcast: true               [true/false]    Sends a message when someone gets beheaded
-# broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
-# antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
-# dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
-# dropvanillaheads: true        [true/false]    Drop vanilla mob heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)
-#                                               If this is false, any modified drops and breaking of skulls will use skinned player head versions only.
-# convertvanillaheads: false    [true/false]    When false, avoid converting the type head of when its block is broken. 
-#                                               When true (or pre-4.2), the head is automatically converted to vanilla or skinned depending on the state of `dropvanillaheads` setting. (version 4.2+)
-# nerfdeathspam: false          [true/false]    Don't drop a head when a player has died recently to the same killer (within a threshold). This alleviates some ability to farm heads. (version 4.3+)
-#                                               If pkonly is disabled, a player dying repeatedly to any mob is also nerfed similarly under this option.
-# addlore: true                 [true/false]    If true (or pre-4.6), add plugin and player/mob lore text to plugin-added head items. If false, skip adding any lore. (version 4.6+)
-# clickspamcount: 5             [positive int]  Number of click interactions to record and check for spam  (version 4.7+)
-# clickspamthreshold: 1000      [positive int]  Amount of miliseconds to match click interactions for spam  (version 4.7+)
-# deathspamamount: 5            [positive int]  Number of player deaths to record and check for spam  (version 4.7+)
-# deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam  (version 4.7+)
-# fixdroppedheads: true         [true/false]    Whether or not to update the name,lore on dropped head items (fixes heads broken by pistons/water) (version v4.9+)
+
+
 
 pkonly: true
 droprate: 0.05
@@ -88,6 +93,8 @@ fixcase: false
 updatecheck: true
 broadcast: true
 broadcastrange: 0
+broadcastmob: false
+broadcastmobrange: 0
 antideathchest: false
 dropboringplayerheads: false
 dropvanillaheads: true

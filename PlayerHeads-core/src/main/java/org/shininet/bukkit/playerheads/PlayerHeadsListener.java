@@ -202,8 +202,12 @@ class PlayerHeadsListener implements Listener {
                 List<Player> players = player.getWorld().getPlayers();
 
                 for (Player loopPlayer : players) {
-                    if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
-                        loopPlayer.sendMessage(message);
+                    try{
+                        if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                            loopPlayer.sendMessage(message);
+                        }
+                    }catch(IllegalArgumentException e){
+                        //entities are in different worlds
                     }
                 }
             } else {
@@ -272,8 +276,12 @@ class PlayerHeadsListener implements Listener {
                 List<Player> players = entity.getWorld().getPlayers();
 
                 for (Player loopPlayer : players) {
-                    if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
-                        loopPlayer.sendMessage(message);
+                    try{
+                        if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
+                            loopPlayer.sendMessage(message);
+                        }
+                    }catch(IllegalArgumentException e){
+                        //entities are in different worlds
                     }
                 }
             } else {

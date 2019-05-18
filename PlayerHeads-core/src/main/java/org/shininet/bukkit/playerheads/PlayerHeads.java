@@ -34,15 +34,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     public final ApiProvider api;
     private static boolean updateReady = false;
     private static String updateName = "";
-    /**
-     * State indicating whether NoCheatPlus is enabled on the server.
-     * 
-     * Used internally to enable or disable behavior in helper classes to improve compatibility with NCP.
-     * @deprecated use CompatibilePlugins.nocheatplus instead
-     * @see CompatiblePlugins#nocheatplus
-     */
-    @Deprecated
-    public boolean NCPHook = false;
     
     //private final boolean hasBlockDropItemSupport;//whether the server has draft-API support
     
@@ -118,7 +109,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
             return;
         }
         CompatiblePlugins.init(this);
-        this.NCPHook=CompatiblePlugins.nocheatplus.isPresent();//backward-compatibility API requirement.
         
         configFile = getConfig();
         configFile.options().copyDefaults(true);

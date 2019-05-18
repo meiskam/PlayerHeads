@@ -12,17 +12,21 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Event created by the PlayerHeads plugin when a block is broken by hand (mined) and dropping a head.
- * Note: does not occur when broken by water or pistons.
+ * Event created by the PlayerHeads plugin when a block is broken by hand
+ * (mined) and dropping a head. Note: does not occur when broken by water or
+ * pistons.
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
-public class BlockDropHeadEvent extends BlockEvent implements Cancellable,DropHeadEvent{
-   private static final HandlerList handlers = new HandlerList();
+public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropHeadEvent {
+
+    private static final HandlerList handlers = new HandlerList();
     private boolean canceled = false;
     private final ItemStack drop;
 
     /**
      * Construct the event
+     *
      * @param block the block dropping the head
      * @param drop the head item being dropped
      */
@@ -33,17 +37,19 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable,DropHe
 
     /**
      * Gets the item that will drop from the beheading.
-     * 
-     * @return mutable ItemStack that will drop into the world once this event is over
+     *
+     * @return mutable ItemStack that will drop into the world once this event
+     * is over
      */
     @SuppressWarnings("unused")
-   @Override
+    @Override
     public ItemStack getDrop() {
         return drop;
     }
 
     /**
      * Whether the event has been cancelled.
+     *
      * @return Whether the event has been cancelled.
      */
     @Override
@@ -53,6 +59,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable,DropHe
 
     /**
      * Sets whether the event should be cancelled.
+     *
      * @param cancel whether the event should be cancelled.
      */
     @Override
@@ -62,6 +69,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable,DropHe
 
     /**
      * Get a list of handlers for the event.
+     *
      * @return a list of handlers for the event
      */
     @Override
@@ -71,6 +79,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable,DropHe
 
     /**
      * Get a list of handlers for the event.
+     *
      * @return a list of handlers for the event
      */
     @SuppressWarnings("unused")

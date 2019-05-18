@@ -9,8 +9,9 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * Interface representing the PlayerHeads plugin class object
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface PlayerHeadsPlugin extends Plugin {
-    
+
 }

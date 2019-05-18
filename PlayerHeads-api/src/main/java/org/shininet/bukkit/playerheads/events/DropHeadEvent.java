@@ -9,8 +9,10 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Interface for events that drop a plugin-supported head.
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface DropHeadEvent {
+
     public ItemStack getDrop();
 }

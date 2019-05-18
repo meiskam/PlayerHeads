@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -102,8 +102,9 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">HeadType</span></pre>
-<div class="block">Object representing the type of Head supported by PlayerHeads.
- You can obtain the headtype for various things through API methods - to compare head types, you can use equals()</div>
+<div class="block">Object representing the type of Head supported by PlayerHeads. You can obtain
+ the headtype for various things through API methods - to compare head types,
+ you can use equals()</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -135,19 +136,22 @@ var activeTableTab = "activeTableTab";
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#getDisplayName--">getDisplayName</a></span>()</code>
-<div class="block">Gets the item displayname for the associated skulltype, as defined in the "lang" file.</div>
+<div class="block">Gets the item displayname for the associated skulltype, as defined in the
+ "lang" file.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#getImplementationDetails--">getImplementationDetails</a></span>()</code>
-<div class="block">Get the underlying bukkit implementation details for the head on this server version.</div>
+<div class="block">Get the underlying bukkit implementation details for the head on this
+ server version.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#getOwner--">getOwner</a></span>()</code>
-<div class="block">Get the UUID associated with the skulltype (randomly assigned to it specifically)</div>
+<div class="block">Get the UUID associated with the skulltype (randomly assigned to it
+ specifically)</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -157,15 +161,20 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#isPlayerHead--">isPlayerHead</a></span>()</code>
 <div class="block">Checks whether the skulltype uses a playerhead internally.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#isVanilla--">isVanilla</a></span>()</code>
-<div class="block">Determines if a head of this type is implemented with a vanilla mob head or not [for the current server version].</div>
+<div class="block">Determines if a head of this type is implemented with a vanilla mob head
+ or not [for the current server version].</div>
 </td>
 </tr>
 </table>
@@ -191,7 +200,8 @@ var activeTableTab = "activeTableTab";
 <h4>getOwner</h4>
 <pre>@NotNull
 @NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;getOwner()</pre>
-<div class="block">Get the UUID associated with the skulltype (randomly assigned to it specifically)</div>
+<div class="block">Get the UUID associated with the skulltype (randomly assigned to it
+ specifically)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The UUID</dd>
@@ -220,7 +230,8 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getDisplayName</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getDisplayName()</pre>
-<div class="block">Gets the item displayname for the associated skulltype, as defined in the "lang" file.</div>
+<div class="block">Gets the item displayname for the associated skulltype, as defined in the
+ "lang" file.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A string containing the skulltype's displayname</dd>
@@ -234,13 +245,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isPlayerHead</h4>
 <pre>boolean&nbsp;isPlayerHead()</pre>
-<div class="block">Checks whether the skulltype uses a playerhead internally.
- This indicates that either the skulltype is PLAYER or a mob without a vanilla head item, generally.
- 
- Note: This does not necessarily indicate the material of the head - On certain server versions, even Player-Head items are variants of Skeleton skulls.</div>
+<div class="block">Checks whether the skulltype uses a playerhead internally. This indicates
+ that either the skulltype is PLAYER or a mob without a vanilla head item,
+ generally.
+
+ Note: This does not necessarily indicate the material of the head - On
+ certain server versions, even Player-Head items are variants of Skeleton
+ skulls.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true: the skulls is implemented using a playerhead. false: the skull has a different associated item</dd>
+<dd>true: the skulls is implemented using a playerhead. false: the
+ skull has a different associated item</dd>
 </dl>
 </li>
 </ul>
@@ -251,7 +266,8 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isVanilla</h4>
 <pre>boolean&nbsp;isVanilla()</pre>
-<div class="block">Determines if a head of this type is implemented with a vanilla mob head or not [for the current server version].</div>
+<div class="block">Determines if a head of this type is implemented with a vanilla mob head
+ or not [for the current server version].</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>whether the head of is implemented with a vanilla mob head</dd>
@@ -265,8 +281,9 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getImplementationDetails</h4>
 <pre><a href="../../../../../com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a>&nbsp;getImplementationDetails()</pre>
-<div class="block">Get the underlying bukkit implementation details for the head on this server version.
- Includes things like the material id for blocks, items, skinnability, etc.</div>
+<div class="block">Get the underlying bukkit implementation details for the head on this
+ server version. Includes things like the material id for blocks, items,
+ skinnability, etc.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>an object providing implementation details</dd>
@@ -276,7 +293,7 @@ var activeTableTab = "activeTableTab";
 <a name="equals-com.github.crashdemons.playerheads.api.HeadType-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
 <pre>boolean&nbsp;equals(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h)</pre>
@@ -286,6 +303,19 @@ var activeTableTab = "activeTableTab";
 <dd><code>h</code> - the headtype to check</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>whether the types were equal</dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>int&nbsp;hashCode()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>

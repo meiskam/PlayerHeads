@@ -116,9 +116,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">HeadRollEvent</span>
 extends org.bukkit.event.Event</pre>
-<div class="block">Event created by PlayerHeads (4.9.2+) to indicate that a head dropchance roll has occurred and the success/failure has been determined.
- This event allows third-party plugin authors to analyze and modify drop chance success with all factors considered by PlayerHeads available.
- If the success of this event is set to false, no head will be dropped. If it is set to true, a head will be dropped.</div>
+<div class="block">Event created by PlayerHeads (4.9.2+) to indicate that a head dropchance roll
+ has occurred and the success/failure has been determined. This event allows
+ third-party plugin authors to analyze and modify drop chance success with all
+ factors considered by PlayerHeads available. If the success of this event is
+ set to false, no head will be dropped. If it is set to true, a head will be
+ dropped.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -192,7 +195,8 @@ extends org.bukkit.event.Event</pre>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getEffectiveDropRate--">getEffectiveDropRate</a></span>()</code>
-<div class="block">Gets the configured droprate for the target as a fractional probability, after modification by looting.</div>
+<div class="block">Gets the configured droprate for the target as a fractional probability,
+ after modification by looting.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -222,25 +226,29 @@ extends org.bukkit.event.Event</pre>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getKillerAlwaysBeheads--">getKillerAlwaysBeheads</a></span>()</code>
-<div class="block">Gets whether the killer was configured to always behead this type of target.</div>
+<div class="block">Gets whether the killer was configured to always behead this type of
+ target.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getLootingModifier--">getLootingModifier</a></span>()</code>
-<div class="block">Gets the looting modifier (multiplier) that modified the effective droprate.</div>
+<div class="block">Gets the looting modifier (multiplier) that modified the effective
+ droprate.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getOriginalDropRate--">getOriginalDropRate</a></span>()</code>
-<div class="block">Gets the configured droprate for the target as a fractional probability, unmodified.</div>
+<div class="block">Gets the configured droprate for the target as a fractional probability,
+ unmodified.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getOriginalDropRoll--">getOriginalDropRoll</a></span>()</code>
-<div class="block">Gets the original PRNG-generated random value of the drop roll, uniform between 0 and 1 inclusively.</div>
+<div class="block">Gets the original PRNG-generated random value of the drop roll, uniform
+ between 0 and 1 inclusively.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -310,13 +318,21 @@ extends org.bukkit.event.Event</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>killer</code> - the Entity beheading another</dd>
 <dd><code>target</code> - the Entity being beheaded</dd>
-<dd><code>killerAlwaysBeheads</code> - whether the killer has the always-behead permission</dd>
-<dd><code>originalDropRoll</code> - the randomized PRNG double droproll value inclusively between 0 to 1.</dd>
-<dd><code>lootingModifier</code> - the fractional probability modifier (greater than or equal to 1.0) of looting, as applied by PlayerHeads to the effective droprate.</dd>
-<dd><code>effectiveDropRoll</code> - the modified droproll value after permission logic was applied (alwaysbehead sets to 0)</dd>
-<dd><code>originalDropRate</code> - the configured droprate of the target as a fraction (0.01 = 1%)</dd>
-<dd><code>effectiveDropRate</code> - the effective droprate of the target as a fraction (0.01 = 1%), as modified by looting.</dd>
-<dd><code>dropSuccess</code> - whether the droproll was determined to be initially a successful roll.</dd>
+<dd><code>killerAlwaysBeheads</code> - whether the killer has the always-behead
+ permission</dd>
+<dd><code>originalDropRoll</code> - the randomized PRNG double droproll value
+ inclusively between 0 to 1.</dd>
+<dd><code>lootingModifier</code> - the fractional probability modifier (greater than
+ or equal to 1.0) of looting, as applied by PlayerHeads to the effective
+ droprate.</dd>
+<dd><code>effectiveDropRoll</code> - the modified droproll value after permission
+ logic was applied (alwaysbehead sets to 0)</dd>
+<dd><code>originalDropRate</code> - the configured droprate of the target as a
+ fraction (0.01 = 1%)</dd>
+<dd><code>effectiveDropRate</code> - the effective droprate of the target as a
+ fraction (0.01 = 1%), as modified by looting.</dd>
+<dd><code>dropSuccess</code> - whether the droproll was determined to be initially a
+ successful roll.</dd>
 </dl>
 </li>
 </ul>
@@ -335,7 +351,8 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getLootingModifier</h4>
 <pre>public&nbsp;double&nbsp;getLootingModifier()</pre>
-<div class="block">Gets the looting modifier (multiplier) that modified the effective droprate. Generally this is 1 (no effect) or greater.</div>
+<div class="block">Gets the looting modifier (multiplier) that modified the effective
+ droprate. Generally this is 1 (no effect) or greater.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the looting modifier</dd>
@@ -377,9 +394,10 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getKillerAlwaysBeheads</h4>
 <pre>public&nbsp;boolean&nbsp;getKillerAlwaysBeheads()</pre>
-<div class="block">Gets whether the killer was configured to always behead this type of target.
- Note: this may differ on whether the target was a player or mob.
- If this is true, the effective droproll may have been set to 0 to force success.</div>
+<div class="block">Gets whether the killer was configured to always behead this type of
+ target. Note: this may differ on whether the target was a player or mob.
+ If this is true, the effective droproll may have been set to 0 to force
+ success.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Whether the killer was configured to always behead</dd>
@@ -393,8 +411,9 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getOriginalDropRoll</h4>
 <pre>public&nbsp;double&nbsp;getOriginalDropRoll()</pre>
-<div class="block">Gets the original PRNG-generated random value of the drop roll, uniform between 0 and 1 inclusively.
- When this value is lower than the droprate value by chance, the roll is considered successful.</div>
+<div class="block">Gets the original PRNG-generated random value of the drop roll, uniform
+ between 0 and 1 inclusively. When this value is lower than the droprate
+ value by chance, the roll is considered successful.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the drop roll value in the range [0,1]</dd>
@@ -408,9 +427,10 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getEffectiveDropRoll</h4>
 <pre>public&nbsp;double&nbsp;getEffectiveDropRoll()</pre>
-<div class="block">Gets the effective drop roll value after modification by PlayerHeads.
- The droproll will normally be reflected by the original random droproll, except if the killer always beheads, then this may be 0.
- If this is below the droprate, the roll would have been determined to be a success.</div>
+<div class="block">Gets the effective drop roll value after modification by PlayerHeads. The
+ droproll will normally be reflected by the original random droproll,
+ except if the killer always beheads, then this may be 0. If this is below
+ the droprate, the roll would have been determined to be a success.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the effective drop roll.</dd>
@@ -426,7 +446,8 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getOriginalDropRate</h4>
 <pre>public&nbsp;double&nbsp;getOriginalDropRate()</pre>
-<div class="block">Gets the configured droprate for the target as a fractional probability, unmodified.</div>
+<div class="block">Gets the configured droprate for the target as a fractional probability,
+ unmodified.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the droprate</dd>
@@ -440,7 +461,8 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>getEffectiveDropRate</h4>
 <pre>public&nbsp;double&nbsp;getEffectiveDropRate()</pre>
-<div class="block">Gets the configured droprate for the target as a fractional probability, after modification by looting.</div>
+<div class="block">Gets the configured droprate for the target as a fractional probability,
+ after modification by looting.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the droprate</dd>
@@ -482,8 +504,8 @@ extends org.bukkit.event.Event</pre>
 <li class="blockList">
 <h4>succeeded</h4>
 <pre>public&nbsp;boolean&nbsp;succeeded()</pre>
-<div class="block">Whether the effective drop roll was determined to be a success.
- Alias of getDropSuccess</div>
+<div class="block">Whether the effective drop roll was determined to be a success. Alias of
+ getDropSuccess</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the success of the drop roll</dd>

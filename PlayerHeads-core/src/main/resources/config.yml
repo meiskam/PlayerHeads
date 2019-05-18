@@ -9,8 +9,8 @@
 # updatecheck: true             [true/false]    Checks for update on startup and alerts admins
 # broadcast: true               [true/false]    Sends a message when someone gets beheaded
 # broadcastrange: 0             [positive int]  Radial distance in meters in which other players will hear the broadcast message (0 is unlimited)
-# broadcastmob: false           [true/false]    Sends a message when a mob gets beheaded
-# broadcastmobrange: 0          [positive int]  Radial distance in meters in which other players will hear the mob broadcast message (0 is unlimited)
+# broadcastmob: false           [true/false]    Sends a message when a mob gets beheaded (v5.0 alpha 2+)
+# broadcastmobrange: 0          [positive int]  Radial distance in meters in which other players will hear the mob broadcast message (0 is unlimited) (v5.0 alpha 2+)
 # antideathchest: false         [true/false]    Do not allow other plugins to fiddle with dropping player heads, makes certain they drop on the ground
 # dropboringplayerheads: false  [true/false]    Drop plain heads when a player dies, instead of the player's head
 # dropvanillaheads: true        [true/false]    Drop vanilla mob heads whenever possible on death and on breaking head (for creeper/skeleton/zombie/witherskeleton/dragon)  (version 4.1+)

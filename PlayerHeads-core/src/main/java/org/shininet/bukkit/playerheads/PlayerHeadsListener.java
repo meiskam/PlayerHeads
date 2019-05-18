@@ -36,7 +36,7 @@ import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -203,7 +203,7 @@ class PlayerHeadsListener implements Listener {
 
                 for (Player loopPlayer : players) {
                     if (location.distanceSquared(loopPlayer.getLocation()) <= broadcastRange) {
-                        player.sendMessage(message);
+                        loopPlayer.sendMessage(message);
                     }
                 }
             } else {

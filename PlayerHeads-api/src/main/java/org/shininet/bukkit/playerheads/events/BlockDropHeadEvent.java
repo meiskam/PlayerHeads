@@ -20,9 +20,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropHeadEvent {
 
-    private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList HANDLERS = new HandlerList();
     private boolean canceled = false;
-    private final ItemStack drop;
+    private final ItemStack itemDrop;
 
     /**
      * Construct the event
@@ -30,9 +30,9 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
      * @param block the block dropping the head
      * @param drop the head item being dropped
      */
-    public BlockDropHeadEvent(Block block, ItemStack drop) {
+    public BlockDropHeadEvent(final Block block, final ItemStack drop) {
         super(block);
-        this.drop = drop;
+        this.itemDrop = drop;
     }
 
     /**
@@ -44,7 +44,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
     @SuppressWarnings("unused")
     @Override
     public ItemStack getDrop() {
-        return drop;
+        return itemDrop;
     }
 
     /**
@@ -63,7 +63,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
      * @param cancel whether the event should be cancelled.
      */
     @Override
-    public void setCancelled(boolean cancel) {
+    public void setCancelled(final boolean cancel) {
         canceled = cancel;
     }
 
@@ -74,7 +74,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
      */
     @Override
     public HandlerList getHandlers() {
-        return handlers;
+        return HANDLERS;
     }
 
     /**
@@ -84,6 +84,6 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
      */
     @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
-        return handlers;
+        return HANDLERS;
     }
 }

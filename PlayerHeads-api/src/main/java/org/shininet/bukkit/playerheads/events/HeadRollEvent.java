@@ -21,13 +21,13 @@ import org.bukkit.event.HandlerList;
  */
 public class HeadRollEvent extends Event {
 
-    private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList HANDLERS = new HandlerList();
 
     private final Entity killer;
     private final Entity target;
 
     private final boolean killerAlwaysBeheads;
-    private final double lootingModifier;
+    private final double evtlootingModifier;
 
     private final double originalDropRoll;
     private final double effectiveDropRoll;
@@ -56,8 +56,8 @@ public class HeadRollEvent extends Event {
      * @param dropSuccess whether the droproll was determined to be initially a
      * successful roll.
      */
-    public HeadRollEvent(Entity killer, Entity target, boolean killerAlwaysBeheads, double lootingModifier, double originalDropRoll, double effectiveDropRoll, double originalDropRate, double effectiveDropRate, boolean dropSuccess) {
-        this.lootingModifier = lootingModifier;
+    public HeadRollEvent(final Entity killer, final Entity target, final boolean killerAlwaysBeheads, final double lootingModifier, final double originalDropRoll, final double effectiveDropRoll, final double originalDropRate, final double effectiveDropRate, final boolean dropSuccess) {
+        this.evtlootingModifier = lootingModifier;
         this.originalDropRate = originalDropRate;
         this.effectiveDropRate = effectiveDropRate;
         this.dropSuccess = dropSuccess;
@@ -76,7 +76,7 @@ public class HeadRollEvent extends Event {
      * @return the looting modifier
      */
     public double getLootingModifier() {
-        return lootingModifier;
+        return evtlootingModifier;
     }
 
     /**
@@ -167,7 +167,7 @@ public class HeadRollEvent extends Event {
      *
      * @param value whether the head drop should succeed or fail.
      */
-    public void setDropSuccess(boolean value) {
+    public void setDropSuccess(final boolean value) {
         dropSuccess = value;
     }
 
@@ -189,7 +189,7 @@ public class HeadRollEvent extends Event {
      */
     @Override
     public HandlerList getHandlers() {
-        return handlers;
+        return HANDLERS;
     }
 
     /**
@@ -199,7 +199,7 @@ public class HeadRollEvent extends Event {
      */
     @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
-        return handlers;
+        return HANDLERS;
     }
 
 }

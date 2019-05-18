@@ -81,4 +81,7 @@ public interface HeadType {
      * @return whether the types were equal
      */
     public boolean equals(HeadType h);
+    
+    @Override
+    public int hashCode();
 }

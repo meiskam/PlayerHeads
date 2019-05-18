@@ -33,7 +33,7 @@ public class FakeBlockBreakEvent extends BlockBreakEvent {
      * @param theBlock the block to "break"
      * @param player the player doing the breaking
      */
-    public FakeBlockBreakEvent(Block theBlock, Player player) {
+    public FakeBlockBreakEvent(final Block theBlock, final Player player) {
         super(theBlock, player);
     }
 

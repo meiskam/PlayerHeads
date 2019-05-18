@@ -34,6 +34,28 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                  <execution>
+                    <id>validate</id>
+                    <phase>validate</phase>
+                    <configuration>
+                      <configLocation>${basedir}/checkstyle.xml</configLocation>
+                      <suppressionsLocation>${basedir}/checkstyle-suppression.xml</suppressionsLocation>
+                      <encoding>UTF-8</encoding>
+                      <consoleOutput>true</consoleOutput>
+                      <failsOnError>true</failsOnError>
+                      <linkXRef>true</linkXRef>
+                    </configuration>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
@@ -111,4 +133,17 @@
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                    <configuration>
+                        <configLocation>${basedir}/checkstyle.xml</configLocation>
+                      <suppressionsLocation>${basedir}/checkstyle-suppression.xml</suppressionsLocation>
+                    </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

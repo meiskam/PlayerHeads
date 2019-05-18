@@ -34,7 +34,7 @@ public class SimulatedBlockBreakEvent extends FakeBlockBreakEvent {
      * @param theBlock the block to "break"
      * @param player the player doing the breaking
      */
-    public SimulatedBlockBreakEvent(Block theBlock, Player player) {
+    public SimulatedBlockBreakEvent(final Block theBlock, final Player player) {
         super(theBlock, player);
     }
 

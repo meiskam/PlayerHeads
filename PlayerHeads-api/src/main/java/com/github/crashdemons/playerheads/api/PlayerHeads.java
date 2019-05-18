@@ -10,9 +10,9 @@ package com.github.crashdemons.playerheads.api;
  *
  * @author crashdemons (crashenator at gmail.com)
  */
-public class PlayerHeads {
-
-    private static PlayerHeadsAPI api = null;
+public final class PlayerHeads {
+    private PlayerHeads(){}
+    private static PlayerHeadsAPI apiInstance = null;
 
     /**
      * Gets the instance of the PlayerHeads API
@@ -21,7 +21,7 @@ public class PlayerHeads {
      * available or you accidentally shaded the API into your plugin.
      */
     public static PlayerHeadsAPI getApiInstance() {
-        return api;
+        return apiInstance;
     }
 
     /**
@@ -33,8 +33,8 @@ public class PlayerHeads {
      * @deprecated This method is intended only for internal PlayerHeads use.
      */
     @Deprecated
-    public static void setApiInstance(PlayerHeadsAPI api) {
-        PlayerHeads.api = api;
+    public static void setApiInstance(final PlayerHeadsAPI api) {
+        PlayerHeads.apiInstance = api;
     }
 
 }

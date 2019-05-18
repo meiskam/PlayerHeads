@@ -21,7 +21,7 @@ public class PlayerDropHeadEvent extends LivingEntityDropHeadEvent {
      * @param player the player that was beheaded
      * @param drop the head item to be dropped
      */
-    public PlayerDropHeadEvent(Player player, ItemStack drop) {
+    public PlayerDropHeadEvent(final Player player, final ItemStack drop) {
         super(player, drop);
     }
 

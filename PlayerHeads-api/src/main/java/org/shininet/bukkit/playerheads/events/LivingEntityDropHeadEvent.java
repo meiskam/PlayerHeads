@@ -24,9 +24,9 @@ import org.bukkit.inventory.ItemStack;
  */
 public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellable, DropHeadEvent {
 
-    private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList HANDLERS = new HandlerList();
     private boolean canceled = false;
-    private final ItemStack drop;
+    private final ItemStack itemDrop;
 
     /**
      * Construct the event
@@ -34,9 +34,9 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      * @param entity the [living] entity droping the head
      * @param drop the head item being dropped
      */
-    LivingEntityDropHeadEvent(LivingEntity entity, ItemStack drop) {
+    LivingEntityDropHeadEvent(final LivingEntity entity, final ItemStack drop) {
         super(entity);
-        this.drop = drop;
+        this.itemDrop = drop;
     }
 
     /**
@@ -48,7 +48,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     @SuppressWarnings("unused")
     @Override
     public ItemStack getDrop() {
-        return drop;
+        return itemDrop;
     }
 
     /**
@@ -77,7 +77,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      * @param cancel whether the event should be cancelled.
      */
     @Override
-    public void setCancelled(boolean cancel) {
+    public void setCancelled(final boolean cancel) {
         canceled = cancel;
     }
 
@@ -88,7 +88,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      */
     @Override
     public HandlerList getHandlers() {
-        return handlers;
+        return HANDLERS;
     }
 
     /**
@@ -98,6 +98,6 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      */
     @SuppressWarnings("unused")
     public static HandlerList getHandlerList() {
-        return handlers;
+        return HANDLERS;
     }
 }

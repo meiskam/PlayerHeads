@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 //override default compatibilitysupport
 public class CompatibilitySupport {
-    public static final HashMap<String,Integer[][]> versions;
+    public static final HashMap<String,Integer[][]> VERSIONS;
     static{
-        versions=new HashMap<>();
-        versions.put("faketestserver", new Integer[][]{//to enable testing
+        VERSIONS=new HashMap<>();
+        VERSIONS.put("faketestserver", new Integer[][]{//to enable testing
             {1,13},
             {1,0}
         });

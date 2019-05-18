@@ -6,10 +6,18 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- * Exception indicating a server version that could not be retrieved or understood.
+ * Exception indicating a server version that could not be retrieved or
+ * understood.
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
 public class UnknownVersionException extends VersionException {
-    public UnknownVersionException(String s, Exception e){ super(s,e); }
-    public UnknownVersionException(String s){ super(s); }
+
+    public UnknownVersionException(String s, Exception e) {
+        super(s, e);
+    }
+
+    public UnknownVersionException(String s) {
+        super(s);
+    }
 }

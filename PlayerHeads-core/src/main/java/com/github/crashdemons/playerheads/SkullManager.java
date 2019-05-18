@@ -236,7 +236,7 @@ public final class SkullManager {
         skullState.update();
     }
     /*
-    //TODO: reinvestigate these approaches as they're preferred to the deprecated username method.
+    //reinvestigate these approaches as they're preferred to the deprecated username method.
     //these do not properly update head skin in server testing.
     public static ItemStack PlayerSkull(UUID owner){
         return PlayerSkull(owner,Config.defaultStackSize);

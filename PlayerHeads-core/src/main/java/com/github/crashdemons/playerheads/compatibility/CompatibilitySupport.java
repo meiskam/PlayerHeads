@@ -9,20 +9,31 @@ import java.util.HashMap;
 
 /**
  * Class that holds supported compatibility implementations in this release.
- * By default, before shading, this is mostly empty and it is up to the downstream projects to add support.
- * Downstream projects that shade the package into their project should exclude or replace this class as needed.
+ * By default, before shading, this is mostly empty and it is up to the
+ * downstream projects to add support.
+ * Downstream projects that shade the package into their project should exclude
+ * or replace this class as needed.
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
-public class CompatibilitySupport {
-    private static final boolean FINALIZED=false;
+public final class CompatibilitySupport {
+
+    private CompatibilitySupport() {}
+    private static final boolean FINALIZED = false;
     /**
-     * Map containing the supported server implementations and their supported versions.
+     * Map containing the supported server implementations and their supported
+     * versions.
      */
-    public static final HashMap<String,Integer[][]> versions=new HashMap<>();
+    public static final HashMap<String, Integer[][]> VERSIONS = new HashMap<>();
+
     /**
-     * Specifies whether compatibility support has been added by a downstream project yet.
+     * Specifies whether compatibility support has been added by a downstream
+     * project yet.
      * If this is false, the project was not created properly.
+     *
      * @return whether support has been added
      */
-    public static boolean isFinalized(){ return false; }
+    public static boolean isFinalized() {
+        return false;
+    }
 }

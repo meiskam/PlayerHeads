@@ -15,7 +15,7 @@ import org.bukkit.Bukkit;
  * A class providing methods related to the current server's version.
  * @author crashdemons (crashenator at gmail.com)
  */
-public class Version {
+public final class Version {
     private static String serverType ="";
     private static int versionMajor = 0;
     private static int versionMinor = 0;

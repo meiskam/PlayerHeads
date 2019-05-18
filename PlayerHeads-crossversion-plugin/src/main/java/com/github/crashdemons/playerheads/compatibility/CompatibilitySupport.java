@@ -17,15 +17,15 @@ public class CompatibilitySupport {
     /**
      * Map containing the supported server implementations and their supported versions.
      */
-    public static final HashMap<String,Integer[][]> versions;
+    public static final HashMap<String,Integer[][]> VERSIONS;
     static{
-        versions=new HashMap<>();
-        versions.put("craftbukkit", new Integer[][]{
+        VERSIONS=new HashMap<>();
+        VERSIONS.put("craftbukkit", new Integer[][]{
             {1,14},
             {1,13},
             {1,8}
         });
-        versions.put("glowstone", new Integer[][]{
+        VERSIONS.put("glowstone", new Integer[][]{
             {1,12}
         });
     }

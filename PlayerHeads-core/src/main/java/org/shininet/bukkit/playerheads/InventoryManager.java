@@ -13,7 +13,9 @@ import org.bukkit.inventory.PlayerInventory;
  * Defines a collection of utility methods for the plugin inventory management, item management
  * @author meiskam
  */
-public class InventoryManager {
+public final class InventoryManager {
+    private InventoryManager(){}
+    
     /**
      * Adds a head-item to a player's inventory.
      * 

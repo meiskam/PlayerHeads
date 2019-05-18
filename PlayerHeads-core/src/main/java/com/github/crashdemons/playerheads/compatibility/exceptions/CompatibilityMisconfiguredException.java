@@ -10,6 +10,12 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityMisconfiguredException extends CompatibilityException {
-    public CompatibilityMisconfiguredException(String s, Exception e){ super(s,e); }
-    public CompatibilityMisconfiguredException(String s){ super(s); }
+
+    public CompatibilityMisconfiguredException(String s, Exception e) {
+        super(s, e);
+    }
+
+    public CompatibilityMisconfiguredException(String s) {
+        super(s);
+    }
 }

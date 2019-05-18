@@ -10,6 +10,12 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  * @author crashdemons (crashenator at gmail.com)
  */
 public abstract class VersionException extends IllegalStateException {
-    public VersionException(String s, Exception e){ super(s,e); }
-    public VersionException(String s){ super(s); }
+
+    public VersionException(String s, Exception e) {
+        super(s, e);
+    }
+
+    public VersionException(String s) {
+        super(s);
+    }
 }

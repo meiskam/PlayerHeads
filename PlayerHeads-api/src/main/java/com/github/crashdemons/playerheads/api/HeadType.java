@@ -18,6 +18,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface HeadType {
 
+    // 4.10.0 API
+    //------------------------------------------------------------------
+    
     /**
      * Get the UUID associated with the skulltype (randomly assigned to it
      * specifically)
@@ -82,6 +85,9 @@ public interface HeadType {
      */
     public boolean equals(Object h);
     
+    // 5.0.0 API
+    //------------------------------------------------------------------
+
     @Override
     public int hashCode();
 }

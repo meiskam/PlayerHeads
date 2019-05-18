@@ -9,36 +9,49 @@ import org.bukkit.event.Event;
 
 /**
  * Defines an abstract event record for antispam features.
- * 
- * Implements basing record timestamp recording and comparison common to all records.
+ * <p>
+ * Implements basing record timestamp recording and comparison common to all
+ * records.
+ *
  * @author crash
  */
 public abstract class EventSpamRecord {
+
     private final long timestamp;
-    
+
     /**
-     * Determines if the record is "close to" another record by comparing timestamps against a time threshold.
+     * Determines if the record is "close to" another record by comparing
+     * timestamps against a time threshold.
+     *
      * @param record the record to compare with
-     * @param threshold_ms the threshold of milliseconds within which the record should be considered recent / spam.
-     * @return Whether the record is close to the other record, given the parameters.
+     * @param thresholdMs the threshold of milliseconds within which the record
+     * should be considered recent / spam.
+     * @return Whether the record is close to the other record, given the
+     * parameters.
      */
-    public boolean closeTo(EventSpamRecord record, long threshold_ms){
-        long diff = Math.abs( record.timestamp - timestamp );
-        return (diff < threshold_ms);
+    public boolean closeTo(EventSpamRecord record, long thresholdMs) {
+        long diff = Math.abs(record.timestamp - timestamp);
+        return (diff < thresholdMs);
     }
+
     /**
      * Gets the timestamp associated with this record's creation.
+     *
      * @return the timestamp as a long integer.
      */
-    public long getTimestamp(){ return timestamp; }
-    
+    public long getTimestamp() {
+        return timestamp;
+    }
+
     /**
      * Constructs the event record about an event.
-     * 
-     * Note: this base class does not store any event-specific information except the time, that is up to child classes to do.
+     * <p>
+     * Note: this base class does not store any event-specific information
+     * except the time, that is up to child classes to do.
+     *
      * @param event the bukkit event to record information about.
      */
-    public EventSpamRecord(Event event){
-            timestamp = System.currentTimeMillis();
+    public EventSpamRecord(Event event) {
+        timestamp = System.currentTimeMillis();
     }
 }

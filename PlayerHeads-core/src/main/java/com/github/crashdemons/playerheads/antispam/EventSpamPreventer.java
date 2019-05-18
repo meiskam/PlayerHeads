@@ -18,19 +18,19 @@ public abstract class EventSpamPreventer {
     /**
      * The number of internal records to keep for spam preventers. Default is 5.
      */
-    protected final int RECORDS;// = 5;
+    protected final int recordCount; // = 5;
     /**
      * The buffer of internal spam records held by the spam preventer instance.
      * 
      * These are generally filled circularly by addRecord()
      * @see #addRecord(com.github.crashdemons.playerheads.antispam.EventSpamRecord) 
      */
-    protected final EventSpamRecord[] records;// = new EventSpamRecord[RECORDS];
+    protected final EventSpamRecord[] records; // = new EventSpamRecord[RECORDS];
     private volatile int next = 0;
     
     public EventSpamPreventer(int numRecords){
-        RECORDS=numRecords;
-        records=new EventSpamRecord[RECORDS];
+        recordCount=numRecords;
+        records=new EventSpamRecord[recordCount];
     }
     
     /**
@@ -39,7 +39,7 @@ public abstract class EventSpamPreventer {
      */
     protected synchronized void addRecord(EventSpamRecord record){
         records[next] = record;
-        next = (next+1)%RECORDS;
+        next = (next+1)%recordCount;
     }
     
     /**

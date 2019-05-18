@@ -170,6 +170,30 @@
                 </executions>
             </plugin>-->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                  <execution>
+                    <id>validate</id>
+                    <phase>validate</phase>
+                    <configuration>
+                      <configLocation>${basedir}/checkstyle.xml</configLocation>
+                      <suppressionsLocation>${basedir}/checkstyle-suppression.xml</suppressionsLocation>
+                      <encoding>UTF-8</encoding>
+                      <consoleOutput>true</consoleOutput>
+                      <violationSeverity>warning</violationSeverity>
+                      <failsOnError>false</failsOnError>
+                      <failOnViolation>false</failOnViolation>
+                      <linkXRef>true</linkXRef>
+                    </configuration>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.2</version>

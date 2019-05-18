@@ -11,14 +11,21 @@ import org.bukkit.Material;
 
 /**
  * SkullDetails implementation for 1.8+ support
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
-
 public abstract class SkullDetails_common implements SkullDetails {
-    public  Material materialItem;
+
+    protected Material materialItem;
     protected SkullType skullType;
-    
-    @Override public boolean isSkinnable(){ return isBackedByPlayerhead(); }
-    
-    @Override public Material getItemMaterial(){ return materialItem; }
+
+    @Override
+    public boolean isSkinnable() {
+        return isBackedByPlayerhead();
+    }
+
+    @Override
+    public Material getItemMaterial() {
+        return materialItem;
+    }
 }

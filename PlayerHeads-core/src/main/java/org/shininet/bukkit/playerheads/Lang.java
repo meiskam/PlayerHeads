@@ -376,33 +376,33 @@ public final class Lang {
      * @see #reload() 
      */
     public static void reload() {
-        String internal_locale = "";
+        String internalLocale = "";
         try {
             RESOURCE_BUNDLE0 = ResourceBundle.getBundle(BUNDLE_NAME, new UTF8Control());
-            internal_locale = RESOURCE_BUNDLE0.getLocale().toString();
-            if (!(internal_locale.equals(""))) {
-                internal_locale = "_".concat(internal_locale);
+            internalLocale = RESOURCE_BUNDLE0.getLocale().toString();
+            if (!(internalLocale.equals(""))) {
+                internalLocale = "_".concat(internalLocale);
             }
         } catch (MissingResourceException ignored) {
             if(plugin!=null) plugin.getLogger().warning("Internal language resource bundle missing");
         }
 
-        Locale environment_locale = Locale.getDefault();
+        Locale environmentLocale = Locale.getDefault();
         if(plugin!=null){
-            plugin.getLogger().info("Internal plugin locale: "+internal_locale);
-            plugin.getLogger().info("Environment locale: "+environment_locale.toString()+" / "+environment_locale.toLanguageTag());
+            plugin.getLogger().info("Internal plugin locale: "+internalLocale);
+            plugin.getLogger().info("Environment locale: "+environmentLocale.toString()+" / "+environmentLocale.toLanguageTag());
         }
         
         try {
             URL[] urls = {plugin.getDataFolder().toURI().toURL()};
-            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environment_locale, new URLClassLoader(urls), new UTF8Control());
+            RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environmentLocale, new URLClassLoader(urls), new UTF8Control());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (MissingResourceException e) {
-            plugin.saveResource(BUNDLE_NAME.concat(internal_locale).replace('.', '/').concat(".properties"), false);
+            plugin.saveResource(BUNDLE_NAME.concat(internalLocale).replace('.', '/').concat(".properties"), false);
             try {
                 URL[] urls = {plugin.getDataFolder().toURI().toURL()};
-                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environment_locale, new URLClassLoader(urls), new UTF8Control());
+                RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, environmentLocale, new URLClassLoader(urls), new UTF8Control());
             } catch (Exception e2) {
                 e2.printStackTrace();
             }

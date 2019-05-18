@@ -12,7 +12,7 @@ import org.bukkit.Material;
  * Provides methods to perform runtime lookups of values by name (eg: enums)
  * @author crashdemons (crashenator at gmail.com)
  */
-public class RuntimeReferences {
+public final class RuntimeReferences {
     private RuntimeReferences(){}
     public static CompatibleSkullMaterial getCompatibleMaterialByName(String name){
         try{

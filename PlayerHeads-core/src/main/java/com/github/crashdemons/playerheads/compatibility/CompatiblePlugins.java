@@ -11,53 +11,64 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-
 /**
  * Class providing methods and information for inter-plugin compatibility
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
-public class CompatiblePlugins {
-    private CompatiblePlugins(){}
+public final class CompatiblePlugins {
+
+    private CompatiblePlugins() {
+    }
     /**
      * NoCheatPlus compatibility class instance
-     * @see com.github.crashdemons.playerheads.compatibility.plugins.NoCheatPlusCompatibility
+     *
+     * @see
+     * com.github.crashdemons.playerheads.compatibility.plugins.NoCheatPlusCompatibility
      */
     public static NoCheatPlusCompatibility nocheatplus = null;
     /**
      * Generic protection-plugin compatibility class instance
-     * @see com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility
+     *
+     * @see
+     * com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility
      */
     public static ProtectionPluginCompatibility protection = null;
-    private static boolean ready=false;
+    private static boolean ready = false;
     private static Plugin parentPlugin = null;
-    
+
     /**
      * Initialize plugin support classes.
-     * This should be done during plugin Enable or afterwards - you may need to add a SoftDepend entry for the plugin to be detected in onEnable.
-     * @param parentPlugin the plugin requesting compatibility support
+     * This should be done during plugin Enable or afterwards - you may need to
+     * add a SoftDepend entry for the plugin to be detected in onEnable.
+     *
+     * @param parentPluginInstance the plugin requesting compatibility support
      */
-    public static void init(Plugin parentPlugin){
-        CompatiblePlugins.parentPlugin = parentPlugin;
-        nocheatplus = new NoCheatPlusCompatibility(parentPlugin);
-        protection = new ProtectionPluginCompatibility(parentPlugin);
-        ready=true;
+    public static void init(Plugin parentPluginInstance) {
+        CompatiblePlugins.parentPlugin = parentPluginInstance;
+        nocheatplus = new NoCheatPlusCompatibility(parentPluginInstance);
+        protection = new ProtectionPluginCompatibility(parentPluginInstance);
+        ready = true;
     }
-    
+
     /**
-     * Test of a simulated block break succeeds (considering all applicable plugin support classes).
+     * Test of a simulated block break succeeds (considering all applicable
+     * plugin support classes).
      * This method includes exempting fastbreak in NCP before testing.
+     *
      * @param block the block being broken
      * @param player the player doing the breaking
      * @return whether the block break succeeded or failed (was cancelled).
      */
-    public static boolean testBlockBreak(Block block, Player player){
+    public static boolean testBlockBreak(Block block, Player player) {
         boolean isNotExempt = false;
         if (nocheatplus.isPresent()) {
-            if (isNotExempt = !nocheatplus.isExemptFastbreak(player)) {
+            isNotExempt = !nocheatplus.isExemptFastbreak(player);
+            if (isNotExempt) {
                 nocheatplus.exemptFastbreak(player);
             }
         }
-        
+
         boolean blockBreakSucceeded = protection.testBlockBreak(block, player);
 
         if (nocheatplus.isPresent() && isNotExempt) {
@@ -65,12 +76,15 @@ public class CompatiblePlugins {
         }
         return blockBreakSucceeded;
     }
-    
+
     /**
      * Checks whether the plugin compatibility classes are ready for use.
      * (whether the class init completed without exception)
+     *
      * @return whether the class is ready
      */
-    public static boolean isReady(){ return ready; }
-    
+    public static boolean isReady() {
+        return ready;
+    }
+
 }

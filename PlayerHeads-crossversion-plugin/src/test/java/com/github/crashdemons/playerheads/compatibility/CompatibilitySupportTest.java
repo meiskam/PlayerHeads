@@ -32,7 +32,7 @@ public class CompatibilitySupportTest {
     @Test
     public void testSupport(){
         out.println("check support actually exists for each implementation");
-        for(Map.Entry<String,Integer[][]> serverSupport : CompatibilitySupport.versions.entrySet()){
+        for(Map.Entry<String,Integer[][]> serverSupport : CompatibilitySupport.VERSIONS.entrySet()){
             String serverType = serverSupport.getKey();
             Integer[][] serverVers = serverSupport.getValue();
             for (Integer[] serverVer : serverVers) {

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -129,7 +129,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#equals-com.github.crashdemons.playerheads.api.HeadType-">equals</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#equals-java.lang.Object-">equals</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;h)</code>
 <div class="block">Determine if this headtype is the same as another.</div>
 </td>
 </tr>
@@ -175,6 +175,12 @@ var activeTableTab = "activeTableTab";
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#isVanilla--">isVanilla</a></span>()</code>
 <div class="block">Determines if a head of this type is implemented with a vanilla mob head
  or not [for the current server version].</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html#toEnum--">toEnum</a></span>()</code>
+<div class="block">Return the associated Enum value for the HeadType</div>
 </td>
 </tr>
 </table>
@@ -290,19 +296,35 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="equals-com.github.crashdemons.playerheads.api.HeadType-">
+<a name="equals-java.lang.Object-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>boolean&nbsp;equals(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h)</pre>
+<pre>boolean&nbsp;equals(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;h)</pre>
 <div class="block">Determine if this headtype is the same as another.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>h</code> - the headtype to check</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>whether the types were equal</dd>
+</dl>
+</li>
+</ul>
+<a name="toEnum--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toEnum</h4>
+<pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&nbsp;toEnum()</pre>
+<div class="block">Return the associated Enum value for the HeadType</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>enum value</dd>
 </dl>
 </li>
 </ul>

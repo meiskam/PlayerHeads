@@ -1,7 +1,6 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.SkullConverter;
@@ -22,9 +21,9 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Defines a command handler for the plugin.
+ *
  * @author meiskam
  */
-
 class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 
     private final PlayerHeads plugin;
@@ -32,12 +31,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
     public PlayerHeadsCommandExecutor(PlayerHeads plugin) {
         this.plugin = plugin;
     }
-    
-    private void formatMsg(CommandSender sender, String commandscope, String message, String... replacements){
+
+    private void formatMsg(CommandSender sender, String commandscope, String message, String... replacements) {
         Formatter.formatMsg(sender, Lang.BRACKET_LEFT + commandscope + Lang.BRACKET_RIGHT + Lang.SPACE + message, replacements);
     }
-    
-    private boolean onCommandConfigGet(CommandSender sender, Command cmd, String label, String[] args, String scope){
+
+    private boolean onCommandConfigGet(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         if (!sender.hasPermission("playerheads.config.get")) {
             formatMsg(sender, scope, Lang.ERROR_PERMISSION);
             return true;
@@ -45,13 +44,12 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         if (args.length == 3) {
             String key = args[2].toLowerCase();
             String message = key + Lang.COLON_SPACE + plugin.configFile.get(key);
-            if(key.endsWith("droprate")){
-                try{
+            if (key.endsWith("droprate")) {
+                try {
                     double d = plugin.configFile.getDouble(key);
-                    message+=" ("+d+")";
-                }
-                catch(Exception e){
-                    message+=" (?)";
+                    message += " (" + d + ")";
+                } catch (Exception e) {
+                    message += " (?)";
                 }
             }
             formatMsg(sender, scope, message);
@@ -61,7 +59,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         }
         return true;
     }
-    private boolean onCommandConfigSet(CommandSender sender, Command cmd, String label, String[] args, String scope){
+
+    private boolean onCommandConfigSet(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         if (!sender.hasPermission("playerheads.config.set")) {
             formatMsg(sender, scope, Lang.ERROR_PERMISSION);
             return true;
@@ -128,7 +127,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return true;
         }
     }
-    private boolean onCommandConfigReload(CommandSender sender, Command cmd, String label, String[] args, String scope){
+
+    private boolean onCommandConfigReload(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         if (!sender.hasPermission("playerheads.config.set")) {
             formatMsg(sender, scope, Lang.ERROR_PERMISSION);
             return true;
@@ -141,33 +141,36 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         return true;
     }
 
-    private boolean onCommandConfig(CommandSender sender, Command cmd, String label, String[] args, String scope){
+    private boolean onCommandConfig(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         if (args.length == 1) {
-            formatMsg(sender, scope, Lang.SUBCOMMANDS + Lang.COLON_SPACE + 
-                    Lang.CMD_GET + Lang.COMMA_SPACE + 
-                    Lang.CMD_SET + Lang.COMMA_SPACE + 
-                    Lang.CMD_RELOAD
+            formatMsg(sender, scope, Lang.SUBCOMMANDS + Lang.COLON_SPACE
+                    + Lang.CMD_GET + Lang.COMMA_SPACE
+                    + Lang.CMD_SET + Lang.COMMA_SPACE
+                    + Lang.CMD_RELOAD
             );
             //[ph:config] Subcommands: get, set, reload
             return true;
         }
-        if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_GET))) return onCommandConfigGet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_GET);
-        else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SET))) return onCommandConfigSet(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_SET);
-        else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RELOAD))) return onCommandConfigReload(sender,cmd,label,args,scope + Lang.COLON + Lang.CMD_RELOAD);
-        else {
-            scope+=Lang.COLON + Lang.CMD_UNKNOWN;
+        if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_GET))) {
+            return onCommandConfigGet(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_GET);
+        } else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SET))) {
+            return onCommandConfigSet(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SET);
+        } else if (args[1].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RELOAD))) {
+            return onCommandConfigReload(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RELOAD);
+        } else {
+            scope += Lang.COLON + Lang.CMD_UNKNOWN;
             formatMsg(sender, scope, Lang.ERROR_INVALID_SUBCOMMAND);
             return true;
         }
     }
-    
-    private boolean onCommandSpawn(CommandSender sender, Command cmd, String label, String[] args, String scope){
+
+    private boolean onCommandSpawn(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         String skullOwner;
         boolean haspermission;
         Player reciever = null;
         int quantity = Config.defaultStackSize;
         boolean isConsoleSender = !(sender instanceof Player);
-        
+
         boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
 
         if (isConsoleSender) {
@@ -191,7 +194,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 } catch (NumberFormatException ignored) {
                 }
             }
-            if ((reciever = plugin.getServer().getPlayer(args[2])) == null) {
+            reciever = plugin.getServer().getPlayer(args[2]);
+            if (reciever == null) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_ONLINE, args[2]);
                 return true;
             }
@@ -220,82 +224,88 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         }
         return true;
     }
-    
-    private boolean onCommandRename(CommandSender sender, Command cmd, String label, String[] args, String scope){
-        
-        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
-        
-        if (!(sender instanceof Player)) {
-                formatMsg(sender, scope, Lang.ERROR_CONSOLE_SPAWN);
-                return true;
-            }
-            if (!sender.hasPermission("playerheads.rename") && !sender.hasPermission("playerheads.rename.mob") && !sender.hasPermission("playerheads.rename.player")) {
-                formatMsg(sender, scope, Lang.ERROR_PERMISSION);
-                return true;
-            }
-            if (!((args.length == 1) || (args.length == 2))) {
-                formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
-                return true;
-            }
-            
-            //input item processing (from inventory)
-            ItemStack skullInput = Compatibility.getProvider().getItemInMainHand((Player) sender);//.getEquipment().getItemInMainHand();
-            
-            TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStack(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
-            if ( inputSkullType==null ) {
-                formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
-                return true;
-            }
-            
-            //output item processing (to spawnname)
-            ItemStack skullOutput;
-            String spawnName="";
-            if (args.length >= 2) {
-                spawnName=args[1];
-                if (plugin.configFile.getBoolean("fixcase"))
-                    spawnName=fixcase(spawnName);
-            }
-            TexturedSkullType outputSkullType = TexturedSkullType.getBySpawnName(spawnName);//here null means it's not a mob head. #player->PLAYER can be a "mob head"
 
-            boolean fromPlayerhead = inputSkullType==TexturedSkullType.PLAYER;//PLAYER here means steve "Player" Heads or XXXXX's Head
-            boolean toPlayerhead = outputSkullType==TexturedSkullType.PLAYER || outputSkullType==null;//PLAYER here means steve "Player" Heads, null==XXXXX's head
-            
-            boolean mobRename=!fromPlayerhead && !toPlayerhead;
-            boolean playerRename = fromPlayerhead && toPlayerhead;
-            
-            boolean hasPermission=false;
-            
-            /*String inName=(inputSkullType==null?"null":inputSkullType.name());
+    private boolean onCommandRename(CommandSender sender, Command cmd, String label, String[] args, String scope) {
+
+        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+
+        if (!(sender instanceof Player)) {
+            formatMsg(sender, scope, Lang.ERROR_CONSOLE_SPAWN);
+            return true;
+        }
+        if (!sender.hasPermission("playerheads.rename") && !sender.hasPermission("playerheads.rename.mob") && !sender.hasPermission("playerheads.rename.player")) {
+            formatMsg(sender, scope, Lang.ERROR_PERMISSION);
+            return true;
+        }
+        if (!((args.length == 1) || (args.length == 2))) {
+            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
+            return true;
+        }
+
+        //input item processing (from inventory)
+        ItemStack skullInput = Compatibility.getProvider().getItemInMainHand((Player) sender);//.getEquipment().getItemInMainHand();
+
+        TexturedSkullType inputSkullType = SkullConverter.skullTypeFromItemStack(skullInput);//here PLAYER means unknown playerhead or Player Mob head - only returns null on unknown material
+        if (inputSkullType == null) {
+            formatMsg(sender, scope, Lang.ERROR_NOT_A_HEAD);
+            return true;
+        }
+
+        //output item processing (to spawnname)
+        ItemStack skullOutput;
+        String spawnName = "";
+        if (args.length >= 2) {
+            spawnName = args[1];
+            if (plugin.configFile.getBoolean("fixcase")) {
+                spawnName = fixcase(spawnName);
+            }
+        }
+        TexturedSkullType outputSkullType = TexturedSkullType.getBySpawnName(spawnName);//here null means it's not a mob head. #player->PLAYER can be a "mob head"
+
+        boolean fromPlayerhead = inputSkullType == TexturedSkullType.PLAYER;//PLAYER here means steve "Player" Heads or XXXXX's Head
+        boolean toPlayerhead = outputSkullType == TexturedSkullType.PLAYER || outputSkullType == null;//PLAYER here means steve "Player" Heads, null==XXXXX's head
+
+        boolean mobRename = !fromPlayerhead && !toPlayerhead;
+        boolean playerRename = fromPlayerhead && toPlayerhead;
+
+        boolean hasPermission = false;
+
+        /*String inName=(inputSkullType==null?"null":inputSkullType.name());
             String outName=(outputSkullType==null?"null":outputSkullType.name());
             sender.sendMessage("FSK: "+inName + " " + fromPlayerhead);
             sender.sendMessage("TSK: "+outName + " " + toPlayerhead);
             sender.sendMessage("RNM: "+mobRename);
             sender.sendMessage("RNP: "+playerRename);*/
-            
-            if(mobRename){ hasPermission=sender.hasPermission("playerheads.rename.mob"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_MOB; }
-            else if(playerRename){ hasPermission=sender.hasPermission("playerheads.rename.player"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_PLAYER; }
-            else{ hasPermission=sender.hasPermission("playerheads.rename"); scope+=Lang.COLON+Lang.CMD_RENAME_SCOPE_ALL; }
-            
-            if(!hasPermission){
-                formatMsg(sender, scope, Lang.ERROR_PERMISSION);
-                return true;
-            }
-            
-            boolean addLore = plugin.configFile.getBoolean("addlore");
-            skullOutput = SkullManager.spawnSkull(spawnName,usevanillaskull,addLore);
-            skullOutput.setAmount(skullInput.getAmount());
-            Compatibility.getProvider().setItemInMainHand((Player) sender,skullOutput);//.getEquipment().setItemInMainHand(skullOutput);
-            formatMsg(sender, scope, Lang.RENAMED_HEAD);
+        if (mobRename) {
+            hasPermission = sender.hasPermission("playerheads.rename.mob");
+            scope += Lang.COLON + Lang.CMD_RENAME_SCOPE_MOB;
+        } else if (playerRename) {
+            hasPermission = sender.hasPermission("playerheads.rename.player");
+            scope += Lang.COLON + Lang.CMD_RENAME_SCOPE_PLAYER;
+        } else {
+            hasPermission = sender.hasPermission("playerheads.rename");
+            scope += Lang.COLON + Lang.CMD_RENAME_SCOPE_ALL;
+        }
+
+        if (!hasPermission) {
+            formatMsg(sender, scope, Lang.ERROR_PERMISSION);
             return true;
+        }
+
+        boolean addLore = plugin.configFile.getBoolean("addlore");
+        skullOutput = SkullManager.spawnSkull(spawnName, usevanillaskull, addLore);
+        skullOutput.setAmount(skullInput.getAmount());
+        Compatibility.getProvider().setItemInMainHand((Player) sender, skullOutput);//.getEquipment().setItemInMainHand(skullOutput);
+        formatMsg(sender, scope, Lang.RENAMED_HEAD);
+        return true;
     }
-    
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!cmd.getName().equalsIgnoreCase("PlayerHeads")) {
             return false;
         }
-        
+
         /*if(args.length==1){
             if(args[0].equalsIgnoreCase("test")){
                 Player p = (Player) sender;
@@ -309,23 +319,25 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
         }*/
-        
-        String scope=label;
-        
+        String scope = label;
+
         if (args.length == 0) {
-            formatMsg(sender,scope,Lang.SUBCOMMANDS + Lang.COLON_SPACE + 
-                    Lang.CMD_CONFIG + Lang.COMMA_SPACE + 
-                    Lang.CMD_SPAWN + Lang.COMMA_SPACE + 
-                    Lang.CMD_RENAME
+            formatMsg(sender, scope, Lang.SUBCOMMANDS + Lang.COLON_SPACE
+                    + Lang.CMD_CONFIG + Lang.COMMA_SPACE
+                    + Lang.CMD_SPAWN + Lang.COMMA_SPACE
+                    + Lang.CMD_RENAME
             );
             //[ph] Subcommands: config, spawn, rename
             return true;
         }
-        if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_CONFIG))) return onCommandConfig(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_CONFIG);
-        else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SPAWN))) return onCommandSpawn(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SPAWN);
-        else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RENAME))) return onCommandRename(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RENAME);
-        else {
-            scope+=Lang.COLON + Lang.CMD_UNKNOWN;
+        if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_CONFIG))) {
+            return onCommandConfig(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_CONFIG);
+        } else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SPAWN))) {
+            return onCommandSpawn(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SPAWN);
+        } else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RENAME))) {
+            return onCommandRename(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RENAME);
+        } else {
+            scope += Lang.COLON + Lang.CMD_UNKNOWN;
             formatMsg(sender, scope, Lang.ERROR_INVALID_SUBCOMMAND);
             return true;
         }
@@ -403,11 +415,14 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         completions.sort(String.CASE_INSENSITIVE_ORDER);
         return completions;
     }
-    
+
     /**
-     * Attempts to find the correct casing for the input username by searching online players, then offline players.
+     * Attempts to find the correct casing for the input username by searching
+     * online players, then offline players.
+     *
      * @param inputName the username to fix
-     * @return the same username, but with the case changed, if there was a match.
+     * @return the same username, but with the case changed, if there was a
+     * match.
      */
     private static String fixcase(String inputName) {
         String inputNameLC = inputName.toLowerCase();

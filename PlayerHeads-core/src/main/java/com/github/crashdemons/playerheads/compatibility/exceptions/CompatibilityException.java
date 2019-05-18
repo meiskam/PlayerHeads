@@ -9,7 +9,13 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  *
  * @author crashdemons (crashenator at gmail.com)
  */
-abstract public class CompatibilityException extends IllegalStateException {
-    public CompatibilityException(String s, Exception e){ super(s,e); }
-    public CompatibilityException(String s){ super(s); }
+public abstract class CompatibilityException extends IllegalStateException {
+
+    public CompatibilityException(String s, Exception e) {
+        super(s, e);
+    }
+
+    public CompatibilityException(String s) {
+        super(s);
+    }
 }

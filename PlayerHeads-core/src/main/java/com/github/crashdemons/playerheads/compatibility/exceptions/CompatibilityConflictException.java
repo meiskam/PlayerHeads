@@ -6,10 +6,18 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- * Exception indicating that there is a conflict between multiple compatibility-provider implementations.
+ * Exception indicating that there is a conflict between multiple
+ * compatibility-provider implementations.
+ *
  * @author crashdemons (crashenator at gmail.com)
  */
-public class CompatibilityConflictException extends CompatibilityException  {
-    public CompatibilityConflictException(String s, Exception e){ super(s,e); }
-    public CompatibilityConflictException(String s){ super(s); }
+public class CompatibilityConflictException extends CompatibilityException {
+
+    public CompatibilityConflictException(String s, Exception e) {
+        super(s, e);
+    }
+
+    public CompatibilityConflictException(String s) {
+        super(s);
+    }
 }

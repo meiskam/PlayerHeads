@@ -87,7 +87,12 @@ public interface HeadType {
     
     // 5.0.0 API
     //------------------------------------------------------------------
-
+    /**
+     * Return the associated Enum value for the HeadType
+     * @return enum value
+     */
+    public Enum toEnum();
+    
     @Override
     public int hashCode();
 }

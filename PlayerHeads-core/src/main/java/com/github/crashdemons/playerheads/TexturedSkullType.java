@@ -551,7 +551,16 @@ public enum TexturedSkullType implements HeadType {
     public SkullDetails getImplementationDetails() {
         return this.material.getDetails();
     }
-
+    
+    /**
+     * Implement API requirement that can't see this enum's type.
+     * @return 
+     */
+    @Override
+    public Enum toEnum() {
+        return this;
+    }
+    
     /*
     @Override
     public boolean equals(HeadType head){

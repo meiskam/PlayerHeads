@@ -7,6 +7,7 @@ package org.shininet.bukkit.playerheads;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  * Defines the configuration for the plugin, keys, and datatypes.
@@ -53,7 +54,7 @@ public final class Config {
             put("nerfdeathspam", configType.BOOLEAN);
             put("addlore", configType.BOOLEAN);
             
-            
+              
             put("clickspamcount", configType.INT);
             put("clickspamthreshold", configType.LONG);
             put("deathspamcount", configType.INT);
@@ -79,5 +80,17 @@ public final class Config {
      * The Project ID for the plugin on Curse (used by the updater)
      */
     public static final int updateID = 46244;
-
+    
+    static String getValueDisplayString(FileConfiguration configFile, String key){
+        String value = ""+configFile.get(key); //converted value from type
+        if (key.endsWith("droprate")) { //TODO: change to double check
+            try {
+                double d = configFile.getDouble(key); //actual interpreted double value
+                value += " (" + d + ")";
+            } catch (Exception e) {
+                value += " (?)";
+            }
+        }
+        return value;
+    }
 }

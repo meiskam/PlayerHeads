@@ -35,6 +35,10 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
     private void formatMsg(CommandSender sender, String commandscope, String message, String... replacements) {
         Formatter.formatMsg(sender, Lang.BRACKET_LEFT + commandscope + Lang.BRACKET_RIGHT + Lang.SPACE + message, replacements);
     }
+    
+    private String getConfigDisplay(String key){
+        return key + Lang.COLON_SPACE + Config.getValueDisplayString(plugin.configFile, key);
+    }
 
     private boolean onCommandConfigGet(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         if (!sender.hasPermission("playerheads.config.get")) {
@@ -43,16 +47,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         }
         if (args.length == 3) {
             String key = args[2].toLowerCase();
-            String message = key + Lang.COLON_SPACE + plugin.configFile.get(key);
-            if (key.endsWith("droprate")) {
-                try {
-                    double d = plugin.configFile.getDouble(key);
-                    message += " (" + d + ")";
-                } catch (Exception e) {
-                    message += " (?)";
-                }
-            }
-            formatMsg(sender, scope, message);
+            formatMsg(sender, scope, getConfigDisplay(key));
         } else {
             formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED);//Syntax: ph config get <whatever>
             formatMsg(sender, scope, Lang.CONFIG_VARIABLES + Lang.COLON_SPACE + Config.configKeysString);//Config variables: x, y, z
@@ -69,7 +64,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             String key = args[2].toLowerCase();
             plugin.configFile.set(key, null);
             plugin.saveConfig();
-            formatMsg(sender, scope, key + Lang.COLON_SPACE + plugin.configFile.get(key));
+            formatMsg(sender, scope, getConfigDisplay(key));
             return true;
         } else if (args.length == 4) {
             String key = args[2].toLowerCase();
@@ -119,7 +114,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 plugin.configFile.set(key, value);
             }
             plugin.saveConfig();
-            formatMsg(sender, scope, key + Lang.COLON_SPACE + plugin.configFile.get(key));
+            formatMsg(sender, scope, getConfigDisplay(key));
             return true;
         } else {
             formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED + Lang.SPACE + Lang.OPT_VALUE_OPTIONAL);

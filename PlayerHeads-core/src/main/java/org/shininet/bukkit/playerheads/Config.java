@@ -84,17 +84,20 @@ public final class Config {
     static String getValueDisplayString(FileConfiguration configFile, String key){
         String value = ""+configFile.get(key); //converted value from type
         configType type = configKeys.get(key);
-        
-        
-        if (key.endsWith("droprate")) { //TODO: change to double check
-            try {
-                double d = configFile.getDouble(key); //actual interpreted double value
-                value += " (" + d + ")";
-            } catch (Exception e) {
-                value += " (?)";
-            }
+        if(type==null) type=configType.STRING;
+        switch(type){
+            case STRING:
+                return '"'+value+'"';
+            case DOUBLE:
+                try {
+                    double d = configFile.getDouble(key); //actual interpreted double value
+                    return value + " (" + d + ")";
+                } catch (Exception e) {
+                    return value + " (?)";
+                }
+            default:
+                return value;
         }
-        return value;
     }
     
     private static boolean getBooleanInputValue(String inputValue){

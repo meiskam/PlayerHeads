@@ -40,6 +40,7 @@ import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Tameable;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -104,7 +105,7 @@ class PlayerHeadsListener implements Listener {
                 entity=(Entity) shooter;
                 //if(entity!=null) System.out.println("   arrow shooter: "+entity.getType().name()+" "+entity.getName());
             }
-        }else if(entity instanceof Wolf){
+        }else if(entity instanceof Tameable){
             //System.out.println("   damager entity wolf");
             Wolf wolf = (Wolf) entity;
             if(wolf.isTamed()){

@@ -69,50 +69,15 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         } else if (args.length == 4) {
             String key = args[2].toLowerCase();
             String value = args[3].toLowerCase();
-            boolean keyFound = false;
-
-            for (String keySet : Config.configKeys.keySet()) {
-                if (key.equals(keySet.toLowerCase())) {
-                    keyFound = true;
-                    switch (Config.configKeys.get(keySet.toLowerCase())) {
-                        case BOOLEAN:
-                            if (value.equals("false") || value.equals("no") || value.equals("0")) {
-                                plugin.configFile.set(key, false);
-                            } else {
-                                plugin.configFile.set(key, true);
-                            }
-                            break;
-                        case DOUBLE:
-                            try {
-                                plugin.configFile.set(key, Double.parseDouble(value));
-                            } catch (NumberFormatException e) {
-                                formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
-                            }
-                            break;
-                        case INT:
-                            try {
-                                plugin.configFile.set(key, Integer.parseInt(value));
-                            } catch (NumberFormatException e) {
-                                formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
-                            }
-                            break;
-                        case LONG:
-                            try {
-                                plugin.configFile.set(key, Long.parseLong(value));
-                            } catch (NumberFormatException e) {
-                                formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
-                            }
-                            break;
-                        default:
-                            plugin.logger.warning(Formatter.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(keySet.toLowerCase()).toString()));
-                            break;
-                    }
-                    break;
-                }
+            
+            try{
+                Config.setValue(plugin.configFile, key, value);
+            }catch(NumberFormatException e){
+                formatMsg(sender, scope, Lang.ERROR_NUMBERCONVERT, value);
+            }catch(IllegalStateException e){
+                plugin.logger.warning(Formatter.format(Lang.ERROR_CONFIGTYPE, Config.configKeys.get(key).toString()));
             }
-            if (!keyFound) {
-                plugin.configFile.set(key, value);
-            }
+            
             plugin.saveConfig();
             formatMsg(sender, scope, getConfigDisplay(key));
             return true;

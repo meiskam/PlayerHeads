@@ -39,7 +39,7 @@ public final class Config {
             put("mobpkonly", configType.BOOLEAN);
             for (TexturedSkullType skullType : TexturedSkullType.values()) {
                 if(skullType==TexturedSkullType.PLAYER) continue;
-                put(skullType.getConfigName(), configType.DOUBLE);
+                put(skullType.getConfigName().toLowerCase(), configType.DOUBLE);
             }
             put("fixcase", configType.BOOLEAN);
             put("updatecheck", configType.BOOLEAN);
@@ -92,5 +92,39 @@ public final class Config {
             }
         }
         return value;
+    }
+    
+    private static boolean getBooleanInputValue(String inputValue){
+        String value = inputValue.toLowerCase();
+        if(inputValue.equals("true") || inputValue.equals("yes") || inputValue.equals("1")) return true;
+        return false;
+    }
+    
+    static void setValue(FileConfiguration configFile, String inputKey, String inputValue) throws NumberFormatException{
+        String key = inputKey.toLowerCase();
+        
+        configType type = configKeys.get(key); //we can do this directly without the convoluted lookup since both input and recorded keys are lowercase.
+        if(type==null){
+            configFile.set(key, inputValue);
+        }else{
+            try {
+                switch (type) {
+                    case BOOLEAN:
+                        configFile.set(key, getBooleanInputValue(inputValue));
+                        break;
+                    case DOUBLE:
+                        configFile.set(key, Double.parseDouble(inputValue));
+                        break;
+                    case INT:
+                        configFile.set(key, Integer.parseInt(inputValue));
+                        break;
+                    case LONG:
+                        configFile.set(key, Long.parseLong(inputValue));
+                        break;
+                    default:
+                        throw new IllegalStateException("The specified configuration key has an unsupported data type");
+                }
+            } catch (NumberFormatException e) { throw e; }
+        }
     }
 }

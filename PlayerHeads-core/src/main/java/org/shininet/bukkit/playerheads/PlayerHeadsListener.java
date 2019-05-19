@@ -97,17 +97,21 @@ class PlayerHeadsListener implements Listener {
     private Entity getEntityOwningEntity(EntityDamageByEntityEvent event){
         Entity entity = event.getDamager();
         if(entity instanceof Projectile){
+            //System.out.println("   damager entity projectile");
             Projectile projectile = (Projectile) entity;
             ProjectileSource shooter = projectile.getShooter();
             if(shooter instanceof Entity){
                 entity=(Entity) shooter;
+                //if(entity!=null) System.out.println("   arrow shooter: "+entity.getType().name()+" "+entity.getName());
             }
         }else if(entity instanceof Wolf){
+            //System.out.println("   damager entity wolf");
             Wolf wolf = (Wolf) entity;
             if(wolf.isTamed()){
                 AnimalTamer tamer = wolf.getOwner();
                 if(tamer instanceof Entity){
                     entity=(Entity) tamer;
+                    //if(entity!=null) System.out.println("   wolf tamer: "+entity.getType().name()+" "+entity.getName());
                 }
             }
         }
@@ -115,16 +119,21 @@ class PlayerHeadsListener implements Listener {
     }
     
     private LivingEntity getKillerEntity(EntityDeathEvent event){
-        LivingEntity killer = event.getEntity().getKiller();
+        LivingEntity victim = event.getEntity();
+        //if(victim!=null) System.out.println("victim: "+victim.getType().name()+" "+victim.getName());
+        LivingEntity killer = victim.getKiller();
+        //if(killer!=null) System.out.println("original killer: "+killer.getType().name()+" "+killer.getName());
         
         if(killer==null && plugin.configFile.getBoolean("considermobkillers")){
             EntityDamageEvent dmgEvent = event.getEntity().getLastDamageCause();
             if(dmgEvent instanceof EntityDamageByEntityEvent){
                 Entity killerEntity = getEntityOwningEntity((EntityDamageByEntityEvent)dmgEvent);
+                //if(killerEntity!=null) System.out.println(" parent killer: "+killerEntity.getType().name()+" "+killerEntity.getName());
                 if(killerEntity instanceof LivingEntity) killer=(LivingEntity)killerEntity;
                 //what if the entity isn't living (eg: arrow?)
             }
         }
+        //if(killer!=null) System.out.println(" final killer: "+killer.getType().name()+" "+killer.getName());
         return killer;
     }
     

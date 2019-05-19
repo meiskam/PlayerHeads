@@ -82,7 +82,9 @@ public final class Config {
     public static final int updateID = 46244;
     
     static String getValueDisplayString(FileConfiguration configFile, String key){
-        String value = ""+configFile.get(key); //converted value from type
+        Object configValue = configFile.get(key);
+        String value = ""+configValue; //converted value from type
+        if(configValue==null) return "(unset)";
         configType type = configKeys.get(key);
         if(type==null) type=configType.STRING;
         switch(type){

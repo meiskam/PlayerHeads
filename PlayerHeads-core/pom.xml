@@ -101,7 +101,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.14.1-R0.1-SNAPSHOT</version>
+            <version>[1.8-R0.1-SNAPSHOT]</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -206,7 +206,7 @@
                 <version>2.2</version>
                 <configuration>
                     <includes>
-                        <include>org.bukkit</include>
+                        <include>org.spigotmc</include>
                         <include>org.shininet.bukkit</include>
                     </includes>
                 </configuration>

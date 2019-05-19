@@ -16,6 +16,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -39,6 +40,7 @@ public class Provider implements CompatibilityProvider {
     @Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return false; }
     @Override public boolean setOwner(Skull skullBlockState, String owner){ return false; }
     @Override public ItemStack getItemInMainHand(Player p){ return null; }
+    @Override public ItemStack getItemInMainHand(LivingEntity p){ return null; }
     @Override public void setItemInMainHand(Player p,ItemStack s){  }
     @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_113(type); }
     @Override public boolean getKeepInventory(World world){ return false; }

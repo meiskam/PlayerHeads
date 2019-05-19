@@ -18,10 +18,12 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.entity.Zombie;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -39,6 +41,11 @@ abstract public class Provider_legacy extends Provider_common implements Compati
     //@Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return skullItemMeta.setOwner(owner); }
     //@Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInHand(); }
+    @Override public ItemStack getItemInMainHand(LivingEntity p){
+        EntityEquipment equipment = p.getEquipment();
+        if(equipment==null) return null;
+        return equipment.getItemInHand();
+    }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInHand(s); }
     @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_legacy(type); }
     @Override public boolean getKeepInventory(World world){ return Boolean.valueOf(world.getGameRuleValue("keepInventory")); }

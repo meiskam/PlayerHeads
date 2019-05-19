@@ -37,7 +37,10 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.block.BlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
@@ -86,6 +89,21 @@ class PlayerHeadsListener implements Listener {
         clickSpamPreventer = new InteractSpamPreventer(cfg.getInt("clickspamcount"), cfg.getLong("clickspamthreshold"));
         deathSpamPreventer = new PlayerDeathSpamPreventer(cfg.getInt("deathspamcount"), cfg.getLong("deathspamthreshold"));
     }
+    
+    private LivingEntity getKillerEntity(EntityDeathEvent event){
+        LivingEntity killer = event.getEntity().getKiller();
+        
+        if(killer==null){
+            EntityDamageEvent dmgEvent = event.getEntity().getLastDamageCause();
+            if(dmgEvent instanceof EntityDamageByEntityEvent){
+                Entity killerEntity=((EntityDamageByEntityEvent)dmgEvent).getDamager();
+                if(killerEntity instanceof LivingEntity) killer=(LivingEntity)killerEntity;
+                //what if the entity isn't living (eg: arrow?)
+            }
+        }
+        return killer;
+    }
+    
 
     /**
      * Event handler for entity deaths.
@@ -96,19 +114,19 @@ class PlayerHeadsListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onEntityDeath(EntityDeathEvent event) {
-        Player killer = event.getEntity().getKiller();
+        LivingEntity killer = getKillerEntity(event);
+
         double lootingrate = 1;
 
         if (killer != null) {
             ItemStack weapon = Compatibility.getProvider().getItemInMainHand(killer);//killer.getEquipment().getItemInMainHand();
-            if(plugin.configFile.getBoolean("requireitem")){
-                String weaponType = weapon.getType().name().toLowerCase();
-                if(!plugin.configFile.getStringList("requireditems").contains(weaponType)) return;
-            }
-            if (weapon != null) {
+            if(weapon!=null){
+                if(plugin.configFile.getBoolean("requireitem")){
+                    String weaponType = weapon.getType().name().toLowerCase();
+                    if(!plugin.configFile.getStringList("requireditems").contains(weaponType)) return;
+                }
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
-            
         }
 
         TexturedSkullType skullType = SkullConverter.skullTypeFromEntity(event.getEntity());

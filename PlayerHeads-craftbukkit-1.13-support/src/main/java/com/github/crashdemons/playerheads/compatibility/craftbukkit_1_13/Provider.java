@@ -18,7 +18,9 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -40,6 +42,11 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     @Override public void    setOwningPlayer(Skull skullBlockState, OfflinePlayer op){ skullBlockState.setOwningPlayer(op); }
     //@Override public boolean setOwner(SkullMeta skullItemMeta, String owner){ return skullItemMeta.setOwner(owner); }
     //@Override public boolean setOwner(Skull skullBlockState, String owner){ return skullBlockState.setOwner(owner); }
+    @Override public ItemStack getItemInMainHand(LivingEntity p){ 
+        EntityEquipment equipment = p.getEquipment();
+        if(equipment == null) return null;
+        return equipment.getItemInMainHand(); 
+    }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInMainHand(); }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInMainHand(s); }
     @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_113(type); }

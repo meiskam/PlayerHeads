@@ -11,6 +11,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -250,4 +251,7 @@ public interface CompatibilityProvider {
      * @return the offline-player
      */
     public OfflinePlayer getOfflinePlayerByName(String username);
+    
+    //----------- 5.0 providers -----------//
+    public ItemStack getItemInMainHand(LivingEntity p);
 }

@@ -101,9 +101,14 @@ class PlayerHeadsListener implements Listener {
 
         if (killer != null) {
             ItemStack weapon = Compatibility.getProvider().getItemInMainHand(killer);//killer.getEquipment().getItemInMainHand();
+            if(plugin.configFile.getBoolean("requireitem")){
+                String weaponType = weapon.getType().name().toLowerCase();
+                if(!plugin.configFile.getStringList("requireditems").contains(weaponType)) return;
+            }
             if (weapon != null) {
                 lootingrate = 1 + (plugin.configFile.getDouble("lootingrate") * weapon.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS));
             }
+            
         }
 
         TexturedSkullType skullType = SkullConverter.skullTypeFromEntity(event.getEntity());

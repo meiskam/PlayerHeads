@@ -107,9 +107,9 @@ class PlayerHeadsListener implements Listener {
             }
         }else if(entity instanceof Tameable){
             //System.out.println("   damager entity wolf");
-            Wolf wolf = (Wolf) entity;
-            if(wolf.isTamed()){
-                AnimalTamer tamer = wolf.getOwner();
+            Tameable animal = (Tameable) entity;
+            if(animal.isTamed()){
+                AnimalTamer tamer = animal.getOwner();
                 if(tamer instanceof Entity){
                     entity=(Entity) tamer;
                     //if(entity!=null) System.out.println("   wolf tamer: "+entity.getType().name()+" "+entity.getName());

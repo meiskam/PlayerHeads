@@ -36,13 +36,17 @@ import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
+import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.projectiles.ProjectileSource;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
 
@@ -90,13 +94,33 @@ class PlayerHeadsListener implements Listener {
         deathSpamPreventer = new PlayerDeathSpamPreventer(cfg.getInt("deathspamcount"), cfg.getLong("deathspamthreshold"));
     }
     
+    private Entity getEntityOwningEntity(EntityDamageByEntityEvent event){
+        Entity entity = event.getDamager();
+        if(entity instanceof Projectile){
+            Projectile projectile = (Projectile) entity;
+            ProjectileSource shooter = projectile.getShooter();
+            if(shooter instanceof Entity){
+                entity=(Entity) shooter;
+            }
+        }else if(entity instanceof Wolf){
+            Wolf wolf = (Wolf) entity;
+            if(wolf.isTamed()){
+                AnimalTamer tamer = wolf.getOwner();
+                if(tamer instanceof Entity){
+                    entity=(Entity) tamer;
+                }
+            }
+        }
+        return entity;
+    }
+    
     private LivingEntity getKillerEntity(EntityDeathEvent event){
         LivingEntity killer = event.getEntity().getKiller();
         
         if(killer==null && plugin.configFile.getBoolean("considermobkillers")){
             EntityDamageEvent dmgEvent = event.getEntity().getLastDamageCause();
             if(dmgEvent instanceof EntityDamageByEntityEvent){
-                Entity killerEntity=((EntityDamageByEntityEvent)dmgEvent).getDamager();
+                Entity killerEntity = getEntityOwningEntity((EntityDamageByEntityEvent)dmgEvent);
                 if(killerEntity instanceof LivingEntity) killer=(LivingEntity)killerEntity;
                 //what if the entity isn't living (eg: arrow?)
             }

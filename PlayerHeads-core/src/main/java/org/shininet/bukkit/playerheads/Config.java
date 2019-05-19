@@ -24,7 +24,7 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT, LONG
+        DOUBLE, BOOLEAN, INT, LONG, STRING
     }
 
     /**
@@ -83,6 +83,9 @@ public final class Config {
     
     static String getValueDisplayString(FileConfiguration configFile, String key){
         String value = ""+configFile.get(key); //converted value from type
+        configType type = configKeys.get(key);
+        
+        
         if (key.endsWith("droprate")) { //TODO: change to double check
             try {
                 double d = configFile.getDouble(key); //actual interpreted double value
@@ -104,27 +107,28 @@ public final class Config {
         String key = inputKey.toLowerCase();
         
         configType type = configKeys.get(key); //we can do this directly without the convoluted lookup since both input and recorded keys are lowercase.
-        if(type==null){
-            configFile.set(key, inputValue);
-        }else{
-            try {
-                switch (type) {
-                    case BOOLEAN:
-                        configFile.set(key, getBooleanInputValue(inputValue));
-                        break;
-                    case DOUBLE:
-                        configFile.set(key, Double.parseDouble(inputValue));
-                        break;
-                    case INT:
-                        configFile.set(key, Integer.parseInt(inputValue));
-                        break;
-                    case LONG:
-                        configFile.set(key, Long.parseLong(inputValue));
-                        break;
-                    default:
-                        throw new IllegalStateException("The specified configuration key has an unsupported data type");
-                }
-            } catch (NumberFormatException e) { throw e; }
-        }
+        if(type==null) type=configType.STRING;
+        try {
+            switch (type) {
+                case STRING:
+                    configFile.set(key, inputValue);
+                    break;
+                case BOOLEAN:
+                    configFile.set(key, getBooleanInputValue(inputValue));
+                    break;
+                case DOUBLE:
+                    configFile.set(key, Double.parseDouble(inputValue));
+                    break;
+                case INT:
+                    configFile.set(key, Integer.parseInt(inputValue));
+                    break;
+                case LONG:
+                    configFile.set(key, Long.parseLong(inputValue));
+                    break;
+                default:
+                    throw new IllegalStateException("The specified configuration key has an unsupported data type");
+            }
+        } catch (NumberFormatException e) { throw e; }
+
     }
 }

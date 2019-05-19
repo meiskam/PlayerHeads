@@ -105,7 +105,7 @@ class PlayerHeadsListener implements Listener {
                 entity=(Entity) shooter;
                 //if(entity!=null) System.out.println("   arrow shooter: "+entity.getType().name()+" "+entity.getName());
             }
-        }else if(entity instanceof Tameable){
+        }else if(entity instanceof Tameable && plugin.configFile.getBoolean("considertameowner")){
             //System.out.println("   damager entity wolf");
             Tameable animal = (Tameable) entity;
             if(animal.isTamed()){

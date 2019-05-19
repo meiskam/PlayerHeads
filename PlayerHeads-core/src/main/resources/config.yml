@@ -30,6 +30,7 @@
 # requireditems: [...]          [list]          A lowercase list of Bukkit Materials that permit beheading when held in the main hand, if 'requireitem' is enabled. By default this includes axes. (v5.0 alpha 3+)
 #
 # considermobkillers: false     [true/false]    If true, consider Mobs responsible for deaths as "killers" as well. This enables effects 'requireitem' and 'lootingrate' to the mob. Disabled by default. (v5.0 alpha 3+)
+# considertameowner: false      [true/false]    If true, consider Tamed mobs (Wolf) attacks to come from their owner. Requires 'considermobkillers' to be enabled. (v5.0 alpha 3+)
 #
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
@@ -116,6 +117,7 @@ requireitem: false
 requireditems: [wooden_axe,stone_axe,golden_axe,iron_axe,diamond_axe]
 
 considermobkillers: false
+considertameowner: false
 
 #------mob rates------#
 

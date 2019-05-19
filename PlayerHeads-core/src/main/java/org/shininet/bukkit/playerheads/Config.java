@@ -96,7 +96,7 @@ public final class Config {
     
     private static boolean getBooleanInputValue(String inputValue){
         String value = inputValue.toLowerCase();
-        if(inputValue.equals("true") || inputValue.equals("yes") || inputValue.equals("1")) return true;
+        if(value.equals("true") || value.equals("yes") || value.equals("1")) return true;
         return false;
     }
     

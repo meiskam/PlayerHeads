@@ -26,6 +26,9 @@
 # deathspamthreshold: 300000    [positive int]  Amount of miliseconds to match player deaths for spam  (version 4.7+)
 # fixdroppedheads: true         [true/false]    Whether or not to update the name,lore on dropped head items (fixes heads broken by pistons/water) (version v4.9+)
 
+# requireitem: false            [true/false]    If true, an item in the 'requireditems' list must be held in the main hand to behead. Disabled by default. (v5.0 alpha 3+)
+# requireditems: [...]          [list]          A lowercase list of Bukkit Materials that permit beheading when held in the main hand, if 'requireitem' is enabled. By default this includes axes. (v5.0 alpha 3+)
+
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
@@ -106,6 +109,11 @@ clickspamthreshold: 1000
 deathspamcount: 5
 deathspamthreshold: 300000
 fixdroppedheads: true
+
+requireitem: false
+requireditems: [wooden_axe,stone_axe,golden_axe,iron_axe,diamond_axe]
+
+#------mob rates------#
 
 creeperdroprate: 0.005
 zombiedroprate: 0.002

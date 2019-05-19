@@ -5,8 +5,12 @@
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.TexturedSkullType;
+import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -24,7 +28,7 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT, LONG, STRING
+        DOUBLE, BOOLEAN, INT, LONG, STRING, LIST
     }
 
     /**
@@ -53,6 +57,10 @@ public final class Config {
             put("convertvanillaheads", configType.BOOLEAN);
             put("nerfdeathspam", configType.BOOLEAN);
             put("addlore", configType.BOOLEAN);
+            
+            
+            put("requireitem", configType.BOOLEAN);
+            put("requireditems", configType.LIST);
             
               
             put("clickspamcount", configType.INT);
@@ -129,6 +137,20 @@ public final class Config {
                     break;
                 case LONG:
                     configFile.set(key, Long.parseLong(inputValue));
+                    break;
+                case LIST:
+                    String[] materials = inputValue
+                            .replace('[', ',')
+                            .replace(']', ',')
+                            .toLowerCase()
+                            .split("[, ]");
+                    List<String> configMats = new ArrayList<>();
+                    for(String matname : materials){
+                        Material mat = RuntimeReferences.getMaterialByName(matname.toUpperCase());
+                        if(mat!=null) configMats.add(mat.name().toLowerCase());
+                        else System.out.println("Unsupported material: "+matname);
+                    }
+                    configFile.set(key, configMats);
                     break;
                 default:
                     throw new IllegalStateException("The specified configuration key has an unsupported data type");

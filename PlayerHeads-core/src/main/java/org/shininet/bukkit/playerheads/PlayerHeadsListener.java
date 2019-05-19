@@ -93,7 +93,7 @@ class PlayerHeadsListener implements Listener {
     private LivingEntity getKillerEntity(EntityDeathEvent event){
         LivingEntity killer = event.getEntity().getKiller();
         
-        if(killer==null){
+        if(killer==null && plugin.configFile.getBoolean("considermobkillers")){
             EntityDamageEvent dmgEvent = event.getEntity().getLastDamageCause();
             if(dmgEvent instanceof EntityDamageByEntityEvent){
                 Entity killerEntity=((EntityDamageByEntityEvent)dmgEvent).getDamager();

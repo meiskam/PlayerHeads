@@ -62,6 +62,7 @@ public final class Config {
             put("requireitem", configType.BOOLEAN);
             put("requireditems", configType.LIST);
             
+            put("considermobkillers", configType.BOOLEAN);     
               
             put("clickspamcount", configType.INT);
             put("clickspamthreshold", configType.LONG);

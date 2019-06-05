@@ -168,6 +168,9 @@ class PlayerHeadsListener implements Listener {
         }
         String mobDropConfig = skullType.getConfigName();
         Double droprate = plugin.configFile.getDouble(mobDropConfig);
+        if (droprate < 0) {
+            return;//if droprate is <0, don't modify drops
+        }
         switch (skullType) {
             case PLAYER:
                 if (plugin.configFile.getBoolean("nerfdeathspam")) {
@@ -178,9 +181,6 @@ class PlayerHeadsListener implements Listener {
                 PlayerDeathHelper(event, skullType, droprate, lootingrate);
                 break;
             case WITHER_SKELETON:
-                if (droprate < 0) {
-                    return;//if droprate is <0, don't modify drops
-                }
                 event.getDrops().removeIf(isVanillaHead);
                 MobDeathHelper(event, skullType, droprate, lootingrate);
                 break;

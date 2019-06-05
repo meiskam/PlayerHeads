@@ -28,7 +28,10 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT, LONG, STRING, STRINGLIST
+        DOUBLE, BOOLEAN, INT, LONG, STRING, STRINGLIST;
+        
+        @Deprecated
+        public static configType LIST = configType.STRINGLIST;
     }
 
     /**

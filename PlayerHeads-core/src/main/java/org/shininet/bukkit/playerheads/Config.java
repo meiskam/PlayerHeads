@@ -28,7 +28,7 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT, LONG, STRING, LIST
+        DOUBLE, BOOLEAN, INT, LONG, STRING, STRINGLIST
     }
 
     /**
@@ -60,7 +60,7 @@ public final class Config {
             
             
             put("requireitem", configType.BOOLEAN);
-            put("requireditems", configType.LIST);
+            put("requireditems", configType.STRINGLIST);
             
             put("considermobkillers", configType.BOOLEAN);     
               
@@ -139,7 +139,7 @@ public final class Config {
                 case LONG:
                     configFile.set(key, Long.parseLong(inputValue));
                     break;
-                case LIST:
+                case STRINGLIST:
                     String[] materials = inputValue
                             .replace('[', ',')
                             .replace(']', ',')

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>PlayerHeads</artifactId>
     <groupId>org.shininet.bukkit</groupId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.shininet.bukkit</groupId>

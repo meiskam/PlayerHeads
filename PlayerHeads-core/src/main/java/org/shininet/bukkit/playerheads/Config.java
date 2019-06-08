@@ -72,6 +72,12 @@ public final class Config {
             put("deathspamcount", configType.INT);
             put("deathspamthreshold", configType.LONG);
             put("fixdroppedheads",configType.BOOLEAN);
+            
+            
+            put("slimemodifier.0", configType.INT);
+            put("slimemodifier.1", configType.INT);
+            put("slimemodifier.2", configType.INT);
+            put("slimemodifier.3", configType.INT);
         }
     };
     /**

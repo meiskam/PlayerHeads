@@ -123,11 +123,11 @@ considertameowner: false
 #for instance, 1.0 means that the slime drops 100% of the slimedroprate.
 #so, with a slimedroprate of 0.75 and a size modifier of 0.5, the effective drop rate is 0.375
 slimemodifier:
-    #"Note that this value is zero-based, so 0 is the smallest slime, 1 is the next larger, etc. The sizes that spawn naturally are 0, 1, and 3."
-    0: 1.0
+    #Note that this value is zero-based, so 1 is the smallest slime, 2 is the next larger, etc. The sizes that spawn naturally are 1, 2, and 4.
     1: 1.0
     2: 1.0
     3: 1.0
+    4: 1.0
 
 #------mob rates------#
 

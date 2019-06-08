@@ -74,10 +74,10 @@ public final class Config {
             put("fixdroppedheads",configType.BOOLEAN);
             
             
-            put("slimemodifier.0", configType.DOUBLE);
             put("slimemodifier.1", configType.DOUBLE);
             put("slimemodifier.2", configType.DOUBLE);
             put("slimemodifier.3", configType.DOUBLE);
+            put("slimemodifier.4", configType.DOUBLE);
         }
     };
     /**

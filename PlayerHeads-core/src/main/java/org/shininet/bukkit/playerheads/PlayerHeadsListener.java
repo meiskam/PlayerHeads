@@ -191,8 +191,9 @@ class PlayerHeadsListener implements Listener {
                 Double slimemodifier=1.0;
                 Entity entity = event.getEntity();
                 if(entity instanceof Slime){
-                    int slimeSize = ((Slime) entity).getSize();// 0, 1, 2, 3  (0,1,3 natual with 0 the smallest)
+                    int slimeSize = ((Slime) entity).getSize();// 1, 2, 3, 4  (1,2,4 natual with 1 the smallest)
                     slimemodifier=plugin.configFile.getDouble("slimemodifier."+slimeSize);
+                    plugin.logger.info("DEBUG: slimemodifier."+slimeSize+" was "+slimemodifier);//TODO: remove debug
                 }
                 MobDeathHelper(event, skullType, droprate, lootingrate, slimemodifier);
                 break;

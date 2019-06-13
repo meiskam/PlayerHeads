@@ -31,72 +31,36 @@ public enum TexturedSkullType implements HeadType {
             "a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     WANDERING_TRADER(
             "70aaec20-d989-4e06-857d-285ad2dca337",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWYxMzc5YTgyMjkwZDdhYmUxZWZhYWJiYzcwNzEwZmYyZWMwMmRkMzRhZGUzODZiYzAwYzkzMGM0NjFjZjkzMiJ9fX0="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
     TRADER_LLAMA(
             "47eb2118-c918-436a-a94a-8affb0a81426",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTg5YTJlYjE3NzA1ZmU3MTU0YWIwNDFlNWM3NmEwOGQ0MTU0NmEzMWJhMjBlYTMwNjBlM2VjOGVkYzEwNDEyYyJ9fX0="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     FOX(
             "6c6deea6-7485-4422-a527-03c58628150b",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTZkYjdkNTA3Mzg5YTE0YmJlYzM5ZGU2OTIyMTY1YjMyZDQzNjU3YmNiNmFhZjRiNTE4MjgyNWIyMmI0In19fQ=="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     CAT(
             "7f0a98d3-dc52-46c7-ac4f-cdf71a38c32e",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDVmNDdjZDgyMGIxOTc0ZGE2NmNkZjkwYmViNzk4MjBlY2E5ZjRjYmUwMjFiMTc4M2EzMGI3NTAyNWQxIn19fQ=="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     PILLAGER(
             "c64b8af5-b547-4a15-abf9-12d3eb052f37",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmRlYWVjMzQ0YWIwOTViNDhjZWFkNzUyN2Y3ZGVlNjFiMDYzZmY3OTFmNzZhOGZhNzY2NDJjODY3NmUyMTczIn19fQ=="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     RAVAGER(
             "3a9cb258-fb4e-47e5-811f-a00e8f0cd6fc",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2I2MjUwMWNkMWI4N2IzN2Y2MjgwMTgyMTBlYzU0MDBjYjY1YTRkMWFhYjc0ZTZhM2Y3ZjYyYWE4NWRiOTdlZSJ9fX0="
     ),
-    /**
-     *
-     * @deprecated Speculative entry for 1.14 mob before bukkit support - this
-     * entry may change unexpectedly!
-     */
-    @Deprecated
+
     PANDA(
             "b59c247f-30fc-418b-a123-44f7018ab492",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGNhMDk2ZWVhNTA2MzAxYmVhNmQ0YjE3ZWUxNjA1NjI1YTZmNTA4MmM3MWY3NGE2MzljYzk0MDQzOWY0NzE2NiJ9fX0="

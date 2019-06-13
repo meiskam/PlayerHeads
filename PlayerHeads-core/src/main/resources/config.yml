@@ -194,7 +194,7 @@ dolphindroprate: 0.002
 giantdroprate: 0.0
 armorstanddroprate: 0.0
 
-#speculative drop rates with 1.14 mobs - these names are NOT final
+#1.14 mobs
 pillagerdroprate: 0.002
 ravagerdroprate: 0.005
 pandadroprate: 0.002

@@ -16,8 +16,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.shininet.bukkit.playerheads.PlayerHeadsPlugin;
 import org.shininet.bukkit.playerheads.PlayerHeads;
 

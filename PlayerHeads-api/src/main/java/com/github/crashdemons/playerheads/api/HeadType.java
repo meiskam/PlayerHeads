@@ -13,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
  * Object representing the type of Head supported by PlayerHeads. You can obtain
  * the headtype for various things through API methods - to compare head types,
  * you can use equals()
+ * 
+ * This categorizes the head generally by entity type and does not retain user details (username/uuid/texture).
  *
  * @author crashdemons (crashenator at gmail.com)
  */
@@ -23,7 +25,8 @@ public interface HeadType {
     
     /**
      * Get the UUID associated with the skulltype (randomly assigned to it
-     * specifically)
+     * specifically).
+     * Note: this is NOT the player's UUID, it is a UUID assigned to the type.
      *
      * @return The UUID
      */
@@ -47,7 +50,7 @@ public interface HeadType {
     public String getDisplayName();
 
     /**
-     * Checks whether the skulltype uses a playerhead internally. This indicates
+     * Checks whether the skulltype uses a playerhead material internally. This indicates
      * that either the skulltype is PLAYER or a mob without a vanilla head item,
      * generally.
      *

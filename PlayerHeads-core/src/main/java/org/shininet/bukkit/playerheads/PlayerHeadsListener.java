@@ -37,6 +37,7 @@ import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
 import org.bukkit.entity.AnimalTamer;
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
@@ -148,11 +149,27 @@ class PlayerHeadsListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onEntityDeath(EntityDeathEvent event) {
+        LivingEntity victim = event.getEntity();
         LivingEntity killer = getKillerEntity(event);
 
         double lootingrate = 1;
 
+        String chargedcreeperBehavior="ignore";
+        //Double chargedcreeperModifier=1.0; //not implemented yet
         if (killer != null) {
+            
+            if(killer instanceof Creeper && !(victim instanceof Player)){
+                if(((Creeper) killer).isPowered()){
+                    chargedcreeperBehavior = plugin.configFile.getString("chargedcreeperbehavior");
+                    //chargedcreeperModifier = plugin.configFile.getDouble("chargedcreepermodifier");
+                    
+                    if(chargedcreeperBehavior.equals("block") || chargedcreeperBehavior.equals("replace"))
+                        event.getDrops().removeIf(isVanillaHead);
+                    if(chargedcreeperBehavior.equals("block") || chargedcreeperBehavior.equals("vanilla"))
+                        return;
+                }
+            }
+            
             ItemStack weapon = Compatibility.getProvider().getItemInMainHand(killer);//killer.getEquipment().getItemInMainHand();
             if(weapon!=null){
                 if(plugin.configFile.getBoolean("requireitem")){
@@ -163,7 +180,7 @@ class PlayerHeadsListener implements Listener {
             }
         }
 
-        TexturedSkullType skullType = SkullConverter.skullTypeFromEntity(event.getEntity());
+        TexturedSkullType skullType = SkullConverter.skullTypeFromEntity(victim);
         if (skullType == null) {
             return;//entity type is one we don't support - don't attempt to handle heads for it.
         }

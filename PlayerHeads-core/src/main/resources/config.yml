@@ -32,6 +32,12 @@
 # considermobkillers: false     [true/false]    If true, consider Mobs responsible for deaths as "killers" as well. This enables effects 'requireitem' and 'lootingrate' to the mob. Disabled by default. (v5.0 alpha 3+)
 # considertameowner: false      [true/false]    If true, consider Tamed mobs (Wolf) attacks to come from their owner. Requires 'considermobkillers' to be enabled. (v5.0 alpha 3+)
 #
+# chargedcreeperbehavior:ignore [string]        Sets what PlayerHeads will do when a Charged Creeper kills something (only if 'considermobkillers' is enabled). (v5.2+)
+#                                                "ignore" allows head drops to be added to existing ones.
+#                                                "replace" removes vanilla heads from the death and adds PH head chances.
+#                                                "block" removes all head drops from the death only.
+#                                                "vanilla" causes the plugin to not modify the drops or apply PH behavior to the death at all.
+#
 # creeperdroprate: 0.005        [0.0 -> 1.0]    Chance that a mob trophy will drop when a creeper dies
 # zombiedroprate: 0.002         [0.0 -> 1.0]    Chance that a mob trophy will drop when a zombie dies
 # skeletondroprate: 0.002       [0.0 -> 1.0]    Chance that a mob trophy will drop when a skeleton dies
@@ -128,6 +134,16 @@ slimemodifier:
     2: 1.0
     3: 1.0
     4: 1.0
+    
+#chargedcreeperbehavior can be:
+#   vanilla - don't allow PlayerHeads to modify deaths caused by charged creepers at all
+#   ignore - don't consider charged creeper behavior at all, add PlayerHeads drop chances anyway if applicable (default behavior before 5.2)
+#   block - block all charged creeper caused head drops
+#   replace - remove vanilla charged creeper caused head drops and add PlayerHeads drop chances instead
+# NOTE: requires 'considermobkillers' to be enabled.
+chargedcreeperbehavior: ignore
+# not implemented yet
+#chargedcreepermodifier: 1.0
 
 #------mob rates------#
 

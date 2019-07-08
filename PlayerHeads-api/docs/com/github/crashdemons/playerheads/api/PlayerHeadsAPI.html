@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":38,"i7":6,"i8":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":38,"i10":6,"i11":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -127,44 +127,66 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getCompatibilityProvider--">getCompatibilityProvider</a></span>()</code>
-<div class="block">Gets an instance of a class that provides many useful internal PlayerHeads capabilities that would normally be version-specific.</div>
+<td class="colFirst"><code>@NotNull org.bukkit.inventory.ItemStack</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getBoringPlayerheadItem-int-">getBoringPlayerheadItem</a></span>(int&nbsp;num)</code>
+<div class="block">Gets a "boring" playerhead without an owner as if "dropboringplayerheads" was enabled.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>org.bukkit.inventory.ItemStack</code></td>
+<td class="colFirst"><code>@Nullable <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getCompatibilityProvider--">getCompatibilityProvider</a></span>()</code>
+<div class="block">Gets an instance of a class that provides many useful crossversion PlayerHeads capabilities that would normally be version-specific.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>@Nullable org.bukkit.inventory.ItemStack</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadDrop-org.bukkit.entity.Entity-">getHeadDrop</a></span>(org.bukkit.entity.Entity&nbsp;e)</code>
 <div class="block">Gets a stack of head items as they would normally be dropped from the
  given entity.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>@Nullable <a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadFrom-org.bukkit.block.BlockState-">getHeadFrom</a></span>(org.bukkit.block.BlockState&nbsp;s)</code>
 <div class="block">Gets the type of head associated with the Block</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>@Nullable <a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadFrom-org.bukkit.inventory.ItemStack-">getHeadFrom</a></span>(org.bukkit.inventory.ItemStack&nbsp;s)</code>
 <div class="block">Gets the type of head associated with an itemstack.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>@NotNull org.bukkit.inventory.ItemStack</code></td>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>@Nullable org.bukkit.inventory.ItemStack</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadItem-com.github.crashdemons.playerheads.api.HeadType-int-">getHeadItem</a></span>(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h,
            int&nbsp;num)</code>
 <div class="block">Gets a stack of head items for the given type and amount.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>@Nullable org.bukkit.inventory.ItemStack</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadItem-org.bukkit.OfflinePlayer-int-boolean-">getHeadItem</a></span>(org.bukkit.OfflinePlayer&nbsp;player,
+           int&nbsp;num,
+           boolean&nbsp;forceOwner)</code>
+<div class="block">Gets the playerhead for the user provided.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>@NotNull org.bukkit.inventory.ItemStack</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadItem-java.lang.String-int-boolean-">getHeadItem</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;username,
+           int&nbsp;num,
+           boolean&nbsp;forceOwner)</code>
+<div class="block">Gets the playerhead for the user provided.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>@Nullable <a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadOf-org.bukkit.entity.Entity-">getHeadOf</a></span>(org.bukkit.entity.Entity&nbsp;e)</code>
 <div class="block">Gets the type of head associated with an entity</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>@Nullable <a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadOf-org.bukkit.entity.EntityType-">getHeadOf</a></span>(org.bukkit.entity.EntityType&nbsp;t)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
@@ -177,13 +199,13 @@ var activeTableTab = "activeTableTab";
 </div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>@NotNull <a href="../../../../../org/shininet/bukkit/playerheads/PlayerHeadsPlugin.html" title="interface in org.shininet.bukkit.playerheads">PlayerHeadsPlugin</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getPlugin--">getPlugin</a></span>()</code>
 <div class="block">Get the main PlayerHeads Plugin instance</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>@NotNull <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getVersion--">getVersion</a></span>()</code>
 <div class="block">Get the version of the PlayerHeads plugin in use</div>
@@ -305,7 +327,7 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>t</code> - the entity type to check</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the type of head, or null if there is no viable head.</dd>
+<dd>the type of head, or null if there is no viable head (unsupported mob)</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getHeadDrop-org.bukkit.entity.Entity-"><code>getHeadDrop(org.bukkit.entity.Entity)</code></a></dd>
 </dl>
@@ -317,18 +339,20 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getHeadItem</h4>
-<pre>@NotNull
-@NotNull org.bukkit.inventory.ItemStack&nbsp;getHeadItem(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h,
-                                                              int&nbsp;num)</pre>
+<pre>@Nullable
+@Nullable org.bukkit.inventory.ItemStack&nbsp;getHeadItem(<a href="../../../../../com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>&nbsp;h,
+                                                                int&nbsp;num)</pre>
 <div class="block">Gets a stack of head items for the given type and amount. Note:
  player-type heads will be untextured and have no set owner with this
- method.</div>
+ method.
+ 
+ This is affected by configuration settings like "dropvanillaheads" and "addlore".</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>h</code> - the head type to create items of</dd>
 <dd><code>num</code> - the number of items to create</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The item stack</dd>
+<dd>The item stack, or null if the head type was null</dd>
 </dl>
 </li>
 </ul>
@@ -338,7 +362,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getHeadDrop</h4>
-<pre>org.bukkit.inventory.ItemStack&nbsp;getHeadDrop(org.bukkit.entity.Entity&nbsp;e)</pre>
+<pre>@Nullable
+@Nullable org.bukkit.inventory.ItemStack&nbsp;getHeadDrop(org.bukkit.entity.Entity&nbsp;e)</pre>
 <div class="block">Gets a stack of head items as they would normally be dropped from the
  given entity. Note: this method takes into full account plugin
  configuration settings, player's name, and preset item drop amount</div>
@@ -346,7 +371,70 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>e</code> - the entity to create items from</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The item stack</dd>
+<dd>The item stack, or null if the entity head type was null (unsupported mob).</dd>
+</dl>
+</li>
+</ul>
+<a name="getBoringPlayerheadItem-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBoringPlayerheadItem</h4>
+<pre>@NotNull
+@NotNull org.bukkit.inventory.ItemStack&nbsp;getBoringPlayerheadItem(int&nbsp;num)</pre>
+<div class="block">Gets a "boring" playerhead without an owner as if "dropboringplayerheads" was enabled.
+ This head is provided without manipulation by configuration settings except 'addlore'.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>num</code> - number of head items to get</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the item stack requested</dd>
+</dl>
+</li>
+</ul>
+<a name="getHeadItem-java.lang.String-int-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHeadItem</h4>
+<pre>@NotNull
+@NotNull org.bukkit.inventory.ItemStack&nbsp;getHeadItem(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;username,
+                                                              int&nbsp;num,
+                                                              boolean&nbsp;forceOwner)</pre>
+<div class="block">Gets the playerhead for the user provided.
+ This head is provided subject to configuration settings like 'dropboringplayerheads' and 'addlore'</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>username</code> - the username for the playerhead</dd>
+<dd><code>num</code> - number of items to include of the head</dd>
+<dd><code>forceOwner</code> - if true, ignore the state of 'dropboringplayerheads' and provide a head for the owner anyway</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the itemstack requested</dd>
+</dl>
+</li>
+</ul>
+<a name="getHeadItem-org.bukkit.OfflinePlayer-int-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHeadItem</h4>
+<pre>@Nullable
+@Nullable org.bukkit.inventory.ItemStack&nbsp;getHeadItem(org.bukkit.OfflinePlayer&nbsp;player,
+                                                                int&nbsp;num,
+                                                                boolean&nbsp;forceOwner)</pre>
+<div class="block">Gets the playerhead for the user provided.
+ This head is provided subject to configuration settings like 'dropboringplayerheads' and 'addlore'
+ Note: this is based on username lookup.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>player</code> - the player to retrieve a head for</dd>
+<dd><code>num</code> - number of items to include of the head</dd>
+<dd><code>forceOwner</code> - if true, ignore the state of 'dropboringplayerheads' and provide a head for the owner anyway</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the itemstack requested, or null if the username could not be determined.</dd>
 </dl>
 </li>
 </ul>
@@ -356,12 +444,14 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getCompatibilityProvider</h4>
-<pre><a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;getCompatibilityProvider()</pre>
-<div class="block">Gets an instance of a class that provides many useful internal PlayerHeads capabilities that would normally be version-specific.
- For example: viewing and editing ownership information for skinned playerheads.</div>
+<pre>@Nullable
+@Nullable <a href="../../../../../com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;getCompatibilityProvider()</pre>
+<div class="block">Gets an instance of a class that provides many useful crossversion PlayerHeads capabilities that would normally be version-specific.
+ For example: viewing and editing ownership information for skinned playerheads.
+ These may be more subject to change than other API methods, so you should avoid them except when necessary.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the CompatibilityProvider instance.</dd>
+<dd>the CompatibilityProvider instance or null if PlayerHeads plugin was not initialized yet.</dd>
 </dl>
 </li>
 </ul>

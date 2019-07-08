@@ -130,7 +130,7 @@ public class ApiProvider implements PlayerHeadsAPI {
             return getBoringPlayerheadItem(num);
         }else{
             boolean addLore = plugin.configFile.getBoolean("addlore");
-            return SkullManager.PlayerSkull(username, num, true);
+            return SkullManager.PlayerSkull(username, num, addLore);
         }
     }
     

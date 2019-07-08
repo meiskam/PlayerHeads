@@ -10,11 +10,14 @@ import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.shininet.bukkit.playerheads.PlayerHeadsPlugin;
 import org.shininet.bukkit.playerheads.PlayerHeads;
 
@@ -114,9 +117,35 @@ public class ApiProvider implements PlayerHeadsAPI {
     
     
     //5.1.1 API
+    
+    @Override
+    public ItemStack getBoringPlayerheadItem(int num){
+        boolean addLore = plugin.configFile.getBoolean("addlore");
+        return SkullManager.PlayerSkull(num,addLore);
+    }
+    
+    @Override
+    public ItemStack getHeadItem(String username, int num, boolean forceOwner){
+        if(!forceOwner && plugin.configFile.getBoolean("dropboringplayerheads")){
+            return getBoringPlayerheadItem(num);
+        }else{
+            boolean addLore = plugin.configFile.getBoolean("addlore");
+            return SkullManager.PlayerSkull(username, num, true);
+        }
+    }
+    
+    @Override
+    public ItemStack getHeadItem(OfflinePlayer player, int num, boolean forceOwner){
+        String name = player.getName();
+        if(name==null) return null;
+        return getHeadItem(name,num,forceOwner);
+    }
+    
     @Override
     public CompatibilityProvider getCompatibilityProvider(){
         if(!Compatibility.isProviderAvailable()) return null;
         return Compatibility.getProvider();
     }
+    
+    
 }

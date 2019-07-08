@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.api;
 
+import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import org.jetbrains.annotations.Nullable;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
@@ -102,4 +103,12 @@ public interface PlayerHeadsAPI {
      * @return The item stack
      */
     public ItemStack getHeadDrop(Entity e);
+    
+    //5.1.1 API
+    /**
+     * Gets an instance of a class that provides many useful internal PlayerHeads capabilities that would normally be version-specific.
+     * For example: viewing and editing ownership information for skinned playerheads.
+     * @return the CompatibilityProvider instance.
+     */
+    public CompatibilityProvider getCompatibilityProvider();
 }

@@ -8,6 +8,8 @@ package com.github.crashdemons.playerheads.api;
 import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -108,5 +110,13 @@ public class ApiProvider implements PlayerHeadsAPI {
 
     private TexturedSkullType headFromApiHead(HeadType h) {
         return TexturedSkullType.get(h.getOwner());
+    }
+    
+    
+    //5.1.1 API
+    @Override
+    public CompatibilityProvider getCompatibilityProvider(){
+        if(!Compatibility.isProviderAvailable()) return null;
+        return Compatibility.getProvider();
     }
 }

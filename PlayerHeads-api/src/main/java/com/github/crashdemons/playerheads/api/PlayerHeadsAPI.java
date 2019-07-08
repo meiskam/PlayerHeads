@@ -108,7 +108,8 @@ public interface PlayerHeadsAPI {
     /**
      * Gets an instance of a class that provides many useful internal PlayerHeads capabilities that would normally be version-specific.
      * For example: viewing and editing ownership information for skinned playerheads.
-     * @return the CompatibilityProvider instance.
+     * @return the CompatibilityProvider instance or null if PlayerHeads plugin was not initialized yet.
      */
+    @Nullable
     public CompatibilityProvider getCompatibilityProvider();
 }

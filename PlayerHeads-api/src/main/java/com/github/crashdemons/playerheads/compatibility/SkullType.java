@@ -27,7 +27,7 @@ public enum SkullType {
     SKELETON(true), WITHER_SKELETON(true), ZOMBIE(false), PLAYER(false), CREEPER(false), DRAGON(false);
 
     /**
-     * A property specifying whether the skulltype entry is a proper skull or a
+     * A property specifying whether the skulltype entry is a proper skull (semantically - for types of skeletons, etc) or a
      * head.
      */
     public final boolean isSkull;

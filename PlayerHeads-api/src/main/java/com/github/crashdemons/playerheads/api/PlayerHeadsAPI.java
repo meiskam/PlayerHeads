@@ -28,7 +28,7 @@ public interface PlayerHeadsAPI {
      *
      * @return the PlayerHeads plugin object, or null if unavailable.
      */
-    @NotNull
+    @Nullable
     public PlayerHeadsPlugin getPlugin();
 
     /**
@@ -36,7 +36,7 @@ public interface PlayerHeadsAPI {
      *
      * @return the version of the PlayerHeads plugin in use
      */
-    @NotNull
+    @Nullable
     public String getVersion();
 
     /**

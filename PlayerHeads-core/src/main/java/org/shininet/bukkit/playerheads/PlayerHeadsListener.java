@@ -262,11 +262,13 @@ class PlayerHeadsListener implements Listener {
         drop=dropHeadEvent.getDrop();
 
         //drop item naturally if the drops will be modified by another plugin or gamerule.
-        if (plugin.configFile.getBoolean("antideathchest") || Compatibility.getProvider().getKeepInventory(player.getWorld())) {
-            Location location = player.getLocation();
-            location.getWorld().dropItemNaturally(location, drop);
-        } else {
-            event.getDrops().add(drop);
+        if(drop!=null){
+            if (plugin.configFile.getBoolean("antideathchest") || Compatibility.getProvider().getKeepInventory(player.getWorld())) {
+                Location location = player.getLocation();
+                location.getWorld().dropItemNaturally(location, drop);
+            } else {
+                event.getDrops().add(drop);
+            }
         }
 
         //broadcast message about the beheading.
@@ -340,12 +342,15 @@ class PlayerHeadsListener implements Listener {
         }
         drop=dropHeadEvent.getDrop();
 
-        if (plugin.configFile.getBoolean("antideathchest")) {
-            Location location = event.getEntity().getLocation();
-            location.getWorld().dropItemNaturally(location, drop);
-        } else {
-            event.getDrops().add(drop);
+        if(drop!=null){
+            if (plugin.configFile.getBoolean("antideathchest")) {
+                Location location = event.getEntity().getLocation();
+                location.getWorld().dropItemNaturally(location, drop);
+            } else {
+                event.getDrops().add(drop);
+            }
         }
+        
         //broadcast message about the beheading.
         if (plugin.configFile.getBoolean("broadcastmob") && killer!=null) { //mob-on-mob broadcasts would be extremely annoying!
             String entityName = entity.getCustomName​();
@@ -507,7 +512,7 @@ class PlayerHeadsListener implements Listener {
             return BlockDropResult.FAILED_EVENT_CANCELLED;
         }
         item=eventDropHead.getDrop();
-        location.getWorld().dropItemNaturally(location, item);
+        if(item!=null) location.getWorld().dropItemNaturally(location, item);
         return BlockDropResult.SUCCESS;
     }
 

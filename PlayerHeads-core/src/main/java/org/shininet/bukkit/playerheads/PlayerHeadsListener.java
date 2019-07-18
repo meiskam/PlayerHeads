@@ -501,12 +501,12 @@ class PlayerHeadsListener implements Listener {
                 break;
         }
         block.setType(Material.AIR);
-        BlockDropHeadEvent newEvent = new BlockDropHeadEvent(block, item);
-        plugin.getServer().getPluginManager().callEvent(newEvent);
-        if (newEvent.isCancelled()) {
+        BlockDropHeadEvent eventDropHead = new BlockDropHeadEvent(block, item);
+        plugin.getServer().getPluginManager().callEvent(eventDropHead);
+        if (eventDropHead.isCancelled()) {
             return BlockDropResult.FAILED_EVENT_CANCELLED;
         }
-        item=newEvent.getDrop();
+        item=eventDropHead.getDrop();
         location.getWorld().dropItemNaturally(location, item);
         return BlockDropResult.SUCCESS;
     }

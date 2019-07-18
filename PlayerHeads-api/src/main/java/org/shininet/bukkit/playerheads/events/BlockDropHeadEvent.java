@@ -22,7 +22,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
 
     private static final HandlerList HANDLERS = new HandlerList();
     private boolean canceled = false;
-    private final ItemStack itemDrop;
+    private ItemStack itemDrop;
 
     /**
      * Construct the event
@@ -36,7 +36,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
     }
 
     /**
-     * Gets the item that will drop from the beheading.
+     * Gets the item that will drop from the mined block.
      *
      * @return mutable ItemStack that will drop into the world once this event
      * is over
@@ -45,6 +45,16 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
     @Override
     public ItemStack getDrop() {
         return itemDrop;
+    }
+    
+    /**
+     * Sets the item that will drop from the mined block.
+     * 5.2+ API
+     * @param stack 
+     */
+    @Override
+    public void setDrop(ItemStack stack){
+        itemDrop=stack;
     }
 
     /**

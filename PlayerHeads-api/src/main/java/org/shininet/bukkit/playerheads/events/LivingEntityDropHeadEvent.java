@@ -26,7 +26,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
 
     private static final HandlerList HANDLERS = new HandlerList();
     private boolean canceled = false;
-    private final ItemStack itemDrop;
+    private ItemStack itemDrop;
 
     /**
      * Construct the event
@@ -49,6 +49,16 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     @Override
     public ItemStack getDrop() {
         return itemDrop;
+    }
+    
+    /**
+     * Sets the item to drop for the beheading.
+     * 5.2+ API
+     * @param stack 
+     */
+    @Override
+    public void setDrop(ItemStack stack){
+        itemDrop=stack;
     }
 
     /**

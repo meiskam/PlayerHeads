@@ -15,4 +15,11 @@ import org.bukkit.inventory.ItemStack;
 public interface DropHeadEvent {
 
     public ItemStack getDrop();
+    
+    /**
+     * Set the item dropped by the event.
+     * 5.2+ API
+     * @param stack 
+     */
+    public void setDrop(ItemStack stack);
 }

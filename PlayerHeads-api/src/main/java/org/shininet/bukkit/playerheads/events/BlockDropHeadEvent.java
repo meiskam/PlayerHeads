@@ -51,7 +51,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
     /**
      * Sets the item that will drop from the mined block.
      * 5.2+ API
-     * @param stack 
+     * @param stack the stack to drop. If this is null, no item will be dropped, but the drop event will complete successfully as if one did. (cancel the event to stop the drop).
      */
     @Override
     public void setDrop(@Nullable final ItemStack stack){

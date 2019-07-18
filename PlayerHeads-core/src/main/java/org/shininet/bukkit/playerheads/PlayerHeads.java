@@ -26,7 +26,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 
 public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHeadsPlugin {
-
+    public static PlayerHeads instance;
     private PlayerHeadsListener listener;
     //private PlayerHeadsDraftListener draftListener=null;
     public Logger logger;
@@ -85,6 +85,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     
     public PlayerHeads(){
         super();
+        instance=this;
         api=new ApiProvider(this);
         com.github.crashdemons.playerheads.api.PlayerHeads.setApiInstance(api);
         //hasBlockDropItemSupport = RuntimeReferences.hasClass("org.bukkit.event.block.BlockDropItemEvent");

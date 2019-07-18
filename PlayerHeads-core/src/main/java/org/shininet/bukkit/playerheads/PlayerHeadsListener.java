@@ -259,6 +259,7 @@ class PlayerHeadsListener implements Listener {
         if (dropHeadEvent.isCancelled()) {
             return;
         }
+        drop=dropHeadEvent.getDrop();
 
         //drop item naturally if the drops will be modified by another plugin or gamerule.
         if (plugin.configFile.getBoolean("antideathchest") || Compatibility.getProvider().getKeepInventory(player.getWorld())) {
@@ -334,10 +335,10 @@ class PlayerHeadsListener implements Listener {
 
         MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
-
         if (dropHeadEvent.isCancelled()) {
             return;
         }
+        drop=dropHeadEvent.getDrop();
 
         if (plugin.configFile.getBoolean("antideathchest")) {
             Location location = event.getEntity().getLocation();
@@ -505,6 +506,7 @@ class PlayerHeadsListener implements Listener {
         if (newEvent.isCancelled()) {
             return BlockDropResult.FAILED_EVENT_CANCELLED;
         }
+        item=newEvent.getDrop();
         location.getWorld().dropItemNaturally(location, item);
         return BlockDropResult.SUCCESS;
     }

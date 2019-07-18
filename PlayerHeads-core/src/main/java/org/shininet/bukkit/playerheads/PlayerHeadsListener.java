@@ -155,13 +155,13 @@ class PlayerHeadsListener implements Listener {
         double lootingrate = 1;
 
         String chargedcreeperBehavior="ignore";
-        //Double chargedcreeperModifier=1.0; //not implemented yet
+        Double chargedcreeperModifier=1.0; //not implemented yet
         if (killer != null) {
             
             if(killer instanceof Creeper && !(victim instanceof Player)){
                 if(((Creeper) killer).isPowered()){
                     chargedcreeperBehavior = plugin.configFile.getString("chargedcreeperbehavior");
-                    //chargedcreeperModifier = plugin.configFile.getDouble("chargedcreepermodifier");
+                    chargedcreeperModifier = plugin.configFile.getDouble("chargedcreepermodifier");
                     
                     if(chargedcreeperBehavior.equals("block") || chargedcreeperBehavior.equals("replace"))
                         event.getDrops().removeIf(isVanillaHead);
@@ -196,11 +196,11 @@ class PlayerHeadsListener implements Listener {
                         return;
                     }
                 }
-                PlayerDeathHelper(event, skullType, droprate, lootingrate);
+                PlayerDeathHelper(event, skullType, droprate, lootingrate,chargedcreeperModifier);
                 break;
             case WITHER_SKELETON:
                 event.getDrops().removeIf(isVanillaHead);
-                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0);
+                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0, chargedcreeperModifier);
                 break;
             case SLIME:
             case MAGMA_CUBE:
@@ -210,16 +210,16 @@ class PlayerHeadsListener implements Listener {
                     int slimeSize = ((Slime) entity).getSize();// 1, 2, 3, 4  (1,2,4 natual with 1 the smallest)
                     slimemodifier=plugin.configFile.getDouble("slimemodifier."+slimeSize);
                 }
-                MobDeathHelper(event, skullType, droprate, lootingrate, slimemodifier);
+                MobDeathHelper(event, skullType, droprate, lootingrate, slimemodifier,chargedcreeperModifier);
                 break;
             default:
-                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0);
+                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0,chargedcreeperModifier);
                 break;
         }
     }
 
-    private void PlayerDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier) {
-        Double droprate = droprateOriginal * lootingModifier;
+    private void PlayerDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double chargedcreeperModifier) {
+        Double droprate = droprateOriginal * lootingModifier * chargedcreeperModifier;
         Double dropchanceRand = prng.nextDouble();
         Double dropchance = dropchanceRand;
         Player player = (Player) event.getEntity();
@@ -246,7 +246,7 @@ class PlayerHeadsListener implements Listener {
         }
         boolean headDropSuccess = dropchance < droprate;
 
-        HeadRollEvent rollEvent = new HeadRollEvent(killer, player, killerAlwaysBeheads, lootingModifier, dropchanceRand, dropchance, droprateOriginal, droprate, headDropSuccess);
+        HeadRollEvent rollEvent = new HeadRollEvent(killer, player, killerAlwaysBeheads, lootingModifier, 1.0, chargedcreeperModifier, dropchanceRand, dropchance, droprateOriginal, droprate, headDropSuccess);
         plugin.getServer().getPluginManager().callEvent(rollEvent);
         if (!rollEvent.succeeded()) {
             return;//allow plugins a chance to modify the success
@@ -304,8 +304,8 @@ class PlayerHeadsListener implements Listener {
 
     }
 
-    private void MobDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double slimeModifier) {
-        Double droprate = droprateOriginal * lootingModifier * slimeModifier;
+    private void MobDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double slimeModifier, Double chargedcreeperModifier) {
+        Double droprate = droprateOriginal * lootingModifier * slimeModifier * chargedcreeperModifier;
         Double dropchanceRand = prng.nextDouble();
         Double dropchance = dropchanceRand;
         Entity entity = event.getEntity();
@@ -327,7 +327,7 @@ class PlayerHeadsListener implements Listener {
         }
         boolean headDropSuccess = dropchance < droprate;
 
-        HeadRollEvent rollEvent = new HeadRollEvent(killer, event.getEntity(), killerAlwaysBeheads, lootingModifier, slimeModifier, dropchanceRand, dropchance, droprateOriginal, droprate, headDropSuccess);
+        HeadRollEvent rollEvent = new HeadRollEvent(killer, event.getEntity(), killerAlwaysBeheads, lootingModifier, slimeModifier, chargedcreeperModifier, dropchanceRand, dropchance, droprateOriginal, droprate, headDropSuccess);
         plugin.getServer().getPluginManager().callEvent(rollEvent);
         if (!rollEvent.succeeded()) {
             return;//allow plugins a chance to modify the success

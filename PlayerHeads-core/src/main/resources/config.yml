@@ -142,8 +142,8 @@ slimemodifier:
 #   replace - remove vanilla charged creeper caused head drops and add PlayerHeads drop chances instead
 # NOTE: requires 'considermobkillers' to be enabled.
 chargedcreeperbehavior: ignore
-# not implemented yet
-#chargedcreepermodifier: 1.0
+#drop rate modifier (multiplier) to apply if a charged creeper caused the death and "ignore" or "replace" behaviors are enabled.
+chargedcreepermodifier: 1.0
 
 #------mob rates------#
 

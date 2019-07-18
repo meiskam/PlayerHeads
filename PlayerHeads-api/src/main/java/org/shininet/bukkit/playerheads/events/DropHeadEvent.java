@@ -6,6 +6,7 @@
 package org.shininet.bukkit.playerheads.events;
 
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for events that drop a plugin-supported head.
@@ -21,5 +22,5 @@ public interface DropHeadEvent {
      * 5.2+ API
      * @param stack 
      */
-    public void setDrop(ItemStack stack);
+    public void setDrop(@Nullable final ItemStack stack);
 }

@@ -10,6 +10,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Event created by the PlayerHeads plugin when a block is broken by hand
@@ -53,7 +54,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
      * @param stack 
      */
     @Override
-    public void setDrop(ItemStack stack){
+    public void setDrop(@Nullable final ItemStack stack){
         itemDrop=stack;
     }
 

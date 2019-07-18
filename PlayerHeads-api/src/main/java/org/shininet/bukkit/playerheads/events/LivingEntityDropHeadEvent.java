@@ -8,6 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Event created by the PlayerHeads plugin when a [living] entity is beheaded.
@@ -57,7 +58,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      * @param stack 
      */
     @Override
-    public void setDrop(ItemStack stack){
+    public void setDrop(@Nullable final ItemStack stack){
         itemDrop=stack;
     }
 

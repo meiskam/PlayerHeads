@@ -29,13 +29,14 @@ public class HeadRollEvent extends Event {
     private final boolean killerAlwaysBeheads;
     private final double lootingModifier;
     private final double slimeModifier;
+    private final double chargedCreeperModifier;
 
     private final double originalDropRoll;
     private final double effectiveDropRoll;
     private final double originalDropRate;
     private final double effectiveDropRate;
     private boolean dropSuccess;
-
+    
     /**
      * Creates the Head dropchance event for PlayerHeads.
      *
@@ -58,6 +59,44 @@ public class HeadRollEvent extends Event {
      * @param dropSuccess whether the droproll was determined to be initially a
      * successful roll.
      */
+    public HeadRollEvent(final Entity killer, final Entity target, final boolean killerAlwaysBeheads, final double lootingModifier, final double slimeModifier, final double chargedCreeperModifier, final double originalDropRoll, final double effectiveDropRoll, final double originalDropRate, final double effectiveDropRate, final boolean dropSuccess) {
+        this.lootingModifier = lootingModifier;
+        this.originalDropRate = originalDropRate;
+        this.effectiveDropRate = effectiveDropRate;
+        this.dropSuccess = dropSuccess;
+        this.effectiveDropRoll = effectiveDropRoll;
+        this.originalDropRoll = originalDropRoll;
+        this.killerAlwaysBeheads = killerAlwaysBeheads;
+        this.slimeModifier=slimeModifier;
+        this.chargedCreeperModifier=chargedCreeperModifier;
+
+        this.killer = killer;
+        this.target = target;
+    }
+    
+    /**
+     * Creates the Head dropchance event for PlayerHeads.
+     *
+     * @param killer the Entity beheading another
+     * @param target the Entity being beheaded
+     * @param killerAlwaysBeheads whether the killer has the always-behead
+     * permission
+     * @param originalDropRoll the randomized PRNG double droproll value
+     * inclusively between 0 to 1.
+     * @param slimeModifier the fraction of the slime/magmacube drop rate that is applicable at this size, modifuing the effective droprate (0.5 is 50% of the base rate). This should be 1.0 when there is no effect or the entity is not a slime.
+     * @param lootingModifier the fractional probability modifier (greater than
+     * or equal to 1.0) of looting, as applied by PlayerHeads to the effective
+     * droprate.
+     * @param effectiveDropRoll the modified droproll value after permission
+     * logic was applied (alwaysbehead sets to 0)
+     * @param originalDropRate the configured droprate of the target as a
+     * fraction (0.01 = 1%)
+     * @param effectiveDropRate the effective droprate of the target as a
+     * fraction (0.01 = 1%), as modified by looting.
+     * @param dropSuccess whether the droproll was determined to be initially a
+     * successful roll.
+     */
+    @Deprecated
     public HeadRollEvent(final Entity killer, final Entity target, final boolean killerAlwaysBeheads, final double lootingModifier, final double slimeModifier, final double originalDropRoll, final double effectiveDropRoll, final double originalDropRate, final double effectiveDropRate, final boolean dropSuccess) {
         this.lootingModifier = lootingModifier;
         this.originalDropRate = originalDropRate;
@@ -67,6 +106,7 @@ public class HeadRollEvent extends Event {
         this.originalDropRoll = originalDropRoll;
         this.killerAlwaysBeheads = killerAlwaysBeheads;
         this.slimeModifier=slimeModifier;
+        this.chargedCreeperModifier=1.0;
 
         this.killer = killer;
         this.target = target;
@@ -92,6 +132,7 @@ public class HeadRollEvent extends Event {
      * @param dropSuccess whether the droproll was determined to be initially a
      * successful roll.
      */
+    @Deprecated
     public HeadRollEvent(final Entity killer, final Entity target, final boolean killerAlwaysBeheads, final double lootingModifier, final double originalDropRoll, final double effectiveDropRoll, final double originalDropRate, final double effectiveDropRate, final boolean dropSuccess) {
         this.lootingModifier = lootingModifier;
         this.originalDropRate = originalDropRate;
@@ -101,11 +142,24 @@ public class HeadRollEvent extends Event {
         this.originalDropRoll = originalDropRoll;
         this.killerAlwaysBeheads = killerAlwaysBeheads;
         this.slimeModifier=1.0;
+        this.chargedCreeperModifier=1.0;
 
         this.killer = killer;
         this.target = target;
     }
 
+ 
+    /**
+     * Gets the charged creeper modifier (multiplier) that modified the effective
+     * droprate. Generally this is 1 (no effect) when the mob was not detected to be killed by a charged creeper.
+     * 
+     *
+     * @return the multiplier
+     */
+    public double getChargedCreeperModifier() {
+        return chargedCreeperModifier;
+    }
+    
     /**
      * Gets the looting modifier (multiplier) that modified the effective
      * droprate. Generally this is 1 (no effect) or greater.

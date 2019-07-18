@@ -39,6 +39,8 @@ public class HeadRollEvent extends Event {
     
     /**
      * Creates the Head dropchance event for PlayerHeads.
+     * 
+     * 5.2+ API
      *
      * @param killer the Entity beheading another
      * @param target the Entity being beheaded
@@ -50,6 +52,7 @@ public class HeadRollEvent extends Event {
      * @param lootingModifier the fractional probability modifier (greater than
      * or equal to 1.0) of looting, as applied by PlayerHeads to the effective
      * droprate.
+     * @param chargedCreeperModifier the multiplier effect that charged creepers have on normal droprates
      * @param effectiveDropRoll the modified droproll value after permission
      * logic was applied (alwaysbehead sets to 0)
      * @param originalDropRate the configured droprate of the target as a
@@ -153,6 +156,7 @@ public class HeadRollEvent extends Event {
      * Gets the charged creeper modifier (multiplier) that modified the effective
      * droprate. Generally this is 1 (no effect) when the mob was not detected to be killed by a charged creeper.
      * 
+     * 5.2+ API
      *
      * @return the multiplier
      */

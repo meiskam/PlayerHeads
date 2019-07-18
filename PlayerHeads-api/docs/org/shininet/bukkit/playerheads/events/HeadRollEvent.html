@@ -358,7 +358,9 @@ extends org.bukkit.event.Event</pre>
                      double&nbsp;originalDropRate,
                      double&nbsp;effectiveDropRate,
                      boolean&nbsp;dropSuccess)</pre>
-<div class="block">Creates the Head dropchance event for PlayerHeads.</div>
+<div class="block">Creates the Head dropchance event for PlayerHeads.
+ 
+ 5.2+ API</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>killer</code> - the Entity beheading another</dd>
@@ -371,6 +373,7 @@ extends org.bukkit.event.Event</pre>
 <dd><code>lootingModifier</code> - the fractional probability modifier (greater than
  or equal to 1.0) of looting, as applied by PlayerHeads to the effective
  droprate.</dd>
+<dd><code>chargedCreeperModifier</code> - the multiplier effect that charged creepers have on normal droprates</dd>
 <dd><code>effectiveDropRoll</code> - the modified droproll value after permission
  logic was applied (alwaysbehead sets to 0)</dd>
 <dd><code>originalDropRate</code> - the configured droprate of the target as a
@@ -480,7 +483,9 @@ public&nbsp;HeadRollEvent(org.bukkit.entity.Entity&nbsp;killer,
 <h4>getChargedCreeperModifier</h4>
 <pre>public&nbsp;double&nbsp;getChargedCreeperModifier()</pre>
 <div class="block">Gets the charged creeper modifier (multiplier) that modified the effective
- droprate. Generally this is 1 (no effect) when the mob was not detected to be killed by a charged creeper.</div>
+ droprate. Generally this is 1 (no effect) when the mob was not detected to be killed by a charged creeper.
+ 
+ 5.2+ API</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the multiplier</dd>

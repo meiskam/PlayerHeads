@@ -80,6 +80,7 @@ public final class Config {
             put("slimemodifier.4", configType.DOUBLE);
             
             put("chargedcreeperbehavior", configType.STRING);
+            put("chargedcreepermodifier", configType.DOUBLE);
         }
     };
     /**

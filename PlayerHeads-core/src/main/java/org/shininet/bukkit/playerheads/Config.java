@@ -81,6 +81,8 @@ public final class Config {
             
             put("chargedcreeperbehavior", configType.STRING);
             put("chargedcreepermodifier", configType.DOUBLE);
+            
+            put("witherskeletonbehavior", configType.STRING);
         }
     };
     /**

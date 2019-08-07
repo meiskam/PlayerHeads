@@ -135,15 +135,24 @@ slimemodifier:
     3: 1.0
     4: 1.0
     
+
+
 #chargedcreeperbehavior can be:
 #   vanilla - don't allow PlayerHeads to modify deaths caused by charged creepers at all
-#   ignore - don't consider charged creeper behavior at all, add PlayerHeads drop chances anyway if applicable (default behavior before 5.2)
+#   ignore - don't consider charged creeper behavior at all, add PlayerHeads drop chances anyway if applicable (may cause doubled head drops with mobpkonly off) (default behavior before 5.2)
 #   block - block all charged creeper caused head drops
 #   replace - remove vanilla charged creeper caused head drops and add PlayerHeads drop chances instead
 # NOTE: requires 'considermobkillers' to be enabled.
 chargedcreeperbehavior: ignore
 #drop rate modifier (multiplier) to apply if a charged creeper caused the death and "ignore" or "replace" behaviors are enabled.
 chargedcreepermodifier: 1.0
+
+witherskeletonbehavior: ignore
+#witherskeletonbehavior determines what PlayerHeads should do when it encounters a head being dropped (usually from vanilla sources) by a WitherSkeleton. chargedcreeperbehavior may override this.
+#   vanilla - don't allow PlayerHeads to modify witherskeleton drops further. (this functions the same as witherskeletondroprate:-1)
+#   ignore - don't consider preexisting drops at all, add PlayerHeads drop chances anyway if applicable (may cause doubled head drops if vanilla and PH both roll lucky)
+#   block - block all witherskeleton head drops (should function the same as 'replace' mode with witherskeletondroprate:0 )
+#   replace - remove vanilla witherskeleton caused head drops and add PlayerHeads drop chances instead (default behavior before 5.2.1)
 
 #------mob rates------#
 

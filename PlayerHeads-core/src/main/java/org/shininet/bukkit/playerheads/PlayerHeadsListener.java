@@ -199,7 +199,12 @@ class PlayerHeadsListener implements Listener {
                 PlayerDeathHelper(event, skullType, droprate, lootingrate,chargedcreeperModifier);
                 break;
             case WITHER_SKELETON:
-                event.getDrops().removeIf(isVanillaHead);
+                String witherskeletonbehavior = plugin.getConfig().getString("witherskeletonbehavior");
+                if(witherskeletonbehavior.equals("block") || witherskeletonbehavior.equals("replace")) 
+                    event.getDrops().removeIf(isVanillaHead);
+                if(witherskeletonbehavior.equals("block") || witherskeletonbehavior.equals("vanilla"))
+                    return;
+                
                 MobDeathHelper(event, skullType, droprate, lootingrate, 1.0, chargedcreeperModifier);
                 break;
             case SLIME:

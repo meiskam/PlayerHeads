@@ -49,7 +49,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.projectiles.ProjectileSource;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
 
@@ -67,6 +66,10 @@ class PlayerHeadsListener implements Listener {
     private final PlayerHeads plugin;
     private volatile InteractSpamPreventer clickSpamPreventer;
     private volatile PlayerDeathSpamPreventer deathSpamPreventer;
+    
+    private final static long TICKS_PER_SECOND = 20;
+    private final static long MS_PER_TICK = 1000/TICKS_PER_SECOND; //50
+    
 
     public void registerAll() {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -353,13 +356,16 @@ class PlayerHeadsListener implements Listener {
         if(finalDrop!=null){
             if(plugin.configFile.getBoolean("delaywitherdrop")){
                 int delay = plugin.configFile.getInt("delaywitherdropms");
+                long ticks =  delay / MS_PER_TICK;
                 final Location location = event.getEntity().getLocation();
-                plugin.scheduleSync(new BukkitRunnable(){
+                plugin.scheduleSync(new Runnable(){
                     @Override
                     public void run(){
+                        //System.out.println(" delayed head drop running");
                         location.getWorld().dropItemNaturally(location, finalDrop);
                     }
-                },20*delay);
+                },ticks);
+                //System.out.println("scheduled head drop for "+ticks+" ticks");
             }else if (plugin.configFile.getBoolean("antideathchest")) {
                 Location location = event.getEntity().getLocation();
                 location.getWorld().dropItemNaturally(location, finalDrop);

@@ -154,8 +154,9 @@ witherskeletonbehavior: ignore
 #   block - block all witherskeleton head drops (should function the same as 'replace' mode with witherskeletondroprate:0 )
 #   replace - remove vanilla witherskeleton caused head drops and add PlayerHeads drop chances instead (default behavior before 5.2.1)
 
-
+#controls whether to delay the plugin-added drop of the wither boss head (to avoid explosion destroying it)
 delaywitherdrop: false
+#sets the time to delay plugin-added drops in miliseconds (NOTE: the minimum resolution is multiples of 50ms ~ 1tick)
 delaywitherdropms: 250
 
 #------mob rates------#

@@ -83,9 +83,9 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
         }
     }
     
-    
     public void scheduleSync(Runnable task, long tick_delay){
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, task, tick_delay);
+        int tasknum = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, task, tick_delay);
+        //System.out.println(" head drop task #"+tasknum+" @ "+tick_delay+" ticks ("+(tick_delay/20.0)+"s");
     }
     
     public PlayerHeads(){

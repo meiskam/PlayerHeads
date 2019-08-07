@@ -12,6 +12,7 @@ import com.github.crashdemons.playerheads.compatibility.exceptions.Compatibility
 import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnsupportedException;
 import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import java.util.logging.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -82,6 +83,10 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
         }
     }
     
+    
+    public void scheduleSync(Runnable task, long tick_delay){
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, task, tick_delay);
+    }
     
     public PlayerHeads(){
         super();

@@ -83,6 +83,9 @@ public final class Config {
             put("chargedcreepermodifier", configType.DOUBLE);
             
             put("witherskeletonbehavior", configType.STRING);
+            
+            put("delaywitherdrop", configType.BOOLEAN);
+            put("delaywitherdropms", configType.INT);
         }
     };
     /**

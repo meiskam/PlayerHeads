@@ -154,6 +154,10 @@ witherskeletonbehavior: ignore
 #   block - block all witherskeleton head drops (should function the same as 'replace' mode with witherskeletondroprate:0 )
 #   replace - remove vanilla witherskeleton caused head drops and add PlayerHeads drop chances instead (default behavior before 5.2.1)
 
+
+delaywitherdrop: false
+delaywitherdropms: 250
+
 #------mob rates------#
 
 creeperdroprate: 0.005

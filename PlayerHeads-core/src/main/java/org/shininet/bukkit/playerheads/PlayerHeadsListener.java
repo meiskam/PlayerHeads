@@ -49,6 +49,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
 
@@ -346,13 +347,24 @@ class PlayerHeadsListener implements Listener {
             return;
         }
         drop=dropHeadEvent.getDrop();
-
-        if(drop!=null){
-            if (plugin.configFile.getBoolean("antideathchest")) {
+        
+        
+        final ItemStack finalDrop = drop;//the inner-class requires a final object;
+        if(finalDrop!=null){
+            if(plugin.configFile.getBoolean("delaywitherdrop")){
+                int delay = plugin.configFile.getInt("delaywitherdropms");
+                final Location location = event.getEntity().getLocation();
+                plugin.scheduleSync(new BukkitRunnable(){
+                    @Override
+                    public void run(){
+                        location.getWorld().dropItemNaturally(location, finalDrop);
+                    }
+                },20*delay);
+            }else if (plugin.configFile.getBoolean("antideathchest")) {
                 Location location = event.getEntity().getLocation();
-                location.getWorld().dropItemNaturally(location, drop);
+                location.getWorld().dropItemNaturally(location, finalDrop);
             } else {
-                event.getDrops().add(drop);
+                event.getDrops().add(finalDrop);
             }
         }
         

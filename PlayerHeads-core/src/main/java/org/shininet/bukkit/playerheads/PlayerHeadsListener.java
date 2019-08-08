@@ -354,7 +354,7 @@ class PlayerHeadsListener implements Listener {
         
         final ItemStack finalDrop = drop;//the inner-class requires a final object;
         if(finalDrop!=null){
-            if(plugin.configFile.getBoolean("delaywitherdrop")){
+            if(type==TexturedSkullType.WITHER && plugin.configFile.getBoolean("delaywitherdrop")){
                 int delay = plugin.configFile.getInt("delaywitherdropms");
                 long ticks =  delay / MS_PER_TICK;
                 final Location location = event.getEntity().getLocation();

@@ -113,6 +113,7 @@ public interface PlayerHeadsAPI {
     /**
      * Gets a "boring" playerhead without an owner as if "dropboringplayerheads" was enabled.
      * This head is provided without manipulation by configuration settings except 'addlore'.
+     * @since 5.1.1-SNAPSHOT
      * @param num number of head items to get
      * @return the item stack requested
      */
@@ -122,6 +123,7 @@ public interface PlayerHeadsAPI {
     /**
      * Gets the playerhead for the user provided.
      * This head is provided subject to configuration settings like 'dropboringplayerheads' and 'addlore'
+     * @since 5.1.1-SNAPSHOT
      * @param username the username for the playerhead
      * @param num number of items to include of the head
      * @param forceOwner if true, ignore the state of 'dropboringplayerheads' and provide a head for the owner anyway
@@ -134,6 +136,7 @@ public interface PlayerHeadsAPI {
      * Gets the playerhead for the user provided.
      * This head is provided subject to configuration settings like 'dropboringplayerheads' and 'addlore'
      * Note: this is based on username lookup.
+     * @since 5.1.1-SNAPSHOT
      * @param player the player to retrieve a head for
      * @param num number of items to include of the head
      * @param forceOwner if true, ignore the state of 'dropboringplayerheads' and provide a head for the owner anyway
@@ -147,6 +150,7 @@ public interface PlayerHeadsAPI {
      * Gets an instance of a class that provides many useful crossversion PlayerHeads capabilities that would normally be version-specific.
      * For example: viewing and editing ownership information for skinned playerheads.
      * These may be more subject to change than other API methods, so you should avoid them except when necessary.
+     * @since 5.1.1-SNAPSHOT
      * @return the CompatibilityProvider instance or null if PlayerHeads plugin was not initialized yet.
      */
     @Nullable

@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
  * Event created by the PlayerHeads plugin when a block is broken by hand
  * (mined) and dropping a head. Note: does not occur when broken by water or
  * pistons.
- *
+ * @since 4.8.5-SNAPSHOT
  * @author crashdemons (crashenator at gmail.com)
  */
 public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropHeadEvent {
@@ -51,6 +51,7 @@ public class BlockDropHeadEvent extends BlockEvent implements Cancellable, DropH
     /**
      * Sets the item that will drop from the mined block.
      * 5.2+ API
+     * @since 5.2.0-SNAPSHOT
      * @param stack the stack to drop. If this is null, no item will be dropped, but the drop event will complete successfully as if one did. (cancel the event to stop the drop).
      */
     @Override

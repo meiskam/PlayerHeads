@@ -92,6 +92,7 @@ public interface HeadType {
     //------------------------------------------------------------------
     /**
      * Return the associated Enum value for the HeadType
+     * @since 5.0.0-SNAPSHOT
      * @return enum value
      */
     public Enum toEnum();

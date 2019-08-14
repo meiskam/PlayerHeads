@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
  * Event created by the PlayerHeads plugin when a Player is beheaded.
  *
  * Cancellable.
- *
+ * @since 3.11
  * @author meiskam
  */
 public class PlayerDropHeadEvent extends LivingEntityDropHeadEvent {

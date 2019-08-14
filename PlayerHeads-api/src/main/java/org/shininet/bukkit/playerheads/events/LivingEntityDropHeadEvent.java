@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * <i>Note:</i> Some of this documentation was inferred after the fact and may
  * be inaccurate.
- *
+ * @since 3.11
  * @author meiskam
  */
 public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellable, DropHeadEvent {
@@ -55,6 +55,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     /**
      * Sets the item to drop for the beheading.
      * 5.2+ API
+     * @since 5.2.0-SNAPSHOT
      * @param stack  The stack to drop. If this is null, no item will be dropped, but the drop event will complete successfully as if one did. (cancel the event to stop the drop).
      */
     @Override

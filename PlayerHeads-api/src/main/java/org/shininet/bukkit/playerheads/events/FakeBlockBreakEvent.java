@@ -17,7 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
  *
  * <i>Note:</i> This documentation was inferred after the fact and may be
  * inaccurate.
- *
+ * @since 3.11
  * @author meiskam
  * @deprecated you should use SimulatedBlockBreakEvent instead, this class may
  * be removed in the future

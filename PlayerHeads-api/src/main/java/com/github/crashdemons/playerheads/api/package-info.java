@@ -6,5 +6,6 @@
 
 /**
  * Package containing the PlayerHeads API specification
+ * @since 4.10.0-SNAPSHOT
  */
 package com.github.crashdemons.playerheads.api;

@@ -16,7 +16,7 @@ import org.bukkit.event.HandlerList;
  * factors considered by PlayerHeads available. If the success of this event is
  * set to false, no head will be dropped. If it is set to true, a head will be
  * dropped.
- *
+ * @since 4.9.2-SNAPSHOT
  * @author crashdemons (crashenator at gmail.com)
  */
 public class HeadRollEvent extends Event {
@@ -41,6 +41,7 @@ public class HeadRollEvent extends Event {
      * Creates the Head dropchance event for PlayerHeads.
      * 
      * 5.2+ API
+     * @since 5.2.0-SNAPSHOT
      *
      * @param killer the Entity beheading another
      * @param target the Entity being beheaded
@@ -80,6 +81,7 @@ public class HeadRollEvent extends Event {
     /**
      * Creates the Head dropchance event for PlayerHeads.
      *
+     * @since 5.1.0-SNAPSHOT
      * @param killer the Entity beheading another
      * @param target the Entity being beheaded
      * @param killerAlwaysBeheads whether the killer has the always-behead
@@ -157,11 +159,22 @@ public class HeadRollEvent extends Event {
      * droprate. Generally this is 1 (no effect) when the mob was not detected to be killed by a charged creeper.
      * 
      * 5.2+ API
+     * @since 5.2.0-SNAPSHOT
      *
      * @return the multiplier
      */
     public double getChargedCreeperModifier() {
         return chargedCreeperModifier;
+    }
+    
+    /**
+     * Gets the slime/magmacube size modifier (multiplier) that modified the effective
+     * droprate. Generally this is 1 (no effect) when not a slime.
+     * @since 5.1.0-SNAPSHOT
+     * @return the looting modifier
+     */
+    public double getSlimeModifier() {
+        return slimeModifier;
     }
     
     /**
@@ -174,16 +187,6 @@ public class HeadRollEvent extends Event {
      */
     public double getLootingModifier() {
         return lootingModifier;
-    }
-    
-    /**
-     * Gets the slime/magmacube size modifier (multiplier) that modified the effective
-     * droprate. Generally this is 1 (no effect) when not a slime.
-     *
-     * @return the looting modifier
-     */
-    public double getSlimeModifier() {
-        return slimeModifier;
     }
 
     /**

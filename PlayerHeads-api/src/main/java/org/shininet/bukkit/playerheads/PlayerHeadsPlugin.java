@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * Interface representing the PlayerHeads plugin class object
- *
+ * @since 4.10.0-SNAPSHOT
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface PlayerHeadsPlugin extends Plugin {

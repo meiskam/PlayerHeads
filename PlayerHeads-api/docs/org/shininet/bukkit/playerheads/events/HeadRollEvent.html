@@ -123,6 +123,8 @@ extends org.bukkit.event.Event</pre>
  set to false, no head will be dropped. If it is set to true, a head will be
  dropped.</div>
 <dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>4.9.2-SNAPSHOT</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
 </dl>
@@ -382,6 +384,8 @@ extends org.bukkit.event.Event</pre>
  fraction (0.01 = 1%), as modified by looting.</dd>
 <dd><code>dropSuccess</code> - whether the droproll was determined to be initially a
  successful roll.</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.2.0-SNAPSHOT</dd>
 </dl>
 </li>
 </ul>
@@ -424,6 +428,8 @@ public&nbsp;HeadRollEvent(org.bukkit.entity.Entity&nbsp;killer,
  fraction (0.01 = 1%), as modified by looting.</dd>
 <dd><code>dropSuccess</code> - whether the droproll was determined to be initially a
  successful roll.</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.1.0-SNAPSHOT</dd>
 </dl>
 </li>
 </ul>
@@ -489,6 +495,25 @@ public&nbsp;HeadRollEvent(org.bukkit.entity.Entity&nbsp;killer,
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the multiplier</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.2.0-SNAPSHOT</dd>
+</dl>
+</li>
+</ul>
+<a name="getSlimeModifier--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSlimeModifier</h4>
+<pre>public&nbsp;double&nbsp;getSlimeModifier()</pre>
+<div class="block">Gets the slime/magmacube size modifier (multiplier) that modified the effective
+ droprate. Generally this is 1 (no effect) when not a slime.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the looting modifier</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.1.0-SNAPSHOT</dd>
 </dl>
 </li>
 </ul>
@@ -503,21 +528,6 @@ public&nbsp;HeadRollEvent(org.bukkit.entity.Entity&nbsp;killer,
  droprate. Generally this is 1 (no effect) or greater.
  
  Note: lootingmodifier = (1 + Config_lootingrate * Entity_Looting_Enchantment_Level)</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the looting modifier</dd>
-</dl>
-</li>
-</ul>
-<a name="getSlimeModifier--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getSlimeModifier</h4>
-<pre>public&nbsp;double&nbsp;getSlimeModifier()</pre>
-<div class="block">Gets the slime/magmacube size modifier (multiplier) that modified the effective
- droprate. Generally this is 1 (no effect) when not a slime.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the looting modifier</dd>

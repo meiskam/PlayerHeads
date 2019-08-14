@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Interface for events that drop a plugin-supported head.
- *
+ * @since 4.10.0-SNAPSHOT
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface DropHeadEvent {
@@ -20,6 +20,7 @@ public interface DropHeadEvent {
     /**
      * Set the item dropped by the event.
      * 5.2+ API
+     * @since 5.2.0-SNAPSHOT
      * @param stack 
      */
     public void setDrop(@Nullable final ItemStack stack);

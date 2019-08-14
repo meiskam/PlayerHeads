@@ -61,6 +61,10 @@
                 <configuration>
                     <quiet>true</quiet>
                     <notimestamp>true</notimestamp>
+                    <links>
+                      <link>https://docs.oracle.com/javase/7/docs/api</link>
+                      <link>https://hub.spigotmc.org/javadocs/bukkit</link>
+                    </links>
                 </configuration>
                 <executions>
                     <execution>

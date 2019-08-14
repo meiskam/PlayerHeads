@@ -21,7 +21,7 @@ public interface DropHeadEvent {
      * Set the item dropped by the event.
      * 5.2+ API
      * @since 5.2.0-SNAPSHOT
-     * @param stack 
+     * @param stack the itemstack to set as the drop for this event
      */
     public void setDrop(@Nullable final ItemStack stack);
 }

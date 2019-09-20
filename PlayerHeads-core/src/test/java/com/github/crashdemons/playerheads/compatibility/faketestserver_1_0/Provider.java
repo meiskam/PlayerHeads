@@ -9,6 +9,7 @@ import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import com.github.crashdemons.playerheads.compatibility.common.Provider_common;
 import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -27,7 +28,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider implements CompatibilityProvider {
+public class Provider extends Provider_common implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "faketestserver"; }
     @Override public String getVersion(){ return "1.0"; }

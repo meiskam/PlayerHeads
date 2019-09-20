@@ -42,6 +42,10 @@
 
     <repositories>
         <repository>
+            <id>crashdemons-repo</id>
+            <url>https://meme.tips/java-repos/</url>
+        </repository>
+        <repository>
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
@@ -52,10 +56,6 @@
         <repository>
             <id>glowstone-repo</id>
             <url>https://repo.glowstone.net/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>crashdemons-repo</id>
-            <url>https://meme.tips/java-repos/</url>
         </repository>
     </repositories>
 

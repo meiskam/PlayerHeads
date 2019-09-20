@@ -42,6 +42,10 @@
 
     <repositories>
         <repository>
+            <id>crashdemons-repo</id>
+            <url>https://meme.tips/java-repos/</url>
+        </repository>
+        <repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
             <url>https://libraries.minecraft.net/</url>

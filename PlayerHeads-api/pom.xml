@@ -14,6 +14,10 @@
     </properties>
     <repositories>
         <repository>
+            <id>crashdemons-repo</id>
+            <url>https://meme.tips/java-repos/</url>
+        </repository>
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
@@ -57,12 +61,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.0</version>
                 <configuration>
                     <quiet>true</quiet>
                     <notimestamp>true</notimestamp>
                     <links>
-                      <link>https://docs.oracle.com/javase/7/docs/api</link>
                       <link>https://hub.spigotmc.org/javadocs/bukkit</link>
                     </links>
                 </configuration>

@@ -259,4 +259,24 @@ public class TexturedSkullTypeTest {
             assertNotNull(type);
         }        
     }
+    @Test
+    public void test_1_15_preparations() {
+        out.println("test 1.15 mob support preparations");
+        
+        String mobs[]={
+            "BEE",
+        };
+        for(String mob : mobs){
+            out.println("   testing for "+mob);
+            TexturedSkullType type;
+            try{
+                type = TexturedSkullType.valueOf(mob);
+            }catch(Exception e){
+                type = null;
+            }
+            out.println("      "+type);
+            assertNotNull(type);
+        }        
+    }
+
 }

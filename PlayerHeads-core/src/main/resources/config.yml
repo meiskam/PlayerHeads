@@ -233,3 +233,5 @@ foxdroprate: 0.002
 traderllamadroprate: 0.005
 wanderingtraderdroprate: 0.005
 
+#1.15 mobs - provisional, subject to change
+beedroprate: 0.002

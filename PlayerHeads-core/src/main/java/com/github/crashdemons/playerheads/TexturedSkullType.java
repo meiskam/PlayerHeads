@@ -33,8 +33,7 @@ public enum TexturedSkullType implements HeadType {
     ),
 
 
-    //Provisional 1.15 entry - subject to change
-    @Deprecated
+    //1.15 entr
     BEE(
             "e6016d4c-351c-49da-9da9-38da66a668f7",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTlhYzE2ZjI5NmI0NjFkMDVlYTA3ODVkNDc3MDMzZTUyNzM1OGI0ZjMwYzI2NmFhMDJmMDIwMTU3ZmZjYTczNiJ9fX0="

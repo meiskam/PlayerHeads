@@ -234,11 +234,7 @@ public final class Lang {
     public static String HEAD_DOLPHIN;
     public static String HEAD_SPAWN_DOLPHIN;
     
-    //provisional 1.15 entry - subject to change
-    @Deprecated
     public static String HEAD_BEE;
-    //provisional 1.15 entry - subject to change
-    @Deprecated
     public static String HEAD_SPAWN_BEE;
     
     public static String HEAD_FOX;

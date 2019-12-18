@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import com.github.crashdemons.playerheads.compatibility.plugins.HeadPluginCompatibility;
 import com.github.crashdemons.playerheads.compatibility.plugins.NoCheatPlusCompatibility;
 import com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility;
 import org.bukkit.block.Block;
@@ -34,6 +35,8 @@ public final class CompatiblePlugins {
      * com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility
      */
     public static ProtectionPluginCompatibility protection = null;
+    public static HeadPluginCompatibility heads = null;
+    
     private static boolean ready = false;
     private static Plugin parentPlugin = null;
 
@@ -48,6 +51,7 @@ public final class CompatiblePlugins {
         CompatiblePlugins.parentPlugin = parentPluginInstance;
         nocheatplus = new NoCheatPlusCompatibility(parentPluginInstance);
         protection = new ProtectionPluginCompatibility(parentPluginInstance);
+        heads = new HeadPluginCompatibility(parentPluginInstance);
         ready = true;
     }
 

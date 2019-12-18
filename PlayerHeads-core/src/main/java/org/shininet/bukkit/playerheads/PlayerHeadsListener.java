@@ -11,6 +11,7 @@ import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
 import com.github.crashdemons.playerheads.compatibility.plugins.SimulatedBlockBreakEvent;
+import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeadHandling;
 
 import java.util.List;
 import java.util.Random;
@@ -417,6 +418,7 @@ class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null) {
             BlockState state = block.getState();
+            if(CompatiblePlugins.heads.getExternalHeadHandling(state)==ExternalHeadHandling.NO_INTERACTION) return;
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
             if (skullType == null) {
                 return;
@@ -457,6 +459,7 @@ class PlayerHeadsListener implements Listener {
     public void onItemSpawnEvent(ItemSpawnEvent event) {
         ItemStack stack = event.getEntity().getItemStack();
         //Location location = event.getEntity().getLocation();
+        if(CompatiblePlugins.heads.getExternalHeadHandling(stack)==ExternalHeadHandling.NO_INTERACTION) return;
         boolean fixDroppedHeads = plugin.configFile.getBoolean("fixdroppedheads");
         if (!fixDroppedHeads) {
             return;
@@ -510,6 +513,7 @@ class PlayerHeadsListener implements Listener {
     //drop a head based on a block being broken in some fashion
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
     private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state) {
+        if(CompatiblePlugins.heads.getExternalHeadHandling(state)==ExternalHeadHandling.NO_INTERACTION) return BlockDropResult.FAILED_EVENT_CANCELLED;
         TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
         Location location = block.getLocation();
         ItemStack item = null;
@@ -554,6 +558,7 @@ class PlayerHeadsListener implements Listener {
         }
         Block block = event.getBlock();
         Player player = event.getPlayer();
+        if(CompatiblePlugins.heads.getExternalHeadHandling(block.getState())==ExternalHeadHandling.NO_INTERACTION) return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             BlockState state = block.getState();
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);

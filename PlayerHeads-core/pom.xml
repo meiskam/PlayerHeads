@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.1-fifteen-1</version>
+        <version>5.2.3-SNAPSHOT</version>
     </parent>
     
 
@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14.4-R0.1-SNAPSHOT</version>
+            <version>1.15.1-R0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>

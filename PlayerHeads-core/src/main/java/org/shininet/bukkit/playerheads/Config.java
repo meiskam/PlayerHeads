@@ -86,6 +86,10 @@ public final class Config {
             
             put("delaywitherdrop", configType.BOOLEAN);
             put("delaywitherdropms", configType.INT);
+            
+            
+            put("ignoredheadnames", configType.STRINGLIST);
+            put("ignoredheaduuids", configType.STRINGLIST);
         }
     };
     /**

@@ -7,7 +7,7 @@ package com.github.crashdemons.playerheads.compatibility.plugins;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeadHandling;
-import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeadType;
+import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeads;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -17,7 +17,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -26,21 +25,18 @@ import org.jetbrains.annotations.Nullable;
 public class HeadPluginCompatibility extends CompatiblePlugin {
     public HeadPluginCompatibility(Plugin parentPlugin){
         super(parentPlugin,"");
+        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", ExternalHeadHandling.NO_INTERACTION);
+        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", ExternalHeadHandling.NO_INTERACTION);
     }
     
-    @Nullable
-    public ExternalHeadType getExternalHead(String ownerName, UUID ownerID){
-        ExternalHeadType result = ExternalHeadType.get(ownerID);
-        if(result!=null) return result;
-        result = ExternalHeadType.get(ownerName);
-        return result;
-    }
+
     
     @NotNull
     public ExternalHeadHandling getExternalHeadHandling(String ownerName, UUID ownerID){
-       ExternalHeadType head = getExternalHead(ownerName,ownerID);
-       if(head==null) return ExternalHeadHandling.NORMAL;
-       return head.getHandling();
+       ExternalHeadHandling handling = ExternalHeads.getHandling(ownerName);
+       if(handling==null) handling=ExternalHeads.getHandling(ownerID);
+       if(handling==null) return ExternalHeadHandling.NORMAL;
+       return handling;
     }
     
     @NotNull

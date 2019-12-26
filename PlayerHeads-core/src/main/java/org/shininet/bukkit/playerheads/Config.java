@@ -147,7 +147,7 @@ public final class Config {
                 .replace('[', ',')
                 .replace(']', ',')
                 .split("[, ]");
-        return Arrays.asList(ids);
+        return new ArrayList<>(Arrays.asList(ids));
     }
     
     

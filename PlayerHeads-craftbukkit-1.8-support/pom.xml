@@ -170,9 +170,9 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <includes>
-                        <include>org.shininet.bukkit</include>
-                    </includes>
+                    <excludes>
+                        <exclude>org.shininet.bukkit</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

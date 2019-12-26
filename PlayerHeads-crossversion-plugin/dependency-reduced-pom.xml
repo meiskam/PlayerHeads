@@ -83,6 +83,9 @@
           </execution>
         </executions>
         <configuration>
+          <excludes>
+            <exclude>org.shininet.bukkit</exclude>
+          </excludes>
           <includes>
             <include>org.bukkit</include>
             <include>org.shininet.bukkit</include>

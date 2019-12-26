@@ -68,7 +68,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return true;
         } else if (args.length == 4) {
             String key = args[2].toLowerCase();
-            String value = args[3].toLowerCase();
+            String value = args[3];
             
             try{
                 Config.setValue(plugin.configFile, key, value);

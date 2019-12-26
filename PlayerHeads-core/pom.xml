@@ -207,6 +207,7 @@
                 <configuration>
                     <excludes>
                         <exclude>org.shininet.bukkit</exclude>
+                        <exclude>org.bukkit</exclude>
                     </excludes>
                     <includes>
                         <include>org.spigotmc</include>

@@ -36,13 +36,7 @@ public class HeadPluginCompatibility extends CompatiblePlugin {
        ExternalHeadHandling handling = ExternalHeads.getHandling(ownerName);
        if(handling==null) handling=ExternalHeads.getHandling(ownerID);
        if(handling==null) handling=ExternalHeadHandling.NORMAL;
-       
-       
-       if(ownerName==null) ownerName="(null)"; //TODO: DEBUG
-       String uuid = "(null)";
-       if(ownerID!=null) uuid=ownerID.toString();
-       parentPlugin.getLogger().info(" extHeadHandling: "+ownerName+", "+uuid+" -> "+handling.name());
-       
+
        return handling;
     }
     

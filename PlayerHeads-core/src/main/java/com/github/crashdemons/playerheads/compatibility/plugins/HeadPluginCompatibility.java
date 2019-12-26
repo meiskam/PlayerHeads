@@ -25,11 +25,14 @@ import org.jetbrains.annotations.NotNull;
 public class HeadPluginCompatibility extends CompatiblePlugin {
     public HeadPluginCompatibility(Plugin parentPlugin){
         super(parentPlugin,"");
-        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", ExternalHeadHandling.NO_INTERACTION);
-        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", ExternalHeadHandling.NO_INTERACTION);
     }
     
 
+    @Override
+    public void reloadConfig(){
+        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", ExternalHeadHandling.NO_INTERACTION);
+        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", ExternalHeadHandling.NO_INTERACTION);
+    }
     
     @NotNull
     public ExternalHeadHandling getExternalHeadHandling(String ownerName, UUID ownerID){

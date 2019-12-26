@@ -83,6 +83,10 @@ public abstract class CompatiblePlugin {
         return pluginName;
     }
 
+    public void reloadConfig(){
+        
+    }
+    
     /**
      * Get the plugin instance for the third-party plugin being supported.
      * This method only looks up the plugin name with Bukkit if it was initially

@@ -52,7 +52,14 @@ public final class CompatiblePlugins {
         nocheatplus = new NoCheatPlusCompatibility(parentPluginInstance);
         protection = new ProtectionPluginCompatibility(parentPluginInstance);
         heads = new HeadPluginCompatibility(parentPluginInstance);
+        reloadConfig();
         ready = true;
+    }
+    
+    public static void reloadConfig(){
+        nocheatplus.reloadConfig();
+        protection.reloadConfig();
+        heads.reloadConfig();
     }
 
     /**

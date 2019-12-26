@@ -153,6 +153,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     
     public void onConfigReloaded(){
         listener.reloadConfig();
+        CompatiblePlugins.reloadConfig();
     }
 
     private void initUpdater() {

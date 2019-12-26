@@ -5,6 +5,7 @@
 
 # netbeans
 /nbproject
+*.versionsBackup
 
 # maven
 /build.xml

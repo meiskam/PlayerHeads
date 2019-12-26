@@ -5,7 +5,7 @@
     <artifactId>PlayerHeads</artifactId>
     <packaging>pom</packaging>
     <version>5.2.4-SNAPSHOT</version>
-    <name>PlayerHeads</name>
+    <name>PlayerHeads-5.2</name>
     
     <!-- sub modules -->
     <modules>

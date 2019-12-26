@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
           <groupId>org.jetbrains</groupId>
-          <artifactId>annotations</artifactId>
+          <artifactId>annotations-java5</artifactId>
           <version>15.0</version>
         </dependency>
     </dependencies>

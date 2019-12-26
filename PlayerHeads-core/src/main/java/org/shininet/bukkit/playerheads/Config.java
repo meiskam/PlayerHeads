@@ -5,13 +5,18 @@
 package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.TexturedSkullType;
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.function.Predicate;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Defines the configuration for the plugin, keys, and datatypes.
@@ -28,10 +33,10 @@ public final class Config {
      * The data-types used for each particular configuration value
      */
     public enum configType {
-        DOUBLE, BOOLEAN, INT, LONG, STRING, STRINGLIST;
+        DOUBLE, BOOLEAN, INT, LONG, STRING, UNVALIDATED_STRINGLIST, UUID_STRINGLIST, MATERIAL_STRINGLIST;
         
         @Deprecated
-        public static configType LIST = configType.STRINGLIST;
+        public static configType LIST = configType.MATERIAL_STRINGLIST;
     }
 
     /**
@@ -63,7 +68,7 @@ public final class Config {
             
             
             put("requireitem", configType.BOOLEAN);
-            put("requireditems", configType.STRINGLIST);
+            put("requireditems", configType.MATERIAL_STRINGLIST);
             
             put("considermobkillers", configType.BOOLEAN);     
               
@@ -88,8 +93,8 @@ public final class Config {
             put("delaywitherdropms", configType.INT);
             
             
-            put("ignoredheadnames", configType.STRINGLIST);
-            put("ignoredheaduuids", configType.STRINGLIST);
+            put("ignoredheadnames", configType.UNVALIDATED_STRINGLIST);
+            put("ignoredheaduuids", configType.UUID_STRINGLIST);
         }
     };
     /**
@@ -137,6 +142,47 @@ public final class Config {
         if(value.equals("true") || value.equals("yes") || value.equals("1")) return true;
         return false;
     }
+    private static List<String> getListInputValue(String inputValue){
+        String[] ids = inputValue
+                .replace('[', ',')
+                .replace(']', ',')
+                .split("[, ]");
+        return Arrays.asList(ids);
+    }
+    
+    
+    private static final Predicate<String> validateUUIDString = new Predicate<String>() { //we only need this because of java 7 support
+        @Override
+        public boolean test(String id) {
+            UUID interpretedID;
+            try{
+                interpretedID=UUID.fromString(id);
+            }catch(IllegalArgumentException ex){
+                interpretedID=null;
+            }
+            if(interpretedID==null){
+               System.out.println("Invalid UUID: "+id);
+            }
+            return (interpretedID!=null);
+        }
+    };
+    private static final Predicate<String> validateMaterialString = new Predicate<String>() { //we only need this because of java 7 support
+        @Override
+        public boolean test(String matname) {
+            Material mat = RuntimeReferences.getMaterialByName(matname.toUpperCase());
+            if(mat!=null) {
+                return true;
+            }
+            else{
+                System.out.println("Unsupported material: "+matname);
+                return false;
+            }
+        }
+    };
+    
+    
+
+    
     
     static void setValue(FileConfiguration configFile, String inputKey, String inputValue) throws NumberFormatException{
         String key = inputKey.toLowerCase();
@@ -160,19 +206,19 @@ public final class Config {
                 case LONG:
                     configFile.set(key, Long.parseLong(inputValue));
                     break;
-                case STRINGLIST:
-                    String[] materials = inputValue
-                            .replace('[', ',')
-                            .replace(']', ',')
-                            .toLowerCase()
-                            .split("[, ]");
-                    List<String> configMats = new ArrayList<>();
-                    for(String matname : materials){
-                        Material mat = RuntimeReferences.getMaterialByName(matname.toUpperCase());
-                        if(mat!=null) configMats.add(mat.name().toLowerCase());
-                        else System.out.println("Unsupported material: "+matname);
-                    }
-                    configFile.set(key, configMats);
+                case UUID_STRINGLIST:
+                    List<String> ids = getListInputValue(inputValue);
+                    ids.removeIf(validateUUIDString.negate());
+                    configFile.set(key, ids);
+                    break;
+                case UNVALIDATED_STRINGLIST:
+                    List<String> elements = getListInputValue(inputValue);
+                    configFile.set(key, elements);
+                    break;
+                case MATERIAL_STRINGLIST:
+                    List<String> materials = getListInputValue(inputValue);
+                    materials.removeIf(validateMaterialString.negate());
+                    configFile.set(key, materials);
                     break;
                 default:
                     throw new IllegalStateException("The specified configuration key has an unsupported data type");

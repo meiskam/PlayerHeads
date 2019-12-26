@@ -22,6 +22,7 @@ public class ExternalHeads {
     private static final HashMap<UUID,ExternalHeadHandling> idToHandling = new HashMap<>();
     
     public static void loadNamesFromConfig(ConfigurationSection section, String key, ExternalHeadHandling handling){
+        nameToHandling.clear();
         List<String> names = section.getStringList(key);
         if(names==null) return;
         for(String name : names)
@@ -29,6 +30,7 @@ public class ExternalHeads {
     }
     
     public static void loadIdsFromConfig(ConfigurationSection section, String key, ExternalHeadHandling handling){
+        idToHandling.clear();
         List<String> ids = section.getStringList(key);
         if(ids==null) return;
         for(String id : ids){

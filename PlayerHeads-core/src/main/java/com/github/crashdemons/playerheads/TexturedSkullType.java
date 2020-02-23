@@ -31,7 +31,26 @@ public enum TexturedSkullType implements HeadType {
             "a1ae4481-f3f0-4af9-a83e-75d3a7f87853",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
-
+    
+    //1.16 entries
+    /**
+     * Piglin head
+     * @deprecated provisional 1.16 support entry - subject to change.
+     */
+    @Deprecated
+    PIGLIN(
+            "d5487658-3583-4a82-a5cc-3a4e120bf965",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWYxODEwN2QyNzVmMWNiM2E5Zjk3M2U1OTI4ZDU4NzlmYTQwMzI4ZmYzMjU4MDU0ZGI2ZGQzZTdjMGNhNjMzMCJ9fX0="
+    ),
+    /**
+     * Hoglin head
+     * @deprecated provisional 1.16 support entry - subject to change.
+     */
+    @Deprecated
+    HOGLIN(
+            "5b7ba90e-00c1-46c8-9d96-29172b656ebf",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWJiOWJjMGYwMWRiZDc2MmEwOGQ5ZTc3YzA4MDY5ZWQ3Yzk1MzY0YWEzMGNhMTA3MjIwODU2MWI3MzBlOGQ3NSJ9fX0="
+    ),
 
     //1.15 entr
     BEE(

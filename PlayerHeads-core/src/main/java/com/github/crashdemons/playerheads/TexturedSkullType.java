@@ -33,6 +33,18 @@ public enum TexturedSkullType implements HeadType {
     ),
     
     //1.16 entries
+    
+    /**
+     * Strider head
+     * @deprecated provisional 1.16 support entry - subject to change.
+     */
+    @Deprecated
+    STRIDER(
+            "d67320fb-f662-4850-89b4-b4410a66740e",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMThhOWFkZjc4MGVjN2RkNDYyNWM5YzA3NzkwNTJlNmExNWE0NTE4NjY2MjM1MTFlNGM4MmU5NjU1NzE0YjNjMSJ9fX0="
+    ),
+    
+    
     /**
      * Piglin head
      * @deprecated provisional 1.16 support entry - subject to change.

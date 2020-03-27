@@ -242,6 +242,7 @@ wanderingtraderdroprate: 0.005
 beedroprate: 0.002
 
 #provisional 1.16 mobs - names are subject to change
+striderdroprate: 0.002
 piglindroprate: 0.002
 hoglindroprate: 0.002
 

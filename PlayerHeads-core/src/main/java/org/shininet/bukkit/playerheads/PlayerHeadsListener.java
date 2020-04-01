@@ -498,16 +498,16 @@ class PlayerHeadsListener implements Listener {
     }
 
     private ItemStack createConvertedMobhead(TexturedSkullType skullType, boolean isSourceSkinnable, boolean addLore, int quantity) {
-        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
-        boolean convertvanillahead = plugin.configFile.getBoolean("convertvanillaheads");
+        boolean dropvanillaheads = plugin.configFile.getBoolean("dropvanillaheads");
+        boolean convertvanillaheads = plugin.configFile.getBoolean("convertvanillaheads");
 
         //if the head is a skinned playerhead and usevanillaskull is set, then breaking it would convert it to a vanilla head
         //if the head is a vanilla skull/head and usevanillaskull is unset, then breaking would convert it to a skinned head
-        boolean conversionCanHappen = canConversionHappen(usevanillaskull, isSourceSkinnable);
-        if (conversionCanHappen && !convertvanillahead) {
-            usevanillaskull = !usevanillaskull;//change the drop to the state that avoids converting it.
+        boolean conversionCanHappen = canConversionHappen(dropvanillaheads, isSourceSkinnable);
+        if (conversionCanHappen && !convertvanillaheads) {
+            dropvanillaheads = !dropvanillaheads;//change the drop to the state that avoids converting it.
         }
-        return SkullManager.MobSkull(skullType, quantity, usevanillaskull, addLore);
+        return SkullManager.MobSkull(skullType, quantity, dropvanillaheads, addLore);
     }
 
     //drop a head based on a block being broken in some fashion

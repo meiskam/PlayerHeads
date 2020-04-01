@@ -480,7 +480,7 @@ class PlayerHeadsListener implements Listener {
                 newstack = SkullManager.PlayerSkull(owner, stack.getAmount(), addLore);
                 break;
             default:
-                boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(stack);
+                boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(stack);//NOTE: verified this is true even on 1.8 - only playerhead type or datatype can be skinned.
                 newstack = createConvertedMobhead(skullType, blockIsSkinnable, addLore, stack.getAmount());
                 break;
         }

@@ -126,7 +126,7 @@ considermobkillers: false
 considertameowner: false
 
 #prevent PlayerHeads from interacting/modifying third-party heads with these names or UUIDs
-ignoredheadnames: [CSCoreLib]
+ignoredheadnames: [CSCoreLib,CsCoreLib,CS-CoreLib]
 ignoredheaduuids: []
 
 

@@ -514,7 +514,7 @@ class PlayerHeadsListener implements Listener {
     //drop a head based on a block being broken in some fashion
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
     private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state) {
-        if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_EVENT_CANCELLED;
+        if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_BLOCKED_HEAD;
         TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
         Location location = block.getLocation();
         ItemStack item = null;
@@ -575,7 +575,7 @@ class PlayerHeadsListener implements Listener {
                 } else {
                     event.setCancelled(true);
                     BlockDropResult result = blockDrop(event, block, state);
-                    if (result == BlockDropResult.FAILED_CUSTOM_HEAD) {
+                    if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD) {
                         event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
                     }
                 }

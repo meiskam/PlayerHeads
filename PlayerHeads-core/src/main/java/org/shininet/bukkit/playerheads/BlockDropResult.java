@@ -12,5 +12,6 @@ package org.shininet.bukkit.playerheads;
 enum BlockDropResult {
     FAILED_EVENT_CANCELLED,
     FAILED_CUSTOM_HEAD,
+    FAILED_BLOCKED_HEAD,
     SUCCESS
 }

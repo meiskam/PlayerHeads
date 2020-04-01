@@ -50,6 +50,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.projectiles.ProjectileSource;
+import org.jetbrains.annotations.Nullable;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
 
@@ -481,9 +482,13 @@ class PlayerHeadsListener implements Listener {
                 break;
             default:
                 boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(stack);//NOTE: verified this is true even on 1.8 - only playerhead type or datatype can be skinned.
-                newstack = createConvertedMobhead(skullType, blockIsSkinnable, addLore, stack.getAmount());
+                newstack = createConvertedMobhead(skullType, blockIsSkinnable, addLore, stack.getAmount(), true);    
                 break;
         }
+        
+        String itemResult = newstack==null?"FAILED_DEFERRED_TO_VANILLA":"SUCCESS";
+        this.plugin.getLogger().info("ItemSpawnFixResult: "+itemResult);
+                
         if (newstack == null) {
             return;
         }
@@ -497,7 +502,8 @@ class PlayerHeadsListener implements Listener {
         return (isSourceSkinnable && dropVanillaHeads) || (!isSourceSkinnable && !dropVanillaHeads);
     }
 
-    private ItemStack createConvertedMobhead(TexturedSkullType skullType, boolean isSourceSkinnable, boolean addLore, int quantity) {
+    @Nullable
+    private ItemStack createConvertedMobhead(TexturedSkullType skullType, boolean isSourceSkinnable, boolean addLore, int quantity, boolean avoidVanillaReplacement) {
         boolean dropvanillaheads = plugin.configFile.getBoolean("dropvanillaheads");
         boolean convertvanillaheads = plugin.configFile.getBoolean("convertvanillaheads");
 
@@ -507,7 +513,7 @@ class PlayerHeadsListener implements Listener {
         if (conversionCanHappen && !convertvanillaheads) {
             dropvanillaheads = !dropvanillaheads;//change the drop to the state that avoids converting it.
         }
-        if(!isSourceSkinnable && dropvanillaheads) return null;//if the head is not skinnable (and so, vanilla) and we want the vanilla head - do not drop a replacement.
+        if(avoidVanillaReplacement && (!isSourceSkinnable && dropvanillaheads)) return null;//if the head is not skinnable (and so, vanilla) and we want the vanilla head - do not drop a replacement.
         return SkullManager.MobSkull(skullType, quantity, dropvanillaheads, addLore);
     }
 
@@ -530,7 +536,8 @@ class PlayerHeadsListener implements Listener {
                 break;
             default:
                 boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(block.getState());
-                item = createConvertedMobhead(skullType, blockIsSkinnable, addLore, Config.defaultStackSize);
+                item = createConvertedMobhead(skullType, blockIsSkinnable, addLore, Config.defaultStackSize, true);
+                if(item == null) return BlockDropResult.FAILED_DEFERRED_TO_VANILLA;
                 break;
         }
         block.setType(Material.AIR);
@@ -572,10 +579,12 @@ class PlayerHeadsListener implements Listener {
 
                 if (!canBreak) {
                     event.setCancelled(true);
+                    return;
                 } else {
                     event.setCancelled(true);
                     BlockDropResult result = blockDrop(event, block, state);
-                    if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD) {
+                    this.plugin.getLogger().info("BlockDropResult: "+result.toString());//TODO: DEBUG
+                    if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD || result == BlockDropResult.FAILED_DEFERRED_TO_VANILLA) {
                         event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
                     }
                 }

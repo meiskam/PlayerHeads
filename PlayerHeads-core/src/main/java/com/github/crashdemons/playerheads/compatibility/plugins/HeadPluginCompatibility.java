@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.plugins;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
-import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeadHandling;
+import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeads;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
@@ -30,22 +30,22 @@ public class HeadPluginCompatibility extends CompatiblePlugin {
 
     @Override
     public void reloadConfig(){
-        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", ExternalHeadHandling.NO_INTERACTION);
-        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", ExternalHeadHandling.NO_INTERACTION);
+        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", HeadModificationHandling.NO_INTERACTION);
+        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", HeadModificationHandling.NO_INTERACTION);
     }
     
     @NotNull
-    public ExternalHeadHandling getExternalHeadHandling(String ownerName, UUID ownerID){
-       ExternalHeadHandling handling = ExternalHeads.getHandling(ownerName);
+    public HeadModificationHandling getExternalHeadHandling(String ownerName, UUID ownerID){
+       HeadModificationHandling handling = ExternalHeads.getHandling(ownerName);
        if(handling==null) handling=ExternalHeads.getHandling(ownerID);
-       if(handling==null) handling=ExternalHeadHandling.NORMAL;
+       if(handling==null) handling=HeadModificationHandling.NORMAL;
 
        return handling;
     }
     
     @NotNull
-    public ExternalHeadHandling getExternalHeadHandling(BlockState state){
-       if(!(state instanceof Skull)) return ExternalHeadHandling.NORMAL;
+    public HeadModificationHandling getExternalHeadHandling(BlockState state){
+       if(!(state instanceof Skull)) return HeadModificationHandling.NORMAL;
        String ownerName = Compatibility.getProvider().getOwnerDirect((Skull) state);
        OfflinePlayer owner = Compatibility.getProvider().getOwningPlayerDirect((Skull) state);
        UUID ownerID = null;
@@ -54,10 +54,10 @@ public class HeadPluginCompatibility extends CompatiblePlugin {
     }
     
     @NotNull
-    public ExternalHeadHandling getExternalHeadHandling(ItemStack stack){
-       if(!stack.hasItemMeta()) return ExternalHeadHandling.NORMAL;
+    public HeadModificationHandling getExternalHeadHandling(ItemStack stack){
+       if(!stack.hasItemMeta()) return HeadModificationHandling.NORMAL;
        ItemMeta meta = stack.getItemMeta();
-       if(!(meta instanceof SkullMeta)) return ExternalHeadHandling.NORMAL;
+       if(!(meta instanceof SkullMeta)) return HeadModificationHandling.NORMAL;
        String ownerName = Compatibility.getProvider().getOwnerDirect((SkullMeta) meta);
        OfflinePlayer owner = Compatibility.getProvider().getOwningPlayerDirect((SkullMeta) meta);
        UUID ownerID = null;

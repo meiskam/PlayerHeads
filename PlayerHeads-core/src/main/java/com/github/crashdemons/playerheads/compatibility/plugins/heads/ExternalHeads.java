@@ -18,10 +18,10 @@ import org.jetbrains.annotations.Nullable;
 public class ExternalHeads {
     private ExternalHeads(){}
     
-    private static final HashMap<String,ExternalHeadHandling> nameToHandling = new HashMap<>();
-    private static final HashMap<UUID,ExternalHeadHandling> idToHandling = new HashMap<>();
+    private static final HashMap<String,HeadModificationHandling> nameToHandling = new HashMap<>();
+    private static final HashMap<UUID,HeadModificationHandling> idToHandling = new HashMap<>();
     
-    public static void loadNamesFromConfig(ConfigurationSection section, String key, ExternalHeadHandling handling){
+    public static void loadNamesFromConfig(ConfigurationSection section, String key, HeadModificationHandling handling){
         nameToHandling.clear();
         List<String> names = section.getStringList(key);
         if(names==null) return;
@@ -29,7 +29,7 @@ public class ExternalHeads {
             nameToHandling.put(name,handling);
     }
     
-    public static void loadIdsFromConfig(ConfigurationSection section, String key, ExternalHeadHandling handling){
+    public static void loadIdsFromConfig(ConfigurationSection section, String key, HeadModificationHandling handling){
         idToHandling.clear();
         List<String> ids = section.getStringList(key);
         if(ids==null) return;
@@ -45,13 +45,13 @@ public class ExternalHeads {
     }
     
     @Nullable
-    public static ExternalHeadHandling getHandling(String username){
+    public static HeadModificationHandling getHandling(String username){
         if(username==null) return null;
         return nameToHandling.get(username);
     }
     
     @Nullable
-    public static ExternalHeadHandling getHandling(UUID id){
+    public static HeadModificationHandling getHandling(UUID id){
         if(id==null) return null;
         return idToHandling.get(id);
     }

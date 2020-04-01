@@ -559,7 +559,7 @@ class PlayerHeadsListener implements Listener {
      *
      * @param event the event received
      */
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled=true)
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled=true)
     public void onBlockBreak(BlockBreakEvent event) {
         if (event instanceof SimulatedBlockBreakEvent) {
             return;
@@ -573,7 +573,8 @@ class PlayerHeadsListener implements Listener {
             if (skullType != null) {
 
                 boolean canBreak = true;
-                if (CompatiblePlugins.isReady()) {
+                boolean pretestblockbreak = plugin.getConfig().getBoolean("pretestblockbreak");
+                if (pretestblockbreak && CompatiblePlugins.isReady()) {
                     canBreak = CompatiblePlugins.testBlockBreak(block, player);
                 }
 

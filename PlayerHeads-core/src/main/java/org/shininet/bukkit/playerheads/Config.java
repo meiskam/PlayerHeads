@@ -95,6 +95,8 @@ public final class Config {
             
             put("ignoredheadnames", configType.UNVALIDATED_STRINGLIST);
             put("ignoredheaduuids", configType.UUID_STRINGLIST);
+            
+           put("pretestblockbreak", configType.BOOLEAN);
         }
     };
     /**

@@ -507,6 +507,7 @@ class PlayerHeadsListener implements Listener {
         if (conversionCanHappen && !convertvanillaheads) {
             dropvanillaheads = !dropvanillaheads;//change the drop to the state that avoids converting it.
         }
+        if(!isSourceSkinnable && dropvanillaheads) return null;//if the head is not skinnable (and so, vanilla) and we want the vanilla head - do not drop a replacement.
         return SkullManager.MobSkull(skullType, quantity, dropvanillaheads, addLore);
     }
 

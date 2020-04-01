@@ -152,7 +152,7 @@ class PlayerHeadsListener implements Listener {
      *
      * @param event the event received
      */
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled=true)
     public void onEntityDeath(EntityDeathEvent event) {
         LivingEntity victim = event.getEntity();
         LivingEntity killer = getKillerEntity(event);
@@ -551,7 +551,7 @@ class PlayerHeadsListener implements Listener {
      *
      * @param event the event received
      */
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled=true)
     public void onBlockBreak(BlockBreakEvent event) {
         if (event instanceof SimulatedBlockBreakEvent) {
             return;
@@ -590,7 +590,7 @@ class PlayerHeadsListener implements Listener {
      *
      * @param event the event received
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled=true)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("playerheads.update") && plugin.getUpdateReady()) {

@@ -33,7 +33,15 @@ public enum TexturedSkullType implements HeadType {
     ),
     
     //1.16 entries
-    
+    /**
+     * Zoglin head
+     * @deprecated provisional 1.16 support entry - subject to change.
+     */
+    @Deprecated
+    ZOGLIN(
+            "975fca56-a595-4d33-9253-2f1f3fcaaba5",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTY3ZTE4NjAyZTAzMDM1YWQ2ODk2N2NlMDkwMjM1ZDg5OTY2NjNmYjllYTQ3NTc4ZDNhN2ViYmM0MmE1Y2NmOSJ9fX0="
+    ),
     /**
      * Strider head
      * @deprecated provisional 1.16 support entry - subject to change.
@@ -43,8 +51,6 @@ public enum TexturedSkullType implements HeadType {
             "d67320fb-f662-4850-89b4-b4410a66740e",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMThhOWFkZjc4MGVjN2RkNDYyNWM5YzA3NzkwNTJlNmExNWE0NTE4NjY2MjM1MTFlNGM4MmU5NjU1NzE0YjNjMSJ9fX0="
     ),
-    
-    
     /**
      * Piglin head
      * @deprecated provisional 1.16 support entry - subject to change.

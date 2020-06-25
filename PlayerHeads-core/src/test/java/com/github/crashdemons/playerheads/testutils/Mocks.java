@@ -32,7 +32,7 @@ abstract public class Mocks {
     public static void setupFakeServerVersion(){
         try{
             PowerMockito.mockStatic(Bukkit.class);
-            when(Bukkit.getVersion()).thenReturn("git-SomeWackyServerFork-4454-4ad3bc (MC: 1.13.1 Pre-Release 5)");
+            when(Bukkit.getVersion()).thenReturn("git-SomeWackyServerFork-4454-4ad3bc (MC: 1.16.2 Pre-Release 5)");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ abstract public class Mocks {
     public static void setupFakeServerSupport(){
         try{
             PowerMockito.mockStatic(Bukkit.class);
-            when(Bukkit.getVersion()).thenReturn("git-SomeWackyServerFork-4454-4ad3bc (MC: 1.13.1 Pre-Release 5)");
+            when(Bukkit.getVersion()).thenReturn("git-SomeWackyServerFork-4454-4ad3bc (MC: 1.16.2 Pre-Release 5)");
             if(!Compatibility.isProviderAvailable()) Compatibility.init();
         }catch(Exception e){
             e.printStackTrace();

@@ -48,7 +48,7 @@ public class VersionTest {
     public void testCheckAtLeast_over() {
         out.println("checkAtLeast");
         int major = 1;
-        int minor = 14;
+        int minor = 17;
         boolean expResult = false;
         boolean result = Version.checkAtLeast(major, minor);
         assertEquals(expResult, result);
@@ -127,7 +127,7 @@ public class VersionTest {
         out.println("checkUnder");
         Version.init();
         int major = 1;
-        int minor = 14;
+        int minor = 17;
         boolean expResult = true;
         boolean result = Version.checkUnder(major, minor);
         assertEquals(expResult, result);
@@ -166,7 +166,7 @@ public class VersionTest {
     public void testCheckEquals_equal() {
         out.println("checkEquals");
         Version.init();
-        assertEquals(true,Version.checkEquals(1, 13));
+        assertEquals(true,Version.checkEquals(1, 16));
     }
     
     @Test
@@ -197,7 +197,7 @@ public class VersionTest {
     public void testGetString() {
         out.println("getString");
         Version.init();
-        String expResult = "1.13";
+        String expResult = "1.16";
         String result = Version.getString();
         assertEquals(expResult, result);
     }

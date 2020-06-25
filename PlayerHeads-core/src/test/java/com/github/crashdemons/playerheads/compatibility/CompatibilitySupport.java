@@ -13,6 +13,7 @@ public class CompatibilitySupport {
     static{
         VERSIONS=new HashMap<>();
         VERSIONS.put("faketestserver", new Integer[][]{//to enable testing
+            {1,16},
             {1,13},
             {1,0}
         });

@@ -77,7 +77,7 @@ public class CompatibilityTest {
     @PrepareForTest({Compatibility.class,Bukkit.class})
     public void testGetRecommendedProviderVersion() {
         out.println("getRecommendedProviderVersion");
-        String expResult = "1.13";
+        String expResult = "1.16";
         Compatibility.init();
         String result = Compatibility.getRecommendedProviderVersion();
         assertEquals(expResult, result);

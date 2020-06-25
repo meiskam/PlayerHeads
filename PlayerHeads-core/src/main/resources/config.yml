@@ -54,7 +54,7 @@
 # irongolemdroprate: 0.005      [0.0 -> 1.0]    Chance that a mob trophy will drop when an iron golem dies
 # mushroomcowdroprate: 0.002    [0.0 -> 1.0]    Chance that a mob trophy will drop when a mushroom cow dies
 # batdroprate: 0.005            [0.0 -> 1.0]    Chance that a mob trophy will drop when a bat dies
-# pigzombiedroprate: 0.002      [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig zombie dies
+# zombifiedpiglindroprate: 0.002[0.0 -> 1.0]    Chance that a mob trophy will drop when a pig zombie dies
 # snowmandroprate: 0.002        [0.0 -> 1.0]    Chance that a mob trophy will drop when a snowman dies
 # ghastdroprate: 0.005          [0.0 -> 1.0]    Chance that a mob trophy will drop when a ghast dies
 # pigdroprate: 0.002            [0.0 -> 1.0]    Chance that a mob trophy will drop when a pig dies
@@ -185,7 +185,7 @@ slimedroprate: 0.001
 irongolemdroprate: 0.005
 mushroomcowdroprate: 0.002
 batdroprate: 0.005
-pigzombiedroprate: 0.002
+zombifiedpiglindroprate: 0.002
 snowmandroprate: 0.002
 ghastdroprate: 0.005
 pigdroprate: 0.002

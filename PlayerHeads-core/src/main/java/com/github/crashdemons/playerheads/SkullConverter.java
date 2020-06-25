@@ -155,11 +155,7 @@ public final class SkullConverter {
      */
     public static EntityType entityTypeFromSkullType(TexturedSkullType skullType){ //TODO: use new compatibility method instead
         String skullName = skullType.name().toUpperCase();
-        try{
-            return EntityType.valueOf(skullName);
-        }catch(IllegalArgumentException e){
-            return null;
-        }
+        return Compatibility.getProvider().getEntityTypeFromTypename(skullName);
     }
 
 

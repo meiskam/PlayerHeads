@@ -33,38 +33,18 @@ public enum TexturedSkullType implements HeadType {
     ),
     
     //1.16 entries
-    /**
-     * Zoglin head
-     * @deprecated provisional 1.16 support entry - subject to change.
-     */
-    @Deprecated
     ZOGLIN(
             "975fca56-a595-4d33-9253-2f1f3fcaaba5",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTY3ZTE4NjAyZTAzMDM1YWQ2ODk2N2NlMDkwMjM1ZDg5OTY2NjNmYjllYTQ3NTc4ZDNhN2ViYmM0MmE1Y2NmOSJ9fX0="
     ),
-    /**
-     * Strider head
-     * @deprecated provisional 1.16 support entry - subject to change.
-     */
-    @Deprecated
     STRIDER(
             "d67320fb-f662-4850-89b4-b4410a66740e",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMThhOWFkZjc4MGVjN2RkNDYyNWM5YzA3NzkwNTJlNmExNWE0NTE4NjY2MjM1MTFlNGM4MmU5NjU1NzE0YjNjMSJ9fX0="
     ),
-    /**
-     * Piglin head
-     * @deprecated provisional 1.16 support entry - subject to change.
-     */
-    @Deprecated
     PIGLIN(
             "d5487658-3583-4a82-a5cc-3a4e120bf965",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWYxODEwN2QyNzVmMWNiM2E5Zjk3M2U1OTI4ZDU4NzlmYTQwMzI4ZmYzMjU4MDU0ZGI2ZGQzZTdjMGNhNjMzMCJ9fX0="
     ),
-    /**
-     * Hoglin head
-     * @deprecated provisional 1.16 support entry - subject to change.
-     */
-    @Deprecated
     HOGLIN(
             "5b7ba90e-00c1-46c8-9d96-29172b656ebf",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWJiOWJjMGYwMWRiZDc2MmEwOGQ5ZTc3YzA4MDY5ZWQ3Yzk1MzY0YWEzMGNhMTA3MjIwODU2MWI3MzBlOGQ3NSJ9fX0="
@@ -189,7 +169,7 @@ public enum TexturedSkullType implements HeadType {
             "7af3876e-0427-45c5-97ae-7119688cdecf",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI2YTcyMTM4ZDY5ZmJiZDJmZWEzZmEyNTFjYWJkODcxNTJlNGYxYzk3ZTVmOTg2YmY2ODU1NzFkYjNjYzAifX19"
     ),
-    PIG_ZOMBIE( //TODO: promote to zombified piglin
+    ZOMBIFIED_PIGLIN(
             "24d853db-b5b6-4b46-8cd7-4210c38d246d",
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzRlOWM2ZTk4NTgyZmZkOGZmOGZlYjMzMjJjZDE4NDljNDNmYjE2YjE1OGFiYjExY2E3YjQyZWRhNzc0M2ViIn19fQ=="
     ),

@@ -584,7 +584,6 @@ class PlayerHeadsListener implements Listener {
                 } else {
                     event.setCancelled(true);
                     BlockDropResult result = blockDrop(event, block, state);
-                    //this.plugin.getLogger().info("BlockDropResult: "+result.toString());//TODO: DEBUG
                     if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD || result == BlockDropResult.FAILED_DEFERRED_TO_VANILLA) {
                         event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
                     }

@@ -142,7 +142,6 @@ abstract public class Provider_legacy extends Provider_common implements Compati
     
     @Override
     public EntityType getEntityTypeFromTypename(String typename){
-        System.out.println("Provider_legacy getEntityTypeFromTypename("+typename+")");//TODO: CI DEBUG
         if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
         return super.getEntityTypeFromTypename(typename);
     }

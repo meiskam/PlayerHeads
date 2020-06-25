@@ -96,7 +96,6 @@ public abstract class Provider_common implements CompatibilityProvider {
     //default implementation without version-specific name checking
     @Override
     public EntityType getEntityTypeFromTypename(String typename){
-        System.out.println("Provider_common getEntityTypeFromTypename("+typename+")");//TODO: CI DEBUG
         try{
             return EntityType.valueOf(typename.toUpperCase());
         }catch(Exception e){

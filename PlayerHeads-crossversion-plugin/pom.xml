@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.8-SNAPSHOT</version>
+        <version>5.2.9-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -136,6 +136,13 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-1.16-support</artifactId>
+            <version>5.2.9-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-glowstone-1.12-support</artifactId>
             <version>5.1.1-SNAPSHOT</version>
             <exclusions>
@@ -182,10 +189,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>test</scope>
+            <!-- per md_5: spigot will no longer distribute Bukkit as of 1.16.1, only spigot-api -->
         </dependency>
     </dependencies>
 
@@ -294,6 +302,7 @@
                                     <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.16-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>

@@ -56,7 +56,7 @@ public class Provider extends Provider_legacy implements CompatibilityProvider {
         if(s.getType()!=Material.SKULL_ITEM) return null;
         short dmg = s.getDurability();
         try{
-            return SkullType.values()[dmg];//TODO: needs testing !
+            return SkullType.values()[dmg];
         }catch(Exception e){
             return null;
         }

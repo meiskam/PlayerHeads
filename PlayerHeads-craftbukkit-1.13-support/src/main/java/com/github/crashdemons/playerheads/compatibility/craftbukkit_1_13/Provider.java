@@ -114,6 +114,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     
     @Override
     public EntityType getEntityTypeFromTypename(String typename){
+        System.out.println("Provider_113 getEntityTypeFromTypename("+typename+")");//TODO: CI DEBUG
         if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
         return super.getEntityTypeFromTypename(typename);
     }

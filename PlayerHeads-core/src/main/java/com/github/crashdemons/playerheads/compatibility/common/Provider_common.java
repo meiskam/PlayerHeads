@@ -14,6 +14,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Tameable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -79,7 +80,8 @@ public abstract class Provider_common implements CompatibilityProvider {
     }
 
     @Override
-    public String getCompatibleNameFromEntity(Entity e) {//TODO: promote legacy PIG_ZOMBIE detections to ZOMBIFIED_PIGLIN
+    public String getCompatibleNameFromEntity(Entity e) {
+        if(isZombiePigman(e)) return "ZOMBIFIED_PIGLIN";
         if (isLegacyCat(e)) {
             return "CAT";
         }
@@ -109,6 +111,9 @@ public abstract class Provider_common implements CompatibilityProvider {
         return typename!=null && (typename.equals(ETYPE_ZOMBIE_PIGMAN_PRE116) || typename.equals(ETYPE_ZOMBIE_PIGMAN_POST116));
     }
     
+    protected boolean isZombiePigman(Entity e){
+        return (e instanceof PigZombie);
+    }
 
     protected boolean isLegacyCat(Entity e) {
         if (e instanceof Ocelot && e instanceof Tameable) {

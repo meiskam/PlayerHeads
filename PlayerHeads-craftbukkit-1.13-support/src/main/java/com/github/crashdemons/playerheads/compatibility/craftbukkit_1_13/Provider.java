@@ -18,6 +18,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
@@ -108,5 +109,12 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         typeName=typeName.replaceFirst("_WALL", "").replaceFirst("_HEAD", "").replaceFirst("_SKULL", "");
         return RuntimeReferences.getSkullTypeByName(typeName);
     }
+    
+    @Override
+    public EntityType getEntityTypeFromTypename(String typename){
+        if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
+        return super.getEntityTypeFromTypename(typename);
+    }
+    
    
 }

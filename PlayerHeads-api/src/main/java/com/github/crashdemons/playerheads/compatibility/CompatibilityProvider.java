@@ -11,6 +11,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -229,6 +230,13 @@ public interface CompatibilityProvider {
      * @see org.bukkit.entity.EntityType
      */
     public String getCompatibleNameFromEntity(Entity e); //determine forward-portable name of entity even if they are variants.
+    /**
+     * Gets an entity type from the Typename of an entity.
+     * This exists because EntityType names can change between Spigot-API versions.
+     * @param ename the entity-type name requested.
+     * @return the corresponding entity-type, or null if it doesn't exist.
+     */
+    public EntityType getEntityTypeFromTypename(String ename); //determine forward-portable name of entity even if they are variants.
     /**
      * Set a profile field in the supplied item meta using a UUID and Texture string
      * @param headMeta the item meta to apply the profile on

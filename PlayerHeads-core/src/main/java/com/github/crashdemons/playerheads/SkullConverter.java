@@ -153,7 +153,7 @@ public final class SkullConverter {
      * @param skullType The TexturedSkullType to find the associated entity-type for.
      * @return The EntityType associated with the skulltype if one is found. Otherwise, in case of breaking API changes, returns null.
      */
-    public static EntityType entityTypeFromSkullType(TexturedSkullType skullType){
+    public static EntityType entityTypeFromSkullType(TexturedSkullType skullType){ //TODO: use new compatibility method instead
         String skullName = skullType.name().toUpperCase();
         try{
             return EntityType.valueOf(skullName);

@@ -17,6 +17,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -137,5 +138,11 @@ abstract public class Provider_legacy extends Provider_common implements Compati
         }catch(Exception e){
             return null;
         }
+    }
+    
+    @Override
+    public EntityType getEntityTypeFromTypename(String typename){
+        if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
+        return super.getEntityTypeFromTypename(typename);
     }
 }

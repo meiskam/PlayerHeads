@@ -12,6 +12,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Tameable;
 import org.bukkit.inventory.ItemStack;
@@ -78,7 +79,7 @@ public abstract class Provider_common implements CompatibilityProvider {
     }
 
     @Override
-    public String getCompatibleNameFromEntity(Entity e) {
+    public String getCompatibleNameFromEntity(Entity e) {//TODO: promote legacy PIG_ZOMBIE detections to ZOMBIFIED_PIGLIN
         if (isLegacyCat(e)) {
             return "CAT";
         }
@@ -89,6 +90,25 @@ public abstract class Provider_common implements CompatibilityProvider {
     public OfflinePlayer getOfflinePlayerByName(String username) {
         return Bukkit.getOfflinePlayer(username);
     }
+    
+    //default implementation without version-specific name checking
+    @Override
+    public EntityType getEntityTypeFromTypename(String typename){
+        try{
+            return EntityType.valueOf(typename.toUpperCase());
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    private static final String ETYPE_ZOMBIE_PIGMAN_PRE116 = "PIG_ZOMBIE";
+    private static final String ETYPE_ZOMBIE_PIGMAN_POST116 = "ZOMBIFIED_PIGLIN";
+    
+    protected boolean isZombiePigmanTypename(String typename){
+        typename=typename.toUpperCase();
+        return typename!=null && (typename.equals(ETYPE_ZOMBIE_PIGMAN_PRE116) || typename.equals(ETYPE_ZOMBIE_PIGMAN_POST116));
+    }
+    
 
     protected boolean isLegacyCat(Entity e) {
         if (e instanceof Ocelot && e instanceof Tameable) {

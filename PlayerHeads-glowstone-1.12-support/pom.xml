@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.1.1-SNAPSHOT</version>
+        <version>5.2.9-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -65,7 +65,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-core</artifactId>
-            <version>5.1.1-SNAPSHOT</version>
+            <version>5.2.9-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -94,6 +94,10 @@
                 <exclusion>
                     <groupId>org.bukkit</groupId>
                     <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -199,6 +203,8 @@
                         <exclude>org.shininet.bukkit</exclude>
                         <exclude>net.glowstone</exclude>
                         <exclude>com.destroystokyo.paper</exclude>
+                        <exclude>org.bukkit</exclude>
+                        <exclude>org.spigotmc</exclude>
                     </excludes>
                 </configuration>
                 <executions>

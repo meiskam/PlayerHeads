@@ -10,6 +10,7 @@ import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import com.github.crashdemons.playerheads.compatibility.Version;
 import com.github.crashdemons.playerheads.compatibility.common.Provider_common;
 import java.util.UUID;
 import org.bukkit.GameRule;
@@ -18,6 +19,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -114,6 +116,12 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     public EntityType getEntityTypeFromTypename(String typename){
         if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
         return super.getEntityTypeFromTypename(typename);
+    }
+    
+    @Override
+    protected boolean isLegacyCat(Entity e){//remove the necessity for this check in 1.14
+        if(Version.checkAtLeast(1, 14)) return false;
+        return super.isLegacyCat(e);
     }
     
    

@@ -250,4 +250,6 @@ piglindroprate: 0.002
 hoglindroprate: 0.002
 zoglindroprate: 0.002
 
+#provisional 1.16.2 mobs
+piglinbrutedroprate: 0.002
 

@@ -32,6 +32,19 @@ public enum TexturedSkullType implements HeadType {
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
     
+    //1.16.2 entries
+    /**
+     * Provisional piiglin-brute head.
+     * Naming may change with bukkit releases.
+     * @deprecated name and texture are subject to change with future versions
+     */
+    @Deprecated
+    PIGLIN_BRUTE(
+            "11eece7d-c455-499b-afa0-7b2972ac149d",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmFmMGEwYTc0M2U2YmM2MzA5MmFjYmZjZDhjOTNiMTdhNDlhYzhiMmY4Njc4NTg4ZDBmMWE1MWU3NTA3NmEzNCJ9fX0="
+    ),
+    
+    
     //1.16 entries
     ZOGLIN(
             "975fca56-a595-4d33-9253-2f1f3fcaaba5",

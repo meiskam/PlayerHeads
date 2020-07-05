@@ -19,10 +19,8 @@ import org.bukkit.event.block.BlockBreakEvent;
  * inaccurate.
  * @since 3.11
  * @author meiskam
- * @deprecated you should use SimulatedBlockBreakEvent instead, this class may
+ * @deprecated you should use SimulatedBlockBreakEvent in the Compatibility API instead, this class may
  * be removed in the future
- * @see
- * com.github.crashdemons.playerheads.compatibility.plugins.SimulatedBlockBreakEvent
  */
 @Deprecated
 public class FakeBlockBreakEvent extends BlockBreakEvent {

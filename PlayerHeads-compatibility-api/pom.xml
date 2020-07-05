@@ -90,7 +90,7 @@
                     </goals>
                   </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -101,16 +101,23 @@
                     <links>
                       <link>https://hub.spigotmc.org/javadocs/bukkit</link>
                     </links>
+                    <includeDependencySources>true</includeDependencySources>
+                    <dependencySourceIncludes>
+                      <!-- include ONLY dependencies I control -->
+                      <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
+                      <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
+                    </dependencySourceIncludes>
                 </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>

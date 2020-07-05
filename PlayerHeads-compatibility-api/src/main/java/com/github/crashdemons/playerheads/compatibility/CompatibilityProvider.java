@@ -20,6 +20,16 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 /**
  * An interface specifying all of the methods we need for our plugin that require differing Bukkit-specific implementations which we wish to abstract from our plugin code.
+ * CompatibilityProviders not only must implement this interface, but in order to be automatically selected by the Compatibility class,
+ * they must exist in a specific package name.
+ * 
+ * Providers (or a class extending them) are expected to exist in the same package as the compatibility library (com.github.crashdemons.playerheads.compatibility)
+ * followed by the server type name and major/minor version.  For example: com.github.crashdemons.playerheads.compatibility.craftbukkit_1_16
+ * the class in this package must be named "Provider" and must not be abstract.
+ * 
+ * Secondly, to be automatically selected by the Compatibility class, the server type and version must be listed in the CompatibilitySupport class' VERSIONS map.
+ * This is typically accomplished by replacing it in the compatibility-library module when shading in all relevant support classes (ie: the original is excluded from shading).
+ * 
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface CompatibilityProvider {

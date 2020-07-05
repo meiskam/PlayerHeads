@@ -43,6 +43,22 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-compatibility-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>fr.neatmonster</groupId>
+                    <artifactId>ncpplugin</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
             <version>5.2.11-SNAPSHOT</version>
             <exclusions>
@@ -221,10 +237,11 @@
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
                                 
+                                
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-                                      tofile="${basedir}/../target/PlayerHeads-${project.version}.${project.packaging}"/>
-                                <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-                                      tofile="${basedir}/../target/PlayerHeads.${project.packaging}"/>
+                                      tofile="${basedir}/../target/${project.build.finalName}.${project.packaging}"/>
+                                <copy file="${project.build.directory}/${project.name}.${project.packaging}"
+                                      tofile="${basedir}/../target/${project.name}.${project.packaging}"/>
                             </target>
                         </configuration>
                         <goals>
@@ -247,6 +264,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
+                                    <include>org.shininet.bukkit:PlayerHeads-base-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>

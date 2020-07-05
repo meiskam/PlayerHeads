@@ -70,14 +70,8 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-core</artifactId>
-            <version>5.2.10-SNAPSHOT</version>
+            <version>5.2.11-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -88,69 +82,17 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-legacy-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-1.16-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-        </dependency>
-        
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-glowstone-1.12-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
+            <artifactId>PlayerHeads-compatibility-lib</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <scope>compile</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
                     <artifactId>bukkit</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>net.glowstone</groupId>
-                    <artifactId>glowstone</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.glowstone</groupId>
-                    <artifactId>glowkit</artifactId>
+                    <groupId>fr.neatmonster</groupId>
+                    <artifactId>ncpplugin</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -292,21 +234,33 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
-                                    <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
-                                    <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
-                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
+                                    <!--<include>org.shininet.bukkit:PlayerHeads-base-api:jar:</include>
+                                    
+                                    <include>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
-                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.16-support:jar:</include>
-                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-glowstone-1.12-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.16-support:jar:</include>-->
+                                    <include>org.shininet.bukkit:PlayerHeads-compatibility-lib:jar:</include>
+                                    
+                                    <include>org.shininet.bukkit:PlayerHeads-api:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-core:jar:</include>
                                 </includes>
                             </artifactSet>
                             <filters>
                               <filter>
-                                <artifact>org.shininet.bukkit:PlayerHeads-core:jar:</artifact>
+                                <artifact>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</artifact>
                                 <excludes>
                                   <exclude>com/github/crashdemons/playerheads/compatibility/CompatibilitySupport*</exclude>
+                                </excludes>
+                              </filter>
+                              <filter>
+                                <artifact>org.shininet.bukkit:PlayerHeads-compatibility-lib:jar:</artifact>
+                                <excludes>
+                                  <exclude>org/shininet/bukkit/playerheads/events/*Event*</exclude>
                                 </excludes>
                               </filter>
                               <!--

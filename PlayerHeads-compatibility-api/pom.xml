@@ -39,6 +39,13 @@
           <artifactId>annotations-java5</artifactId>
           <version>15.0</version>
         </dependency>
+        
+        
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-base-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>fr.neatmonster</groupId>
@@ -128,19 +135,16 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
+                                <!--
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
-                                
+
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
                                       tofile="${basedir}/../target/${project.build.finalName}.${project.packaging}"/>
                                 <copy file="${project.build.directory}/${project.name}.${project.packaging}"
                                       tofile="${basedir}/../target/${project.name}.${project.packaging}"/>
-                                <!--
-                                <copy file="${project.build.directory}/${project.build.finalName}-javadoc.${project.packaging}"
-                                      tofile="${basedir}/../target/${project.build.finalName}-javadoc.${project.packaging}"/>
-                                <copy file="${project.build.directory}/${project.build.finalName}-javadoc.${project.packaging}"
-                                      tofile="${basedir}/../target/${project.name}-javadoc.${project.packaging}"/>
-                                                                            -->
+-->
+                                                                          
                             </target>
                         </configuration>
                         <goals>

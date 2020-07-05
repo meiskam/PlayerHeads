@@ -9,6 +9,7 @@
     
     <!-- sub modules -->
     <modules>
+        <module>PlayerHeads-base-api</module>
         <module>PlayerHeads-compatibility-api</module>
         <module>PlayerHeads-common-support</module>
         <module>PlayerHeads-glowstone-1.12-support</module>

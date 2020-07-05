@@ -127,6 +127,7 @@
             <configuration>
               <artifactSet>
                 <includes>
+                  <include>org.shininet.bukkit:PlayerHeads-base-api:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>

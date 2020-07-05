@@ -60,6 +60,8 @@ public final class Compatibility {
      * @throws CompatibilityConflictException If an implementation provider was
      * already registered - this happens when there is more than one call to
      * init and registerProvider.
+     * @throws CompatibilityMisconfiguredException If the compatibility library 
+     * was not properly built (with supported versions finalized).
      */
     public static synchronized boolean init() throws UnknownVersionException, CompatibilityUnsupportedException, CompatibilityUnavailableException, CompatibilityConflictException {
         Version.init();

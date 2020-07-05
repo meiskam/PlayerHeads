@@ -6,7 +6,8 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Exception indicating that the Compatibility library project was misconfigured
+ * when it was built, not correctly finalizing support information.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityMisconfiguredException extends CompatibilityException {

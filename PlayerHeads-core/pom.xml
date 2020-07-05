@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.10-SNAPSHOT</version>
+        <version>5.2.11-SNAPSHOT</version>
     </parent>
     
 
@@ -62,7 +62,27 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-compatibility-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>fr.neatmonster</groupId>
+                    <artifactId>ncpplugin</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-common-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
   	<dependency>
   		<groupId>junit</groupId>
@@ -104,21 +124,6 @@
             <version>[1.8-R0.1-SNAPSHOT]</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>fr.neatmonster</groupId>
-            <artifactId>ncpplugin</artifactId>
-            <version>static</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>craftbukkit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!--
         <dependency>
             <groupId>net.Indyuce</groupId>
@@ -137,6 +142,24 @@
             </exclusions>
         </dependency>
         -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <scope>test</scope>
+            <version>2.44.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opera</groupId>
+            <artifactId>operadriver</artifactId>
+            <scope>test</scope>
+            <version>1.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -253,24 +276,6 @@
                         <arg>-Xlint:all</arg>
                     </compilerArgs>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <configuration>
-                            <target>
-                                <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-                                      tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
         <pluginManagement>

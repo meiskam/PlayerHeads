@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads</artifactId>
-        <version>5.2.9-SNAPSHOT</version>
+        <version>5.2.11-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -65,7 +65,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
+            <version>5.2.11-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -80,8 +80,8 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-1.14-support</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
+            <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -93,22 +93,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-core</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         <!--
         <dependency>
             <groupId>org.shininet.bukkit</groupId>

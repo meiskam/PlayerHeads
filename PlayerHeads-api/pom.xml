@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads</artifactId>
-        <version>5.2.9-SNAPSHOT</version>
+        <version>5.2.11-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-api</artifactId>
     <packaging>jar</packaging>
@@ -32,6 +32,16 @@
           <groupId>org.jetbrains</groupId>
           <artifactId>annotations-java5</artifactId>
           <version>15.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-base-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-compatibility-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
@@ -61,23 +71,52 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <quiet>true</quiet>
                     <notimestamp>true</notimestamp>
                     <links>
-                      <link>https://hub.spigotmc.org/javadocs/bukkit</link>
+                      <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
                     </links>
+                    <includeDependencySources>true</includeDependencySources>
+                    <dependencySourceIncludes>
+                      <!-- include ONLY dependencies I control -->
+                      <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
+                      <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
+                    </dependencySourceIncludes>
                 </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.shininet.bukkit:PlayerHeads-base-api:jar:</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>

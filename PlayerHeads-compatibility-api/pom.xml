@@ -23,6 +23,10 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>md_5-releases</id>
+            <url>http://repo.md-5.net/content/repositories/releases/</url>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -35,9 +39,29 @@
           <artifactId>annotations-java5</artifactId>
           <version>15.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>fr.neatmonster</groupId>
+            <artifactId>ncpplugin</artifactId>
+            <version>static</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
     <build>
-        <plugins>
+        <plugins><!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -51,7 +75,7 @@
                       <suppressionsLocation>${basedir}/checkstyle-suppression.xml</suppressionsLocation>
                       <encoding>UTF-8</encoding>
                       <consoleOutput>true</consoleOutput>
-                      <failsOnError>true</failsOnError>
+                      <failsOnError>false</failsOnError>
                       <linkXRef>true</linkXRef>
                     </configuration>
                     <goals>
@@ -60,7 +84,7 @@
                   </execution>
                 </executions>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.1.0</version>

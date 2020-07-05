@@ -10,7 +10,6 @@
     <!-- sub modules -->
     <modules>
         <module>PlayerHeads-compatibility-api</module>
-        <module>PlayerHeads-compatibility-lib</module>
         <module>PlayerHeads-common-support</module>
         <module>PlayerHeads-glowstone-1.12-support</module>
         <module>PlayerHeads-craftbukkit-1.16-support</module>
@@ -18,6 +17,7 @@
         <module>PlayerHeads-craftbukkit-1.8-support</module>
         <module>PlayerHeads-craftbukkit-support</module>
         <module>PlayerHeads-legacy-support</module>
+        <module>PlayerHeads-compatibility-lib</module>
         <module>PlayerHeads-api</module>
         <module>PlayerHeads-core</module>
         <module>PlayerHeads-crossversion-plugin</module>

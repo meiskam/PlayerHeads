@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.10-SNAPSHOT</version>
+        <version>5.2.11-SNAPSHOT</version>
     </parent>
     
 
@@ -62,7 +62,21 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.9-SNAPSHOT</version>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-compatibility-api</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-common-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
   	<dependency>
   		<groupId>junit</groupId>
@@ -137,6 +151,24 @@
             </exclusions>
         </dependency>
         -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <scope>test</scope>
+            <version>2.44.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.opera</groupId>
+            <artifactId>operadriver</artifactId>
+            <scope>test</scope>
+            <version>1.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>selenium-remote-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>

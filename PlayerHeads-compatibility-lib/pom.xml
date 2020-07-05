@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads</artifactId>
-        <version>5.2.10-SNAPSHOT</version>
+        <version>5.2.11-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-compatibility-lib</artifactId>
     <packaging>jar</packaging>
@@ -12,4 +12,301 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+
+    <repositories>
+        <!--
+        <repository>
+            <id>mojang</id>
+            <name>Mojang's Repository</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+        <repository>
+            <id>spigot-group-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>md_5-releases</id>
+            <url>http://repo.md-5.net/content/repositories/releases/</url>
+        </repository>
+        -->
+        <repository>
+            <id>crashdemons-repo</id>
+            <url>https://meme.tips/java-repos/</url>
+        </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-legacy-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-1.16-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-glowstone-1.12-support</artifactId>
+            <version>5.2.11-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowstone</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowkit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.7.4</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.7.4</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito-common</artifactId>     
+            <version>1.7.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <scope>test</scope>
+            <!-- per md_5: spigot will no longer distribute Bukkit as of 1.16.1, only spigot-api -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org.shininet.bukkit</exclude>
+                    </excludes>
+                    <includes>
+                        <include>org.bukkit</include>
+                        <include>org.shininet.bukkit</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>versions</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <allowSnapshots>true</allowSnapshots>
+                        </configuration>
+                        <goals>
+                            <goal>use-latest-versions</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Built-By>Maven</Built-By>
+                            <Implementation-Title>${project.name}</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <configuration>
+                            <target>
+                                <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+                                      tofile="${project.build.directory}/${project.name}.${project.packaging}"/>
+                                
+                                <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+                                      tofile="${basedir}/../target/PlayerHeads-${project.version}.${project.packaging}"/>
+                                <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+                                      tofile="${basedir}/../target/PlayerHeads.${project.packaging}"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-glowstone-1.12-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.16-support:jar:</include>
+                                </includes>
+                            </artifactSet>
+                            <filters>
+                              <filter>
+                                <artifact>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</artifact>
+                                <excludes>
+                                  <exclude>com/github/crashdemons/playerheads/compatibility/CompatibilitySupport*</exclude>
+                                </excludes>
+                              </filter>
+                              <!--
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/maven/**</exclude>
+                                    </excludes>
+                                </filter>
+                              -->
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>versions-maven-plugin</artifactId>
+                                        <versionRange>[2.2,)</versionRange>
+                                        <goals>
+                                            <goal>use-latest-versions</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore/>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

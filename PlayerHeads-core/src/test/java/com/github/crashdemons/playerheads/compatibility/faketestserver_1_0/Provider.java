@@ -17,6 +17,7 @@ import org.bukkit.World;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -55,6 +56,13 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     @Override public boolean isMobhead(BlockState s){ SkullType t=getSkullType(s); return (t!=null && t!=SkullType.PLAYER);}
     @Override public String getCompatibleNameFromEntity(Entity e){ return e.getType().name().toUpperCase(); }
     @Override public OfflinePlayer getOfflinePlayerByName(String username){ return null; }
+    
+    @Override public EntityType getEntityTypeFromTypename(String typename){ 
+        return EntityType.valueOf(typename);
+        //throw new IllegalStateException("using unsupported method in test");
+    }//TODO: test properly
+    //@Override public boolean setProfile(Skull skull, UUID id, String texture){throw new IllegalStateException("using unsupported method in test"); }//TODO: test properly
+    
     
     
     @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){

@@ -75,6 +75,8 @@ public interface HeadType {
      * Get the underlying bukkit implementation details for the head on this
      * server version. Includes things like the material id for blocks, items,
      * skinnability, etc.
+     * <p>
+     * Since 5.2.11, you can access the resulting object through the PlayerHeads Compatibility API
      *
      * @return an object providing implementation details
      */

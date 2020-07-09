@@ -118,6 +118,18 @@ public final class Compatibility {
         }
         provider = obj;
     }
+    
+    /**
+     * Unregisters the currently registered Compatibility Provider.
+     * @return whether there was a provider to unregister (same result as isProviderAvailable())
+     * @deprecated registering an unregistering multiple providers is not recommended since it means loading unnecessary classes into memory and changing the state of compatibility.
+     */
+    @Deprecated
+    public static boolean unregisterProvider(){
+        if(provider == null) return false;
+        provider = null;
+        return true;
+    }
 
     /**
      * Gets the currently registered compatibility provider

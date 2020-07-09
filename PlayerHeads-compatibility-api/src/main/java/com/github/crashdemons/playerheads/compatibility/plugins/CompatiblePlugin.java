@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.plugins;
 
 import static org.bukkit.Bukkit.getServer;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -20,6 +21,7 @@ public abstract class CompatiblePlugin {
     private boolean present = false;
 
     protected Plugin parentPlugin = null;
+    protected ConfigurationSection config = null;
 
     /**
      * Construct the plugin-compatibility object
@@ -36,6 +38,20 @@ public abstract class CompatiblePlugin {
             String presence=present ? "support" : "not";
             parentPlugin.getLogger().info(pluginName + " " + presence + " detected.");
         }
+        this.config = parentPlugin.getConfig();
+    }
+    
+    /**
+     * Construct the plugin-compatibility object
+     *
+     * @param parentPlugin the current plugin requiring the compatibility (used
+     * by child classes for events and logging)
+     * @param pluginName the name of the third-party plugin to support
+     * @param config the configuration to use
+     */
+    public CompatiblePlugin(Plugin parentPlugin, String pluginName, ConfigurationSection config){
+        this(parentPlugin, pluginName);
+        this.config = config;
     }
 
     /**

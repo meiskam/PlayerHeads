@@ -9,6 +9,7 @@ import com.github.crashdemons.playerheads.compatibility.plugins.HeadPluginCompat
 import com.github.crashdemons.playerheads.compatibility.plugins.NoCheatPlusCompatibility;
 import com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -47,6 +48,9 @@ public final class CompatiblePlugins {
      * <p>
      * Note: it's recommended to call this *after* Compatibility.init so that
      * supported plugin classes have access to other compatibility methods.
+     * <p>
+     * If this method is used, the top level parent plugin config section is
+     * used for plugin-support config entries.
      *
      * @param parentPluginInstance the plugin requesting compatibility support
      */
@@ -55,6 +59,25 @@ public final class CompatiblePlugins {
         nocheatplus = new NoCheatPlusCompatibility(parentPluginInstance);
         protection = new ProtectionPluginCompatibility(parentPluginInstance);
         heads = new HeadPluginCompatibility(parentPluginInstance);
+        reloadConfig();
+        ready = true;
+    }
+    /**
+     * Initialize plugin support classes.
+     * This should be done during plugin Enable or afterwards - you may need to
+     * add a SoftDepend entry for the plugin to be detected in onEnable.
+     * <p>
+     * Note: it's recommended to call this *after* Compatibility.init so that
+     * supported plugin classes have access to other compatibility methods.
+     *
+     * @param parentPluginInstance the plugin requesting compatibility support
+     * @param config the configuration section to use for plugin-support entries
+     */
+    public static void init(Plugin parentPluginInstance, ConfigurationSection config) {
+        CompatiblePlugins.parentPlugin = parentPluginInstance;
+        nocheatplus = new NoCheatPlusCompatibility(parentPluginInstance);
+        protection = new ProtectionPluginCompatibility(parentPluginInstance);
+        heads = new HeadPluginCompatibility(parentPluginInstance,config);
         reloadConfig();
         ready = true;
     }

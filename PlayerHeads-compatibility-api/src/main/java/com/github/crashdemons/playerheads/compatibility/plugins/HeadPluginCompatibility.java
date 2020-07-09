@@ -12,6 +12,7 @@ import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -23,15 +24,20 @@ import org.jetbrains.annotations.NotNull;
  * @author crashdemons (crashenator at gmail.com)
  */
 public class HeadPluginCompatibility extends CompatiblePlugin {
+    
     public HeadPluginCompatibility(Plugin parentPlugin){
         super(parentPlugin,"");
     }
     
-
+    public HeadPluginCompatibility(Plugin parentPlugin, ConfigurationSection config){
+        super(parentPlugin,"",config);
+    }
+    
+    
     @Override
     public void reloadConfig(){
-        ExternalHeads.loadNamesFromConfig(parentPlugin.getConfig(), "ignoredheadnames", HeadModificationHandling.NO_INTERACTION);
-        ExternalHeads.loadIdsFromConfig(parentPlugin.getConfig(), "ignoredheaduuids", HeadModificationHandling.NO_INTERACTION);
+        ExternalHeads.loadNamesFromConfig(config, "ignoredheadnames", HeadModificationHandling.NO_INTERACTION);
+        ExternalHeads.loadIdsFromConfig(config, "ignoredheaduuids", HeadModificationHandling.NO_INTERACTION);
     }
     
     @NotNull

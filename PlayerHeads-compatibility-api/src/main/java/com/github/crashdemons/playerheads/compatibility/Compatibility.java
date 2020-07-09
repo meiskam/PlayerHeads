@@ -19,6 +19,10 @@ import java.lang.reflect.InvocationTargetException;
  * <p>
  * This class forms the basis of most plugin access to the compatibility package
  * methods through chaining.
+ * <p>
+ *
+ * Note: some methods of this class may not be thread-safe. Generally you should only change provider registrations on the main thread during plugin load or enable,
+ * then only afterwards use isProviderAvailable / getProvider methods freely.
  *
  * @author crashdemons (crashenator at gmail.com)
  */

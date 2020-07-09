@@ -44,6 +44,9 @@ public final class CompatiblePlugins {
      * Initialize plugin support classes.
      * This should be done during plugin Enable or afterwards - you may need to
      * add a SoftDepend entry for the plugin to be detected in onEnable.
+     * <p>
+     * Note: it's recommended to call this *after* Compatibility.init so that
+     * supported plugin classes have access to other compatibility methods.
      *
      * @param parentPluginInstance the plugin requesting compatibility support
      */

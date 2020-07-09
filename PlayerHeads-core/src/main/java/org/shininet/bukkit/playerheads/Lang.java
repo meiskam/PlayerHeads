@@ -274,6 +274,7 @@ public final class Lang {
      * Formatting arguments(1): name of head's owner.
      */
     public static String SPAWNED_HEAD;
+    public static String SPAWNED_HEAD2;
     public static String SUBCOMMANDS;
     public static String SYNTAX;
 

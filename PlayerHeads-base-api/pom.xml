@@ -80,4 +80,5 @@
 
         </plugins>
     </build>
+    <description>This module forms the base for classes that should appear in both the Compatibility API and the PlayerHeads plugin API (like events)</description>
 </project>

@@ -73,6 +73,7 @@ public final class SkullConverter {
      * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
      * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
      */
+    @Deprecated
     public static String getSkullOwner(SkullMeta skullMeta){
         return Compatibility.getProvider().getOwner(skullMeta);
     }
@@ -83,6 +84,7 @@ public final class SkullConverter {
      * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
      * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.block.Skull) 
      */
+    @Deprecated
     public static String getSkullOwner(Skull skullBlockState){
         return Compatibility.getProvider().getOwner(skullBlockState);
     }

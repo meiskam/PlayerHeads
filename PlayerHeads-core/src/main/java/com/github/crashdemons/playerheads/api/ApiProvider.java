@@ -57,6 +57,7 @@ public class ApiProvider implements PlayerHeadsAPI {
         return SkullConverter.skullTypeFromEntity(e);
     }
 
+    @Deprecated
     @Override
     public HeadType getHeadOf(EntityType t) {
         try {

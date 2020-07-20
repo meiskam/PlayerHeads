@@ -378,7 +378,7 @@ class PlayerHeadsListener implements Listener {
         
         //broadcast message about the beheading.
         if (plugin.configFile.getBoolean("broadcastmob") && killer!=null) { //mob-on-mob broadcasts would be extremely annoying!
-            String entityName = entity.getCustomName​();
+            String entityName = entity.getCustomName();
             if (entityName==null) entityName = entity.getName(); //notnull
             
             

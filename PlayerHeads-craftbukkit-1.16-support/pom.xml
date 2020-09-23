@@ -144,7 +144,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <version>1.16.3-R0.1-SNAPSHOT</version>
             <!-- per md_5: spigot will no longer distribute Bukkit as of 1.16.1, only spigot-api -->
         </dependency>
     </dependencies>

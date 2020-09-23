@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads</artifactId>
-        <version>5.2.11-SNAPSHOT</version>
+        <version>5.2.12-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -65,7 +65,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.12-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -81,7 +81,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.12-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>

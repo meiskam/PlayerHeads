@@ -8,6 +8,7 @@ package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_8;
 import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
+import com.mojang.authlib.GameProfile;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Skull;
@@ -140,4 +141,28 @@ public class Provider extends Provider_legacy implements CompatibilityProvider {
             return null;
         }
     }*/
+    
+    //-----------5.2.12 providers-----------//
+    @Override
+    public Object getProfile(ItemMeta headMeta) throws IllegalStateException{
+        return ProfileUtils.getProfile(headMeta);
+    }
+
+    @Override
+    public Object getProfile(Skull headBlockState) throws IllegalStateException{
+        return ProfileUtils.getProfile(headBlockState);
+    }
+
+    @Override
+    public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalArgumentException{
+        if(!(profile instanceof GameProfile)) throw new IllegalArgumentException("Passed argument was not a GameProfile object");
+        return ProfileUtils.setProfile(headMeta, (GameProfile) profile);
+    }
+    
+    @Override
+    public boolean setProfile(Skull headBlockState, Object profile) throws IllegalArgumentException{
+        if(!(profile instanceof GameProfile)) throw new IllegalArgumentException("Passed argument was not a GameProfile object");
+        return ProfileUtils.setProfile(headBlockState, (GameProfile) profile);
+    }
+
 }

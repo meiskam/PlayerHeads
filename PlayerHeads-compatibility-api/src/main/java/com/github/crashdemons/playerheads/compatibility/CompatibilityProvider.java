@@ -277,11 +277,12 @@ public interface CompatibilityProvider {
     
     //-----------5.2.12 providers-----------//
     /**
-     * Gets the GameProfile associated with a head, if possible.
+     * Gets the Profile object associated with a head, if possible.
      * The return type is offered as an Object to remove reliance on authlib.
-     * Providers that are not capable of retrieving this should throw an IllegalStateException
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
+     * Providers that are not capable of retrieving this should throw an IllegalStateException.
      * @param headMeta the meta of the head item
-     * @return the GameProfile object for the head, or null.
+     * @return the Profile object object for the head, or null.
      * @throws IllegalStateException when the provider does not support GameProfiile access.
      * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
      * @since 5.2.12
@@ -291,10 +292,11 @@ public interface CompatibilityProvider {
     public Object getProfile(ItemMeta headMeta) throws IllegalStateException;
     
     /**
-     * Gets the GameProfile associated with a head, if possible.
+     * Gets the Profile object associated with a head, if possible.
      * The return type is offered as an Object to remove reliance on authlib.
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
      * @param headBlockState the blockstate of the head block
-     * @return the GameProfile object for the head, or null.
+     * @return the Profile object object for the head, or null.
      * @throws IllegalStateException when the provider does not support GameProfiile access.
      * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
      * @since 5.2.12
@@ -306,35 +308,35 @@ public interface CompatibilityProvider {
     
     
     /**
-     * Sets the GameProfile on a a head, if possible.
+     * Sets the Profile object on a a head, if possible.
      * Providers that are not capable of retrieving this should throw an IllegalStateException.
-     * IllegalArgumentException should be thrown if the input is not null and also not a GameProfile type.
+     * IllegalArgumentException should be thrown if the input is not null and also not a Profile object type.
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
      * @param headMeta the meta of the head item
-     * @param profile the GameProfile object to set in the head
+     * @param profile the Profile object object to set in the head
      * @return whether setting the profile field succeeded
      * @throws IllegalStateException when the provider does not support GameProfiile access.
-     * @throws IllegalArgumentException when the the input profile was not a GameProfile type and not null
+     * @throws IllegalArgumentException when the the input profile was not am acceptable Profile object type and not null
      * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
      * @since 5.2.12
      */
     @Deprecated
-    @Nullable
     public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalStateException, IllegalArgumentException;
     
     /**
-     * Sets the GameProfile on a a head, if possible.
+     * Sets the Profile object on a a head, if possible.
      * Providers that are not capable of retrieving this should throw an IllegalStateException.
-     * IllegalArgumentException should be thrown if the input is not null and also not a GameProfile type.
+     * IllegalArgumentException should be thrown if the input is not null and also not a Profile object type.
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
      * @param headBlockState the blockstate of the head block
-     * @param profile the GameProfile object to set in the head
+     * @param profile the Profile object object to set in the head
      * @return whether setting the profile field succeeded
      * @throws IllegalStateException when the provider does not support GameProfiile access.
-     * @throws IllegalArgumentException when the the input profile was not a GameProfile type and not null
+     * @throws IllegalArgumentException when the the input profile was not am acceptable Profile object type and not null
      * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
      * @since 5.2.12
      */
     @Deprecated
-    @Nullable
     public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException;
 
 }

@@ -22,6 +22,14 @@ import org.bukkit.inventory.meta.SkullMeta;
  */
 public class ProfileUtils {
     
+    
+    private static Field getProfileField(Object obj) throws IllegalArgumentException,NoSuchFieldException,SecurityException,IllegalAccessException{
+        if(!(obj instanceof SkullMeta || obj instanceof Skull)) throw new IllegalArgumentException("Class is not a supported type: SkullMeta or Skull (blockstate)");
+        Field profileField = obj.getClass().getDeclaredField("profile");
+        profileField.setAccessible(true);
+        return profileField;
+    }
+    
     /**
      * Set a profile field in the supplied item meta using a UUID and Texture string
      * @param headMeta the item meta to apply the profile on
@@ -33,9 +41,7 @@ public class ProfileUtils {
         GameProfile profile = new GameProfile(uuid, null);
         profile.getProperties().put("textures", new Property("textures", texture));
         try {
-            Field profileField = headMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(headMeta, profile);
+            getProfileField(headMeta).set(headMeta, profile);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             error.printStackTrace();
             return false;
@@ -54,9 +60,7 @@ public class ProfileUtils {
         GameProfile profile = new GameProfile(uuid, null);
         profile.getProperties().put("textures", new Property("textures", texture));
         try {
-            Field profileField = headBlockState.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(headBlockState, profile);
+            getProfileField(headBlockState).set(headBlockState, profile);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             error.printStackTrace();
             return false;
@@ -72,9 +76,7 @@ public class ProfileUtils {
     public static UUID getProfileUUID(SkullMeta headMeta){
         GameProfile profile = null;
         try {
-            Field profileField = headMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profile = (GameProfile) profileField.get(headMeta);
+            profile = (GameProfile) getProfileField(headMeta).get(headMeta);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             //error.printStackTrace();
             return null;
@@ -90,9 +92,7 @@ public class ProfileUtils {
     public static UUID getProfileUUID(Skull skullBlockState){
         GameProfile profile = null;
         try {
-            Field profileField = skullBlockState.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profile = (GameProfile) profileField.get(skullBlockState);
+            profile = (GameProfile) getProfileField(skullBlockState).get(skullBlockState);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             //error.printStackTrace();
             return null;
@@ -122,7 +122,7 @@ public class ProfileUtils {
      * @return The OfflinePlayer, or null if no profile was found.
      */
     public static OfflinePlayer getProfilePlayer(Skull skullBlockState){
-        UUID id = ProfileUtils.getProfileUUID(skullBlockState);
+        UUID id = getProfileUUID(skullBlockState);
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);
     }

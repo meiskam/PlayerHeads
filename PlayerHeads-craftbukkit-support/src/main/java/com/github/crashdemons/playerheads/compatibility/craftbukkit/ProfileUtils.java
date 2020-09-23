@@ -17,18 +17,42 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 /**
  * Provides methods for working with profiles on items and blocks.
+ * Credit goes to x7aSv for basic implementation of custom head creation.
  * @author crashdemons (crashenator at gmail.com)
  * @deprecated This class is server implementation-specific and should not be used directly if possible, the namespace may change in the future.
  */
 public class ProfileUtils {
-    
-    
     private static Field getProfileField(Object obj) throws IllegalArgumentException,NoSuchFieldException,SecurityException,IllegalAccessException{
-        if(!(obj instanceof SkullMeta || obj instanceof Skull)) throw new IllegalArgumentException("Class is not a supported type: SkullMeta or Skull (blockstate)");
+        if(!(obj instanceof SkullMeta || obj instanceof Skull)) throw new IllegalArgumentException("Object is not a supported type: SkullMeta or Skull (blockstate)");
         Field profileField = obj.getClass().getDeclaredField("profile");
         profileField.setAccessible(true);
         return profileField;
     }
+    private static GameProfile createProfile(UUID uuid, String texture){
+        GameProfile profile = new GameProfile(uuid, null);
+        profile.getProperties().put("textures", new Property("textures", texture));
+        return profile;
+    }
+    
+    public static GameProfile getProfile(Object obj){
+        try {
+            return (GameProfile) getProfileField(obj).get(obj);
+        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
+            return null;
+        }
+    }
+    public static boolean setProfile(Object obj, GameProfile profile){
+        try {
+            getProfileField(obj).set(obj, profile);
+            return true;
+        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
+            return false;
+        }
+    }
+    public static boolean setProfile(Object obj, UUID uuid, String texture){
+        return setProfile(obj, createProfile(uuid,texture));
+    }
+    
     
     /**
      * Set a profile field in the supplied item meta using a UUID and Texture string
@@ -37,16 +61,8 @@ public class ProfileUtils {
      * @param texture The Base64-encoded Texture-URL tags.
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
-    public static boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){//credit to x7aSv
-        GameProfile profile = new GameProfile(uuid, null);
-        profile.getProperties().put("textures", new Property("textures", texture));
-        try {
-            getProfileField(headMeta).set(headMeta, profile);
-        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            error.printStackTrace();
-            return false;
-        }
-        return true;
+    public static boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){//credit to x7aSv for original 
+        return setProfile((Object)headMeta, uuid, texture);
     }
     
     /**
@@ -57,15 +73,7 @@ public class ProfileUtils {
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
     public static boolean setProfile(Skull headBlockState, UUID uuid, String texture){
-        GameProfile profile = new GameProfile(uuid, null);
-        profile.getProperties().put("textures", new Property("textures", texture));
-        try {
-            getProfileField(headBlockState).set(headBlockState, profile);
-        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            error.printStackTrace();
-            return false;
-        }
-        return true;
+        return setProfile((Object)headBlockState, uuid, texture);
     }
     
     /**
@@ -74,13 +82,7 @@ public class ProfileUtils {
      * @return the UUID, or null if not found.
      */
     public static UUID getProfileUUID(SkullMeta headMeta){
-        GameProfile profile = null;
-        try {
-            profile = (GameProfile) getProfileField(headMeta).get(headMeta);
-        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            //error.printStackTrace();
-            return null;
-        }
+        GameProfile profile = getProfile(headMeta);
         if(profile==null) return null;
         return profile.getId();
     }
@@ -90,13 +92,7 @@ public class ProfileUtils {
      * @return the UUID, or null if not found.
      */
     public static UUID getProfileUUID(Skull skullBlockState){
-        GameProfile profile = null;
-        try {
-            profile = (GameProfile) getProfileField(skullBlockState).get(skullBlockState);
-        } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            //error.printStackTrace();
-            return null;
-        }
+        GameProfile profile = getProfile(skullBlockState);
         if(profile==null) return null;
         return profile.getId();
     }

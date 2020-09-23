@@ -17,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * An interface specifying all of the methods we need for our plugin that require differing Bukkit-specific implementations which we wish to abstract from our plugin code.
@@ -272,4 +273,68 @@ public interface CompatibilityProvider {
     
     //----------- 5.0 providers -----------//
     public ItemStack getItemInMainHand(LivingEntity p);
+    
+    
+    //-----------5.2.12 providers-----------//
+    /**
+     * Gets the GameProfile associated with a head, if possible.
+     * The return type is offered as an Object to remove reliance on authlib.
+     * Providers that are not capable of retrieving this should throw an IllegalStateException
+     * @param headMeta the meta of the head item
+     * @return the GameProfile object for the head, or null.
+     * @throws IllegalStateException when the provider does not support GameProfiile access.
+     * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
+     * @since 5.2.12
+     */
+    @Deprecated
+    @Nullable
+    public Object getProfile(ItemMeta headMeta) throws IllegalStateException;
+    
+    /**
+     * Gets the GameProfile associated with a head, if possible.
+     * The return type is offered as an Object to remove reliance on authlib.
+     * @param headBlockState the blockstate of the head block
+     * @return the GameProfile object for the head, or null.
+     * @throws IllegalStateException when the provider does not support GameProfiile access.
+     * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
+     * @since 5.2.12
+     */
+    @Deprecated
+    @Nullable
+    public Object getProfile(Skull headBlockState) throws IllegalStateException;
+    
+    
+    
+    /**
+     * Sets the GameProfile on a a head, if possible.
+     * Providers that are not capable of retrieving this should throw an IllegalStateException.
+     * IllegalArgumentException should be thrown if the input is not null and also not a GameProfile type.
+     * @param headMeta the meta of the head item
+     * @param profile the GameProfile object to set in the head
+     * @return whether setting the profile field succeeded
+     * @throws IllegalStateException when the provider does not support GameProfiile access.
+     * @throws IllegalArgumentException when the the input profile was not a GameProfile type and not null
+     * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
+     * @since 5.2.12
+     */
+    @Deprecated
+    @Nullable
+    public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalStateException, IllegalArgumentException;
+    
+    /**
+     * Sets the GameProfile on a a head, if possible.
+     * Providers that are not capable of retrieving this should throw an IllegalStateException.
+     * IllegalArgumentException should be thrown if the input is not null and also not a GameProfile type.
+     * @param headBlockState the blockstate of the head block
+     * @param profile the GameProfile object to set in the head
+     * @return whether setting the profile field succeeded
+     * @throws IllegalStateException when the provider does not support GameProfiile access.
+     * @throws IllegalArgumentException when the the input profile was not a GameProfile type and not null
+     * @deprecated This method should be avoided entirely or used only for acceptable-failure situations because of server support limitations.
+     * @since 5.2.12
+     */
+    @Deprecated
+    @Nullable
+    public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException;
+
 }

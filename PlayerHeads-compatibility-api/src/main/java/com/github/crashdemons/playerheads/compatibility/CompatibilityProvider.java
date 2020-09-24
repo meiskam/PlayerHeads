@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import java.util.Optional;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -308,7 +309,7 @@ public interface CompatibilityProvider {
     
     
     /**
-     * Sets the Profile object on a a head, if possible.
+     * Sets the Profile object on a head, if possible.
      * Providers that are not capable of retrieving this should throw an IllegalStateException.
      * IllegalArgumentException should be thrown if the input is not null and also not a Profile object type.
      * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
@@ -324,7 +325,7 @@ public interface CompatibilityProvider {
     public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalStateException, IllegalArgumentException;
     
     /**
-     * Sets the Profile object on a a head, if possible.
+     * Sets the Profile object on a head, if possible.
      * Providers that are not capable of retrieving this should throw an IllegalStateException.
      * IllegalArgumentException should be thrown if the input is not null and also not a Profile object type.
      * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile - you should not act on this object directly, but only get/set it.
@@ -338,5 +339,44 @@ public interface CompatibilityProvider {
      */
     @Deprecated
     public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException;
+    
+    /**
+     * Gets the Optional Profile object for a head.
+     * This method must return an Optional object which 'is present' if the profile has a retrievable value (including null).
+     * Otherwise, the Optional must be 'empty'.
+     * @param skullMeta the meta for a head item
+     * @return The optional profile object
+     */
+    public Optional<Object> getOptionalProfile(ItemMeta skullMeta);
+    
+    /**
+     * Gets the Optional Profile object for a head.
+     * This method must return an Optional object which 'is present' if the profile has a retrievable value (including null).
+     * Otherwise, the Optional must be 'empty'.
+     * @param skullState the blockstate for a head item
+     * @return The optional profile object
+     */
+    public Optional<Object> getOptionalProfile(Skull skullState);
+    
+    /**
+     * Sets the Optional Profile object for a head.
+     * If the Optional value is 'empty' (not present), then nothing happens.
+     * If the Optional value is present, then it is set (even if it is null).
+     * @param skullState the blockstate for a head item
+     * @param profile the Optional profile object to set
+     * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     */
+    public boolean setOptionalProfile(Skull skullState, Optional<Object> profile);
+    
+    /**
+     * Sets the Optional Profile object for a head.
+     * If the Optional value is 'empty' (not present), then nothing happens.
+     * If the Optional value is present, then it is set (even if it is null).
+     * @param skullMeta the meta for a head item
+     * @param profile the Optional profile object to set
+     * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     */
+    public boolean setOptionalProfile(ItemMeta skullMeta, Optional<Object> profile);
+    
 
 }

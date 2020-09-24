@@ -5,10 +5,13 @@ import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import java.util.UUID;
 import java.util.ArrayList;
+import java.util.Optional;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.Skull;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import org.shininet.bukkit.playerheads.Config;
@@ -248,4 +251,6 @@ public final class SkullManager {
         return PlayerSkull(op,quantity);
     }
     */
+
+    
 }

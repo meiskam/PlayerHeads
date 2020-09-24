@@ -73,7 +73,7 @@ public final class Version {
     }
     
     /**
-     * Gets the raw version string for NMS & OBC class paths
+     * Gets the raw version string for NMS and OBC class paths
      *
      * @return The version string of OBC and NMS packages
      * @author sainttx

@@ -35,22 +35,22 @@ public class ProfileUtils {
         return profile;
     }
     
-    public static GameProfile getProfile(Object obj){
+    public static GameProfile getProfile(Object obj) throws IllegalStateException{
         try {
             return (GameProfile) getProfileField(obj).get(obj);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            return null;
+            throw new IllegalStateException("The profile field value could not be retrieved");
         }
     }
-    public static boolean setProfile(Object obj, GameProfile profile){
+    public static boolean setProfile(Object obj, GameProfile profile) throws IllegalStateException{
         try {
             getProfileField(obj).set(obj, profile);
             return true;
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
-            return false;
+            throw new IllegalStateException("The profile field value could not be retrieved");
         }
     }
-    public static boolean setProfile(Object obj, UUID uuid, String texture){
+    public static boolean setProfile(Object obj, UUID uuid, String texture) throws IllegalStateException{
         return setProfile(obj, createProfile(uuid,texture));
     }
     
@@ -62,7 +62,7 @@ public class ProfileUtils {
      * @param texture The Base64-encoded Texture-URL tags.
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
-    public static boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){//credit to x7aSv for original 
+    public static boolean setProfile(ItemMeta headMeta, UUID uuid, String texture) throws IllegalStateException{//credit to x7aSv for original 
         return setProfile((Object)headMeta, uuid, texture);
     }
     
@@ -73,7 +73,7 @@ public class ProfileUtils {
      * @param texture The Base64-encoded Texture-URL tags.
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
-    public static boolean setProfile(Skull headBlockState, UUID uuid, String texture){
+    public static boolean setProfile(Skull headBlockState, UUID uuid, String texture) throws IllegalStateException{
         return setProfile((Object)headBlockState, uuid, texture);
     }
     
@@ -82,7 +82,7 @@ public class ProfileUtils {
      * @param headMeta the item meta of the head to check
      * @return the UUID, or null if not found.
      */
-    public static UUID getProfileUUID(SkullMeta headMeta){
+    public static UUID getProfileUUID(SkullMeta headMeta) throws IllegalStateException{
         GameProfile profile = getProfile(headMeta);
         if(profile==null) return null;
         return profile.getId();
@@ -92,7 +92,7 @@ public class ProfileUtils {
      * @param skullBlockState the block state of the head to check
      * @return the UUID, or null if not found.
      */
-    public static UUID getProfileUUID(Skull skullBlockState){
+    public static UUID getProfileUUID(Skull skullBlockState) throws IllegalStateException{
         GameProfile profile = getProfile(skullBlockState);
         if(profile==null) return null;
         return profile.getId();
@@ -105,7 +105,7 @@ public class ProfileUtils {
      * @see #getProfileUUID(org.bukkit.inventory.meta.SkullMeta)
      * @return The OfflinePlayer, or null if no profile was found.
      */
-    public static OfflinePlayer getProfilePlayer(SkullMeta headMeta){
+    public static OfflinePlayer getProfilePlayer(SkullMeta headMeta) throws IllegalStateException{
         UUID id = getProfileUUID(headMeta);
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);
@@ -118,7 +118,7 @@ public class ProfileUtils {
      * @see #getProfileUUID(org.bukkit.inventory.meta.SkullMeta)
      * @return The OfflinePlayer, or null if no profile was found.
      */
-    public static OfflinePlayer getProfilePlayer(Skull skullBlockState){
+    public static OfflinePlayer getProfilePlayer(Skull skullBlockState) throws IllegalStateException{
         UUID id = getProfileUUID(skullBlockState);
         if(id==null) return null;
         return Bukkit.getOfflinePlayer(id);

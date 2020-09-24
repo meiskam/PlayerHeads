@@ -353,6 +353,7 @@ public interface CompatibilityProvider {
      * Gets the Optional Profile object for a head.
      * This method must return an Optional object which 'is present' if the profile has a retrievable value (including null).
      * Otherwise, the Optional must be 'empty'.
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile or even present - you should not act on this object directly, but only get/set it.
      * @param skullState the blockstate for a head item
      * @return The optional profile object
      */
@@ -362,6 +363,7 @@ public interface CompatibilityProvider {
      * Sets the Optional Profile object for a head.
      * If the Optional value is 'empty' (not present), then nothing happens.
      * If the Optional value is present, then it is set (even if it is null).
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile or even present - you should not act on this object directly, but only get/set it.
      * @param skullState the blockstate for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).
@@ -372,6 +374,7 @@ public interface CompatibilityProvider {
      * Sets the Optional Profile object for a head.
      * If the Optional value is 'empty' (not present), then nothing happens.
      * If the Optional value is present, then it is set (even if it is null).
+     * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile or even present - you should not act on this object directly, but only get/set it.
      * @param skullMeta the meta for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).

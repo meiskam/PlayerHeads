@@ -79,7 +79,7 @@ public class ApiProvider implements PlayerHeadsAPI {
         if (type == TexturedSkullType.PLAYER) {
             return SkullManager.PlayerSkull(num, true);
         }
-        return SkullManager.MobSkull(type, num, usevanillaskull, addLore);
+        return SkullManager.MobSkull(type, num, usevanillaskull, addLore,null);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class ApiProvider implements PlayerHeadsAPI {
             }
         } else {
             boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
-            drop = SkullManager.MobSkull(type, usevanillaskull, addLore);
+            drop = SkullManager.MobSkull(type, usevanillaskull, addLore,null);
         }
         return drop;
     }
@@ -129,7 +129,7 @@ public class ApiProvider implements PlayerHeadsAPI {
             return getBoringPlayerheadItem(num);
         }else{
             boolean addLore = plugin.configFile.getBoolean("addlore");
-            return SkullManager.PlayerSkull(username, num, addLore);
+            return SkullManager.PlayerSkull(username, num, addLore, null);
         }
     }
     

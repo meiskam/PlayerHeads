@@ -14,6 +14,7 @@ import com.github.crashdemons.playerheads.compatibility.plugins.SimulatedBlockBr
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -48,6 +49,7 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.projectiles.ProjectileSource;
 import org.jetbrains.annotations.Nullable;
@@ -469,6 +471,18 @@ class PlayerHeadsListener implements Listener {
         if (skullType == null) {
             return;
         }
+        onHeadItemSpawn(event, stack, skullType);
+        
+    }
+    private void onHeadItemSpawn(ItemSpawnEvent event, ItemStack stack, TexturedSkullType skullType){
+        boolean restoreprofile = plugin.configFile.getBoolean("restoreprofile");
+        boolean isSkinnable = Compatibility.getProvider().isPlayerhead(stack);
+        Optional<Object> savedProfile = Optional.empty();
+        if(isSkinnable && restoreprofile){
+            SkullMeta skull = (SkullMeta) stack.getItemMeta();
+            savedProfile = Compatibility.getProvider().getOptionalProfile(skull);
+        }
+        
         ItemStack newstack = null;
         boolean addLore = plugin.configFile.getBoolean("addlore");
         switch (skullType) {
@@ -478,22 +492,19 @@ class PlayerHeadsListener implements Listener {
                 if (owner == null) {
                     return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
                 }
-                newstack = SkullManager.PlayerSkull(owner, stack.getAmount(), addLore);
+                newstack = SkullManager.PlayerSkull(owner, stack.getAmount(), addLore, savedProfile); //override with the profile if possible instead of the username
                 break;
             default:
-                boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(stack);//NOTE: verified this is true even on 1.8 - only playerhead type or datatype can be skinned.
-                newstack = createConvertedMobhead(skullType, blockIsSkinnable, addLore, stack.getAmount(), true);    
+                newstack = createConvertedMobhead(skullType, isSkinnable, addLore, stack.getAmount(), true, savedProfile);    
                 break;
-        }
-        
-        //String itemResult = newstack==null?"FAILED_DEFERRED_TO_VANILLA":"SUCCESS";
-        //this.plugin.getLogger().info("ItemSpawnFixResult: "+itemResult);
-                
+        }    
         if (newstack == null) {
             return;
         }
         event.getEntity().setItemStack(newstack);
     }
+    
+    
 
     //can conversion of an item occur depending on if the skull was skinned and dropvanillahead flag (if passed directly)?
     private static boolean canConversionHappen(boolean dropVanillaHeads, boolean isSourceSkinnable) {
@@ -503,7 +514,7 @@ class PlayerHeadsListener implements Listener {
     }
 
     @Nullable
-    private ItemStack createConvertedMobhead(TexturedSkullType skullType, boolean isSourceSkinnable, boolean addLore, int quantity, boolean avoidVanillaReplacement) {
+    private ItemStack createConvertedMobhead(TexturedSkullType skullType, boolean isSourceSkinnable, boolean addLore, int quantity, boolean avoidVanillaReplacement, Optional<Object> oldProfile) {
         boolean dropvanillaheads = plugin.configFile.getBoolean("dropvanillaheads");
         boolean convertvanillaheads = plugin.configFile.getBoolean("convertvanillaheads");
 
@@ -514,12 +525,12 @@ class PlayerHeadsListener implements Listener {
             dropvanillaheads = !dropvanillaheads;//change the drop to the state that avoids converting it.
         }
         if(avoidVanillaReplacement && (!isSourceSkinnable && dropvanillaheads)) return null;//if the head is not skinnable (and so, vanilla) and we want the vanilla head - do not drop a replacement.
-        return SkullManager.MobSkull(skullType, quantity, dropvanillaheads, addLore);
+        return SkullManager.MobSkull(skullType, quantity, dropvanillaheads, addLore, oldProfile);
     }
 
     //drop a head based on a block being broken in some fashion
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
-    private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state) {
+    private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state, Optional<Object> oldProfile) {
         if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_BLOCKED_HEAD;
         TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
         Location location = block.getLocation();
@@ -536,7 +547,7 @@ class PlayerHeadsListener implements Listener {
                 break;
             default:
                 boolean blockIsSkinnable = Compatibility.getProvider().isPlayerhead(block.getState());
-                item = createConvertedMobhead(skullType, blockIsSkinnable, addLore, Config.defaultStackSize, true);
+                item = createConvertedMobhead(skullType, blockIsSkinnable, addLore, Config.defaultStackSize, true, oldProfile);
                 if(item == null) return BlockDropResult.FAILED_DEFERRED_TO_VANILLA;
                 break;
         }
@@ -564,6 +575,12 @@ class PlayerHeadsListener implements Listener {
         if (event instanceof SimulatedBlockBreakEvent) {
             return;
         }
+        
+        boolean fixbrokenheads = plugin.configFile.getBoolean("fixbrokenheads");
+        if(!fixbrokenheads){
+            return;
+        }
+        
         Block block = event.getBlock();
         Player player = event.getPlayer();
         if(CompatiblePlugins.heads.getExternalHeadHandling(block.getState())==HeadModificationHandling.NO_INTERACTION) return;
@@ -582,14 +599,26 @@ class PlayerHeadsListener implements Listener {
                     event.setCancelled(true);
                     return;
                 } else {
-                    event.setCancelled(true);
-                    BlockDropResult result = blockDrop(event, block, state);
-                    if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD || result == BlockDropResult.FAILED_DEFERRED_TO_VANILLA) {
-                        event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
-                    }
+                    onHeadBreak(event,block,state,skullType);
                 }
             }
 
+        }
+    }
+    
+    private void onHeadBreak(BlockBreakEvent event, Block block, BlockState state, TexturedSkullType skullType){
+        boolean restoreprofile = plugin.configFile.getBoolean("restoreprofile");
+        boolean isSkinnable = Compatibility.getProvider().isPlayerhead(state);
+        Optional<Object> savedProfile = Optional.empty();
+        if(isSkinnable && restoreprofile){
+            Skull skull = (Skull) state;
+            savedProfile = Compatibility.getProvider().getOptionalProfile(skull);
+        }
+        
+        event.setCancelled(true);
+        BlockDropResult result = blockDrop(event, block, state, savedProfile);
+        if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD || result == BlockDropResult.FAILED_DEFERRED_TO_VANILLA) {
+            event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
         }
     }
 

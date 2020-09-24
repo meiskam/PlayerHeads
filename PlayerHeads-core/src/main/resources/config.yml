@@ -167,6 +167,14 @@ delaywitherdrop: false
 #sets the time to delay plugin-added drops in miliseconds (NOTE: the minimum resolution is multiples of 50ms ~ 1tick)
 delaywitherdropms: 250
 
+#whether to attempt to save and restore the profile (id,name,texture) when breaking blocks or dropping items.
+restoreprofile: true
+
+#whether to attempt to fix the item dropped when heads-blocks are broken (normally lose display-name/lore)
+#the effect here is comparable and sometimes overlaps with fixdroppedheads (which covers all item-drops)
+fixbrokenheads: true
+
+
 #------mob rates------#
 
 creeperdroprate: 0.005

@@ -78,8 +78,8 @@ public final class SkullManager {
      * @return The ItemStack of heads desired.
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
-    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads, boolean addLore){
-        return MobSkull(type,Config.defaultStackSize, useVanillaHeads, addLore);
+    public static ItemStack MobSkull(TexturedSkullType type, boolean useVanillaHeads, boolean addLore, Optional<Object> profile){
+        return MobSkull(type,Config.defaultStackSize, useVanillaHeads, addLore, profile);
     }
     
     /**
@@ -90,7 +90,7 @@ public final class SkullManager {
      * @param addLore controls whether any lore text should be added to the head (is currently applied only to custom heads).
      * @return The ItemStack of heads desired.
      */
-    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads, boolean addLore){
+    public static ItemStack MobSkull(TexturedSkullType type,int quantity,boolean useVanillaHeads, boolean addLore, Optional<Object> profile){
         CompatibleSkullMaterial mat = type.getCompatibleMaterial();
         
         
@@ -108,13 +108,16 @@ public final class SkullManager {
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + type.getDisplayName());
         //System.out.println("DEBUG: addlore "+addLore);
         if(addLore) applyLore(headMeta,ChatColor.GREEN+Lang.LORE_HEAD_MOB);
+        
+        if(profile!=null) Compatibility.getProvider().setOptionalProfile(headMeta, profile);
+        
         stack.setItemMeta(headMeta);
         return stack;
     }
     private static ItemStack PlayerSkull(OfflinePlayer owner, boolean addLore){
-        return PlayerSkull(owner,Config.defaultStackSize, addLore);
+        return PlayerSkull(owner,Config.defaultStackSize, addLore, null);
     }
-    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity, boolean addLore){
+    private static ItemStack PlayerSkull(OfflinePlayer owner, int quantity, boolean addLore, Optional<Object> profile){
         ItemStack stack = CompatibleSkullMaterial.PLAYER.getDetails().createItemStack(quantity);//new ItemStack(Material.PLAYER_HEAD,quantity);
         SkullMeta headMeta = (SkullMeta) stack.getItemMeta();
         String name=null;
@@ -126,6 +129,7 @@ public final class SkullManager {
         applyDisplayName(headMeta,ChatColor.RESET + "" + ChatColor.YELLOW + TexturedSkullType.getDisplayName(name));
         //System.out.println("DEBUG: addlore "+addLore);
         if(addLore) applyLore(headMeta,ChatColor.RED+Lang.LORE_HEAD_PLAYER);
+        if(profile!=null) Compatibility.getProvider().setOptionalProfile(headMeta, profile);//restore profile, if necessary
         stack.setItemMeta(headMeta);
         return stack;
     }
@@ -148,7 +152,7 @@ public final class SkullManager {
      * @return The ItemStack of heads desired.
      */
     public static ItemStack PlayerSkull(int quantity, boolean addLore){
-        return PlayerSkull((OfflinePlayer) null,quantity, addLore);
+        return PlayerSkull((OfflinePlayer) null,quantity, addLore, null);
     }
     
     /**
@@ -165,23 +169,24 @@ public final class SkullManager {
      * @see org.shininet.bukkit.playerheads.Config#defaultStackSize
      */
     public static ItemStack PlayerSkull(String owner, boolean addLore){
-        return PlayerSkull(owner,Config.defaultStackSize, addLore);
+        return PlayerSkull(owner,Config.defaultStackSize, addLore,null);
     }
     /**
-     * Creates a stack of playerheads for the given username.
+     * Creates a stack of playerheads for the given username.The username given is translated to an OfflinePlayer by bukkit at the time of creation.
      * 
-     * The username given is translated to an OfflinePlayer by bukkit at the time of creation. NOTE: null or empty usernames will be rejected with an IllegalArgumentException
+     * NOTE: null or empty usernames will be rejected with an IllegalArgumentException
      * 
      * @param owner The username to create a head for.
      * @param quantity The number of heads to create in the stack.
      * @param addLore controls whether any lore text should be added to the head.
+     * @param profile the profile to set on the new head (if the optional itself is null or empty, nothing happens)
      * @return The ItemStack of heads desired.
      * @throws IllegalArgumentException passed a null or empty username.
      */
-    public static ItemStack PlayerSkull(String owner, int quantity, boolean addLore){
+    public static ItemStack PlayerSkull(String owner, int quantity, boolean addLore, Optional<Object> profile){
         if(owner==null || owner.isEmpty()) throw new IllegalArgumentException("Creating a playerhead with a null or empty username is not possible with this method.");
         OfflinePlayer op = Compatibility.getProvider().getOfflinePlayerByName(owner);
-        return PlayerSkull(op,quantity, addLore);
+        return PlayerSkull(op,quantity, addLore,profile);
     }
     
     /**
@@ -210,9 +215,9 @@ public final class SkullManager {
         if(spawnString.isEmpty()) type=TexturedSkullType.PLAYER;
         else type = TexturedSkullType.getBySpawnName(spawnString);
         if(type==null){
-            return PlayerSkull(spawnString,quantity,addLore);
+            return PlayerSkull(spawnString,quantity,addLore,null);
         }else{
-            return MobSkull(type,quantity,usevanillaheads,addLore);
+            return MobSkull(type,quantity,usevanillaheads,addLore,null);
         }
     }
     

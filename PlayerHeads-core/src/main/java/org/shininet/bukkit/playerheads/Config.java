@@ -97,6 +97,10 @@ public final class Config {
             put("ignoredheaduuids", configType.UUID_STRINGLIST);
             
            put("pretestblockbreak", configType.BOOLEAN);
+           
+            
+            put("restoreprofile",configType.BOOLEAN);
+            put("fixbrokenheads",configType.BOOLEAN);
         }
     };
     /**

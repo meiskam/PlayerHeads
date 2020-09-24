@@ -21,6 +21,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author crashdemons (crashenator at gmail.com)
  * @deprecated This class is server implementation-specific and should not be used directly if possible, the namespace may change in the future.
  */
+@Deprecated
 public class ProfileUtils {
     private static Field getProfileField(Object obj) throws IllegalArgumentException,NoSuchFieldException,SecurityException,IllegalAccessException{
         if(!(obj instanceof SkullMeta || obj instanceof Skull)) throw new IllegalArgumentException("Object is not a supported type: SkullMeta or Skull (blockstate)");

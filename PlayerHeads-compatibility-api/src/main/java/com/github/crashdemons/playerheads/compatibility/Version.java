@@ -73,6 +73,20 @@ public final class Version {
     }
     
     /**
+     * Gets the raw version string for NMS & OBC class paths
+     *
+     * @return The version string of OBC and NMS packages
+     * @author sainttx
+     */
+    public static String getBukkitClassVersion(){
+        String name = Bukkit.getServer().getClass().getPackage().getName();
+        return name.substring(name.lastIndexOf('.') + 1);
+    }
+    
+    
+
+    
+    /**
      * Gets the detected server version string in the format Major.Minor
      * @return the version string
      */
@@ -102,6 +116,22 @@ public final class Version {
         isInit=true;
     }
     
+    private static String getBukkitVersion(){
+        String rawVersion = getBukkitClassVersion();//eg: v1_7_R4
+        
+        String versionRegex=".*v([0-9_]+).*?";
+        Pattern pattern = Pattern.compile(versionRegex);
+        Matcher matcher = pattern.matcher(rawVersion);
+        if (matcher.matches()) {
+            String versionString = matcher.group(1);
+            versionString = versionString.replace('_', '.');
+            if(versionString.endsWith(".")) versionString=versionString.substring(0, versionString.length()-1);
+            return versionString;
+        }else{
+            return "";
+        }
+    }
+    
     private static String getMCVersion(){
         String rawVersion = getRawServerVersion();
 
@@ -113,8 +143,16 @@ public final class Version {
         }
         return "";
     }
+    
+    private static String getInternalVersion(){
+        String version = getMCVersion();
+        if(version.isEmpty()) version = getBukkitVersion();
+        return version;
+    }
+    
+    
     private static int[] getMCVersionParts(){
-        String ver = getMCVersion();
+        String ver = getInternalVersion();
         if(ver.isEmpty()) return null;
         String[] parts = (ver+".0.0").split("\\.");
         try{

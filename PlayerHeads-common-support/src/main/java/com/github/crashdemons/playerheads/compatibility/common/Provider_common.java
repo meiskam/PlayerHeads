@@ -5,8 +5,10 @@
  */
 package com.github.crashdemons.playerheads.compatibility.common;
 
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -17,6 +19,7 @@ import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Tameable;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
@@ -122,4 +125,43 @@ public abstract class Provider_common implements CompatibilityProvider {
 
         return false;
     }
+    
+    
+    
+    //-----------5.2.12 providers-----------//
+    @Override
+    public Optional<Object> getOptionalProfile(ItemMeta skullMeta){
+        try{
+            return Optional.of(Compatibility.getProvider().getProfile(skullMeta));
+        }catch(Exception e){
+            return Optional.empty();
+        }
+    }
+    @Override
+    public Optional<Object> getOptionalProfile(Skull skullState){
+        try{
+            return Optional.of(Compatibility.getProvider().getProfile(skullState));
+        }catch(Exception e){
+            return Optional.empty();
+        }
+    }
+    @Override
+    public boolean setOptionalProfile(Skull skullState, Optional<Object> profile){
+        if(!profile.isPresent()) return false;
+        try{
+            return Compatibility.getProvider().setProfile(skullState,profile.get());
+        }catch(Exception e){
+            return false;
+        }
+    }
+    @Override
+    public boolean setOptionalProfile(ItemMeta skullMeta, Optional<Object> profile){
+        if(!profile.isPresent()) return false;
+        try{
+            return Compatibility.getProvider().setProfile(skullMeta,profile.get());
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
 }

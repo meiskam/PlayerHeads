@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.11-SNAPSHOT</version>
+        <version>5.2.12-SNAPSHOT</version>
     </parent>
     
 
@@ -62,13 +62,13 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.12-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-compatibility-api</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.12-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>fr.neatmonster</groupId>
@@ -81,7 +81,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-common-support</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.12-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
   	<dependency>

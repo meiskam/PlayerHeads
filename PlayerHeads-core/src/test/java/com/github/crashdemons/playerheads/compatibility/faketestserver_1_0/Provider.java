@@ -93,5 +93,27 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         return RuntimeReferences.getSkullTypeByName(typeName);
     }
     
+    //-----------5.2.12 providers-----------//
+    @Override
+    public Object getProfile(ItemMeta headMeta) throws IllegalStateException{
+        throw new IllegalStateException("Not supported by test class");
+    }
     
+    @Override
+    public Object getProfile(Skull headBlockState) throws IllegalStateException{
+        throw new IllegalStateException("Not supported by test class");
+    }
+    
+    
+    
+    @Override
+    public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalStateException, IllegalArgumentException{
+        throw new IllegalStateException("Not supported by test class");
+    }
+    
+    
+    @Override
+    public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException{
+        throw new IllegalStateException("Not supported by test class");
+    }
 }

@@ -158,7 +158,6 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-                    <!--
                     <execution>
                         <id>copy-repo-docs</id>
                         <phase>install</phase>
@@ -175,7 +174,7 @@
                         <goals>
                             <goal>run</goal>
                         </goals>
-                    </execution>-->
+                    </execution>
                 </executions>
             </plugin>
         </plugins>

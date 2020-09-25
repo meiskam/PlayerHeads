@@ -496,7 +496,9 @@ public enum TexturedSkullType implements HeadType {
      * @return A string containing the user's head displayname
      */
     public static String getDisplayName(String owner) {
-        return Formatter.format(Lang.getString("HEAD_PLAYER"), owner);
+        String nameFormat = "HEAD_PLAYER";
+        if(owner.toLowerCase().endsWith("s")) nameFormat = "HEAD_PLAYER_S";
+        return Formatter.format(Lang.getString(nameFormat), owner);
     }
 
     /**

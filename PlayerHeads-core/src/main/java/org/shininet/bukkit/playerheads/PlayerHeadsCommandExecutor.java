@@ -141,6 +141,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         } else {
             reciever = (Player) sender;
         }
+        
         if (args.length == 1 || args.length == 2 && sender.getName().equalsIgnoreCase(args[1])) {
             skullOwner = sender.getName();
             haspermission = sender.hasPermission("playerheads.spawn.own");
@@ -178,7 +179,10 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         }
         boolean addLore = plugin.configFile.getBoolean("addlore");
         if (InventoryManager.addHead(reciever, skullOwner, quantity, usevanillaskull, addLore)) {
-            formatMsg(sender, scope, Lang.SPAWNED_HEAD, skullOwner);
+            TexturedSkullType type = TexturedSkullType.getBySpawnName(skullOwner);
+            String headName = (type==null) ? TexturedSkullType.getDisplayName(skullOwner) : type.getDisplayName();
+            String forWhom = reciever.getName();
+            formatMsg(sender, scope, Lang.SPAWNED_HEAD2, headName, forWhom, ""+quantity);
         } else {
             formatMsg(sender, scope, Lang.ERROR_INV_FULL);
         }

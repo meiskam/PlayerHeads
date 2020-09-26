@@ -168,12 +168,6 @@
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>hamcrest-core</artifactId>
-          <groupId>org.hamcrest</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
@@ -185,10 +179,6 @@
           <artifactId>powermock-module-junit4-common</artifactId>
           <groupId>org.powermock</groupId>
         </exclusion>
-        <exclusion>
-          <artifactId>hamcrest-core</artifactId>
-          <groupId>org.hamcrest</groupId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -196,12 +186,6 @@
       <artifactId>powermock-api-mockito</artifactId>
       <version>1.7.4</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>mockito-core</artifactId>
-          <groupId>org.mockito</groupId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
@@ -212,10 +196,6 @@
         <exclusion>
           <artifactId>powermock-api-support</artifactId>
           <groupId>org.powermock</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>mockito-core</artifactId>
-          <groupId>org.mockito</groupId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -233,7 +213,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
   </properties>
 </project>

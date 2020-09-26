@@ -127,7 +127,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
     private boolean onCommandSpawn(CommandSender sender, Command cmd, String label, String[] args, String scope) {
         String skullOwner;
         boolean haspermission;
-        Player reciever = null;
+        Player receiver = null;
         int quantity = Config.defaultStackSize;
         boolean isConsoleSender = !(sender instanceof Player);
 
@@ -139,7 +139,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 return true;
             }
         } else {
-            reciever = (Player) sender;
+            receiver = (Player) sender;
         }
         
         if (args.length == 1 || args.length == 2 && sender.getName().equalsIgnoreCase(args[1])) {
@@ -155,13 +155,13 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 } catch (NumberFormatException ignored) {
                 }
             }
-            reciever = plugin.getServer().getPlayer(args[2]);
-            if (reciever == null) {
+            receiver = plugin.getServer().getPlayer(args[2]);
+            if (receiver == null) {
                 formatMsg(sender, scope, Lang.ERROR_NOT_ONLINE, args[2]);
                 return true;
             }
             skullOwner = args[1];
-            if (reciever.equals(sender)) {
+            if (receiver.equals(sender)) {
                 haspermission = sender.hasPermission("playerheads.spawn");
             } else {
                 haspermission = sender.hasPermission("playerheads.spawn.forother");
@@ -178,10 +178,10 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             skullOwner = fixcase(skullOwner);
         }
         boolean addLore = plugin.configFile.getBoolean("addlore");
-        if (InventoryManager.addHead(reciever, skullOwner, quantity, usevanillaskull, addLore)) {
+        if (InventoryManager.addHead(receiver, skullOwner, quantity, usevanillaskull, addLore)) {
             TexturedSkullType type = TexturedSkullType.getBySpawnName(skullOwner);
             String headName = (type==null) ? TexturedSkullType.getDisplayName(skullOwner) : type.getDisplayName();
-            String forWhom = reciever.getName();
+            String forWhom = receiver.getName();
             formatMsg(sender, scope, Lang.SPAWNED_HEAD2, headName, forWhom, ""+quantity);
         } else {
             formatMsg(sender, scope, Lang.ERROR_INV_FULL);

@@ -135,7 +135,15 @@
 <pre>public class <span class="typeNameLabel">CompatibilityUnavailableException</span>
 extends <a href="../../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></pre>
 <div class="block">Exception indicating that an implementation providing compatibility for the
- current server couldn't be found or is otherwise unavailable.</div>
+ current server couldn't be found or is otherwise unavailable.
+ <p>
+ This occurs when either Compatibility initialization has exhausted all 
+ options or the current method cannot load the specified provider.
+ <p>
+ The second case may occur if version support was indicated to exist, but was 
+ not shaded in - this was common in legacy backports that only supported 
+ specifics versions, but modern builds  usually have 1:1 representation in 
+ CompatibilitySupport.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>

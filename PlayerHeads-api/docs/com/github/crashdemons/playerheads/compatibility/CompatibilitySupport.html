@@ -197,7 +197,10 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <h4>VERSIONS</h4>
 <pre>public static final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html?is-external=true" title="class or interface in java.util">HashMap</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>[][]&gt; VERSIONS</pre>
 <div class="block">Map containing the supported server implementations and their supported
- versions.</div>
+ versions.
+ This list must be in order of descending version numbers for each type.
+ Types do not have to be in any specific order.
+ For example: VERSIONS.put("craftbukkit", new Integer[][]{ {1,16},{1,13},{1,8} });</div>
 </li>
 </ul>
 </li>

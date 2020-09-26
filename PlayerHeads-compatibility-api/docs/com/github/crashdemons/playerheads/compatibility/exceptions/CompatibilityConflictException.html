@@ -135,7 +135,9 @@
 <pre>public class <span class="typeNameLabel">CompatibilityConflictException</span>
 extends <a href="../../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></pre>
 <div class="block">Exception indicating that there is a conflict between multiple
- compatibility-provider implementations.</div>
+ compatibility-provider implementations.
+ This generally occurs when attempting to register a second provider for the 
+ session or initialize the compatibility library twice, mistakenly.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>

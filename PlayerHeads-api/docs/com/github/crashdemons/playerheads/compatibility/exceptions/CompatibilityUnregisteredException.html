@@ -135,7 +135,11 @@
 <pre>public class <span class="typeNameLabel">CompatibilityUnregisteredException</span>
 extends <a href="../../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></pre>
 <div class="block">Exception indicating that a compatibility-provider implementation isn't
- registered at a time when it is required.</div>
+ registered at a time when it is required.
+ 
+ This occurs if you sttempt to use an implementation-specific compatibility 
+ method such as getProvider() without a provider/implementation having been 
+ made available by Compatibility.init() or registerProvider()</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>

@@ -135,7 +135,11 @@
 <pre>public class <span class="typeNameLabel">CompatibilityUnsupportedException</span>
 extends <a href="../../../../../../com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></pre>
 <div class="block">Exception indicating a server version that is incompatible with the available
- implementations.</div>
+ implementations.
+ 
+ Unlike "Unavailable" exception, this is used for cases where support will not
+ be provided or even checked. By default this includes any server versions
+ below 1.8.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>

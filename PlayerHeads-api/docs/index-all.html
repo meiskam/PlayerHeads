@@ -118,7 +118,9 @@
 <div class="block">A collection of helper classes providing methods from other bukkit plugins, for use in CompatiblePlugins class to increase compatibility between plugins.</div>
 </dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/plugins/heads/package-summary.html">com.github.crashdemons.playerheads.compatibility.plugins.heads</a> - package com.github.crashdemons.playerheads.compatibility.plugins.heads</dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">A collection of helper classes providing methods for third-party head support</div>
+</dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility"><span class="typeNameLink">Compatibility</span></a> - Class in <a href="com/github/crashdemons/playerheads/compatibility/package-summary.html">com.github.crashdemons.playerheads.compatibility</a></dt>
 <dd>
 <div class="block">Compatibility class controlling implementation and version support.</div>
@@ -133,7 +135,9 @@
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html#CompatibilityConflictException-java.lang.String-">CompatibilityConflictException(String)</a></span> - Constructor for exception com.github.crashdemons.playerheads.compatibility.exceptions.<a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions"><span class="typeNameLink">CompatibilityException</span></a> - Exception in <a href="com/github/crashdemons/playerheads/compatibility/exceptions/package-summary.html">com.github.crashdemons.playerheads.compatibility.exceptions</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Base for all compatibility exceptions</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html#CompatibilityException-java.lang.String-java.lang.Exception-">CompatibilityException(String, Exception)</a></span> - Constructor for exception com.github.crashdemons.playerheads.compatibility.exceptions.<a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html#CompatibilityException-java.lang.String-">CompatibilityException(String)</a></span> - Constructor for exception com.github.crashdemons.playerheads.compatibility.exceptions.<a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></dt>
@@ -197,7 +201,7 @@
 </dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html" title="class in com.github.crashdemons.playerheads.compatibility"><span class="typeNameLink">CompatiblePlugins</span></a> - Class in <a href="com/github/crashdemons/playerheads/compatibility/package-summary.html">com.github.crashdemons.playerheads.compatibility</a></dt>
 <dd>
-<div class="block">Class providing methods and information for inter-plugin compatibility</div>
+<div class="block">Class providing methods and information for inter-plugin compatibility.</div>
 </dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility"><span class="typeNameLink">CompatibleSkullMaterial</span></a> - Enum in <a href="com/github/crashdemons/playerheads/compatibility/package-summary.html">com.github.crashdemons.playerheads.compatibility</a></dt>
 <dd>
@@ -565,8 +569,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html#getProvider--">getProvider()</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility">Compatibility</a></dt>
 <dd>
-<div class="block">Gets the currently registered compatibility provider
- (bukkit-version-specific implementation of required methods)</div>
+<div class="block">Gets the currently registered compatibility provider for the session.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/Version.html#getRawServerVersion--">getRawServerVersion()</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/Version.html" title="class in com.github.crashdemons.playerheads.compatibility">Version</a></dt>
 <dd>
@@ -574,13 +577,13 @@
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html#getRecommendedProviderType--">getRecommendedProviderType()</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility">Compatibility</a></dt>
 <dd>
-<div class="block">Gets the recommended implementation type name for your server based on
- the supported implementations.</div>
+<div class="block">Gets the current recommended implementation type name for your server
+ based on the supported implementations.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html#getRecommendedProviderVersion--">getRecommendedProviderVersion()</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility">Compatibility</a></dt>
 <dd>
-<div class="block">Gets the recommended bukkit-specific implementation version string for
- your server based on the supported implementations.</div>
+<div class="block">Gets the current recommended bukkit-specific implementation version 
+ string for your server based on the supported implementations.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html#getSkullDetails-com.github.crashdemons.playerheads.compatibility.SkullType-">getSkullDetails(SkullType)</a></span> - Method in interface com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></dt>
 <dd>
@@ -670,7 +673,9 @@
 <div class="block"><span class="deprecatedLabel">Deprecated.</span></div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html#heads">heads</a></span> - Static variable in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatiblePlugins</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Generic head support class that determines handling of detected plugin-heads (eg: being able to ignore them)</div>
+</dd>
 <dt><a href="com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api"><span class="typeNameLink">HeadType</span></a> - Interface in <a href="com/github/crashdemons/playerheads/api/package-summary.html">com.github.crashdemons.playerheads.api</a></dt>
 <dd>
 <div class="block">Object representing the type of Head supported by PlayerHeads.</div>
@@ -896,7 +901,7 @@
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html#registerProvider-com.github.crashdemons.playerheads.compatibility.CompatibilityProvider-">registerProvider(CompatibilityProvider)</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility">Compatibility</a></dt>
 <dd>
 <div class="block">Registers an compatibility provider (a bukkit-version-specific
- implementation) with the compatibility class.</div>
+ implementation) for the session with the compatibility class.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html#reloadConfig--">reloadConfig()</a></span> - Static method in class com.github.crashdemons.playerheads.compatibility.<a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatiblePlugins</a></dt>
 <dd>&nbsp;</dd>
@@ -1096,7 +1101,9 @@ the order they are declared.</div>
 <div class="block">A class providing methods related to the current server's version.</div>
 </dd>
 <dt><a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions"><span class="typeNameLink">VersionException</span></a> - Exception in <a href="com/github/crashdemons/playerheads/compatibility/exceptions/package-summary.html">com.github.crashdemons.playerheads.compatibility.exceptions</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Base for all version exceptions</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html#VersionException-java.lang.String-java.lang.Exception-">VersionException(String, Exception)</a></span> - Constructor for exception com.github.crashdemons.playerheads.compatibility.exceptions.<a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">VersionException</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html#VersionException-java.lang.String-">VersionException(String)</a></span> - Constructor for exception com.github.crashdemons.playerheads.compatibility.exceptions.<a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">VersionException</a></dt>

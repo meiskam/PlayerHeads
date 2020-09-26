@@ -78,6 +78,7 @@
                     <links>
                       <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
                       <link>https://hub.spigotmc.org/javadocs/spigot</link>
+                      <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/15.0.0/</link>
                     </links>
                     <includeDependencySources>true</includeDependencySources>
                     <dependencySourceIncludes>

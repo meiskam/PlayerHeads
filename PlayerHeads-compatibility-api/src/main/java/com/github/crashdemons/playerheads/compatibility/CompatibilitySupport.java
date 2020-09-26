@@ -13,16 +13,20 @@ import java.util.HashMap;
  * downstream projects to add support.
  * Downstream projects that shade the package into their project should exclude
  * or replace this class as needed.
- *
+ * 
  * @author crashdemons (crashenator at gmail.com)
  */
 public final class CompatibilitySupport {
-
+    /** static utility class - prevent instantiation */
     private CompatibilitySupport() {}
+    /** state holder for use in isFinalized methods if necessary - this field is not to be used for outside checking. Use isFinalized() instead */
     private static final boolean FINALIZED = false;
     /**
      * Map containing the supported server implementations and their supported
      * versions.
+     * This list must be in order of descending version numbers for each type.
+     * Types do not have to be in any specific order.
+     * For example: VERSIONS.put("craftbukkit", new Integer[][]{ {1,16},{1,13},{1,8} });
      */
     public static final HashMap<String, Integer[][]> VERSIONS = new HashMap<>();
 

@@ -8,7 +8,8 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
 /**
  * Exception indicating that there is a conflict between multiple
  * compatibility-provider implementations.
- *
+ * This generally occurs when attempting to register a second provider for the 
+ * session or initialize the compatibility library twice, mistakenly.
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityConflictException extends CompatibilityException {

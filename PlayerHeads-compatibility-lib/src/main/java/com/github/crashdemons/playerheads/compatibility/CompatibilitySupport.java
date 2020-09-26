@@ -16,6 +16,8 @@ import java.util.HashMap;
 public class CompatibilitySupport {
     /**
      * Map containing the supported server implementations and their supported versions.
+     * This list must be in order of descending version numbers for each type.
+     * Types do not have to be in any specific order.
      */
     public static final HashMap<String,Integer[][]> VERSIONS;
     static{

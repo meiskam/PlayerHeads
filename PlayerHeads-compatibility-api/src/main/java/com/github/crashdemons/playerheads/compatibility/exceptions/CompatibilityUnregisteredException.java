@@ -8,6 +8,11 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
 /**
  * Exception indicating that a compatibility-provider implementation isn't
  * registered at a time when it is required.
+ * 
+ * This occurs if you sttempt to use an implementation-specific compatibility 
+ * method such as getProvider() without a provider/implementation having been 
+ * made available by Compatibility.init() or registerProvider()
+ * 
  *
  * @author crashdemons (crashenator at gmail.com)
  */

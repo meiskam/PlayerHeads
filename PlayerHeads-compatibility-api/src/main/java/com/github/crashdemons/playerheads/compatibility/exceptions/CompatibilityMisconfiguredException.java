@@ -8,6 +8,10 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
 /**
  * Exception indicating that the Compatibility library project was misconfigured
  * when it was built, not correctly finalizing support information.
+ * 
+ * This generally means that support providers (CompatibilityProvider
+ * implementations) were not indicated to have been added.
+ * 
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibilityMisconfiguredException extends CompatibilityException {

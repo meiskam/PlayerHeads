@@ -6,7 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.exceptions;
 
 /**
- *
+ * Base for all compatibility exceptions
  * @author crashdemons (crashenator at gmail.com)
  */
 public abstract class CompatibilityException extends IllegalStateException {

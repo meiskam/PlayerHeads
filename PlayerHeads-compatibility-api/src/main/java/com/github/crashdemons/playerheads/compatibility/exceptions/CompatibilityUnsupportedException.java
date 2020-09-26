@@ -8,6 +8,10 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
 /**
  * Exception indicating a server version that is incompatible with the available
  * implementations.
+ * 
+ * Unlike "Unavailable" exception, this is used for cases where support will not
+ * be provided or even checked. By default this includes any server versions
+ * below 1.8.
  *
  * @author crashdemons (crashenator at gmail.com)
  */

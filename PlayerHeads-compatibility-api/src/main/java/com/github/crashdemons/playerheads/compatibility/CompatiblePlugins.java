@@ -14,7 +14,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Class providing methods and information for inter-plugin compatibility
+ * Class providing methods and information for inter-plugin compatibility.
+ * 
+ * This class may attempt to load some present configuration values.
+ * You can avoid this using your plugin's config directly by using the
+ * init(plugin,config) method.
  *
  * @author crashdemons (crashenator at gmail.com)
  */
@@ -36,6 +40,7 @@ public final class CompatiblePlugins {
      * com.github.crashdemons.playerheads.compatibility.plugins.ProtectionPluginCompatibility
      */
     public static ProtectionPluginCompatibility protection = null;
+    /** Generic head support class that determines handling of detected plugin-heads (eg: being able to ignore them) */
     public static HeadPluginCompatibility heads = null;
     
     private static boolean ready = false;

@@ -8,6 +8,14 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
 /**
  * Exception indicating that an implementation providing compatibility for the
  * current server couldn't be found or is otherwise unavailable.
+* <p>
+ * This occurs when either Compatibility initialization has exhausted all 
+ * options or the current method cannot load the specified provider.
+* <p>
+ * The second case may occur if version support was indicated to exist, but was 
+ * not shaded in - this was common in legacy backports that only supported 
+ * specifics versions, but modern builds  usually have 1:1 representation in 
+ * CompatibilitySupport.
  *
  * @author crashdemons (crashenator at gmail.com)
  */

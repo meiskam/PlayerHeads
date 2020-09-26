@@ -48,6 +48,16 @@ public final class Compatibility {
      * compatibility providers (specific Bukkit implementations) for use later.
      * This method also makes a determination as to what the recommended
      * implementation version is.
+     * <p>
+     * The "recommended" version is the highest implementation version available
+     * (for your server's type) that is under or equal to your server version.
+     * If no provider with a matching type can be found, this method will
+     * look for one with the 'fallback' server type (which at this time defaults
+     * to "craftbukkit").
+     * <p>
+     * Provider implementations are expected to exist in the same package as the compatibility library (com.github.crashdemons.playerheads.compatibility by default).
+     * followed by the server type name and major/minor version.  For example: com.github.crashdemons.playerheads.compatibility.craftbukkit_1_16
+     * the class in this package must be named "Provider" and must not be abstract.
      *
      * @return Whether the recommended implementation version was used. True:
      * the best implementation version for your server that was supported was
@@ -58,9 +68,9 @@ public final class Compatibility {
      * @throws CompatibilityUnsupportedException If the server version was lower
      * than is supported by the compatibility package (minimum 1.8)
      * @throws CompatibilityUnavailableException If no implementation could be
-     * found that is compatible with your server. This happens when you load an
-     * implementation onto a server where the implementation is too new for the
-     * server - possibly because you didn't properly use a backport.
+     * found that is compatible with your server. This may happen if all 
+     * available providers (of a compatible type) are newer than your server 
+     * version, or no matches can be found for your server type or fallback type.
      * @throws CompatibilityConflictException If an implementation provider was
      * already registered - this happens when there is more than one call to
      * init and registerProvider.
@@ -105,7 +115,7 @@ public final class Compatibility {
 
     /**
      * Registers an compatibility provider (a bukkit-version-specific
-     * implementation) with the compatibility class.
+     * implementation) for the session with the compatibility class.
      * <p>
      * You should either use this or init(), but not both and not more than once
      * - providers cannot be unregistered at this time.
@@ -124,7 +134,8 @@ public final class Compatibility {
     }
     
     /**
-     * Unregisters the currently registered Compatibility Provider.
+     * Unregisters the currently registered Compatibility Provider for the
+     * session.
      * @return whether there was a provider to unregister (same result as isProviderAvailable())
      * @deprecated registering an unregistering multiple providers is not recommended since it means loading unnecessary classes into memory and changing the state of compatibility.
      */
@@ -136,7 +147,7 @@ public final class Compatibility {
     }
 
     /**
-     * Gets the currently registered compatibility provider
+     * Gets the currently registered compatibility provider for the session.
      * (bukkit-version-specific implementation of required methods)
      *
      * @return the class object implementing the compatibility-provider methods.
@@ -156,8 +167,8 @@ public final class Compatibility {
     }
 
     /**
-     * Gets the recommended implementation type name for your server based on
-     * the supported implementations.
+     * Gets the current recommended implementation type name for your server
+     * based on the supported implementations.
      * <p>
      * If you call this before init(), it will always return an empty string.
      *
@@ -169,8 +180,8 @@ public final class Compatibility {
     }
 
     /**
-     * Gets the recommended bukkit-specific implementation version string for
-     * your server based on the supported implementations.
+     * Gets the current recommended bukkit-specific implementation version 
+     * string for your server based on the supported implementations.
      * <p>
      * If you call this before init(), it will always return an empty string.
      *
@@ -184,6 +195,10 @@ public final class Compatibility {
         return recommendedVersion[0] + "." + recommendedVersion[1];
     }
 
+    /**
+     * gets the server's type, or the fallback type if not explicitly supported
+     * @return the server type string.
+     */
     private static String determineRecommendedType() {//MUST return a supported type key
         String nativeType = Version.getType();
         if (CompatibilitySupport.VERSIONS.keySet().contains(nativeType)) {
@@ -197,6 +212,10 @@ public final class Compatibility {
         }
     }
 
+    /**
+     * Retrieves the highest applicable provider for currently recommended type
+     * @return the provider
+     */
     private static CompatibilityProvider loadRecommendedProvider() {
         recommendedType = determineRecommendedType();
         Integer[][] supportedVersions = CompatibilitySupport.VERSIONS.get(recommendedType);
@@ -217,6 +236,12 @@ public final class Compatibility {
         return null;
     }
 
+    /**
+     * Retrieves the highest applicable server version for the provided fallback
+     * server type string.
+     * @param type
+     * @return the provider
+     */
     private static CompatibilityProvider loadFallbackProvider(String type) {
         Integer[][] supportedVersions = CompatibilitySupport.VERSIONS.get(type);
         if (supportedVersions == null) {
@@ -235,6 +260,16 @@ public final class Compatibility {
         return null;
     }
 
+    /**
+     * Retrieves a compatibility provider (implementation) by the given server
+     * type string and version.
+     * @param type
+     * @param major
+     * @param minor
+     * @return the provider
+     * @throws CompatibilityUnavailableException if the provider was missing, 
+     * inaccessible, or could not be instantiated.
+     */
     private static CompatibilityProvider loadProviderByVersion(String type, int major, int minor) throws CompatibilityUnavailableException {
         System.out.println("Trying provider: " + type + "_" + major + "_" + minor);
         String pkg = Compatibility.class.getPackage().getName();

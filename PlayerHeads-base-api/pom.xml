@@ -61,12 +61,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <quiet>true</quiet>
                     <notimestamp>true</notimestamp>
                     <links>
-                      <link>https://hub.spigotmc.org/javadocs/bukkit</link>
+                      <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
+                      <link>https://hub.spigotmc.org/javadocs/spigot</link>
                     </links>
                 </configuration>
                 <executions>

@@ -47,6 +47,7 @@
           <notimestamp>true</notimestamp>
           <links>
             <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
+            <link>https://hub.spigotmc.org/javadocs/spigot</link>
           </links>
           <includeDependencySources>true</includeDependencySources>
           <dependencySourceIncludes>
@@ -172,7 +173,7 @@
     </plugins>
   </reporting>
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
   </properties>
 </project>

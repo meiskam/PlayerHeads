@@ -29,10 +29,13 @@ public class ProfileUtils {
         profileField.setAccessible(true);
         return profileField;
     }
-    private static GameProfile createProfile(UUID uuid, String texture){
-        GameProfile profile = new GameProfile(uuid, null);
-        profile.getProperties().put("textures", new Property("textures", texture));
+    private static GameProfile createProfile(UUID uuid, String name, String texture){
+        GameProfile profile = new GameProfile(uuid, name);
+        if(texture!=null && !texture.isEmpty()) profile.getProperties().put("textures", new Property("textures", texture));
         return profile;
+    }
+    private static GameProfile createProfile(UUID uuid, String texture){
+        return createProfile(uuid, null, texture);
     }
     
     public static GameProfile getProfile(Object obj) throws IllegalStateException{

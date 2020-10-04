@@ -6,6 +6,8 @@
 package com.github.crashdemons.playerheads.compatibility;
 
 import java.util.UUID;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -153,6 +155,20 @@ public abstract class CompatibleProfile{
      */
     public void setTextures(@Nullable String texture) {
         this.textures = texture;
+    }
+    
+    public String getOwner(){
+        return getName();
+    }
+    
+    public OfflinePlayer getOwningPlayer(){
+        if (hasId()) {
+            return Bukkit.getOfflinePlayer(getId());
+        }
+        if (hasName()) {
+            return Bukkit.getOfflinePlayer(getName());
+        }
+        return null;
     }
    
 }

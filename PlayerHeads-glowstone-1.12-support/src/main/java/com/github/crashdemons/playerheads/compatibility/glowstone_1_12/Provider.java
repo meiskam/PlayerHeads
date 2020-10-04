@@ -13,6 +13,7 @@ import org.bukkit.block.Skull;
 import org.bukkit.inventory.meta.SkullMeta;
 import com.destroystokyo.paper.profile.*;
 import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
+import com.github.crashdemons.playerheads.compatibility.paperapi.ProfileUtils;
 import org.bukkit.inventory.meta.ItemMeta;
 //import net.glowstone.entity.meta.profile.GlowPlayerProfile;
 
@@ -25,25 +26,17 @@ public class Provider extends Provider_legacy implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "glowstone"; }
     @Override public String getVersion(){ return "1.12"; }
-    private PlayerProfile createProfile(UUID uuid, String textures){
-        com.destroystokyo.paper.profile.PlayerProfile profile = Bukkit.createProfile(uuid);
-        profile.setProperty(new ProfileProperty("textures",textures));
-        
-        profile.complete();
-        return profile;
-    }
+
     @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
-        SkullMeta skullMeta = (SkullMeta) headMeta;
-        skullMeta.setPlayerProfile(createProfile(uuid,texture));//from paper interface/glowstone API
-        return true;
+        return ProfileUtils.setProfile(headMeta, uuid, texture);
     }
-    @Override public boolean setProfile(Skull headBlockState, UUID uuid, String texture){
+    @Override public boolean setProfile(Skull skull, UUID uuid, String texture){
         //return ProfileUtils.setProfile(headBlockState, uuid, texture);
         //TODO: find glowstone implementations for texturing!
         //OfflinePlayer op=Bukkit.getOfflinePlayer(uuid);
         //setPlayerProfile(headBlockState, createProfile(uuid,texture));
         //headBlockState.setPlayerProfile(createProfile(uuid,texture));// doesn't exist in this version of paper-api
-        return false;
+        return ProfileUtils.setProfile(skull, uuid, texture);
     }
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
     @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }

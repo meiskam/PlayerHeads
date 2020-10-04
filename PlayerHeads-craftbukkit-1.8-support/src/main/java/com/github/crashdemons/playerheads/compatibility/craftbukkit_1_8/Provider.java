@@ -7,6 +7,8 @@ package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_8;
 
 import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
+import com.github.crashdemons.playerheads.compatibility.craftbukkit.CraftbukkitProfile;
 import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
 import com.mojang.authlib.GameProfile;
 import java.util.UUID;
@@ -33,15 +35,15 @@ public class Provider extends Provider_legacy implements CompatibilityProvider {
     @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){
         //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
         //if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
+        return ProfileUtils.getProfile(skull).getOwningPlayer();
     }
     @Override public OfflinePlayer getOwningPlayer(Skull skull){
         //OfflinePlayer op = getOwningPlayer(skull);//skullMeta.getOwningPlayer();
         //if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);//same method as above in 1.8 implementation
+        return ProfileUtils.getProfile(skull).getOwningPlayer();
     }
-    @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return ProfileUtils.getProfilePlayer(skullItemMeta); }
-    @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return ProfileUtils.getProfilePlayer(skullBlockState); }
+    @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skull){ return ProfileUtils.getProfile(skull).getOwningPlayer(); }
+    @Override public OfflinePlayer getOwningPlayerDirect(Skull skull){ return ProfileUtils.getProfile(skull).getOwningPlayer(); }
     /*
     //@Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
     //@Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }

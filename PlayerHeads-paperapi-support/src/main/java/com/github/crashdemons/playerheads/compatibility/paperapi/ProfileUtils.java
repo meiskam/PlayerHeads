@@ -3,16 +3,13 @@
  *  License, v. 2.0. If a copy of the MPL was not distributed with this
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/ .
  */
-package com.github.crashdemons.playerheads.compatibility.craftbukkit;
+package com.github.crashdemons.playerheads.compatibility.paperapi;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
-import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Field;
 import java.util.UUID;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Skull;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
@@ -35,17 +32,17 @@ public class ProfileUtils {
     
     //-------------------------------------------------------------------------
     
-    public static GameProfile getInternalProfile(Object skull) throws IllegalStateException{
+    public static PlayerProfile getInternalProfile(Object skull) throws IllegalStateException{
         try {
-            return (GameProfile) getProfileField(skull).get(skull);
+            return (PlayerProfile) getProfileField(skull).get(skull);
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {
             throw new IllegalStateException("The profile field value could not be retrieved");
         }
     }
     public static CompatibleProfile getProfile(Object skull) throws IllegalStateException{
-        return new CraftbukkitProfile(getInternalProfile(skull));
+        return new PaperProfile(getInternalProfile(skull));
     }
-    public static boolean setProfile(Object skull, GameProfile profile) throws IllegalStateException{
+    public static boolean setProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
         try {
             getProfileField(skull).set(skull, profile);
             return true;
@@ -54,7 +51,7 @@ public class ProfileUtils {
         }
     }
     public static boolean setProfile(Object skull, CompatibleProfile profile) throws IllegalStateException{
-        return setProfile(skull, (GameProfile) profile.toInternalObject());
+        return setProfile(skull, (PlayerProfile) profile.toInternalObject());
     }
     
     
@@ -68,7 +65,7 @@ public class ProfileUtils {
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
     public static boolean setProfile(Object skull, UUID uuid, String texture) throws IllegalStateException{//credit to x7aSv for original
-        CompatibleProfile profile = new CraftbukkitProfile(uuid,null);
+        CompatibleProfile profile = new PaperProfile(uuid,null);
         profile.setTextures(texture);
         return setProfile(skull, profile);
     }

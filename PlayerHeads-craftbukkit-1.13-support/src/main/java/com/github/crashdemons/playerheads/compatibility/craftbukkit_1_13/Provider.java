@@ -74,19 +74,19 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){
         OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);
+        return ProfileUtils.getProfile(skull).getOwningPlayer();
     }
     @Override public OfflinePlayer getOwningPlayer(Skull skull){
         OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
         if(op!=null) return op;
-        return ProfileUtils.getProfilePlayer(skull);
+        return ProfileUtils.getProfile(skull).getOwningPlayer();
     }
     
     
     @Override public String getOwner(SkullMeta skull){
         String owner=null;
         OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
-        if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
+        if(op==null) op = ProfileUtils.getProfile(skull).getOwningPlayer();//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
         if(owner==null) owner=getOwnerDirect(skull);//skullMeta.getOwner();
         return owner;
@@ -94,7 +94,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     @Override public String getOwner(Skull skull){
         String owner=null;
         OfflinePlayer op = getOwningPlayerDirect(skull);//skullMeta.getOwningPlayer();
-        if(op==null) op = ProfileUtils.getProfilePlayer(skull);//this does happen on textured heads with a profile but without an OwningPlayer
+        if(op==null) op = ProfileUtils.getProfile(skull).getOwningPlayer();//this does happen on textured heads with a profile but without an OwningPlayer
         if(op!=null) owner=op.getName();
         if(owner==null) owner=getOwnerDirect(skull);//skullMeta.getOwner();
         return owner;

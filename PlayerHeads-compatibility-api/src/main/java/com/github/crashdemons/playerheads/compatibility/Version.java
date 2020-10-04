@@ -169,4 +169,18 @@ public final class Version {
         }
         return "unknown";
     }
+    
+    /**
+     * Internal method used for testing only.
+     * @param type server type string
+     * @param major major version number
+     * @param minor minor version number
+     * @deprecated internal use only
+     */
+    @Deprecated
+    public static void setDetectedServerVersion(String type, int major, int minor){
+        serverType = type;
+        versionMajor = major;
+        versionMinor = minor;
+    }
 }

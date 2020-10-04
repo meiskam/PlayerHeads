@@ -17,7 +17,6 @@
         <module>PlayerHeads-legacy-support</module>
         <module>PlayerHeads-modern-support</module>
         <module>PlayerHeads-glowstone-1.12-support</module>
-        <module>PlayerHeads-craftbukkit-1.16-support</module>
         <module>PlayerHeads-craftbukkit-1.13-support</module>
         <module>PlayerHeads-craftbukkit-1.8-support</module>
         <module>PlayerHeads-compatibility-lib</module>

@@ -7,7 +7,7 @@ package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
-import com.github.crashdemons.playerheads.compatibility.server_1_13.Provider_113;
+import com.github.crashdemons.playerheads.compatibility.modern.Provider_modern;
 import com.mojang.authlib.GameProfile;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  *
  * @author crashdemons (crashenator at gmail.com)
  */
-public abstract class Provider_craftbukkit extends Provider_113 {
+public abstract class Provider_craftbukkit_113 extends Provider_modern {
     
     
     @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }

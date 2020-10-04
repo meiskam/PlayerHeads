@@ -3,7 +3,7 @@
  *  License, v. 2.0. If a copy of the MPL was not distributed with this
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/ .
  */
-package com.github.crashdemons.playerheads.compatibility.server_1_13;
+package com.github.crashdemons.playerheads.compatibility.modern;
 
 import com.github.crashdemons.playerheads.compatibility.common.SkullDetails_common;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
@@ -16,11 +16,11 @@ import org.bukkit.inventory.ItemStack;
  * SkullDetails implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
-public class SkullDetails_113 extends SkullDetails_common implements SkullDetails{
+public class SkullDetails_modern extends SkullDetails_common implements SkullDetails{
     Material material;
     Material materialWall;
     //private final SkullType skullType;
-    public SkullDetails_113(SkullType type){
+    public SkullDetails_modern(SkullType type){
         if(type==null){
             type=SkullType.PLAYER;
             material=Material.PLAYER_HEAD;

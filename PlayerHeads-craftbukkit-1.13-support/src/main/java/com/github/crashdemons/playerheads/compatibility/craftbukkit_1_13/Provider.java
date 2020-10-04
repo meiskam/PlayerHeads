@@ -6,16 +6,13 @@
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
-import com.github.crashdemons.playerheads.compatibility.Version;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 
 /**
  * CompatibilityProvider Implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider extends Provider_craftbukkit implements CompatibilityProvider {
+public class Provider extends Provider_craftbukkit_113 implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "craftbukkit"; }
     @Override public String getVersion(){ return "1.13"; }

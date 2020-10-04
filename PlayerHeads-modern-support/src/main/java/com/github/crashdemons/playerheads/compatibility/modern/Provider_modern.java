@@ -3,7 +3,7 @@
  *  License, v. 2.0. If a copy of the MPL was not distributed with this
  *  file, You can obtain one at http://mozilla.org/MPL/2.0/ .
  */
-package com.github.crashdemons.playerheads.compatibility.server_1_13;
+package com.github.crashdemons.playerheads.compatibility.modern;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
@@ -27,8 +27,8 @@ import org.bukkit.inventory.ItemStack;
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public abstract class Provider_113 extends Provider_common implements CompatibilityProvider {
-    public Provider_113(){}
+public abstract class Provider_modern extends Provider_common implements CompatibilityProvider {
+    public Provider_modern(){}
 
     
     @Override public ItemStack getItemInMainHand(LivingEntity p){ 
@@ -38,7 +38,7 @@ public abstract class Provider_113 extends Provider_common implements Compatibil
     }
     @Override public ItemStack getItemInMainHand(Player p){ return p.getEquipment().getItemInMainHand(); }
     @Override public void setItemInMainHand(Player p,ItemStack s){ p.getEquipment().setItemInMainHand(s); }
-    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_113(type); }
+    @Override public SkullDetails getSkullDetails(SkullType type){ return new SkullDetails_modern(type); }
     @Override public boolean getKeepInventory(World world){ return world.getGameRuleValue(GameRule.KEEP_INVENTORY); }
     @Override public SkullType getSkullType(ItemStack s){ return getSkullType(s.getType()); }
     @Override public SkullType getSkullType(BlockState s){ return getSkullType(s.getType()); }

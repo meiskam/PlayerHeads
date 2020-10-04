@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.Version;
 import org.bukkit.entity.EntityType;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,8 +20,12 @@ public class ProviderTest {
     public ProviderTest() {
     }
 
+    
+    
+    
     @Test
     public void getEntityTypeFromTypename_TestLegacyPigZombie(){
+        Version.setDetectedServerVersion("craftbukkit", 1, 13);
         System.out.println("getEntityTypeFromTypenameTest");
         CompatibilityProvider provider = new com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13.Provider();
         EntityType expected = EntityType.PIG_ZOMBIE;
@@ -30,6 +35,7 @@ public class ProviderTest {
     }
     @Test
     public void getEntityTypeFromTypename_TestZombifiedPiglin(){
+        Version.setDetectedServerVersion("craftbukkit", 1, 13);
         System.out.println("getEntityTypeFromTypenameTest");
         CompatibilityProvider provider = new com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13.Provider();
         EntityType expected = EntityType.PIG_ZOMBIE;

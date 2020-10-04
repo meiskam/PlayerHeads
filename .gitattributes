@@ -1,22 +1,24 @@
 # Java sources
-*.java          text diff=java
+*.java          text diff=java eol=crlf
 *.gradle        text diff=java
 *.gradle.kts    text diff=java
 
 # These files are text and should be normalized (Convert crlf => lf)
-*.css           text diff=css
+*.css           text diff=css eol=crlf
 *.df            text
-*.htm           text diff=html
-*.html          text diff=html
-*.js            text
+*.htm           text diff=html eol=crlf
+*.html          text diff=html eol=crlf
+*.js            text eol=crlf
 *.jsp           text
 *.jspf          text
 *.jspx          text
-*.properties    text
+*.properties    text eol=crlf
+*.yml           text eol=crlf
+*.yaml          text eol=crlf
 *.tld           text
 *.tag           text
 *.tagx          text
-*.xml           text
+*.xml           text eol=crlf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)

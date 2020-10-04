@@ -381,5 +381,27 @@ public interface CompatibilityProvider {
      */
     public boolean setOptionalProfile(ItemMeta skullMeta, Optional<Object> profile);
     
+    
+    
+    /**
+     * Sets a profile on a block or item.
+     * If the skull parameter is not the proper type, an except may be thrown.
+     * @param skull an object of type Skull (BlockState) or SkullMeta
+     * @param profile the compatible profile object, or specific implementation child object.
+     * @return whether setting a profile succeeded.
+     * @throws IllegalArgumentException if the skull parameter was not the specified type
+     * @since 5.2.13-SNAPSHOT
+     */
+    public boolean setCompatibleProfile(Object skull, CompatibleProfile profile) throws IllegalArgumentException;
+    /**
+     * Gets a profile on a block or item.
+     * If the skull parameter is not 
+     * @param skull an object of type Skull (BlockState) or SkullMeta
+     * @return the profile from the head if it exists, or null
+     * @throws IllegalArgumentException if the skull parameter was not the specified type
+     * @since 5.2.13-SNAPSHOT
+     */
+    public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException;
+    
 
 }

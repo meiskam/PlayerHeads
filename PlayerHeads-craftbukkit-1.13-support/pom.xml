@@ -68,6 +68,22 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-modern-support</artifactId>
+            <version>5.2.13-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
             <version>5.2.13-SNAPSHOT</version>
             <exclusions>

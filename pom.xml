@@ -14,11 +14,12 @@
         <module>PlayerHeads-common-support</module>
         <module>PlayerHeads-craftbukkit-support</module>
         <module>PlayerHeads-paperapi-support</module>
+        <module>PlayerHeads-legacy-support</module>
+        <module>PlayerHeads-modern-support</module>
         <module>PlayerHeads-glowstone-1.12-support</module>
         <module>PlayerHeads-craftbukkit-1.16-support</module>
         <module>PlayerHeads-craftbukkit-1.13-support</module>
         <module>PlayerHeads-craftbukkit-1.8-support</module>
-        <module>PlayerHeads-legacy-support</module>
         <module>PlayerHeads-compatibility-lib</module>
         <module>PlayerHeads-api</module>
         <module>PlayerHeads-core</module>

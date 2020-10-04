@@ -145,4 +145,9 @@ abstract public class Provider_legacy extends Provider_common implements Compati
         if(isZombiePigmanTypename(typename)) return EntityType.PIG_ZOMBIE;
         return super.getEntityTypeFromTypename(typename);
     }
+    
+    @Override
+    protected EntityType getCurrentZombiePigmanType(){
+        return EntityType.PIG_ZOMBIE;
+    }
 }

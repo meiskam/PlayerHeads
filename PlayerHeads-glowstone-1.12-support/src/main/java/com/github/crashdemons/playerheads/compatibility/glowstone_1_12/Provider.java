@@ -6,15 +6,6 @@
 package com.github.crashdemons.playerheads.compatibility.glowstone_1_12;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
-import java.util.UUID;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.block.Skull;
-import org.bukkit.inventory.meta.SkullMeta;
-import com.destroystokyo.paper.profile.*;
-import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
-import com.github.crashdemons.playerheads.compatibility.paperapi.ProfileUtils;
-import org.bukkit.inventory.meta.ItemMeta;
 //import net.glowstone.entity.meta.profile.GlowPlayerProfile;
 
 /**
@@ -22,26 +13,12 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @author crashdemons (crashenator at gmail.com)
  */
 @SuppressWarnings( "deprecation" )
-public class Provider extends Provider_legacy implements CompatibilityProvider {
+public class Provider extends Provider_paperapi_112 implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "glowstone"; }
     @Override public String getVersion(){ return "1.12"; }
 
-    @Override public boolean setProfile(ItemMeta headMeta, UUID uuid, String texture){
-        return ProfileUtils.setProfile(headMeta, uuid, texture);
-    }
-    @Override public boolean setProfile(Skull skull, UUID uuid, String texture){
-        //return ProfileUtils.setProfile(headBlockState, uuid, texture);
-        //TODO: find glowstone implementations for texturing!
-        //OfflinePlayer op=Bukkit.getOfflinePlayer(uuid);
-        //setPlayerProfile(headBlockState, createProfile(uuid,texture));
-        //headBlockState.setPlayerProfile(createProfile(uuid,texture));// doesn't exist in this version of paper-api
-        return ProfileUtils.setProfile(skull, uuid, texture);
-    }
-    @Override public OfflinePlayer getOwningPlayerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwningPlayer(); }
-    @Override public OfflinePlayer getOwningPlayerDirect(Skull skullBlockState){ return skullBlockState.getOwningPlayer(); }
-    @Override public OfflinePlayer getOwningPlayer(SkullMeta skull){ return getOwningPlayerDirect(skull); }
-    @Override public OfflinePlayer getOwningPlayer(Skull skull){ return getOwningPlayerDirect(skull); }
+
     /*
     //@Override public String getOwnerDirect(SkullMeta skullItemMeta){ return skullItemMeta.getOwner(); }
     //@Override public String getOwnerDirect(Skull skullBlockState){ return skullBlockState.getOwner(); }
@@ -144,43 +121,5 @@ public class Provider extends Provider_legacy implements CompatibilityProvider {
             return null;
         }
     }*/    
-    //-----------5.2.12 providers-----------//
-    @Override
-    public Object getProfile(ItemMeta headMeta) throws IllegalStateException{
-        if(headMeta instanceof SkullMeta){
-            SkullMeta skull = (SkullMeta) headMeta;
-            return skull.getPlayerProfile();
-        }else{
-            return null;
-        }
-    }
-    
-    @Override
-    public Object getProfile(Skull headBlockState) throws IllegalStateException{
-        //headBlockState.getPlayerProfile();//NOTE: this does not exist in Paper-API 1.12.2
-        throw new IllegalStateException("Retrieving Profiles from BlockStates is not supported in GlowstoneMC/Paper-api-1.12.2");
-    }
-    
-    
-    
-    @Override
-    public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalStateException, IllegalArgumentException{
-        if(!(profile instanceof PlayerProfile)) throw new IllegalArgumentException("Argument passed was not a PlayerProfile");
-        if(headMeta instanceof SkullMeta){
-            SkullMeta skull = (SkullMeta) headMeta;
-            skull.setPlayerProfile((PlayerProfile) profile);//NOTE: Paper-API defines this as a void method, so it is assumed to succeed.
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    
-    @Override
-    public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException{
-        if(!(profile instanceof PlayerProfile)) throw new IllegalArgumentException("Argument passed was not a PlayerProfile");
-         throw new IllegalStateException("Setting Profiles from BlockStates is not supported in GlowstoneMC/Paper-api-1.12.2");
-         //skull.setPlayerProfile((PlayerProfile) profile);//NOTE: This method does not exist in Paper-API 1.12.2
-         //return true;
-    }
+
 }

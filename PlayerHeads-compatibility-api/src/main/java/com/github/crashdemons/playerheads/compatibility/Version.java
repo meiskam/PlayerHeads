@@ -182,5 +182,6 @@ public final class Version {
         serverType = type;
         versionMajor = major;
         versionMinor = minor;
+        isInit=true;
     }
 }

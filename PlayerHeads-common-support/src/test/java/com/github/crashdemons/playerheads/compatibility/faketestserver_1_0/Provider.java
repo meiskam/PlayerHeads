@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.faketestserver_1_0;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
@@ -113,6 +114,14 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     
     @Override
     public boolean setProfile(Skull headBlockState, Object profile) throws IllegalStateException, IllegalArgumentException{
+        throw new IllegalStateException("Not supported by test class");
+    }
+    
+    //-------------5.2.13 providers ----------------//
+    public boolean setCompatibleProfile(Object skull, CompatibleProfile profile) throws IllegalArgumentException{
+        throw new IllegalStateException("Not supported by test class");
+    }
+    public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException{
         throw new IllegalStateException("Not supported by test class");
     }
     

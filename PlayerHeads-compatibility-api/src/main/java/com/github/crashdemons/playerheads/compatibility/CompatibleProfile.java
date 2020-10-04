@@ -19,6 +19,18 @@ public abstract class CompatibleProfile{
     protected UUID id;
     protected String name;
     protected String texture;
+        
+    private static boolean hasField(UUID obj){
+        return (obj!=null);
+    }
+    private static boolean hasField(String obj){
+        return (obj!=null && !obj.isEmpty());
+    }
+    protected static boolean hasRequiredFields(UUID id, String name){
+        return (hasField(id) || hasField(name));
+    }
+    
+    //--------------------------------------------------------
     
     /**
      * Constructs an object containing information about a head.
@@ -26,20 +38,22 @@ public abstract class CompatibleProfile{
      * @param name the username of the head (custom heads should be null)
      */
     public CompatibleProfile(@Nullable UUID id, @Nullable String name){
+        if(!hasRequiredFields(id,name)) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
         this.id=id;
         this.name=name;
         this.texture=null;
-        if(!hasName() && !hasId()) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
     }
     
     /**
-     * Constructs a profile object from some implementation-defined representation of profiles
+     * Constructs a profile object from some implementation-defined representation of profiles.
      * This method should be overridden to prevent exceptions
      * @param internalProfile 
      */
     public CompatibleProfile(Object internalProfile){
         throw new IllegalStateException("CompatibleProfile internal constructor not properly overridden");
     }
+    
+    //--------------------------------------------------------
     
     /**
      * Sets fields/values of the profile object from an implementation-defined representation of profiles.
@@ -55,25 +69,26 @@ public abstract class CompatibleProfile{
      * @return the implementation-defined profile object.
      */
     public abstract Object toInternalObject();
-    
+
+    //--------------------------------------------------------
     
     /**
      * whether the id is present (not null)
      * @return whether the id is present (not null)
      */
-    public boolean hasId(){ return id!=null ; }
+    public boolean hasId(){ return hasField(id); }
     
     /**
      * whether the username is present (not null)
      * @return whether the username is present (not null)
      */
-    public boolean hasName(){ return name!=null && !name.isEmpty(); }
+    public boolean hasName(){ return hasField(name); }
     
     /**
      * whether the texture string is present (not null)
      * @return whether the texture string is present (not null)
      */
-    public boolean hasTexture(){ return texture!=null && !texture.isEmpty(); }
+    public boolean hasTextures(){ return hasField(texture); }
 
     /**
      * Get the UUID associated with the head profile.
@@ -90,12 +105,12 @@ public abstract class CompatibleProfile{
      * @param id 
      */
     public void setId(UUID id) {
-        if(id==null && name.isEmpty()) throw new IllegalArgumentException("Name/ID both blank");
+        if(!hasRequiredFields(id,name)) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
         this.id = id;
     }
 
     /**
-     * The username associated with the head profile
+     * The username associated with the head profile.
      * @return the username
      */
     @Nullable 
@@ -104,11 +119,11 @@ public abstract class CompatibleProfile{
     }
 
     /**
-     * Set the username associated with the head profile
+     * Set the username associated with the head profile.
      * @param name the username
      */
     public void setName(String name) {
-        if(id==null && name.isEmpty()) throw new IllegalArgumentException("Name/ID both blank");
+        if(!hasRequiredFields(id,name)) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
         this.name = name;
     }
 

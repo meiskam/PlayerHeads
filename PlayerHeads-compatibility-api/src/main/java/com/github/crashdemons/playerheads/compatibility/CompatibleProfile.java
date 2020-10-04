@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
  * Using this class is currently optional.
  * Implementations should treat a null or empty value for any field as not existing/not present.
  * @author crashdemons (crashenator at gmail.com)
+ * @since 5.2.13-SNAPSHOT
  */
 public abstract class CompatibleProfile{
     protected UUID id;

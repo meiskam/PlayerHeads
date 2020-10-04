@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Utility class that may be used by compatibility providers to handle head profile information.
  * A profile is defined as a username,id, and optional properties such as a texture.
- * Using this class is currently optional.
+ * Using this class is currently optional except where required in CompatibilityProvider
  * Implementations should treat a null or empty value for any field as not existing/not present.
  * @author crashdemons (crashenator at gmail.com)
  * @since 5.2.13-SNAPSHOT

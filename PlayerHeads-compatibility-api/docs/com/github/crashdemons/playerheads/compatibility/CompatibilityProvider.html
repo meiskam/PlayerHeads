@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":38,"i11":38,"i12":6,"i13":6,"i14":38,"i15":38,"i16":38,"i17":38,"i18":6,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":38,"i37":6,"i38":38,"i39":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":38,"i12":38,"i13":6,"i14":6,"i15":38,"i16":38,"i17":38,"i18":38,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":38,"i39":6,"i40":38,"i41":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -153,67 +153,74 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr class="rowColor" id="i1">
+<td class="colFirst"><code><a href="CompatibleProfile.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibleProfile</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCompatibleProfile(java.lang.Object)">getCompatibleProfile</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;skull)</code></th>
+<td class="colLast">
+<div class="block">Gets a profile on a block or item.</div>
+</td>
+</tr>
+<tr class="altColor" id="i2">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html?is-external=true" title="class or interface in org.bukkit.entity" class="externalLink">EntityType</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEntityTypeFromTypename(java.lang.String)">getEntityTypeFromTypename</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;ename)</code></th>
 <td class="colLast">
 <div class="block">Gets an entity type from the Typename of an entity.</div>
 </td>
 </tr>
-<tr class="altColor" id="i2">
+<tr class="rowColor" id="i3">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getItemInMainHand(org.bukkit.entity.LivingEntity)">getItemInMainHand</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html?is-external=true" title="class or interface in org.bukkit.entity" class="externalLink">LivingEntity</a>&nbsp;p)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor" id="i3">
+<tr class="altColor" id="i4">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getItemInMainHand(org.bukkit.entity.Player)">getItemInMainHand</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Player.html?is-external=true" title="class or interface in org.bukkit.entity" class="externalLink">Player</a>&nbsp;p)</code></th>
 <td class="colLast">
 <div class="block">Gets the itemstack in the [main] hand of a player</div>
 </td>
 </tr>
-<tr class="altColor" id="i4">
+<tr class="rowColor" id="i5">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKeepInventory(org.bukkit.World)">getKeepInventory</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/World.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">World</a>&nbsp;world)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the keepinventory gamerule is enabled for a given world</div>
 </td>
 </tr>
-<tr class="rowColor" id="i5">
+<tr class="altColor" id="i6">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOfflinePlayerByName(java.lang.String)">getOfflinePlayerByName</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;username)</code></th>
 <td class="colLast">
 <div class="block">Gets a player by their username</div>
 </td>
 </tr>
-<tr class="altColor" id="i6">
+<tr class="rowColor" id="i7">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Optional.html?is-external=true" title="class or interface in java.util" class="externalLink">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOptionalProfile(org.bukkit.block.Skull)">getOptionalProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullState)</code></th>
 <td class="colLast">
 <div class="block">Gets the Optional Profile object for a head.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i7">
+<tr class="altColor" id="i8">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Optional.html?is-external=true" title="class or interface in java.util" class="externalLink">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOptionalProfile(org.bukkit.inventory.meta.ItemMeta)">getOptionalProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;skullMeta)</code></th>
 <td class="colLast">
 <div class="block">Gets the Optional Profile object for a head.</div>
 </td>
 </tr>
-<tr class="altColor" id="i8">
+<tr class="rowColor" id="i9">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwner(org.bukkit.block.Skull)">getOwner</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState)</code></th>
 <td class="colLast">
 <div class="block">Gets the owner username of a skull by any means necessary.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i9">
+<tr class="altColor" id="i10">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwner(org.bukkit.inventory.meta.SkullMeta)">getOwner</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta)</code></th>
 <td class="colLast">
 <div class="block">Gets the owner username of a skull by any means necessary.</div>
 </td>
 </tr>
-<tr class="altColor" id="i10">
+<tr class="rowColor" id="i11">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwnerDirect(org.bukkit.block.Skull)">getOwnerDirect</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState)</code></th>
 <td class="colLast">
@@ -222,7 +229,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="rowColor" id="i11">
+<tr class="altColor" id="i12">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwnerDirect(org.bukkit.inventory.meta.SkullMeta)">getOwnerDirect</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta)</code></th>
 <td class="colLast">
@@ -231,21 +238,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="altColor" id="i12">
+<tr class="rowColor" id="i13">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwningPlayer(org.bukkit.block.Skull)">getOwningPlayer</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState)</code></th>
 <td class="colLast">
 <div class="block">Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i13">
+<tr class="altColor" id="i14">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwningPlayer(org.bukkit.inventory.meta.SkullMeta)">getOwningPlayer</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta)</code></th>
 <td class="colLast">
 <div class="block">Gets the owning player of a skull, with an additional attempt to derive the player from Profile uuid.</div>
 </td>
 </tr>
-<tr class="altColor" id="i14">
+<tr class="rowColor" id="i15">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwningPlayerDirect(org.bukkit.block.Skull)">getOwningPlayerDirect</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState)</code></th>
 <td class="colLast">
@@ -254,7 +261,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="rowColor" id="i15">
+<tr class="altColor" id="i16">
 <td class="colFirst"><code><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOwningPlayerDirect(org.bukkit.inventory.meta.SkullMeta)">getOwningPlayerDirect</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta)</code></th>
 <td class="colLast">
@@ -263,7 +270,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="altColor" id="i16">
+<tr class="rowColor" id="i17">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProfile(org.bukkit.block.Skull)">getProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;headBlockState)</code></th>
 <td class="colLast">
@@ -272,7 +279,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="rowColor" id="i17">
+<tr class="altColor" id="i18">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProfile(org.bukkit.inventory.meta.ItemMeta)">getProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;headMeta)</code></th>
 <td class="colLast">
@@ -281,84 +288,92 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="altColor" id="i18">
+<tr class="rowColor" id="i19">
 <td class="colFirst"><code><a href="SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSkullDetails(com.github.crashdemons.playerheads.compatibility.SkullType)">getSkullDetails</a></span>&#8203;(<a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>&nbsp;type)</code></th>
 <td class="colLast">
 <div class="block">Gets a class describing implementation-specific details about a vanilla skull type</div>
 </td>
 </tr>
-<tr class="rowColor" id="i19">
+<tr class="altColor" id="i20">
 <td class="colFirst"><code><a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSkullType(org.bukkit.block.BlockState)">getSkullType</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/BlockState.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">BlockState</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Gets the vanilla skulltype best associated with the BlockState provided.</div>
 </td>
 </tr>
-<tr class="altColor" id="i20">
+<tr class="rowColor" id="i21">
 <td class="colFirst"><code><a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSkullType(org.bukkit.inventory.ItemStack)">getSkullType</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Gets the vanilla skulltype best associated with the ItemStack provided.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i21">
+<tr class="altColor" id="i22">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getType()">getType</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Retrieve the server type the provider implements code for.</div>
 </td>
 </tr>
-<tr class="altColor" id="i22">
+<tr class="rowColor" id="i23">
 <td class="colFirst"><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVersion()">getVersion</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Retrieve the version string associated with the specific Compatibility Provider implementation.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i23">
+<tr class="altColor" id="i24">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isHead(org.bukkit.block.BlockState)">isHead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/BlockState.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">BlockState</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the blockstate corresponds a vanilla head or skull of some type.</div>
 </td>
 </tr>
-<tr class="altColor" id="i24">
+<tr class="rowColor" id="i25">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isHead(org.bukkit.inventory.ItemStack)">isHead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the itemstack corresponds a vanilla head or skull of some type.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i25">
+<tr class="altColor" id="i26">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isMobhead(org.bukkit.block.BlockState)">isMobhead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/BlockState.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">BlockState</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the blockstate corresponds to a vanilla head or skull and is not a player-head type</div>
 </td>
 </tr>
-<tr class="altColor" id="i26">
+<tr class="rowColor" id="i27">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isMobhead(org.bukkit.inventory.ItemStack)">isMobhead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the itemstack corresponds to a vanilla head or skull and is not a player-head type</div>
 </td>
 </tr>
-<tr class="rowColor" id="i27">
+<tr class="altColor" id="i28">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPlayerhead(org.bukkit.block.BlockState)">isPlayerhead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/BlockState.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">BlockState</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the blockstate corresponds to a vanilla player-head type</div>
 </td>
 </tr>
-<tr class="altColor" id="i28">
+<tr class="rowColor" id="i29">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPlayerhead(org.bukkit.inventory.ItemStack)">isPlayerhead</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a>&nbsp;s)</code></th>
 <td class="colLast">
 <div class="block">Checks whether the itemstack corresponds to a vanilla player-head type</div>
 </td>
 </tr>
-<tr class="rowColor" id="i29">
+<tr class="altColor" id="i30">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCompatibleProfile(java.lang.Object,com.github.crashdemons.playerheads.compatibility.CompatibleProfile)">setCompatibleProfile</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;skull,
+                    <a href="CompatibleProfile.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibleProfile</a>&nbsp;profile)</code></th>
+<td class="colLast">
+<div class="block">Sets a profile on a block or item.</div>
+</td>
+</tr>
+<tr class="rowColor" id="i31">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setItemInMainHand(org.bukkit.entity.Player,org.bukkit.inventory.ItemStack)">setItemInMainHand</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Player.html?is-external=true" title="class or interface in org.bukkit.entity" class="externalLink">Player</a>&nbsp;p,
                  <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/ItemStack.html?is-external=true" title="class or interface in org.bukkit.inventory" class="externalLink">ItemStack</a>&nbsp;s)</code></th>
@@ -366,7 +381,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the itemstack in the [main] hand of a player</div>
 </td>
 </tr>
-<tr class="altColor" id="i30">
+<tr class="altColor" id="i32">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOptionalProfile(org.bukkit.block.Skull,java.util.Optional)">setOptionalProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullState,
                   <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Optional.html?is-external=true" title="class or interface in java.util" class="externalLink">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&gt;&nbsp;profile)</code></th>
@@ -374,7 +389,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the Optional Profile object for a head.</div>
 </td>
 </tr>
-<tr class="rowColor" id="i31">
+<tr class="rowColor" id="i33">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOptionalProfile(org.bukkit.inventory.meta.ItemMeta,java.util.Optional)">setOptionalProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;skullMeta,
                   <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/Optional.html?is-external=true" title="class or interface in java.util" class="externalLink">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&gt;&nbsp;profile)</code></th>
@@ -382,7 +397,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the Optional Profile object for a head.</div>
 </td>
 </tr>
-<tr class="altColor" id="i32">
+<tr class="altColor" id="i34">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwner(org.bukkit.block.Skull,java.lang.String)">setOwner</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState,
         <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;owner)</code></th>
@@ -390,7 +405,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the owner username of a skull</div>
 </td>
 </tr>
-<tr class="rowColor" id="i33">
+<tr class="rowColor" id="i35">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwner(org.bukkit.inventory.meta.SkullMeta,java.lang.String)">setOwner</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta,
         <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;owner)</code></th>
@@ -398,7 +413,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the owner username of a skull</div>
 </td>
 </tr>
-<tr class="altColor" id="i34">
+<tr class="altColor" id="i36">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwningPlayer(org.bukkit.block.Skull,org.bukkit.OfflinePlayer)">setOwningPlayer</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;skullBlockState,
                <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a>&nbsp;op)</code></th>
@@ -406,7 +421,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the player owning a skull</div>
 </td>
 </tr>
-<tr class="rowColor" id="i35">
+<tr class="rowColor" id="i37">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOwningPlayer(org.bukkit.inventory.meta.SkullMeta,org.bukkit.OfflinePlayer)">setOwningPlayer</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/SkullMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">SkullMeta</a>&nbsp;skullItemMeta,
                <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/OfflinePlayer.html?is-external=true" title="class or interface in org.bukkit" class="externalLink">OfflinePlayer</a>&nbsp;op)</code></th>
@@ -414,7 +429,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Sets the player owning a skull</div>
 </td>
 </tr>
-<tr class="altColor" id="i36">
+<tr class="altColor" id="i38">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProfile(org.bukkit.block.Skull,java.lang.Object)">setProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;headBlockState,
           <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;profile)</code></th>
@@ -424,7 +439,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="rowColor" id="i37">
+<tr class="rowColor" id="i39">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProfile(org.bukkit.block.Skull,java.util.UUID,java.lang.String)">setProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Skull.html?is-external=true" title="class or interface in org.bukkit.block" class="externalLink">Skull</a>&nbsp;headBlockState,
           <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;uuid,
@@ -433,7 +448,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Set a profile field in the supplied block state using a UUID and Texture string</div>
 </td>
 </tr>
-<tr class="altColor" id="i38">
+<tr class="altColor" id="i40">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProfile(org.bukkit.inventory.meta.ItemMeta,java.lang.Object)">setProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;headMeta,
           <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;profile)</code></th>
@@ -443,7 +458,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr class="rowColor" id="i39">
+<tr class="rowColor" id="i41">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProfile(org.bukkit.inventory.meta.ItemMeta,java.util.UUID,java.lang.String)">setProfile</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;headMeta,
           <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/util/UUID.html?is-external=true" title="class or interface in java.util" class="externalLink">UUID</a>&nbsp;uuid,
@@ -1219,7 +1234,7 @@ boolean&nbsp;setProfile&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot
 <a id="setOptionalProfile(org.bukkit.inventory.meta.ItemMeta,java.util.Optional)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setOptionalProfile</h4>
 <pre class="methodSignature">boolean&nbsp;setOptionalProfile&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/ItemMeta.html?is-external=true" title="class or interface in org.bukkit.inventory.meta" class="externalLink">ItemMeta</a>&nbsp;skullMeta,
@@ -1234,6 +1249,52 @@ boolean&nbsp;setProfile&#8203;(<a href="https://hub.spigotmc.org/javadocs/spigot
 <dd><code>profile</code> - the Optional profile object to set</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>whether setting the profile succeeded. (nothing happening is considered failure).</dd>
+</dl>
+</li>
+</ul>
+<a id="setCompatibleProfile(java.lang.Object,com.github.crashdemons.playerheads.compatibility.CompatibleProfile)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setCompatibleProfile</h4>
+<pre class="methodSignature">boolean&nbsp;setCompatibleProfile&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;skull,
+                             <a href="CompatibleProfile.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibleProfile</a>&nbsp;profile)
+                      throws <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></pre>
+<div class="block">Sets a profile on a block or item.
+ If the skull parameter is not the proper type, an except may be thrown.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skull</code> - an object of type Skull (BlockState) or SkullMeta</dd>
+<dd><code>profile</code> - the compatible profile object, or specific implementation child object.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether setting a profile succeeded.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - if the skull parameter was not the specified type</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.2.13-SNAPSHOT</dd>
+</dl>
+</li>
+</ul>
+<a id="getCompatibleProfile(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getCompatibleProfile</h4>
+<pre class="methodSignature"><a href="CompatibleProfile.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibleProfile</a>&nbsp;getCompatibleProfile&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a>&nbsp;skull)
+                                throws <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></pre>
+<div class="block">Gets a profile on a block or item.
+ If the skull parameter is not</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>skull</code> - an object of type Skull (BlockState) or SkullMeta</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the profile from the head if it exists, or null</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang" class="externalLink">IllegalArgumentException</a></code> - if the skull parameter was not the specified type</dd>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.2.13-SNAPSHOT</dd>
 </dl>
 </li>
 </ul>

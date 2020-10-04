@@ -59,7 +59,7 @@ public abstract class CompatibleProfile{
     /**
      * Constructs a profile object from some implementation-defined representation of profiles.
      * This method should be overridden to prevent exceptions
-     * @param internalProfile 
+     * @param internalProfile the implementation-defined representation of a profile.
      */
     public CompatibleProfile(Object internalProfile){
         throw new IllegalStateException("CompatibleProfile internal constructor not properly overridden");
@@ -116,7 +116,7 @@ public abstract class CompatibleProfile{
     /**
      * Set the UUID associated with the head profile.
      * This should be either the UUID of a player or a unique ID for each head type.
-     * @param id 
+     * @param id the ID to set
      */
     public void setId(UUID id) {
         if(!hasRequiredFields(id,name)) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
@@ -163,7 +163,7 @@ public abstract class CompatibleProfile{
     /**
      * Whether the owner username is present
      * equivalent to hasName() but provided for Bukkit similarity.
-     * @return 
+     * @return whether the owner username exists
      */
     public boolean hasOwner(){
         return hasName();
@@ -171,7 +171,7 @@ public abstract class CompatibleProfile{
     /**
      * Get the owner username.
      * equivalent to getName() but provided for Bukkit similarity.
-     * @return 
+     * @return the owner username
      */
     public String getOwner(){
         return getName();
@@ -180,7 +180,7 @@ public abstract class CompatibleProfile{
     /**
      * Gets the OfflinePlayer associated with the profile.
      * Uses the same logic order that bukkit does: returns the ID-based Player if a player exists, OR the name-based player if a username exists, but only one will be checked.
-     * @return 
+     * @return the player, or null
      */
     public OfflinePlayer getOwningPlayer(){
         if (hasId()) {

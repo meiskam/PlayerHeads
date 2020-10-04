@@ -119,9 +119,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Object.html?is-external=true" title="class or interface in java.lang" class="externalLink">Object</a></pre>
 <div class="block">Utility class that may be used by compatibility providers to handle head profile information.
  A profile is defined as a username,id, and optional properties such as a texture.
- Using this class is currently optional.
+ Using this class is currently optional except where required in CompatibilityProvider
  Implementations should treat a null or empty value for any field as not existing/not present.</div>
 <dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>5.2.13-SNAPSHOT</dd>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
 </dl>
@@ -447,7 +449,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/ja
  This method should be overridden to prevent exceptions</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>internalProfile</code> - </dd>
+<dd><code>internalProfile</code> - the implementation-defined representation of a profile.</dd>
 </dl>
 </li>
 </ul>
@@ -592,7 +594,7 @@ public&nbsp;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.bas
  This should be either the UUID of a player or a unique ID for each head type.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>id</code> - </dd>
+<dd><code>id</code> - the ID to set</dd>
 </dl>
 </li>
 </ul>
@@ -666,6 +668,7 @@ public&nbsp;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.bas
  equivalent to hasName() but provided for Bukkit similarity.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>whether the owner username exists</dd>
 </dl>
 </li>
 </ul>
@@ -680,6 +683,7 @@ public&nbsp;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.bas
  equivalent to getName() but provided for Bukkit similarity.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>the owner username</dd>
 </dl>
 </li>
 </ul>
@@ -694,6 +698,7 @@ public&nbsp;<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.bas
  Uses the same logic order that bukkit does: returns the ID-based Player if a player exists, OR the name-based player if a username exists, but only one will be checked.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dd>the player, or null</dd>
 </dl>
 </li>
 </ul>

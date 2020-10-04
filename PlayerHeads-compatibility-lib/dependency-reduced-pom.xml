@@ -132,6 +132,7 @@
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
+                  <include>org.shininet.bukkit:PlayerHeads-modern-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-glowstone-1.12-support:jar:</include>
                   <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>

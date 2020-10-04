@@ -27,8 +27,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9};
-var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":41};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -136,7 +136,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/ja
 </a>
 <h3>Method Summary</h3>
 <div class="memberSummary">
-<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="tableTab" onclick="show(1);">Static Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button></div>
+<div role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="tableTab" onclick="show(1);">Static Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="tableTab" onclick="show(8);">Concrete Methods</button><button role="tab" aria-selected="false" aria-controls="memberSummary_tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t6" class="tableTab" onclick="show(32);">Deprecated Methods</button></div>
 <div id="memberSummary_tabpanel" role="tabpanel">
 <table aria-labelledby="t0">
 <tr>
@@ -202,6 +202,17 @@ extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/ja
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#init()">init</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Initialize the version class and detect the server version.</div>
+</td>
+</tr>
+<tr class="altColor" id="i8">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDetectedServerVersion(java.lang.String,int,int)">setDetectedServerVersion</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;type,
+                        int&nbsp;major,
+                        int&nbsp;minor)</code></th>
+<td class="colLast">
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">internal use only</div>
+</div>
 </td>
 </tr>
 </tbody>
@@ -344,7 +355,7 @@ extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/ja
 <a id="init()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>init</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;init()
@@ -355,6 +366,28 @@ extends <a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/ja
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a></code> - If the version string supplied by the server could not be understood.</dd>
 <dd><code><a href="exceptions/CompatibilityUnsupportedException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnsupportedException</a></code> - If the version supplied by the server is not supportable by this plugin</dd>
+</dl>
+</li>
+</ul>
+<a id="setDetectedServerVersion(java.lang.String,int,int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setDetectedServerVersion</h4>
+<pre class="methodSignature"><a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang" class="externalLink">@Deprecated</a>
+public static&nbsp;void&nbsp;setDetectedServerVersion&#8203;(<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;type,
+                                            int&nbsp;major,
+                                            int&nbsp;minor)</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">internal use only</div>
+</div>
+<div class="block">Internal method used for testing only.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - server type string</dd>
+<dd><code>major</code> - major version number</dd>
+<dd><code>minor</code> - minor version number</dd>
 </dl>
 </li>
 </ul>

@@ -261,3 +261,9 @@ zoglindroprate: 0.002
 #1.16.2 mobs
 piglinbrutedroprate: 0.002
 
+#provisional Caves and Cliffs mobs
+axolotldroprate: 0.002
+glowsquiddroprate: 0.002
+goatdroprate: 0.002
+wardendroprate: 0.002
+

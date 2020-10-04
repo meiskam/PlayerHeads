@@ -32,6 +32,33 @@ public enum TexturedSkullType implements HeadType {
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWI3YWY5ZTQ0MTEyMTdjN2RlOWM2MGFjYmQzYzNmZDY1MTk3ODMzMzJhMWIzYmM1NmZiZmNlOTA3MjFlZjM1In19fQ=="
     ),
     
+    //provisional Caves & Cliffs entries
+    
+    //Caves and cliffs provisional heads
+    @Deprecated
+    AXOLOTL(
+            "fa074329-ea4a-4535-acbd-4f0f490448f7",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzFlNjE0NmRlYzljMGIwMTIyYmEyZTQ5Y2E1YmRmZTI3NzM1ZTQ4NTZmNjgwNzA2MTJjZjBiNjg4YTE4Y2NlYyJ9fX0=" //TODO: provisional texture
+    ),
+    @Deprecated
+    GLOW_SQUID(
+            "7ed5a68c-c3ec-4ddb-9355-cee7ab526570",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTlkODU5ZDZiYWYzM2VjY2RlOTk3NTAxYTc2ZThiODNjNDFhYTY4NTliOGU0ZmUxYmUyYWMwOGNjMDQ4NDMifX19" //TODO: Placeholder texture
+    ),
+    @Deprecated
+    GOAT(
+            "5485c31d-e250-4764-a761-3e2c8b9745c4",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU3NjA3MDk5ZDA2YjdhOGIxMzI3MDkzY2QwYTQ4OGJlN2M5ZjUwYjYxMjFiMjIxNTEyNzFiNTkxNzBmM2MyMSJ9fX0=" //TODO: Provisional texture
+    ),
+    @Deprecated
+    WARDEN(
+            "5463f08a-7a0e-4bb4-bd3f-05133effa66f",
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDZiYTYzMzQ0ZjQ5ZGQxYzRmNTQ4OGU5MjZiZjNkOWUyYjI5OTE2YTZjNTBkNjEwYmI0MGE1MjczZGM4YzgyIn19fQ==" //TODO: Placeholder texture
+    ),
+    
+    
+    
+    
     //1.16.2 entries
     PIGLIN_BRUTE(
             "11eece7d-c455-499b-afa0-7b2972ac149d",

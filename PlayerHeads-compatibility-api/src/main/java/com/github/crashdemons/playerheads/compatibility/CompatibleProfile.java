@@ -33,6 +33,15 @@ public abstract class CompatibleProfile{
     //--------------------------------------------------------
     
     /**
+     * Internal constructor only be used for blank objects by child classes.
+     */
+    protected CompatibleProfile(){
+        id=null;
+        name=null;
+        textures=null;
+    }
+    
+    /**
      * Constructs an object containing information about a head.
      * @param id the UUID of the head (either a player's or a unique one for each head type)
      * @param name the username of the head (custom heads should be null)

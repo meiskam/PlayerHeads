@@ -18,15 +18,15 @@ import org.jetbrains.annotations.Nullable;
 public abstract class CompatibleProfile{
     protected UUID id;
     protected String name;
-    protected String texture;
+    protected String textures;
         
-    private static boolean hasField(UUID obj){
+    public static boolean hasField(UUID obj){
         return (obj!=null);
     }
-    private static boolean hasField(String obj){
+    public static boolean hasField(String obj){
         return (obj!=null && !obj.isEmpty());
     }
-    protected static boolean hasRequiredFields(UUID id, String name){
+    public static boolean hasRequiredFields(UUID id, String name){
         return (hasField(id) || hasField(name));
     }
     
@@ -41,7 +41,7 @@ public abstract class CompatibleProfile{
         if(!hasRequiredFields(id,name)) throw new IllegalArgumentException("Name or ID must be present for a valid profile.");
         this.id=id;
         this.name=name;
-        this.texture=null;
+        this.textures=null;
     }
     
     /**
@@ -88,7 +88,7 @@ public abstract class CompatibleProfile{
      * whether the texture string is present (not null)
      * @return whether the texture string is present (not null)
      */
-    public boolean hasTextures(){ return hasField(texture); }
+    public boolean hasTextures(){ return hasField(textures); }
 
     /**
      * Get the UUID associated with the head profile.
@@ -133,7 +133,7 @@ public abstract class CompatibleProfile{
      */
     @Nullable 
     public String getTextures() {
-        return texture;
+        return textures;
     }
 
     /**
@@ -141,7 +141,7 @@ public abstract class CompatibleProfile{
      * @param texture textures string
      */
     public void setTextures(@Nullable String texture) {
-        this.texture = texture;
+        this.textures = texture;
     }
    
 }

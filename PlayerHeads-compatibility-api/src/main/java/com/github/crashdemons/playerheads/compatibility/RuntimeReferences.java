@@ -7,6 +7,7 @@ package com.github.crashdemons.playerheads.compatibility;
 
 import java.lang.reflect.Method;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 
 /**
  * Provides methods to perform runtime lookups of values by name (eg: enums)
@@ -17,6 +18,13 @@ public final class RuntimeReferences {
     public static CompatibleSkullMaterial getCompatibleMaterialByName(String name){
         try{
             return CompatibleSkullMaterial.valueOf(name);
+        }catch(IllegalArgumentException e){
+            return null;
+        }
+    }
+    public static EntityType getEntityTypeByName(String name){
+        try{
+            return EntityType.valueOf(name);
         }catch(IllegalArgumentException e){
             return null;
         }

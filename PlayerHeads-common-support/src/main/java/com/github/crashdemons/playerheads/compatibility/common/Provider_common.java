@@ -7,7 +7,9 @@ package com.github.crashdemons.playerheads.compatibility.common;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import com.github.crashdemons.playerheads.compatibility.Version;
 import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -106,13 +108,26 @@ public abstract class Provider_common implements CompatibilityProvider {
         }
     }
     
-    private static final String ETYPE_ZOMBIE_PIGMAN_PRE116 = "PIG_ZOMBIE";
-    private static final String ETYPE_ZOMBIE_PIGMAN_POST116 = "ZOMBIFIED_PIGLIN";
+    protected static final String ETYPE_ZOMBIE_PIGMAN_PRE116 = "PIG_ZOMBIE";
+    protected static final String ETYPE_ZOMBIE_PIGMAN_POST116 = "ZOMBIFIED_PIGLIN";
     
     protected boolean isZombiePigmanTypename(String typename){
         typename=typename.toUpperCase();
         return typename!=null && (typename.equals(ETYPE_ZOMBIE_PIGMAN_PRE116) || typename.equals(ETYPE_ZOMBIE_PIGMAN_POST116));
     }
+    
+    
+    private EntityType currentZombiePigmanType = null;
+    protected EntityType getCurrentZombiePigmanType(){
+        if(currentZombiePigmanType==null){
+            if(Version.checkAtLeast(1, 16)) currentZombiePigmanType = RuntimeReferences.getEntityTypeByName(ETYPE_ZOMBIE_PIGMAN_POST116);
+            else currentZombiePigmanType = RuntimeReferences.getEntityTypeByName(ETYPE_ZOMBIE_PIGMAN_PRE116);
+        }
+        return currentZombiePigmanType;
+    }
+    
+    
+    
     
     protected boolean isZombiePigman(Entity e){
         return (e instanceof PigZombie);

@@ -59,9 +59,11 @@ public abstract class CompatibleProfile{
      * Sets fields/values of the profile object from an implementation-defined representation of profiles.
      * This method is overridden by each implementation.
      * If no internal implementation is available, providers should take CompatibleProfile itself instead of an exception.
+     * An IllegalArgumentException may be thrown if the object type is incorrect.
      * @param internalProfile implementation-defined profile representation.
+     * @throws IllegalArgumentException when the parameter was not an internal type used by the current provider.
      */
-    public abstract void setFromInternalObject(Object internalProfile);
+    public abstract void setFromInternalObject(Object internalProfile) throws IllegalArgumentException;
     
     /**
      * Gets an implementation-defined representation for the profile information.

@@ -157,10 +157,30 @@ public abstract class CompatibleProfile{
         this.textures = texture;
     }
     
+    //-----------------------------------------------------
+    
+    /**
+     * Whether the owner username is present
+     * equivalent to hasName() but provided for Bukkit similarity.
+     * @return 
+     */
+    public boolean hasOwner(){
+        return hasName();
+    }
+    /**
+     * Get the owner username.
+     * equivalent to getName() but provided for Bukkit similarity.
+     * @return 
+     */
     public String getOwner(){
         return getName();
     }
     
+    /**
+     * Gets the OfflinePlayer associated with the profile.
+     * Uses the same logic order that bukkit does: returns the ID-based Player if a player exists, OR the name-based player if a username exists, but only one will be checked.
+     * @return 
+     */
     public OfflinePlayer getOwningPlayer(){
         if (hasId()) {
             return Bukkit.getOfflinePlayer(getId());

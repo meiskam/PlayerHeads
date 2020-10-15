@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.shininet.bukkit</groupId>
-        <artifactId>PlayerHeads</artifactId>
+        <artifactId>PlayerHeads-compatibility</artifactId>
         <version>5.2.13-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-compatibility-api</artifactId>

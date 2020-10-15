@@ -7,7 +7,7 @@
     <name>PlayerHeads-glowstone-1.12-support</name>
 
     <parent>
-        <artifactId>PlayerHeads</artifactId>
+        <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
         <version>5.2.13-SNAPSHOT</version>
     </parent>

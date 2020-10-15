@@ -1,22 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads</artifactId>
+    <parent>
+        <groupId>org.shininet.bukkit</groupId>
+        <artifactId>PlayerHeads</artifactId>
+        <version>5.2.13-SNAPSHOT</version>
+    </parent>
+    <artifactId>PlayerHeads-compatibility</artifactId>
     <packaging>pom</packaging>
-    <version>5.2.13-SNAPSHOT</version>
-    <name>PlayerHeads-5.2</name>
     
-    <!-- sub modules -->
     <modules>
-        <module>PlayerHeads-base-api</module>
-        <module>PlayerHeads-compatibility</module>
-        <module>PlayerHeads-api</module>
-        <module>PlayerHeads-core</module>
-        <module>PlayerHeads-crossversion-plugin</module>
+        <module>PlayerHeads-compatibility-api</module>
+        <module>PlayerHeads-common-support</module>
+        <module>PlayerHeads-craftbukkit-support</module>
+        <module>PlayerHeads-paperapi-support</module>
+        <module>PlayerHeads-legacy-support</module>
+        <module>PlayerHeads-modern-support</module>
+        <module>PlayerHeads-glowstone-1.12-support</module>
+        <module>PlayerHeads-craftbukkit-1.13-support</module>
+        <module>PlayerHeads-craftbukkit-1.8-support</module>
+        <module>PlayerHeads-compatibility-lib</module>
     </modules>
     
-
+    
     <organization>
         <name>ShiniNet</name>
         <url>http://www.shininet.org</url>

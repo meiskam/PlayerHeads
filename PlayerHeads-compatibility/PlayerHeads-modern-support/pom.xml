@@ -2,16 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads-legacy-support</artifactId>
+    <artifactId>PlayerHeads-modern-support</artifactId>
     <packaging>jar</packaging>
-    <name>PlayerHeads-legacy-support</name>
-    
+    <name>PlayerHeads-modern-support</name>
+
     <parent>
-        <artifactId>PlayerHeads</artifactId>
+        <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
         <version>5.2.13-SNAPSHOT</version>
     </parent>
-    
 
     <organization>
         <name>ShiniNet</name>
@@ -19,17 +18,21 @@
     </organization>
     
     <licenses>
-      <license>
-        <name>Mozilla Public License 2.0</name>
-        <url>http://mozilla.org/MPL/2.0/</url>
-        <distribution>repo</distribution>
-      </license>
+        <license>
+            <name>Mozilla Public License 2.0</name>
+            <url>http://mozilla.org/MPL/2.0/</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <scm>
         <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
         <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
-        <url>https://github.com/crashdemons/PlayerHeads/tree/core/</url>
+        <url>https://github.com/crashdemons/PlayerHeads/tree/craftbukkit-1.13-support/</url>
     </scm>
 
     <issueManagement>
@@ -42,14 +45,22 @@
             <id>crashdemons-repo</id>
             <url>https://meme.tips/java-repos/</url>
         </repository>
-	<repository>
+        <repository>
             <id>mojang</id>
             <name>Mojang's Repository</name>
             <url>https://libraries.minecraft.net/</url>
         </repository>
         <repository>
+            <id>spigot-group-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>md_5-releases</id>
+            <url>http://repo.md-5.net/content/repositories/releases/</url>
         </repository>
     </repositories>
 
@@ -57,7 +68,7 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-common-support</artifactId>
+            <artifactId>PlayerHeads-craftbukkit-support</artifactId>
             <version>5.2.13-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
@@ -65,29 +76,28 @@
                     <artifactId>bukkit</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>craftbukkit</artifactId>
-                </exclusion>
-                <exclusion>
                     <groupId>org.spigotmc</groupId>
                     <artifactId>spigot-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mojang</groupId>
-                    <artifactId>authlib</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-common-support</artifactId>
+            <version>5.2.13-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--
         <dependency>
-            <groupId>net.Indyuce</groupId>
-            <artifactId>BountyHunters</artifactId>
-            <version>2.2</version>
+            <groupId>org.shininet.bukkit</groupId>
+            <artifactId>PlayerHeads-core</artifactId>
+            <version>4.9.3-SNAPSHOT</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -101,10 +111,51 @@
             </exclusions>
         </dependency>
         -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>5.0-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>2.0.7</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.7.4</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito-common</artifactId>     
+            <version>1.7.4</version>
+            <scope>test</scope>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.13-R0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <finalName>${project.name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -141,7 +192,6 @@
                             <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                             <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         </manifestEntries>
-                        
                     </archive>
                 </configuration>
             </plugin>
@@ -162,7 +212,7 @@
                 <version>1.8</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>install</phase>
                         <configuration>
                             <target>
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"

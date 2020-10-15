@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads-paperapi-support</artifactId>
+    <artifactId>PlayerHeads-legacy-support</artifactId>
     <packaging>jar</packaging>
-    <name>PlayerHeads-paperapi-support</name>
+    <name>PlayerHeads-legacy-support</name>
     
     <parent>
-        <artifactId>PlayerHeads</artifactId>
+        <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
         <version>5.2.13-SNAPSHOT</version>
     </parent>
@@ -42,46 +42,46 @@
             <id>crashdemons-repo</id>
             <url>https://meme.tips/java-repos/</url>
         </repository>
+	<repository>
+            <id>mojang</id>
+            <name>Mojang's Repository</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
         <repository>
-            <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.shininet.bukkit</groupId>
-            <artifactId>PlayerHeads-compatibility-api</artifactId>
-            <version>5.2.13-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.shininet.bukkit</groupId>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-common-support</artifactId>
             <version>5.2.13-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
                 </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>com.mojang</groupId>
                     <artifactId>authlib</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
         <!--
         <dependency>
@@ -111,10 +111,10 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <includes>
-                        <include>org.bukkit</include>
-                        <include>com.mojang</include>
-                    </includes>
+                    <excludes>
+                        <exclude>org.shininet.bukkit</exclude>
+                        <exclude>org.bukkit</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

@@ -2,16 +2,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads-craftbukkit-1.8-support</artifactId>
+    <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
     <packaging>jar</packaging>
-    <name>PlayerHeads-craftbukkit-1.8-support</name>
-   
+    <name>PlayerHeads-craftbukkit-1.13-support</name>
+
     <parent>
-        <artifactId>PlayerHeads</artifactId>
+        <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
         <version>5.2.13-SNAPSHOT</version>
     </parent>
-  
+
     <organization>
         <name>ShiniNet</name>
         <url>http://www.shininet.org</url>
@@ -32,7 +32,7 @@
     <scm>
         <developerConnection>scm:git:git@github.com:crashdemons/PlayerHeads.git</developerConnection>
         <connection>scm:git:git://github.com/crashdemons/PlayerHeads.git</connection>
-        <url>https://github.com/crashdemons/PlayerHeads/tree/craftbukkit-1.8-support/</url>
+        <url>https://github.com/crashdemons/PlayerHeads/tree/craftbukkit-1.13-support/</url>
     </scm>
 
     <issueManagement>
@@ -68,6 +68,22 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-modern-support</artifactId>
+            <version>5.2.13-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
             <version>5.2.13-SNAPSHOT</version>
             <exclusions>
@@ -84,19 +100,16 @@
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-legacy-support</artifactId>
-            <version>5.2.12-SNAPSHOT</version>
+            <artifactId>PlayerHeads-common-support</artifactId>
+            <version>5.2.13-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>        <!--
+        </dependency>
+        <!--
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-core</artifactId>
@@ -143,11 +156,10 @@
         </dependency>
         
         
-        
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
+            <version>1.13-R0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
@@ -169,7 +181,6 @@
                     <excludes>
                         <exclude>org.shininet.bukkit</exclude>
                         <exclude>org.bukkit</exclude>
-                        <exclude>org.spigotmc</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -245,9 +245,9 @@
                                 
                                 
                                 <copy file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-                                      tofile="${basedir}/../target/${project.build.finalName}.${project.packaging}"/>
+                                      tofile="${basedir}/../../target/${project.build.finalName}.${project.packaging}"/>
                                 <copy file="${project.build.directory}/${project.name}.${project.packaging}"
-                                      tofile="${basedir}/../target/${project.name}.${project.packaging}"/>
+                                      tofile="${basedir}/../../target/${project.name}.${project.packaging}"/>
                             </target>
                         </configuration>
                         <goals>

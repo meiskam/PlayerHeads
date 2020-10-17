@@ -152,7 +152,9 @@ public interface PlayerHeadsAPI {
      * These may be more subject to change than other API methods, so you should avoid them except when necessary.
      * @since 5.1.1-SNAPSHOT
      * @return the CompatibilityProvider instance or null if PlayerHeads plugin was not initialized yet.
+     * @deprecated You should use Compatibility.getProvider() from PlayerHeads-compatibility-api. Compatibility packages will be removed from PH-API in the future, but you may still access them if you use PlayerHeads-compatibility-api (or lib) as a dependency.
      */
     @Nullable
+    @Deprecated
     public CompatibilityProvider getCompatibilityProvider();
 }

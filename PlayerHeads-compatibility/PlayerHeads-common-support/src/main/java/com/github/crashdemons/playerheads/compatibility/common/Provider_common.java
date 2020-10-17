@@ -7,6 +7,7 @@ package com.github.crashdemons.playerheads.compatibility.common;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
 import com.github.crashdemons.playerheads.compatibility.Version;
@@ -179,4 +180,17 @@ public abstract class Provider_common implements CompatibilityProvider {
         }
     }
     
+    @Override
+    public ItemStack getCompatibleHeadItem(CompatibleSkullMaterial material, int amount){
+        return material.getDetails().createItemStack(amount);
+    }
+    
+    @Override
+    public ItemStack applyDefaultItemMeta(ItemStack stack, boolean replace){
+        if(replace || !stack.hasItemMeta()){
+            ItemMeta meta = Bukkit.getItemFactory().getItemMeta(stack.getType());
+            if(meta!=null) stack.setItemMeta( meta );
+        }
+        return stack;
+    }
 }

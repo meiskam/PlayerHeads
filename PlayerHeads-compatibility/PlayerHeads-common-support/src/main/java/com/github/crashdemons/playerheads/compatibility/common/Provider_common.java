@@ -185,12 +185,4 @@ public abstract class Provider_common implements CompatibilityProvider {
         return material.getDetails().createItemStack(amount);
     }
     
-    @Override
-    public ItemStack applyDefaultItemMeta(ItemStack stack, boolean replace){
-        if(replace || !stack.hasItemMeta()){
-            ItemMeta meta = Bukkit.getItemFactory().getItemMeta(stack.getType());
-            if(meta!=null) stack.setItemMeta( meta );
-        }
-        return stack;
-    }
 }

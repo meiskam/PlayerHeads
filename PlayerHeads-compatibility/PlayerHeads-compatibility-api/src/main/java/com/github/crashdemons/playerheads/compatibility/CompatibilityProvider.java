@@ -431,18 +431,6 @@ public interface CompatibilityProvider {
     @NotNull
     public ItemStack getCompatibleHeadItem(@NotNull CompatibleSkullMaterial material, int amount);
     
-    /**
-     * Explicitly applies the default ItemMeta to an item.
-     * Typically, this is only a wrapper using ItemFactory.getItemMeta(Material)
-     * Note: ItemStack:getItemMeta already returns the ItemFactory Meta when necessary, so this is not necessary except when you want to explicitly store meta in the item with a single call.
-     * WARNING: the ItemMeta may still be null if there is no appropriate meta for the material (eg: AIR)
-     * @param stack the item to apply meta on
-     * @param replace whether to replace existing ItemMeta or not. Setting this to false will only apply to items without meta.
-     * @return the stack with meta applied.
-     * @since 5.2.13-SNAPSHOT
-     */
-    @NotNull
-    public ItemStack applyDefaultItemMeta(@NotNull ItemStack stack, boolean replace);
     
     
     

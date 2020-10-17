@@ -48,12 +48,12 @@ public enum TexturedSkullType implements HeadType {
     @Deprecated
     GOAT(
             "5485c31d-e250-4764-a761-3e2c8b9745c4",
-            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU3NjA3MDk5ZDA2YjdhOGIxMzI3MDkzY2QwYTQ4OGJlN2M5ZjUwYjYxMjFiMjIxNTEyNzFiNTkxNzBmM2MyMSJ9fX0=" //TODO: Provisional texture
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU3NjA3MDk5ZDA2YjdhOGIxMzI3MDkzY2QwYTQ4OGJlN2M5ZjUwYjYxMjFiMjIxNTEyNzFiNTkxNzBmM2MyMSJ9fX0=" //TODO: Provisional texture?
     ),
     @Deprecated
     WARDEN(
             "5463f08a-7a0e-4bb4-bd3f-05133effa66f",
-            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDZiYTYzMzQ0ZjQ5ZGQxYzRmNTQ4OGU5MjZiZjNkOWUyYjI5OTE2YTZjNTBkNjEwYmI0MGE1MjczZGM4YzgyIn19fQ==" //TODO: Placeholder texture
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzViMjZjYThkMjUzOGY3ZjZkZjA4YzgxZjBhZGI4MzA1ODAxNmZiNDE5M2I5YWE1M2ZkMDRiNDEyMDAwYWZkMiJ9fX0=" //TODO: Provisional texture
     ),
     
     

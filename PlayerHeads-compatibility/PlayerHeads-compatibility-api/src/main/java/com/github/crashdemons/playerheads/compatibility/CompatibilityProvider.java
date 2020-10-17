@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -402,6 +403,49 @@ public interface CompatibilityProvider {
      * @since 5.2.13-SNAPSHOT
      */
     public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException;
+    
+    /**
+     * Create a compatible profile object with the provided parameters.
+     * @param name the owner username of the head (this should not be a custom name - use null instead)
+     * @param id A UUID to be associated with this profile and texture (this may be a custom/unique value that you manage - you are strongly recommended to choose a static but randomly-generated ID)
+     * @param texture The Base64-encoded Texture-URL tags. (this may be null to set no texture)
+     * @return the CompatibleProfile object
+     */
+    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture);
+    
+    
+    /**
+     * Gets the head used as a base for a displaying a given vanilla skull type.
+     * Note: if the particular skull-type is not supported in your server version, this will create a Player-type head
+     * for you to use for skinning/placeholding.
+     * If you want more control over head happens in these cases, consider using CompatibleSkullMaterial directly.
+     * @param material the supported compatible skull material/type
+     * @param amount amount of items to create in the stack
+     * @return an ItemStack of the head
+     * @since 5.2.13-SNAPSHOT
+     */
+    
+    @NotNull
+    public ItemStack getCompatibleHeadItem(@NotNull CompatibleSkullMaterial material, int amount);
+    
+    /**
+     * Explicitly applies the default ItemMeta to an item.
+     * Typically, this is only a wrapper using ItemFactory.getItemMeta(Material)
+     * Note: ItemStack:getItemMeta already returns the ItemFactory Meta when necessary, so this is not necessary except when you want to explicitly store meta in the item with a single call.
+     * WARNING: the ItemMeta may still be null if there is no appropriate meta for the material (eg: AIR)
+     * @param stack the item to apply meta on
+     * @param replace whether to replace existing ItemMeta or not. Setting this to false will only apply to items without meta.
+     * @return the stack with meta applied.
+     * @since 5.2.13-SNAPSHOT
+     */
+    @NotNull
+    public ItemStack applyDefaultItemMeta(@NotNull ItemStack stack, boolean replace);
+    
+    
+    
+    
+    
+    
     
 
 }

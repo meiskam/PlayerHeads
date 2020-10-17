@@ -40,7 +40,7 @@ public class ProfileUtils {
         }
     }
     public static CompatibleProfile getProfile(Object skull) throws IllegalStateException{
-        return new PaperProfile(getInternalProfile(skull));
+        return new CompatibleProfilePA(getInternalProfile(skull));
     }
     public static boolean setProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
         try {
@@ -65,7 +65,7 @@ public class ProfileUtils {
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
     public static boolean setProfile(Object skull, UUID uuid, String texture) throws IllegalStateException{//credit to x7aSv for original
-        CompatibleProfile profile = new PaperProfile(uuid,null);
+        CompatibleProfile profile = new CompatibleProfilePA(uuid,null);
         profile.setTextures(texture);
         return setProfile(skull, profile);
     }

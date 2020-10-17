@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":38,"i10":6,"i11":6};
+var data = {"i0":6,"i1":38,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":38,"i10":6,"i11":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -148,7 +148,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code><a href="../compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCompatibilityProvider()">getCompatibilityProvider</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Gets an instance of a class that provides many useful crossversion PlayerHeads capabilities that would normally be version-specific.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">You should use Compatibility.getProvider() from PlayerHeads-compatibility-api.</div>
+</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
@@ -478,7 +480,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getCompatibilityProvider</h4>
 <pre class="methodSignature"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/Nullable.html?is-external=true" title="class or interface in org.jetbrains.annotations" class="externalLink">@Nullable</a>
+<a href="https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang" class="externalLink">@Deprecated</a>
 <a href="../compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a>&nbsp;getCompatibilityProvider()</pre>
+<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
+<div class="deprecationComment">You should use Compatibility.getProvider() from PlayerHeads-compatibility-api. Compatibility packages will be removed from PH-API in the future, but you may still access them if you use PlayerHeads-compatibility-api (or lib) as a dependency.</div>
+</div>
 <div class="block">Gets an instance of a class that provides many useful crossversion PlayerHeads capabilities that would normally be version-specific.
  For example: viewing and editing ownership information for skinned playerheads.
  These may be more subject to change than other API methods, so you should avoid them except when necessary.</div>

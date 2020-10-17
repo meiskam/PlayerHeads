@@ -38,7 +38,7 @@ public enum TexturedSkullType implements HeadType {
     @Deprecated
     AXOLOTL(
             "fa074329-ea4a-4535-acbd-4f0f490448f7",
-            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzFlNjE0NmRlYzljMGIwMTIyYmEyZTQ5Y2E1YmRmZTI3NzM1ZTQ4NTZmNjgwNzA2MTJjZjBiNjg4YTE4Y2NlYyJ9fX0=" //TODO: provisional texture
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZThhOGEyZDdjY2YwYzM3NDZlMjNhYjU0OTEwNzBlMDkyM2YwNWIyMzVmOWEyZjVkNTNkMzg0MzUzODUzYmRkYyJ9fX0=" //TODO: provisional texture
     ),
     @Deprecated
     GLOW_SQUID(

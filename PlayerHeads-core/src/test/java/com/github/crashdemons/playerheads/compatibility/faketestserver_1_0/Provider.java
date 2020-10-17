@@ -24,6 +24,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * CompatibilityProvider Implementation for 1.13+ support
@@ -126,4 +127,7 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         throw new IllegalStateException("Not supported by test class");
     }
     
+    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture){
+        throw new IllegalStateException("Not supported by test class");
+    }
 }

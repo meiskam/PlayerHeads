@@ -43,7 +43,7 @@ public class ProfileUtils {
         }
     }
     public static CompatibleProfile getProfile(Object skull) throws IllegalStateException{
-        return new CraftbukkitProfile(getInternalProfile(skull));
+        return new CompatibleProfileCB(getInternalProfile(skull));
     }
     public static boolean setProfile(Object skull, GameProfile profile) throws IllegalStateException{
         try {
@@ -68,7 +68,7 @@ public class ProfileUtils {
      * @return True: the profile was successfully set. False: the profile could not be set.
      */
     public static boolean setProfile(Object skull, UUID uuid, String texture) throws IllegalStateException{//credit to x7aSv for original
-        CompatibleProfile profile = new CraftbukkitProfile(uuid,null);
+        CompatibleProfile profile = new CompatibleProfileCB(uuid,null);
         profile.setTextures(texture);
         return setProfile(skull, profile);
     }

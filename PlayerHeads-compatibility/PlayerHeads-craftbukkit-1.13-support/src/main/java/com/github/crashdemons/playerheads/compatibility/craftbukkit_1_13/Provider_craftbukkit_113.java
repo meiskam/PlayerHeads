@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.craftbukkit_1_13;
 
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
+import com.github.crashdemons.playerheads.compatibility.craftbukkit.CompatibleProfileCB;
 import com.github.crashdemons.playerheads.compatibility.craftbukkit.ProfileUtils;
 import com.github.crashdemons.playerheads.compatibility.modern.Provider_modern;
 import com.mojang.authlib.GameProfile;
@@ -14,6 +15,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Skull;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -101,5 +103,12 @@ public abstract class Provider_craftbukkit_113 extends Provider_modern {
     @Override
     public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException{
         return ProfileUtils.getProfile(skull);
+    }
+    
+    @Override
+    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture){
+        CompatibleProfile profile = new CompatibleProfileCB(id,name);
+        profile.setTextures(texture);
+        return profile;
     }
 }

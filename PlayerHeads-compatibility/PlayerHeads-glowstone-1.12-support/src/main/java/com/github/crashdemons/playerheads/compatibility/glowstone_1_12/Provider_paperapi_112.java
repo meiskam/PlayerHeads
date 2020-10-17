@@ -8,12 +8,14 @@ package com.github.crashdemons.playerheads.compatibility.glowstone_1_12;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.legacy.Provider_legacy;
+import com.github.crashdemons.playerheads.compatibility.paperapi.CompatibleProfilePA;
 import com.github.crashdemons.playerheads.compatibility.paperapi.ProfileUtils;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Skull;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
 
 /**
  *
@@ -87,5 +89,12 @@ public abstract class Provider_paperapi_112 extends Provider_legacy {
     @Override
     public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException{
         return ProfileUtils.getProfile(skull);
+    }
+    
+    @Override
+    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture){
+        CompatibleProfile profile = new CompatibleProfilePA(id,name);
+        profile.setTextures(texture);
+        return profile;
     }
 }

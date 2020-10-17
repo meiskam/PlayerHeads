@@ -406,12 +406,15 @@ public interface CompatibilityProvider {
     
     /**
      * Create a compatible profile object with the provided parameters.
+     * Note: name and id cannot both be null, only one can be null.
      * @param name the owner username of the head (this should not be a custom name - use null instead)
      * @param id A UUID to be associated with this profile and texture (this may be a custom/unique value that you manage - you are strongly recommended to choose a static but randomly-generated ID)
      * @param texture The Base64-encoded Texture-URL tags. (this may be null to set no texture)
      * @return the CompatibleProfile object
+     * @throws IllegalArgumentException if both the name and id are null.
+     * @since 5.2.13-SNAPSHOT
      */
-    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture);
+    public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture) throws IllegalArgumentException;
     
     
     /**

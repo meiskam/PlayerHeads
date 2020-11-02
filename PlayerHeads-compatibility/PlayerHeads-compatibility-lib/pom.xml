@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads-compatibility</artifactId>
-        <version>5.2.13-SNAPSHOT</version>
+        <version>5.2.14-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-compatibility-lib</artifactId>
     <packaging>jar</packaging>
@@ -109,6 +109,27 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
             <version>5.2.13-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-paperapi-support</artifactId>
+            <version>5.2.13-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowstone</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.glowstone</groupId>
+                    <artifactId>glowkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -273,6 +294,7 @@
                                     <include>org.shininet.bukkit:PlayerHeads-base-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-compatibility-api:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-paperapi-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-common-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-legacy-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-modern-support:jar:</include>

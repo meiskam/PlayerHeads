@@ -20,6 +20,11 @@ import org.bukkit.Bukkit;
  * @author crashdemons (crashenator at gmail.com)
  */
 public class CompatibleProfilePA extends CompatibleProfile {
+
+    public CompatibleProfilePA(){
+        super();
+    }
+    
     
     public CompatibleProfilePA(UUID id, String name){
         super(id,name);

@@ -18,6 +18,9 @@ import java.util.UUID;
  */
 public class CompatibleProfileCB extends CompatibleProfile {
     
+    public CompatibleProfileCB(){
+        super();
+    }
     public CompatibleProfileCB(UUID id, String name){
         super(id,name);
     }

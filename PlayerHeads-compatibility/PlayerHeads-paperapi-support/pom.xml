@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.13-SNAPSHOT</version>
+        <version>5.2.14-SNAPSHOT</version>
     </parent>
     
 

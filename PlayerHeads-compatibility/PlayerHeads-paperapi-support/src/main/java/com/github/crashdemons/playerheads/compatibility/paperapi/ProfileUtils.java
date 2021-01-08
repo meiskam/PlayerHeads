@@ -40,7 +40,9 @@ public class ProfileUtils {
         }
     }
     public static CompatibleProfile getProfile(Object skull) throws IllegalStateException{
-        return new CompatibleProfilePA(getInternalProfile(skull));
+        PlayerProfile profile = getInternalProfile(skull);
+        if(profile==null) return null;
+        return new CompatibleProfilePA(profile);
     }
     public static boolean setProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
         try {

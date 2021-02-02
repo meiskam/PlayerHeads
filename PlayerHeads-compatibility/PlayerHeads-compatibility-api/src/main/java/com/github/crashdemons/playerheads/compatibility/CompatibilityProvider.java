@@ -433,6 +433,26 @@ public interface CompatibilityProvider {
     
     
     
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
+     * @param profile the profile information for the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null
+     */
+    public boolean isCustomHead(CompatibleProfile profile);
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
+     * @param skull the profile information for the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null or not a skull type (SkullMeta, Skull block)
+     */
+    public boolean isCustomHead(Object skull);
     
     
     

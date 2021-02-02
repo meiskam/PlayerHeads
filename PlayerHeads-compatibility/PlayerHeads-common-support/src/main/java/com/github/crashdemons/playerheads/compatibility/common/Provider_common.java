@@ -7,6 +7,7 @@ package com.github.crashdemons.playerheads.compatibility.common;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
@@ -183,6 +184,22 @@ public abstract class Provider_common implements CompatibilityProvider {
     @Override
     public ItemStack getCompatibleHeadItem(CompatibleSkullMaterial material, int amount){
         return material.getDetails().createItemStack(amount);
+    }
+    
+    @Override
+    public boolean isCustomHead(CompatibleProfile profile){
+        if(profile==null) throw new IllegalArgumentException("profile is null");
+        if(profile.getName()==null || profile.getName().isEmpty()) return true;
+        if(profile.getName().contains(":")) return true;
+        return false;
+    }
+    @Override
+    public boolean isCustomHead(Object skull){
+        if(skull==null) throw new IllegalArgumentException("skull is null");
+        if(skull instanceof Skull || skull instanceof SkullMeta){
+            CompatibleProfile profile = Compatibility.getProvider().getCompatibleProfile(skull);
+            return isCustomHead(profile);
+        }else throw new IllegalArgumentException("skull provided is not of type Skull or SkullMeta");
     }
     
 }

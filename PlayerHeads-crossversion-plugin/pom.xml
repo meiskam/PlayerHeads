@@ -71,7 +71,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-core</artifactId>
-            <version>5.2.13-SNAPSHOT</version>
+            <version>5.2.14-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>

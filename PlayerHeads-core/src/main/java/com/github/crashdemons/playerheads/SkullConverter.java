@@ -58,7 +58,7 @@ public final class SkullConverter {
             if(filterCustomPlayerHeads && Compatibility.getProvider().isCustomHead(skull)){
                 return null;
             }
-            if(filterBlockedHeads){
+            if(filterBlockedHeads && CompatiblePlugins.isReady()){
                 CompatibleProfile profile = Compatibility.getProvider().getCompatibleProfile(skull);
                 if(profile!=null){
                     if(CompatiblePlugins.heads.getExternalHeadHandling(profile.getName(), profile.getId()) == HeadModificationHandling.NO_INTERACTION){

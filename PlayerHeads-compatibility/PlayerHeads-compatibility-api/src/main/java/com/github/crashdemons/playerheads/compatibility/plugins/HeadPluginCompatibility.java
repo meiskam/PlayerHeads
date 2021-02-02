@@ -47,7 +47,7 @@ public class HeadPluginCompatibility extends CompatiblePlugin {
        if(handling==null) handling=ExternalHeads.getHandling(ownerID);
        if(handling==null) handling=HeadModificationHandling.NORMAL;
        
-       if(Compatibility.getProvider().isCustomHead(ownerName, ownerId)){
+       if(Compatibility.getProvider().isCustomHead(ownerName, ownerID)){
            return HeadModificationHandling.NO_INTERACTION;
        }
 

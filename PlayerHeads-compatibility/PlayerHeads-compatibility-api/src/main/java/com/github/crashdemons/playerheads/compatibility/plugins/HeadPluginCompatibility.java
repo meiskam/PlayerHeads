@@ -6,6 +6,7 @@
 package com.github.crashdemons.playerheads.compatibility.plugins;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.ExternalHeads;
 import java.util.UUID;
@@ -45,9 +46,14 @@ public class HeadPluginCompatibility extends CompatiblePlugin {
        HeadModificationHandling handling = ExternalHeads.getHandling(ownerName);
        if(handling==null) handling=ExternalHeads.getHandling(ownerID);
        if(handling==null) handling=HeadModificationHandling.NORMAL;
+       
+       if(Compatibility.getProvider().isCustomHead(ownerName, ownerId)){
+           return HeadModificationHandling.NO_INTERACTION;
+       }
 
        return handling;
     }
+    
     
     @NotNull
     public HeadModificationHandling getExternalHeadHandling(BlockState state){

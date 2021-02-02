@@ -13,6 +13,7 @@ import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
 import com.github.crashdemons.playerheads.compatibility.Version;
 import java.util.Optional;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -186,12 +187,18 @@ public abstract class Provider_common implements CompatibilityProvider {
         return material.getDetails().createItemStack(amount);
     }
     
+    
+    @Override
+    public boolean isCustomHead(String username, UUID id){
+        if(username==null || username.isEmpty()) return true;
+        if(username.contains(":")) return true;//Invalid char for names, but used by a few large plugins (HeadDB, DropHeads)
+        return false;
+    }
+    
     @Override
     public boolean isCustomHead(CompatibleProfile profile){
         if(profile==null) throw new IllegalArgumentException("profile is null");
-        if(profile.getName()==null || profile.getName().isEmpty()) return true;
-        if(profile.getName().contains(":")) return true;//Invalid char for names, but used by a few large plugins (HeadDB, DropHeads)
-        return false;
+        return isCustomHead(profile.getName(), profile.getId());
     }
     @Override
     public boolean isCustomHead(Object skull){

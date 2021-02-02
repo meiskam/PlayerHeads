@@ -438,6 +438,17 @@ public interface CompatibilityProvider {
      * This is a best-guess determination based on whether a username is set and possibly other details.
      * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
      * @since 5.2.14-SNAPSHOT
+     * @param username username associated with the head
+     * @param id the UUID associated with the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null
+     */
+    public boolean isCustomHead(String username, UUID id);
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
      * @param profile the profile information for the head
      * @return whether it is assumed to be a custom head.
      * @throws IllegalArgumentException if profile is null

@@ -190,7 +190,7 @@ public abstract class Provider_common implements CompatibilityProvider {
     public boolean isCustomHead(CompatibleProfile profile){
         if(profile==null) throw new IllegalArgumentException("profile is null");
         if(profile.getName()==null || profile.getName().isEmpty()) return true;
-        if(profile.getName().contains(":")) return true;
+        if(profile.getName().contains(":")) return true;//Invalid char for names, but used by a few large plugins (HeadDB, DropHeads)
         return false;
     }
     @Override

@@ -10,9 +10,17 @@ package org.shininet.bukkit.playerheads;
  * @author crashdemons (crashenator at gmail.com)
  */
 enum BlockDropResult {
-    FAILED_EVENT_CANCELLED,
-    FAILED_CUSTOM_HEAD,
-    FAILED_BLOCKED_HEAD,
-    FAILED_DEFERRED_TO_VANILLA,
-    SUCCESS,
+    FAILED_EVENT_CANCELLED(true,true),
+    FAILED_CUSTOM_HEAD(true,false),
+    FAILED_BLOCKED_HEAD(true,false),
+    FAILED_DEFERRED_TO_VANILLA(true,false),
+    SUCCESS(false,false),
+;    
+    public final boolean isFailure;
+    public final boolean eventCancelled;
+    
+    private BlockDropResult(boolean failure, boolean eventCancelled){
+        this.isFailure=failure;
+        this.eventCancelled=eventCancelled;
+    }
 }

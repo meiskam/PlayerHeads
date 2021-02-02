@@ -83,14 +83,14 @@ public final class SkullConverter {
      *         <li>null (if the material is unsupported)</li>
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
-    public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
+    public static TexturedSkullType skullTypeFromItemStack(ItemStack stack, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
         CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(stack);
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
         
-        return determineSkullType(op,skullState,false,false);
+        return determineSkullType(op,skullState,filterCustomPlayerHeads,filterBlockedHeads);
     }
     
 
@@ -107,13 +107,13 @@ public final class SkullConverter {
      *         <li>null (if the material is unsupported)</li>
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
-    public static TexturedSkullType skullTypeFromBlockState(BlockState state){
+    public static TexturedSkullType skullTypeFromBlockState(BlockState state, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
         CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(state);
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         Skull skullState = (Skull) state;
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
-        return determineSkullType(op,skullState,false,false);
+        return determineSkullType(op,skullState,filterCustomPlayerHeads,filterBlockedHeads);
     }
     
     

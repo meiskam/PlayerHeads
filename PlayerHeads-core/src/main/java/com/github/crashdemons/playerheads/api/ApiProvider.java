@@ -44,12 +44,12 @@ public class ApiProvider implements PlayerHeadsAPI {
 
     @Override
     public HeadType getHeadFrom(ItemStack s) {
-        return SkullConverter.skullTypeFromItemStack(s);
+        return SkullConverter.skullTypeFromItemStack(s,true,true);
     }
 
     @Override
     public HeadType getHeadFrom(BlockState s) {
-        return SkullConverter.skullTypeFromBlockState(s);
+        return SkullConverter.skullTypeFromBlockState(s,true,true);
     }
 
     @Override

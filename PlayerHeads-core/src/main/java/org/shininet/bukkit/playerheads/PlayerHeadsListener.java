@@ -422,7 +422,7 @@ class PlayerHeadsListener implements Listener {
         if (block != null) {
             BlockState state = block.getState();
             if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return;
-            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);
             if (skullType == null) {
                 return;
             }
@@ -465,7 +465,7 @@ class PlayerHeadsListener implements Listener {
         if (!fixDroppedHeads) {
             return;
         }
-        TexturedSkullType skullType = SkullConverter.skullTypeFromItemStack(stack);
+        TexturedSkullType skullType = SkullConverter.skullTypeFromItemStack(stack,true,true);
         if (skullType == null) {
             return;
         }
@@ -528,7 +528,8 @@ class PlayerHeadsListener implements Listener {
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
     private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state, Optional<Object> oldProfile) {
         if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_BLOCKED_HEAD;
-        TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
+        TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);
+        if(skullType==null) return BlockDropResult.FAILED_BLOCKED_HEAD;
         Location location = block.getLocation();
         ItemStack item = null;
         boolean addLore = plugin.configFile.getBoolean("addlore");
@@ -580,7 +581,7 @@ class PlayerHeadsListener implements Listener {
         if(CompatiblePlugins.heads.getExternalHeadHandling(block.getState())==HeadModificationHandling.NO_INTERACTION) return;
         if (player.getGameMode() != GameMode.CREATIVE) {
             BlockState state = block.getState();
-            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state);
+            TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);
             if (skullType != null) {
 
                 boolean canBreak = true;
@@ -611,7 +612,8 @@ class PlayerHeadsListener implements Listener {
         
         event.setCancelled(true);
         BlockDropResult result = blockDrop(event, block, state, savedProfile);
-        if (result == BlockDropResult.FAILED_CUSTOM_HEAD || result == BlockDropResult.FAILED_BLOCKED_HEAD || result == BlockDropResult.FAILED_DEFERRED_TO_VANILLA) {
+        
+        if(result.isFailure && !result.eventCancelled){//failed BUT the drop wasn't cancelled!
             event.setCancelled(false);//uncancel the event if we can't drop it accurately - attempted fix for issue crashdemons/PlayerHeads#12
         }
     }

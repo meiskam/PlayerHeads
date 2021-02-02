@@ -421,7 +421,7 @@ class PlayerHeadsListener implements Listener {
         Player player = event.getPlayer();
         if (block != null) {
             BlockState state = block.getState();
-            if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return;
+            if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return; //TODO: redundant code - SkullConverter checks custom & external heads now
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);
             if (skullType == null) {
                 return;
@@ -436,7 +436,7 @@ class PlayerHeadsListener implements Listener {
                 switch (skullType) {
                     case PLAYER:
                         Skull skullState = (Skull) block.getState();
-                        if(Compatibility.getProvider().isCustomHead(skullState)) return;//this is an unsupported custom-texture head. don't print anything.
+                        if(Compatibility.getProvider().isCustomHead(skullState)) return;//TODO: redundant code - SkullConverter checks custom & external heads now  - OLD Comment: this is an unsupported custom-texture head. don't print anything.
                         if (skullState.hasOwner()) {
                             String owner = Compatibility.getProvider().getOwner(skullState);//SkullConverter.getSkullOwner(skullState);
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
@@ -460,7 +460,7 @@ class PlayerHeadsListener implements Listener {
     public void onItemSpawnEvent(ItemSpawnEvent event) {
         ItemStack stack = event.getEntity().getItemStack();
         //Location location = event.getEntity().getLocation();
-        if(CompatiblePlugins.heads.getExternalHeadHandling(stack)==HeadModificationHandling.NO_INTERACTION) return;
+        if(CompatiblePlugins.heads.getExternalHeadHandling(stack)==HeadModificationHandling.NO_INTERACTION) return;//TODO: redundant code - SkullConverter checks custom & external heads now
         boolean fixDroppedHeads = plugin.configFile.getBoolean("fixdroppedheads");
         if (!fixDroppedHeads) {
             return;
@@ -486,7 +486,7 @@ class PlayerHeadsListener implements Listener {
         switch (skullType) {
             case PLAYER:
                 SkullMeta skull = (SkullMeta) stack.getItemMeta();
-                if(Compatibility.getProvider().isCustomHead(skull)) return;
+                if(Compatibility.getProvider().isCustomHead(skull)) return;//TODO: redundant code - SkullConverter checks custom & external heads now
                 String owner = Compatibility.getProvider().getOwner(skull);//SkullConverter.getSkullOwner(skull);
                 newstack = SkullManager.PlayerSkull(owner, stack.getAmount(), addLore, savedProfile); //override with the profile if possible instead of the username
                 break;
@@ -527,7 +527,7 @@ class PlayerHeadsListener implements Listener {
     //drop a head based on a block being broken in some fashion
     //NOTE: the blockbreak handler expects this to unconditionally drop the item unless the new event is cancelled.
     private BlockDropResult blockDrop(BlockEvent event, Block block, BlockState state, Optional<Object> oldProfile) {
-        if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_BLOCKED_HEAD;
+        if(CompatiblePlugins.heads.getExternalHeadHandling(state)==HeadModificationHandling.NO_INTERACTION) return BlockDropResult.FAILED_BLOCKED_HEAD;//TODO: redundant code - SkullConverter checks custom & external heads now
         TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);
         if(skullType==null) return BlockDropResult.FAILED_BLOCKED_HEAD;
         Location location = block.getLocation();
@@ -536,7 +536,7 @@ class PlayerHeadsListener implements Listener {
         switch (skullType) {
             case PLAYER:
                 Skull skull = (Skull) block.getState();
-                if(Compatibility.getProvider().isCustomHead(skull)) return BlockDropResult.FAILED_CUSTOM_HEAD;
+                if(Compatibility.getProvider().isCustomHead(skull)) return BlockDropResult.FAILED_CUSTOM_HEAD;//TODO: redundant code - SkullConverter checks custom & external heads now
                 String owner = Compatibility.getProvider().getOwner(skull);//SkullConverter.getSkullOwner(skull);
                 item = SkullManager.PlayerSkull(owner, addLore);
                 break;
@@ -578,7 +578,7 @@ class PlayerHeadsListener implements Listener {
         
         Block block = event.getBlock();
         Player player = event.getPlayer();
-        if(CompatiblePlugins.heads.getExternalHeadHandling(block.getState())==HeadModificationHandling.NO_INTERACTION) return;
+        if(CompatiblePlugins.heads.getExternalHeadHandling(block.getState())==HeadModificationHandling.NO_INTERACTION) return;//TODO: redundant code - SkullConverter checks custom & external heads now
         if (player.getGameMode() != GameMode.CREATIVE) {
             BlockState state = block.getState();
             TexturedSkullType skullType = SkullConverter.skullTypeFromBlockState(state,true,true);

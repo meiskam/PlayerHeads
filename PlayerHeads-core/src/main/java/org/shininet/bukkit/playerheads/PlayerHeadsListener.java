@@ -436,11 +436,9 @@ class PlayerHeadsListener implements Listener {
                 switch (skullType) {
                     case PLAYER:
                         Skull skullState = (Skull) block.getState();
+                        if(Compatibility.getProvider().isCustomHead(skullState)) return;//this is an unsupported custom-texture head. don't print anything.
                         if (skullState.hasOwner()) {
                             String owner = Compatibility.getProvider().getOwner(skullState);//SkullConverter.getSkullOwner(skullState);
-                            if (owner == null) {
-                                return;//this is an unsupported custom-texture head. don't print anything.
-                            }
                             //String ownerStrip = ChatColor.stripColor(owner); //Unnecessary?
                             Formatter.formatMsg(player, Lang.CLICKINFO, owner);
                         } else {
@@ -488,10 +486,8 @@ class PlayerHeadsListener implements Listener {
         switch (skullType) {
             case PLAYER:
                 SkullMeta skull = (SkullMeta) stack.getItemMeta();
+                if(Compatibility.getProvider().isCustomHead(skull)) return;
                 String owner = Compatibility.getProvider().getOwner(skull);//SkullConverter.getSkullOwner(skull);
-                if (owner == null) {
-                    return;//you broke an unsupported custom-textured head. Question: should we instead just return to avoid modifying behavior?
-                }
                 newstack = SkullManager.PlayerSkull(owner, stack.getAmount(), addLore, savedProfile); //override with the profile if possible instead of the username
                 break;
             default:
@@ -539,10 +535,8 @@ class PlayerHeadsListener implements Listener {
         switch (skullType) {
             case PLAYER:
                 Skull skull = (Skull) block.getState();
+                if(Compatibility.getProvider().isCustomHead(skull)) return BlockDropResult.FAILED_CUSTOM_HEAD;
                 String owner = Compatibility.getProvider().getOwner(skull);//SkullConverter.getSkullOwner(skull);
-                if (owner == null) {
-                    return BlockDropResult.FAILED_CUSTOM_HEAD;//you broke an unsupported custom-textured head.
-                }
                 item = SkullManager.PlayerSkull(owner, addLore);
                 break;
             default:

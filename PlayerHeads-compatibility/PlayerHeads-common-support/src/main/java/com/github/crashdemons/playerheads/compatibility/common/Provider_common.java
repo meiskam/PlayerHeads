@@ -205,6 +205,7 @@ public abstract class Provider_common implements CompatibilityProvider {
         if(skull==null) throw new IllegalArgumentException("skull is null");
         if(skull instanceof Skull || skull instanceof SkullMeta){
             CompatibleProfile profile = Compatibility.getProvider().getCompatibleProfile(skull);
+            if(profile==null) return false;
             return isCustomHead(profile);
         }else throw new IllegalArgumentException("skull provided is not of type Skull or SkullMeta");
     }

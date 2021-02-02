@@ -39,55 +39,6 @@ public final class SkullConverter {
         }
     }
     
-    /**
-     * Gets the owner player from a playerhead.
-     * 
-     * If there is no OwningPlayer result, this infers one from head's "profile" field.
-     * @param skullMeta ItemMeta for a playerhead item
-     * @return the owning player of the skull
-     * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
-     */
-    @Deprecated
-    public static OfflinePlayer getSkullOwningPlayer(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwningPlayer(skullMeta);
-    }
-    /**
-     * Gets the owner username from a playerhead.
-     * 
-     * If there is no OwningPlayer result, this infers one from head's "profile" field.
-     * @param skullBlockState BlockState for a playerhead block
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwningPlayer(org.bukkit.block.Skull) 
-     */
-    @Deprecated
-    public static OfflinePlayer getSkullOwningPlayer(Skull skullBlockState){
-        return Compatibility.getProvider().getOwningPlayer(skullBlockState);
-    }
-    
-    /**
-     * Gets the owner username from a playerhead.
-     * @param skullMeta ItemMeta for a playerhead item
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
-     */
-    @Deprecated
-    public static String getSkullOwner(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwner(skullMeta);
-    }
-    /**
-     * Gets the owner username from a playerhead.
-     * @param skullBlockState BlockState for a playerhead block
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.block.Skull) 
-     */
-    @Deprecated
-    public static String getSkullOwner(Skull skullBlockState){
-        return Compatibility.getProvider().getOwner(skullBlockState);
-    }
     
     /**
      * Attempts to determine a TexturedSkullType from an itemstack's information.

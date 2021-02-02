@@ -2,7 +2,10 @@
 package com.github.crashdemons.playerheads;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
+import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -39,6 +42,34 @@ public final class SkullConverter {
         }
     }
     
+    private static TexturedSkullType determineSkullType(OfflinePlayer op){
+        if(op==null) return TexturedSkullType.PLAYER;
+        UUID owner = op.getUniqueId();
+        if(owner==null) return TexturedSkullType.PLAYER;
+        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
+        if(match==null) return TexturedSkullType.PLAYER;
+        return match;//if match was not null
+    }
+    
+    private static TexturedSkullType determineSkullType(OfflinePlayer op, Object skull, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
+        TexturedSkullType type = determineSkullType(op);
+        if(type==TexturedSkullType.PLAYER){//player is the only ambiguous case, since it doesn't require a PH UUID match
+            
+            if(filterCustomPlayerHeads && Compatibility.getProvider().isCustomHead(skull)){
+                return null;
+            }
+            if(filterBlockedHeads){
+                CompatibleProfile profile = Compatibility.getProvider().getCompatibleProfile(skull);
+                if(profile!=null){
+                    if(CompatiblePlugins.heads.getExternalHeadHandling(profile.getName(), profile.getId()) == HeadModificationHandling.NO_INTERACTION){
+                        return null;
+                    }
+                }
+            }
+        }
+        return type;
+    }
+    
     
     /**
      * Attempts to determine a TexturedSkullType from an itemstack's information.
@@ -58,12 +89,8 @@ public final class SkullConverter {
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
-        if(op==null) return TexturedSkullType.PLAYER;
-        UUID owner = op.getUniqueId();
-        if(owner==null) return TexturedSkullType.PLAYER;
-        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
-        if(match==null) return TexturedSkullType.PLAYER;
-        return match;//if match was not null
+        
+        return determineSkullType(op,skullState,false,false);
     }
     
 
@@ -86,12 +113,7 @@ public final class SkullConverter {
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         Skull skullState = (Skull) state;
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
-        if(op==null) return TexturedSkullType.PLAYER;
-        UUID owner = op.getUniqueId();
-        if(owner==null) return TexturedSkullType.PLAYER;
-        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
-        if(match==null) return TexturedSkullType.PLAYER;
-        return match;//if match was not null
+        return determineSkullType(op,skullState,false,false);
     }
     
     

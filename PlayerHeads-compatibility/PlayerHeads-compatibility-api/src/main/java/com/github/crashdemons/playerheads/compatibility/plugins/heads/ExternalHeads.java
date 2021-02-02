@@ -5,6 +5,7 @@
  */
 package com.github.crashdemons.playerheads.compatibility.plugins.heads;
 
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -43,7 +44,7 @@ public class ExternalHeads {
             }
         }
     }
-    
+ 
     @Nullable
     public static HeadModificationHandling getHandling(String username){
         if(username==null) return null;

@@ -34,6 +34,8 @@
 
 #personal
 /test-in-spigot.bat
+/update-docs-now.bat
+
 
 /PlayerHeads-api/target/
 /PlayerHeads-craftbukkit-1.16-support/target/

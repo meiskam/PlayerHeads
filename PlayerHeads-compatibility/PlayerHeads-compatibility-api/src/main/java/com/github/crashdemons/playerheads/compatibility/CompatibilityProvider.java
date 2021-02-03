@@ -347,7 +347,9 @@ public interface CompatibilityProvider {
      * Otherwise, the Optional must be 'empty'.
      * @param skullMeta the meta for a head item
      * @return The optional profile object
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public Optional<Object> getOptionalProfile(ItemMeta skullMeta);
     
     /**
@@ -357,7 +359,9 @@ public interface CompatibilityProvider {
      * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile or even present - you should not act on this object directly, but only get/set it.
      * @param skullState the blockstate for a head item
      * @return The optional profile object
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public Optional<Object> getOptionalProfile(Skull skullState);
     
     /**
@@ -368,7 +372,9 @@ public interface CompatibilityProvider {
      * @param skullState the blockstate for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public boolean setOptionalProfile(Skull skullState, Optional<Object> profile);
     
     /**
@@ -379,7 +385,9 @@ public interface CompatibilityProvider {
      * @param skullMeta the meta for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public boolean setOptionalProfile(ItemMeta skullMeta, Optional<Object> profile);
     
     
@@ -465,9 +473,12 @@ public interface CompatibilityProvider {
      */
     public boolean isCustomHead(Object skull);
     
-    
-    
-    
-    
+    /**
+     * Clears internal profile information from a skull.
+     * @param skull a Skull blockstate or SkullMeta object to clear the profile from
+     * @return false if clearing the profile failed or was unsupported, otherwise true.
+     * @since 5.2.14-SNAPSHOT
+     */
+    public boolean clearProfile(Object skull) throws IllegalArgumentException;
 
 }

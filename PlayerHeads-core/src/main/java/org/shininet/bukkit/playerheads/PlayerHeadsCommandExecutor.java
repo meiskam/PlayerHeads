@@ -7,11 +7,15 @@ import com.github.crashdemons.playerheads.SkullConverter;
 import com.github.crashdemons.playerheads.SkullManager;
 import com.github.crashdemons.playerheads.TexturedSkullType;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment;
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,6 +34,104 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 
     public PlayerHeadsCommandExecutor(PlayerHeads plugin) {
         this.plugin = plugin;
+    }
+    
+    private boolean onCommandSetblock(CommandSender sender, Command cmd, String label, String[] args, String scope){
+        if (!sender.hasPermission("playerheads.setblock")) {
+            formatMsg(sender, scope, Lang.ERROR_PERMISSION);
+            return true;
+        }
+        
+        String invalidSyntaxMsg = Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.CMD_SETBLOCK  + Lang.SPACE + Lang.OPT_WORLD_REQUIRED + Lang.SPACE +  Lang.OPT_COORDS_REQUIRED + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_ATTACHMENT_OPTIONAL + Lang.SPACE + Lang.OPT_FACING_OPTIONAL;
+        
+        String skullOwner;
+        boolean isConsoleSender = !(sender instanceof Player);
+
+
+        boolean usevanillaskull = plugin.configFile.getBoolean("dropvanillaheads");
+        
+        //ph setblock <world> <x> <y> <z> <headname> [attachment] [facing]
+        if(args.length<6){
+            formatMsg(sender, scope, invalidSyntaxMsg);
+            return false;
+        }
+        
+        World w = null;
+        int x = 0, y=0, z=0;
+        
+        if(!isConsoleSender && args[1].equals("~")){
+            Player player = (Player) sender;
+            w = player.getWorld();
+        }else{
+            w = Bukkit.getWorld(args[1]);
+        }
+        
+        if(w==null){
+            formatMsg(sender, scope, Lang.ERROR_INVALID_WORLD, args[1]);
+            return true;
+        }
+        try{
+            x = Integer.parseInt(args[2]);
+            y = Integer.parseInt(args[3]);
+            z = Integer.parseInt(args[4]);
+        } catch (NumberFormatException e) { 
+            formatMsg(sender, scope, Lang.ERROR_INVALID_COORDS, args[2], args[3], args[4]);
+            return true;
+        }
+        
+        skullOwner = args[5];
+        
+        if (plugin.configFile.getBoolean("fixcase")) {
+            skullOwner = fixcase(skullOwner);
+        }
+        
+        Block block =w.getBlockAt(x, y, z);
+        if(block==null){//make sure it's a valid block to change
+            formatMsg(sender, scope, Lang.ERROR_CANNOT_SETBLOCK);
+            return true;
+        }
+        
+        
+        SkullBlockAttachment attachment = SkullBlockAttachment.FLOOR;
+        if(args.length>6){
+            String attachmentName = args[6].toUpperCase();
+            try{
+                attachment = SkullBlockAttachment.valueOf(attachmentName);
+            }catch(Exception e){
+                formatMsg(sender, scope, Lang.ERROR_INVALID_ATTACHMENT, attachmentName);
+                return true;
+            }
+        }
+        
+        BlockFace facing = BlockFace.NORTH;
+        if(args.length>7){
+            String facingName = args[7].toUpperCase();
+            try{
+                facing = BlockFace.valueOf(facingName);
+            }catch(Exception e){
+                formatMsg(sender, scope, Lang.ERROR_INVALID_FACING, facingName);
+                return true;
+            }
+        }
+        
+        
+        if(!SkullBlockAttachment.isValidOrientation(facing,attachment)){
+            formatMsg(sender, scope, Lang.ERROR_INVALID_COMBINATION, attachment.name(), facing.name());
+            return true;
+        }
+        
+        
+        //if (InventoryManager.addHead(receiver, skullOwner, quantity, usevanillaskull, addLore)) {
+        
+        if (InventoryManager.setBlock(w, x, y, z, attachment, skullOwner, facing, usevanillaskull)) {
+            TexturedSkullType type = TexturedSkullType.getBySpawnName(skullOwner);
+            String headName = (type==null) ? TexturedSkullType.getDisplayName(skullOwner) : type.getDisplayName();
+            String forWhom = sender.getName();
+            formatMsg(sender, scope, Lang.SET_BLOCK, headName);
+        } else {
+            formatMsg(sender, scope, Lang.ERROR_SETBLOCK_FAILED);
+        }
+        return true;
     }
 
     private void formatMsg(CommandSender sender, String commandscope, String message, String... replacements) {
@@ -300,6 +402,8 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return onCommandSpawn(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SPAWN);
         } else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_RENAME))) {
             return onCommandRename(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_RENAME);
+        } else if (args[0].equalsIgnoreCase(Formatter.formatStrip(Lang.CMD_SETBLOCK))) {
+            return onCommandSetblock(sender, cmd, label, args, scope + Lang.COLON + Lang.CMD_SETBLOCK);
         } else {
             scope += Lang.COLON + Lang.CMD_UNKNOWN;
             formatMsg(sender, scope, Lang.ERROR_INVALID_SUBCOMMAND);
@@ -325,6 +429,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         final String cmd_rename = Formatter.formatStrip(Lang.CMD_RENAME);
         final String cmd_set = Formatter.formatStrip(Lang.CMD_SET);
         final String cmd_spawn = Formatter.formatStrip(Lang.CMD_SPAWN);
+        final String cmd_setblock = Formatter.formatStrip(Lang.CMD_SETBLOCK);
 
         if (args.length == 1) {
             if (cmd_config.startsWith(args[0])) {
@@ -336,7 +441,13 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             if (cmd_rename.startsWith(args[0])) {
                 completions.add(cmd_rename);
             }
+            if (cmd_setblock.startsWith(args[0])) {
+                completions.add(cmd_setblock);
+            }
             return sort(completions);
+        }
+        if (args[0].equals(cmd_setblock)) {
+            
         }
         if (args[0].equals(cmd_config)) {
             if (args.length == 2) {

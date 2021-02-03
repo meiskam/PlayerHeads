@@ -24,16 +24,17 @@ package com.github.crashdemons.playerheads.compatibility;
 public enum SkullType {
 //just in case this gets removed with deprecation of SkullType in bukkit
 //note: must maintain same ordinal values as SkullType (ordering and number)
-    SKELETON(true), WITHER_SKELETON(true), ZOMBIE(false), PLAYER(false), CREEPER(false), DRAGON(false);
+    SKELETON(true,0), WITHER_SKELETON(true,1), ZOMBIE(false,2), PLAYER(false,3), CREEPER(false,4), DRAGON(false,5);
 
     /**
      * A property specifying whether the skulltype entry is a proper skull (semantically - for types of skeletons, etc) or a
      * head.
      */
     public final boolean isSkull;
+    public final short legacyDataValue;
 
-    SkullType(final boolean skull) {
+    SkullType(final boolean skull, final int legacyDV) {
         isSkull = skull;
+        legacyDataValue = (short) legacyDV;
     }
-
 }

@@ -88,6 +88,7 @@ public final class Lang {
     public static String CMD_RENAME_SCOPE_PLAYER;
     public static String CMD_RENAME_SCOPE_ALL;
     public static String CMD_SET;
+    public static String CMD_SETBLOCK;
     public static String CMD_SPAWN;
     public static String CMD_UNKNOWN;
     public static String COLON;
@@ -105,6 +106,16 @@ public final class Lang {
     public static String ERROR_NUMBERCONVERT;
     public static String ERROR_PERMISSION;
     public static String ERROR_UPDATER;
+    
+    
+    public static String ERROR_INVALID_WORLD;
+    public static String ERROR_INVALID_COORDS;
+    public static String ERROR_CANNOT_SETBLOCK;
+    public static String ERROR_INVALID_ATTACHMENT;
+    public static String ERROR_INVALID_FACING;
+    public static String ERROR_INVALID_COMBINATION;
+    public static String ERROR_SETBLOCK_FAILED;
+    public static String SET_BLOCK;
     
     /**
      * Name for a generic head item.
@@ -262,6 +273,11 @@ public final class Lang {
     public static String OPT_RECEIVER_REQUIRED;
     public static String OPT_VALUE_OPTIONAL;
     public static String OPT_VARIABLE_REQUIRED;
+    
+    public static String OPT_WORLD_REQUIRED;
+    public static String OPT_COORDS_REQUIRED;
+    public static String OPT_ATTACHMENT_OPTIONAL;
+    public static String OPT_FACING_OPTIONAL;
 
     /**
      * Message displayed when a head is renamed.

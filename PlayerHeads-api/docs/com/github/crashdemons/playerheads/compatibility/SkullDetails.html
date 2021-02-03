@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
+<script type="text/javascript">var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -120,20 +120,27 @@ loadScripts(document, 'script');</script>
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" title="class or interface in org.bukkit" class="external-link">Material</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getBlockMaterial(com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment)">getBlockMaterial</a></span>&#8203;(<a href="SkullBlockAttachment.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullBlockAttachment</a>&nbsp;attachment)</code></th>
+<td class="col-last">
+<div class="block">Gets the block material for a specific block attachment.</div>
+</td>
+</tr>
+<tr class="alt-color" id="i2">
+<td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" title="class or interface in org.bukkit" class="external-link">Material</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getFloorMaterial()">getFloorMaterial</a></span>()</code></th>
 <td class="col-last">
 <div class="block">Gets the bukkit material corresponding to a block of this skull placed on
  a floor (not against a wall)</div>
 </td>
 </tr>
-<tr class="alt-color" id="i2">
+<tr class="row-color" id="i3">
 <td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" title="class or interface in org.bukkit" class="external-link">Material</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getItemMaterial()">getItemMaterial</a></span>()</code></th>
 <td class="col-last">
 <div class="block">Gets the bukkit material corresponding to an Item of this skull</div>
 </td>
 </tr>
-<tr class="row-color" id="i3">
+<tr class="alt-color" id="i4">
 <td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" title="class or interface in org.bukkit" class="external-link">Material</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getWallMaterial()">getWallMaterial</a></span>()</code></th>
 <td class="col-last">
@@ -141,14 +148,14 @@ loadScripts(document, 'script');</script>
  against a wall (not on a floor or other placement)</div>
 </td>
 </tr>
-<tr class="alt-color" id="i4">
+<tr class="row-color" id="i5">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isBackedByPlayerhead()">isBackedByPlayerhead</a></span>()</code></th>
 <td class="col-last">
 <div class="block">Gets whether the skull must be implemented with a playerhead</div>
 </td>
 </tr>
-<tr class="row-color" id="i5">
+<tr class="alt-color" id="i6">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isSkinnable()">isSkinnable</a></span>()</code></th>
 <td class="col-last">
@@ -156,12 +163,21 @@ loadScripts(document, 'script');</script>
  username-skinnable.</div>
 </td>
 </tr>
-<tr class="alt-color" id="i6">
+<tr class="row-color" id="i7">
 <td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isVariant()">isVariant</a></span>()</code></th>
 <td class="col-last">
 <div class="block">Gets whether the skull is a variant type (legacy heads based on skeleton
  skull variants).</div>
+</td>
+</tr>
+<tr class="alt-color" id="i8">
+<td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/Block.html" title="class or interface in org.bukkit.block" class="external-link">Block</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#setBlock(org.bukkit.Location,org.bukkit.block.BlockFace,com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment)">setBlock</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Location.html" title="class or interface in org.bukkit" class="external-link">Location</a>&nbsp;loc,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/BlockFace.html" title="class or interface in org.bukkit.block" class="external-link">BlockFace</a>&nbsp;rotation,
+<a href="SkullBlockAttachment.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullBlockAttachment</a>&nbsp;attachment)</code></th>
+<td class="col-last">
+<div class="block">Sets a block in the world to the specific skull for this implementation.</div>
 </td>
 </tr>
 </tbody>
@@ -226,6 +242,44 @@ loadScripts(document, 'script');</script>
 <dd><code>quantity</code> - the number of skulls to create in the stack</dd>
 <dt>Returns:</dt>
 <dd>the itemstack that was created</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setBlock(org.bukkit.Location,org.bukkit.block.BlockFace,com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment)">
+<h3>setBlock</h3>
+<div class="member-signature"><span class="return-type"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/Block.html" title="class or interface in org.bukkit.block" class="external-link">Block</a></span>&nbsp;<span class="member-name">setBlock</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Location.html" title="class or interface in org.bukkit" class="external-link">Location</a>&nbsp;loc,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/BlockFace.html" title="class or interface in org.bukkit.block" class="external-link">BlockFace</a>&nbsp;rotation,
+<a href="SkullBlockAttachment.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullBlockAttachment</a>&nbsp;attachment)</span></div>
+<div class="block">Sets a block in the world to the specific skull for this implementation.
+ implementation.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>loc</code> - the location of the block to set</dd>
+<dd><code>rotation</code> - the rotation of the skull block to use</dd>
+<dd><code>attachment</code> - whether the block should be attached to the wall or floor</dd>
+<dt>Returns:</dt>
+<dd>the block set, or null if it cannot be set.</dd>
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getBlockMaterial(com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment)">
+<h3>getBlockMaterial</h3>
+<div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
+</span><span class="return-type"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html" title="class or interface in org.bukkit" class="external-link">Material</a></span>&nbsp;<span class="member-name">getBlockMaterial</span>&#8203;(<span class="parameters"><a href="SkullBlockAttachment.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullBlockAttachment</a>&nbsp;attachment)</span></div>
+<div class="block">Gets the block material for a specific block attachment.
+ For some older implementations, this will be a constant value.
+ If there is no type for the given attachment, a default type should be given instead.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>attachment</code> - how the block should be attached to others</dd>
+<dt>Returns:</dt>
+<dd>The block material</dd>
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
 </dl>
 </section>
 </li>

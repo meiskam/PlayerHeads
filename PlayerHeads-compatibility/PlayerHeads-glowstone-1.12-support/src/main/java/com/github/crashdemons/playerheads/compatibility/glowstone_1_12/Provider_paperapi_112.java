@@ -97,4 +97,9 @@ public abstract class Provider_paperapi_112 extends Provider_legacy {
         profile.setTextures(texture);
         return profile;
     }
+    
+    @Override
+    public boolean clearProfile(Object skull) throws IllegalArgumentException{
+        return ProfileUtils.clearProfile(skull);
+    }
 }

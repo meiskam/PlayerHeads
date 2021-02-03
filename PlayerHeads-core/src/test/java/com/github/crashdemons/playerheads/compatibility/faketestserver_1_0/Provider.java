@@ -137,4 +137,9 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture){
         throw new IllegalStateException("Not supported by test class");
     }
+    
+    
+    public boolean clearProfile(Object o){
+        throw new IllegalStateException("Not supported by test class");
+    }
 }

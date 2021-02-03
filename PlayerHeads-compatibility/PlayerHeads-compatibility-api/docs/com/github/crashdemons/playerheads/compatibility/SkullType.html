@@ -187,7 +187,16 @@ extends java.lang.Enum&lt;<a href="SkullType.html" title="enum in com.github.cra
 <tr class="row-color">
 <td class="col-first"><code>short</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#legacyDataValue">legacyDataValue</a></span></code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">The ordinal/datavalue associated with this skulltype.</div>
+</td>
+</tr>
+<tr class="alt-color">
+<td class="col-first"><code>java.lang.String</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#legacySkullTypeName">legacySkullTypeName</a></span></code></th>
+<td class="col-last">
+<div class="block">The bukkit enum name matching this one.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -302,6 +311,25 @@ the order they are declared.</div>
 <section class="detail" id="legacyDataValue">
 <h3>legacyDataValue</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">short</span>&nbsp;<span class="member-name">legacyDataValue</span></div>
+<div class="block">The ordinal/datavalue associated with this skulltype.
+ Can be used in itemstack datavalues for legacy servers.
+ While the enum attempts to stay ordinal-compatible with vanilla skulltypes, this value is explicitly defined.</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="legacySkullTypeName">
+<h3>legacySkullTypeName</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">java.lang.String</span>&nbsp;<span class="member-name">legacySkullTypeName</span></div>
+<div class="block">The bukkit enum name matching this one.
+ This class is mostly-compatible except for WITHER_SKELETON which is WITHER in bukkit skulltype (but different in material/entitytype)</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
+</dl>
 </section>
 </li>
 </ul>

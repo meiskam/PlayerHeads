@@ -15,7 +15,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.Skull;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Directional;
 import org.bukkit.material.MaterialData;
@@ -67,9 +66,10 @@ public class SkullDetails_legacy extends SkullDetails_common implements SkullDet
             datavalue=skullType.legacyDataValue;
         }
         
-        org.bukkit.SkullType foundBukkitSkullType = null;
+        //skulltype name is not reliable because of mismatch between compat-api and bukkit
+        org.bukkit.SkullType foundBukkitSkullType;
         try{
-            foundBukkitSkullType = org.bukkit.SkullType.valueOf(skullType.name().toUpperCase());
+            foundBukkitSkullType = org.bukkit.SkullType.valueOf(this.skullType.legacySkullTypeName);
         }catch(Exception e){
             foundBukkitSkullType = null;//this should not happen
         }

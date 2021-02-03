@@ -47,7 +47,7 @@
           <notimestamp>true</notimestamp>
           <links>
             <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
-            <link>https://hub.spigotmc.org/javadocs/spigot</link>
+            <link>https://hub.spigotmc.org/javadocs/spigot/</link>
             <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/15.0.0/</link>
           </links>
           <includeDependencySources>true</includeDependencySources>
@@ -145,7 +145,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.16.1-R0.1-SNAPSHOT</version>
+      <version>1.16.5-R0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -157,7 +157,7 @@
     <dependency>
       <groupId>org.shininet.bukkit</groupId>
       <artifactId>PlayerHeads-compatibility-api</artifactId>
-      <version>5.2.13-SNAPSHOT</version>
+      <version>5.2.14-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>

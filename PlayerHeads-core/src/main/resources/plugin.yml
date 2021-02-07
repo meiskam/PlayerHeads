@@ -29,6 +29,8 @@ permissions:
       playerheads.canbeheadmob: true
       playerheads.update: true
       playerheads.clickinfo: true
+      playerheads.alwaysbehead: false
+      playerheads.alwaysbeheadmob: false
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     default: op

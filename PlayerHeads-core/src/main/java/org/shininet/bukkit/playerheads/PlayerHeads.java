@@ -4,6 +4,7 @@
 
 package org.shininet.bukkit.playerheads;
 
+import com.github.crashdemons.playerheads.CompatibilityLoader;
 import com.github.crashdemons.playerheads.api.ApiProvider;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
@@ -29,6 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHeadsPlugin {
     public static PlayerHeads instance;
     private PlayerHeadsListener listener;
+    private CompatibilityLoader compatibilityLoader; 
     //private PlayerHeadsDraftListener draftListener=null;
     public Logger logger;
     public FileConfiguration configFile;
@@ -37,51 +39,6 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     private static String updateName = "";
     
     //private final boolean hasBlockDropItemSupport;//whether the server has draft-API support
-    
-    private boolean compatibilityFailed=false;
-    
-    private void logCompatibilityIssue(String description, String reportcomment){
-        logger.severe(description);
-        logger.severe("  "+Lang.COMPATIBILITY_VERSION_RAW+Lang.COLON_SPACE+Version.getRawServerVersion());
-        logger.severe("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getType()+" "+Version.getString());
-        logger.severe(reportcomment);
-        compatibilityFailed=true;
-    }
-    private void logCompatibilityBug(String description){
-        logCompatibilityIssue(
-                description,
-                Lang.COMPATIBILITY_REPORT_BUG
-        );
-    }
-    private void logCompatibilityError(String description){
-        logCompatibilityIssue(
-                description,
-                Lang.COMPATIBILITY_REPORT_ERROR
-        );
-    }
-    
-    private void initializeCompatibility(){
-        boolean isUsingRecommendedVersion=true;
-        try{
-            isUsingRecommendedVersion = Compatibility.init();
-        }catch(UnknownVersionException e){
-            logCompatibilityBug(Lang.ERROR_COMPATIBILITY_UNKNOWN_VERSION);
-            throw e;//ensure the plugin is not loaded
-        }catch(CompatibilityUnsupportedException e){
-            logCompatibilityError(Lang.ERROR_COMPATIBILITY_SERVER_VERSION);
-            throw e;
-        }catch(CompatibilityUnavailableException e){
-            logCompatibilityError(Lang.ERROR_COMPATIBILITY_NOT_FOUND);
-            throw e;
-        }
-        
-        if(!isUsingRecommendedVersion){ 
-            logger.warning(Lang.WARNING_COMPATIBILITY_DIFFERENT);
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_DETECTED+Lang.COLON_SPACE+Version.getType()+" "+Version.getString());
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_RECOMMENDED+Lang.COLON_SPACE+Compatibility.getRecommendedProviderType()+" "+Compatibility.getRecommendedProviderVersion()+" (or better)");
-            logger.warning("  "+Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getType()+" "+Compatibility.getProvider().getVersion());
-        }
-    }
     
     public void scheduleSync(Runnable task, long tick_delay){
         int tasknum = Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this, task, tick_delay);
@@ -101,7 +58,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     public void onLoad(){
         logger = getLogger();
         Lang.init(this);
-        initializeCompatibility();
+        compatibilityLoader.initializeCompatibility();
     }
 
     /**
@@ -109,8 +66,8 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
      */
     @Override
     public void onEnable() {
-        if(compatibilityFailed){
-            logger.severe(Lang.ERROR_COMPATIBILITY);
+        if(compatibilityLoader.failed()){
+            compatibilityLoader.logCompatibilityFailed();
             this.getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -137,8 +94,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
             logger.severe(Lang.ERROR_PLUGIN_COMMAND);
         }else command.setExecutor(commandExecutor);
         
-        
-        logger.info(Lang.COMPATIBILITY_VERSION_CURRENT+Lang.COLON_SPACE+Compatibility.getProvider().getType()+" "+Compatibility.getProvider().getVersion());
+        compatibilityLoader.logCompatibilityDetails();
     }
     
     /**

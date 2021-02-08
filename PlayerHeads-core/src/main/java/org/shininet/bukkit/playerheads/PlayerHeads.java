@@ -51,6 +51,7 @@ public final class PlayerHeads extends JavaPlugin implements Listener,PlayerHead
     
     @Override
     public void onLoad(){
+        compatibilityLoader = new CompatibilityLoader(this);
         logger = getLogger();
         Lang.init(this);
         compatibilityLoader.initializeCompatibility();

@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10};
+<script type="text/javascript">var data = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -84,9 +84,14 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html" title="class or interface in org.bukkit.event" class="external-link">Cancellable</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="type-name-label">VanillaLivingEntityDropHeadEvent</span>
-extends <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/entity/EntityEvent.html" title="class or interface in org.bukkit.event.entity" class="external-link">EntityEvent</a></pre>
+extends <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/entity/EntityEvent.html" title="class or interface in org.bukkit.event.entity" class="external-link">EntityEvent</a>
+implements <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html" title="class or interface in org.bukkit.event" class="external-link">Cancellable</a></pre>
 <div class="block">Event created by PlayerHeads when a [living] entity drops a head from a source outside of PlayerHeads.
  Note: this event does not currently check if the entity dropped the item from their inventory/equipment, or from an actual head drop.</div>
 <dl class="notes">
@@ -202,6 +207,20 @@ java.util.List&lt;<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/i
 <div class="block">The entity that is responsible for the beheading, as determined by PlayerHeads.</div>
 </td>
 </tr>
+<tr class="alt-color" id="i6">
+<td class="col-first"><code>boolean</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isCancelled()">isCancelled</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Whether the event has been cancelled.</div>
+</td>
+</tr>
+<tr class="row-color" id="i7">
+<td class="col-first"><code>void</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#setCancelled(boolean)">setCancelled</a></span>&#8203;(boolean&nbsp;cancel)</code></th>
+<td class="col-last">
+<div class="block">Sets whether the event should be cancelled.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -251,6 +270,32 @@ java.util.List&lt;<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/i
 <section class="method-details" id="method.detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="isCancelled()">
+<h3>isCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="member-name">isCancelled</span>()</div>
+<div class="block">Whether the event has been cancelled.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html#isCancelled()" title="class or interface in org.bukkit.event" class="external-link">isCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html" title="class or interface in org.bukkit.event" class="external-link">Cancellable</a></code></dd>
+<dt>Returns:</dt>
+<dd>Whether the event has been cancelled.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setCancelled(boolean)">
+<h3>setCancelled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">setCancelled</span>&#8203;(<span class="parameters">boolean&nbsp;cancel)</span></div>
+<div class="block">Sets whether the event should be cancelled.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html#setCancelled(boolean)" title="class or interface in org.bukkit.event" class="external-link">setCancelled</a></code>&nbsp;in interface&nbsp;<code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Cancellable.html" title="class or interface in org.bukkit.event" class="external-link">Cancellable</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>cancel</code> - whether the event should be cancelled.</dd>
+</dl>
+</section>
+</li>
 <li>
 <section class="detail" id="getCause()">
 <h3>getCause</h3>

@@ -15,6 +15,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -480,5 +481,15 @@ public interface CompatibilityProvider {
      * @since 5.2.14-SNAPSHOT
      */
     public boolean clearProfile(Object skull) throws IllegalArgumentException;
+    
+    /**
+     * Attempt to determine the entity/player ultimately responsible for a death.
+     * @param event the entity death event
+     * @param considermobkillers whether to search into non-player killers (projectiles, mobs). If this is false, the behavior must be identical to entity.getKiller()
+     * @param considertameowners whether to include the owner of tamed mobs in the search (requires considermobkillers)
+     * @return the entity ultimately responsible for the death, as well as we could tell.
+     * @since 5.2.14-SNAPSHOT
+     */
+    public LivingEntity getKillerEntity(EntityDeathEvent event, boolean considermobkillers, boolean considertameowners);
 
 }

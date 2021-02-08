@@ -18,14 +18,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
+import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Tameable;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.projectiles.ProjectileSource;
 
 /**
  * CompatibilityProvider Implementation for 1.8-1.12.2 support.
@@ -210,4 +217,47 @@ public abstract class Provider_common implements CompatibilityProvider {
         }else throw new IllegalArgumentException("skull provided is not of type Skull or SkullMeta");
     }
     
+    
+    protected Entity getEntityOwningEntity(EntityDamageByEntityEvent event, boolean considertameowners){
+        Entity entity = event.getDamager();
+        if(entity instanceof Projectile){
+            //System.out.println("   damager entity projectile");
+            Projectile projectile = (Projectile) entity;
+            ProjectileSource shooter = projectile.getShooter();
+            if(shooter instanceof Entity){
+                entity=(Entity) shooter;
+                //if(entity!=null) System.out.println("   arrow shooter: "+entity.getType().name()+" "+entity.getName());
+            }
+        }else if(entity instanceof Tameable && considertameowners){
+            //System.out.println("   damager entity wolf");
+            Tameable animal = (Tameable) entity;
+            if(animal.isTamed()){
+                AnimalTamer tamer = animal.getOwner();
+                if(tamer instanceof Entity){
+                    entity=(Entity) tamer;
+                    //if(entity!=null) System.out.println("   wolf tamer: "+entity.getType().name()+" "+entity.getName());
+                }
+            }
+        }
+        return entity;
+    }
+    
+    public LivingEntity getKillerEntity(EntityDeathEvent event, boolean considermobkillers, boolean considertameowners){
+        LivingEntity victim = event.getEntity();
+        //if(victim!=null) System.out.println("victim: "+victim.getType().name()+" "+victim.getName());
+        LivingEntity killer = victim.getKiller();
+        //if(killer!=null) System.out.println("original killer: "+killer.getType().name()+" "+killer.getName());
+        
+        if(killer==null && considermobkillers){
+            EntityDamageEvent dmgEvent = event.getEntity().getLastDamageCause();
+            if(dmgEvent instanceof EntityDamageByEntityEvent){
+                Entity killerEntity = getEntityOwningEntity((EntityDamageByEntityEvent)dmgEvent, considertameowners);
+                //if(killerEntity!=null) System.out.println(" parent killer: "+killerEntity.getType().name()+" "+killerEntity.getName());
+                if(killerEntity instanceof LivingEntity) killer=(LivingEntity)killerEntity;
+                //what if the entity isn't living (eg: arrow?)
+            }
+        }
+        //if(killer!=null) System.out.println(" final killer: "+killer.getType().name()+" "+killer.getName());
+        return killer;
+    }
 }

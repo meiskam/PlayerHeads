@@ -15,8 +15,8 @@
 <script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="all-classes-index-page">
-<script type="text/javascript">var data = {"i0":2,"i1":1,"i2":2,"i3":2,"i4":1,"i5":2,"i6":2,"i7":2,"i8":2,"i9":1,"i10":1};
-var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
+<script type="text/javascript">var data = {"i0":2,"i1":2,"i2":8,"i3":8,"i4":8,"i5":1,"i6":2,"i7":8,"i8":8,"i9":8,"i10":2,"i11":2,"i12":2,"i13":4,"i14":1,"i15":2,"i16":2,"i17":4,"i18":2,"i19":2,"i20":1,"i21":2,"i22":2,"i23":2,"i24":2,"i25":2,"i26":1,"i27":1,"i28":2,"i29":2,"i30":2,"i31":4,"i32":1,"i33":4,"i34":8,"i35":2,"i36":2,"i37":8};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"],8:["t4","Exception Summary"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
 var tableTab = "table-tab";
@@ -60,7 +60,7 @@ loadScripts(document, 'script');</script>
 <h1 title="All&amp;nbsp;Classes" class="title">All&nbsp;Classes</h1>
 </div>
 <div class="type-summary" id="all-classes-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="active-table-tab">All Classes</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="table-tab" onclick="show(1);">Interface Summary</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="table-tab" onclick="show(2);">Class Summary</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="active-table-tab">All Classes</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t1" class="table-tab" onclick="show(1);">Interface Summary</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t2" class="table-tab" onclick="show(2);">Class Summary</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t3" class="table-tab" onclick="show(4);">Enum Summary</button><button role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" id="t4" class="table-tab" onclick="show(8);">Exception Summary</button></div>
 <div id="all-classes-table.tabpanel" role="tabpanel">
 <table class="summary-table" aria-labelledby="t0">
 <thead>
@@ -78,65 +78,231 @@ loadScripts(document, 'script');</script>
 </th>
 </tr>
 <tr class="row-color" id="i1">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/Compatibility.html" title="class in com.github.crashdemons.playerheads.compatibility">Compatibility</a></td>
+<th class="col-last" scope="row">
+<div class="block">Compatibility class controlling implementation and version support.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i2">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityConflictException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityConflictException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating that there is a conflict between multiple
+ compatibility-provider implementations.</div>
+</th>
+</tr>
+<tr class="row-color" id="i3">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Base for all compatibility exceptions</div>
+</th>
+</tr>
+<tr class="alt-color" id="i4">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityMisconfiguredException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityMisconfiguredException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating that the Compatibility library project was misconfigured
+ when it was built, not correctly finalizing support information.</div>
+</th>
+</tr>
+<tr class="row-color" id="i5">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></td>
+<th class="col-last" scope="row">
+<div class="block">An interface specifying all of the methods we need for our plugin that require differing Bukkit-specific implementations which we wish to abstract from our plugin code.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i6">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/CompatibilitySupport.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibilitySupport</a></td>
+<th class="col-last" scope="row">
+<div class="block">Class that holds supported compatibility implementations in this release.</div>
+</th>
+</tr>
+<tr class="row-color" id="i7">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnavailableException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnavailableException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating that an implementation providing compatibility for the
+ current server couldn't be found or is otherwise unavailable.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i8">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnregisteredException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnregisteredException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating that a compatibility-provider implementation isn't
+ registered at a time when it is required.</div>
+</th>
+</tr>
+<tr class="row-color" id="i9">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/CompatibilityUnsupportedException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">CompatibilityUnsupportedException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating a server version that is incompatible with the available
+ implementations.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i10">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/CompatiblePlugin.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">CompatiblePlugin</a></td>
+<th class="col-last" scope="row">
+<div class="block">Defines an abstract third-party-plugin compatibility class which can detect
+ and retrieves the plugin instance.</div>
+</th>
+</tr>
+<tr class="row-color" id="i11">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/CompatiblePlugins.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatiblePlugins</a></td>
+<th class="col-last" scope="row">
+<div class="block">Class providing methods and information for inter-plugin compatibility.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i12">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/CompatibleProfile.html" title="class in com.github.crashdemons.playerheads.compatibility">CompatibleProfile</a></td>
+<th class="col-last" scope="row">
+<div class="block">Utility class that may be used by compatibility providers to handle head profile information.</div>
+</th>
+</tr>
+<tr class="row-color" id="i13">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/CompatibleSkullMaterial.html" title="enum in com.github.crashdemons.playerheads.compatibility">CompatibleSkullMaterial</a></td>
+<th class="col-last" scope="row">
+<div class="block">An enumeration of vanilla skull/head materials (items and blocks) that can
+ possibly be supported.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i14">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html" title="interface in org.shininet.bukkit.playerheads.events">DropHeadEvent</a></td>
 <th class="col-last" scope="row">
 <div class="block">Interface for events that drop a plugin-supported head.</div>
 </th>
 </tr>
-<tr class="alt-color" id="i2">
+<tr class="row-color" id="i15">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/heads/ExternalHeads.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins.heads">ExternalHeads</a></td>
+<th class="col-last" scope="row">&nbsp;</th>
+</tr>
+<tr class="alt-color" id="i16">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/FakeBlockBreakEvent.html" title="class in org.shininet.bukkit.playerheads.events">FakeBlockBreakEvent</a></td>
 <th class="col-last" scope="row">Deprecated.
 <div class="deprecation-comment">you should use SimulatedBlockBreakEvent in the Compatibility API instead, this class may
  be removed in the future</div>
 </th>
 </tr>
-<tr class="row-color" id="i3">
+<tr class="row-color" id="i17">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></td>
+<th class="col-last" scope="row">&nbsp;</th>
+</tr>
+<tr class="alt-color" id="i18">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/HeadPluginCompatibility.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">HeadPluginCompatibility</a></td>
+<th class="col-last" scope="row">&nbsp;</th>
+</tr>
+<tr class="row-color" id="i19">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></td>
 <th class="col-last" scope="row">
 <div class="block">Event created by PlayerHeads (4.9.2+) to indicate that a head dropchance roll
  has occurred and the success/failure has been determined.</div>
 </th>
 </tr>
-<tr class="alt-color" id="i4">
+<tr class="alt-color" id="i20">
 <td class="col-first"><a href="com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></td>
 <th class="col-last" scope="row">
 <div class="block">Object representing the type of Head supported by PlayerHeads.</div>
 </th>
 </tr>
-<tr class="row-color" id="i5">
+<tr class="row-color" id="i21">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></td>
 <th class="col-last" scope="row">
-<div class="block">Event created by the PlayerHeads plugin when a [living] entity is beheaded.</div>
+<div class="block">Event created by the PlayerHeads plugin when a [living] entity is beheaded by PlayerHeads itself.</div>
 </th>
 </tr>
-<tr class="alt-color" id="i6">
+<tr class="alt-color" id="i22">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">MobDropHeadEvent</a></td>
 <th class="col-last" scope="row">
 <div class="block">Event created by the PlayerHeads plugin when a Mob is beheaded.</div>
 </th>
 </tr>
-<tr class="row-color" id="i7">
+<tr class="row-color" id="i23">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/NoCheatPlusCompatibility.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">NoCheatPlusCompatibility</a></td>
+<th class="col-last" scope="row">
+<div class="block">Defines required operations performed with the NoCheatPlus plugin for compatibility reasons.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i24">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">PlayerDropHeadEvent</a></td>
 <th class="col-last" scope="row">
 <div class="block">Event created by the PlayerHeads plugin when a Player is beheaded.</div>
 </th>
 </tr>
-<tr class="alt-color" id="i8">
+<tr class="row-color" id="i25">
 <td class="col-first"><a href="com/github/crashdemons/playerheads/api/PlayerHeads.html" title="class in com.github.crashdemons.playerheads.api">PlayerHeads</a></td>
 <th class="col-last" scope="row">
 <div class="block">PlayerHeads class for managing API provisions.</div>
 </th>
 </tr>
-<tr class="row-color" id="i9">
+<tr class="alt-color" id="i26">
 <td class="col-first"><a href="com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html" title="interface in com.github.crashdemons.playerheads.api">PlayerHeadsAPI</a></td>
 <th class="col-last" scope="row">
 <div class="block">Interface for the PlayerHeads API.</div>
 </th>
 </tr>
-<tr class="alt-color" id="i10">
+<tr class="row-color" id="i27">
 <td class="col-first"><a href="org/shininet/bukkit/playerheads/PlayerHeadsPlugin.html" title="interface in org.shininet.bukkit.playerheads">PlayerHeadsPlugin</a></td>
 <th class="col-last" scope="row">
 <div class="block">Interface representing the PlayerHeads plugin class object</div>
+</th>
+</tr>
+<tr class="alt-color" id="i28">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/ProtectionPluginCompatibility.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">ProtectionPluginCompatibility</a></td>
+<th class="col-last" scope="row">
+<div class="block">Defines required operations performed for generic block/region protection plugins for compatibility reasons.</div>
+</th>
+</tr>
+<tr class="row-color" id="i29">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/RuntimeReferences.html" title="class in com.github.crashdemons.playerheads.compatibility">RuntimeReferences</a></td>
+<th class="col-last" scope="row">
+<div class="block">Provides methods to perform runtime lookups of values by name (eg: enums)</div>
+</th>
+</tr>
+<tr class="alt-color" id="i30">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/plugins/SimulatedBlockBreakEvent.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">SimulatedBlockBreakEvent</a></td>
+<th class="col-last" scope="row">
+<div class="block">Event used internally by the plugin to detect if a hypothetical BlockBreak
+ would be cancelled by another plugin.</div>
+</th>
+</tr>
+<tr class="row-color" id="i31">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/SkullBlockAttachment.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullBlockAttachment</a></td>
+<th class="col-last" scope="row">
+<div class="block">Type of head blocks supported</div>
+</th>
+</tr>
+<tr class="alt-color" id="i32">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/SkullDetails.html" title="interface in com.github.crashdemons.playerheads.compatibility">SkullDetails</a></td>
+<th class="col-last" scope="row">
+<div class="block">Defines an interface of implementation-specific details and methods relating
+ to a skull item/block.</div>
+</th>
+</tr>
+<tr class="row-color" id="i33">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></td>
+<th class="col-last" scope="row">
+<div class="block">An enumeration of skulls and heads that are supported in vanilla servers.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i34">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/UnknownVersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">UnknownVersionException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Exception indicating a server version that could not be retrieved or
+ understood.</div>
+</th>
+</tr>
+<tr class="row-color" id="i35">
+<td class="col-first"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></td>
+<th class="col-last" scope="row">
+<div class="block">Event created by PlayerHeads when a [living] entity drops a head from a source outside of PlayerHeads.</div>
+</th>
+</tr>
+<tr class="alt-color" id="i36">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/Version.html" title="class in com.github.crashdemons.playerheads.compatibility">Version</a></td>
+<th class="col-last" scope="row">
+<div class="block">A class providing methods related to the current server's version.</div>
+</th>
+</tr>
+<tr class="row-color" id="i37">
+<td class="col-first"><a href="com/github/crashdemons/playerheads/compatibility/exceptions/VersionException.html" title="class in com.github.crashdemons.playerheads.compatibility.exceptions">VersionException</a></td>
+<th class="col-last" scope="row">
+<div class="block">Base for all version exceptions</div>
 </th>
 </tr>
 </tbody>

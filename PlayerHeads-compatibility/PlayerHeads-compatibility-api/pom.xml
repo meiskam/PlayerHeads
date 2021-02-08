@@ -44,7 +44,7 @@
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-base-api</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.14-SNAPSHOT</version>
         </dependency>
 
         <dependency>

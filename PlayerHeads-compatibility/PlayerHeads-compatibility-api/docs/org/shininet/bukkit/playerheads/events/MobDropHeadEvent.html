@@ -138,6 +138,15 @@ extends <a href="LivingEntityDropHeadEvent.html" title="class in org.shininet.bu
 <div class="block">Constructs the event</div>
 </td>
 </tr>
+<tr class="row-color">
+<th class="col-constructor-name" scope="row"><code><span class="member-name-link"><a href="#%3Cinit%3E(org.bukkit.event.Event,org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack)">MobDropHeadEvent</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Event.html" title="class or interface in org.bukkit.event" class="external-link">Event</a>&nbsp;cause,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;mob,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;killer,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a>&nbsp;drop)</code></th>
+<td class="col-last">
+<div class="block">Constructs the event</div>
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -149,7 +158,7 @@ extends <a href="LivingEntityDropHeadEvent.html" title="class in org.shininet.bu
 <h2>Method Summary</h2>
 <div class="inherited-list">
 <h3 id="methods.inherited.from.class.org.shininet.bukkit.playerheads.events.LivingEntityDropHeadEvent">Methods inherited from class&nbsp;org.shininet.bukkit.playerheads.events.<a href="LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></h3>
-<code><a href="LivingEntityDropHeadEvent.html#getDrop()">getDrop</a>, <a href="LivingEntityDropHeadEvent.html#getEntity()">getEntity</a>, <a href="LivingEntityDropHeadEvent.html#getHandlerList()">getHandlerList</a>, <a href="LivingEntityDropHeadEvent.html#getHandlers()">getHandlers</a>, <a href="LivingEntityDropHeadEvent.html#isCancelled()">isCancelled</a>, <a href="LivingEntityDropHeadEvent.html#setCancelled(boolean)">setCancelled</a>, <a href="LivingEntityDropHeadEvent.html#setDrop(org.bukkit.inventory.ItemStack)">setDrop</a></code></div>
+<code><a href="LivingEntityDropHeadEvent.html#getCause()">getCause</a>, <a href="LivingEntityDropHeadEvent.html#getDrop()">getDrop</a>, <a href="LivingEntityDropHeadEvent.html#getEntity()">getEntity</a>, <a href="LivingEntityDropHeadEvent.html#getHandlerList()">getHandlerList</a>, <a href="LivingEntityDropHeadEvent.html#getHandlers()">getHandlers</a>, <a href="LivingEntityDropHeadEvent.html#getKillerEntity()">getKillerEntity</a>, <a href="LivingEntityDropHeadEvent.html#isCancelled()">isCancelled</a>, <a href="LivingEntityDropHeadEvent.html#setCancelled(boolean)">setCancelled</a>, <a href="LivingEntityDropHeadEvent.html#setDrop(org.bukkit.inventory.ItemStack)">setDrop</a></code></div>
 <div class="inherited-list">
 <h3 id="methods.inherited.from.class.org.bukkit.event.entity.EntityEvent">Methods inherited from class&nbsp;org.bukkit.event.entity.<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/entity/EntityEvent.html" title="class or interface in org.bukkit.event.entity" class="external-link">EntityEvent</a></h3>
 <code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/entity/EntityEvent.html#getEntityType()" title="class or interface in org.bukkit.event.entity" class="external-link">getEntityType</a></code></div>
@@ -180,6 +189,25 @@ extends <a href="LivingEntityDropHeadEvent.html" title="class in org.shininet.bu
 <dt>Parameters:</dt>
 <dd><code>mob</code> - the mob that was beheaded</dd>
 <dd><code>drop</code> - the head item to be dropped.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(org.bukkit.event.Event,org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack)">
+<h3>MobDropHeadEvent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="member-name">MobDropHeadEvent</span>&#8203;(<span class="parameters"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/Event.html" title="class or interface in org.bukkit.event" class="external-link">Event</a>&nbsp;cause,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;mob,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;killer,
+<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a>&nbsp;drop)</span></div>
+<div class="block">Constructs the event</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>cause</code> - the event which caused the beheading event, or null.</dd>
+<dd><code>mob</code> - the mob that was beheaded</dd>
+<dd><code>drop</code> - the head item to be dropped.</dd>
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
 </dl>
 </section>
 </li>

@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":9,"i1":9};
+<script type="text/javascript">var data = {"i0":9,"i1":9,"i2":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -178,20 +178,27 @@ extends java.lang.Enum&lt;<a href="SkullType.html" title="enum in com.github.cra
 <tbody>
 <tr class="alt-color">
 <td class="col-first"><code>boolean</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#canDropInVanilla">canDropInVanilla</a></span></code></th>
+<td class="col-last">
+<div class="block">Whether this head can drop from a mob in some version of the vanilla game.</div>
+</td>
+</tr>
+<tr class="row-color">
+<td class="col-first"><code>boolean</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#isSkull">isSkull</a></span></code></th>
 <td class="col-last">
 <div class="block">A property specifying whether the skulltype entry is a proper skull (semantically - for types of skeletons, etc) or a
  head.</div>
 </td>
 </tr>
-<tr class="row-color">
+<tr class="alt-color">
 <td class="col-first"><code>short</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#legacyDataValue">legacyDataValue</a></span></code></th>
 <td class="col-last">
 <div class="block">The ordinal/datavalue associated with this skulltype.</div>
 </td>
 </tr>
-<tr class="alt-color">
+<tr class="row-color">
 <td class="col-first"><code>java.lang.String</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#legacySkullTypeName">legacySkullTypeName</a></span></code></th>
 <td class="col-last">
@@ -221,12 +228,19 @@ extends java.lang.Enum&lt;<a href="SkullType.html" title="enum in com.github.cra
 <tbody>
 <tr class="alt-color" id="i0">
 <td class="col-first"><code>static <a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getFromEntity(org.bukkit.entity.Entity)">getFromEntity</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/Entity.html" title="class or interface in org.bukkit.entity" class="external-link">Entity</a>&nbsp;entity)</code></th>
+<td class="col-last">
+<div class="block">Get the legacy skulltype from an entity.</div>
+</td>
+</tr>
+<tr class="row-color" id="i1">
+<td class="col-first"><code>static <a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#valueOf(java.lang.String)">valueOf</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
 <td class="col-last">
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </td>
 </tr>
-<tr class="row-color" id="i1">
+<tr class="alt-color" id="i2">
 <td class="col-first"><code>static <a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a>[]</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#values()">values</a></span>()</code></th>
 <td class="col-last">
@@ -332,6 +346,13 @@ the order they are declared.</div>
 </dl>
 </section>
 </li>
+<li>
+<section class="detail" id="canDropInVanilla">
+<h3>canDropInVanilla</h3>
+<div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="member-name">canDropInVanilla</span></div>
+<div class="block">Whether this head can drop from a mob in some version of the vanilla game.</div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -368,6 +389,21 @@ not permitted.)</div>
 <dt>Throws:</dt>
 <dd><code>java.lang.IllegalArgumentException</code> - if this enum type has no constant with the specified name</dd>
 <dd><code>java.lang.NullPointerException</code> - if the argument is null</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getFromEntity(org.bukkit.entity.Entity)">
+<h3>getFromEntity</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="SkullType.html" title="enum in com.github.crashdemons.playerheads.compatibility">SkullType</a></span>&nbsp;<span class="member-name">getFromEntity</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/Entity.html" title="class or interface in org.bukkit.entity" class="external-link">Entity</a>&nbsp;entity)</span></div>
+<div class="block">Get the legacy skulltype from an entity.
+ Note: support will be more reliable if Compatibility is initialized first since this will use a forward-portable name
+ - otherwise the raw entity-type-name will be used which may not work for Wither Skeletons, Strays, Husks.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>entity</code> - the entity to get the skulltype for.</dd>
+<dt>Returns:</dt>
+<dd>the skulltype associated with the mob.</dd>
 </dl>
 </section>
 </li>

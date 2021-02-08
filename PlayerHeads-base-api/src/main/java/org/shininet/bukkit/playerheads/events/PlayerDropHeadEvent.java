@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package org.shininet.bukkit.playerheads.events;
 
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -34,8 +35,8 @@ public class PlayerDropHeadEvent extends LivingEntityDropHeadEvent {
      * @param drop the head item to be dropped
      * @since 5.2.14-SNAPSHOT
      */
-    public PlayerDropHeadEvent(@Nullable final Event cause, final Player player, final ItemStack drop) {
-        super(cause, player, drop);
+    public PlayerDropHeadEvent(@Nullable final Event cause, final Player player, LivingEntity killer, final ItemStack drop) {
+        super(cause, player, killer, drop);
     }
 
     /**

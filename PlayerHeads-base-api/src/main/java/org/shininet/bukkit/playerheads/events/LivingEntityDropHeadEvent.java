@@ -30,6 +30,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     private boolean canceled = false;
     private ItemStack itemDrop;
     private final Event eventCause;
+    private final LivingEntity killerEntity;
 
     /**
      * Construct the event
@@ -41,6 +42,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
         super(entity);
         this.eventCause=null;
         this.itemDrop = drop;
+        this.killerEntity=entity.getKiller();
     }
     /**
      * Construct the event
@@ -50,10 +52,11 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      * @param drop the head item being dropped
      * @since 5.2.14-SNAPSHOT
      */
-    LivingEntityDropHeadEvent(@Nullable final Event cause, final LivingEntity entity, final ItemStack drop) {
+    LivingEntityDropHeadEvent(@Nullable final Event cause, final LivingEntity entity, LivingEntity killer, final ItemStack drop) {
         super(entity);
         this.eventCause=cause;
         this.itemDrop = drop;
+        this.killerEntity = killer;
     }
     
     /**
@@ -97,6 +100,20 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
+    }
+    
+    /**
+     * The entity that is responsible for the beheading, as determined by PlayerHeads.
+     * It is possible that this differs from getEntity().getKiller() because it can identify non-player killers
+     * and search projectile and tame ownership, if configured.
+     * 
+     * Use getEntity().getKiller() if you want the killer as determined by Minecraft.
+     * @return the killerEntity's entity
+     * @since 5.2.14-SNAPSHOT
+     */
+    @Nullable
+    public LivingEntity getKiller(){
+        return killerEntity;
     }
 
     /**

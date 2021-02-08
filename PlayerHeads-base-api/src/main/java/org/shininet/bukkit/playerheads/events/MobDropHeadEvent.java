@@ -35,7 +35,7 @@ public class MobDropHeadEvent extends LivingEntityDropHeadEvent {
      * @param drop the head item to be dropped.
      * @since 5.2.14-SNAPSHOT
      */
-    public MobDropHeadEvent(@Nullable final Event cause, final LivingEntity mob, final ItemStack drop) {
-        super(cause, mob, drop);
+    public MobDropHeadEvent(@Nullable final Event cause, final LivingEntity mob, LivingEntity killer, final ItemStack drop) {
+        super(cause, mob, killer, drop);
     }
 }

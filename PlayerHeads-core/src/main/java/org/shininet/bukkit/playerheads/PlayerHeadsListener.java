@@ -11,11 +11,12 @@ import com.github.crashdemons.playerheads.antispam.PlayerDeathSpamPreventer;
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
+import com.github.crashdemons.playerheads.compatibility.SkullType;
 import com.github.crashdemons.playerheads.compatibility.plugins.SimulatedBlockBreakEvent;
 import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
+import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
@@ -55,6 +56,7 @@ import org.bukkit.projectiles.ProjectileSource;
 import org.jetbrains.annotations.Nullable;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
+import org.shininet.bukkit.playerheads.events.VanillaLivingEntityDropHeadEvent;
 
 /**
  * Defines a listener for playerheads events.
@@ -147,7 +149,7 @@ class PlayerHeadsListener implements Listener {
         return killer;
     }
     
-
+    
     /**
      * Event handler for entity deaths.
      * <p>
@@ -159,6 +161,22 @@ class PlayerHeadsListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         LivingEntity victim = event.getEntity();
         LivingEntity killer = getKillerEntity(event);
+        
+        // vanilla head event
+        SkullType legacySkullType = SkullType.getFromEntity(victim);
+        final List<ItemStack> droppedVanillaHeads = new ArrayList<>();
+        boolean hasDroppedVanillaHead = false;
+        if(legacySkullType!=null && legacySkullType.canDropInVanilla){
+            for(ItemStack stack : event.getDrops()){//I would use a stream, but in Java 7 it converts to List<Object> without an easy way to convert.
+                if(isVanillaHead.test(stack)) droppedVanillaHeads.add(stack);
+            }
+            hasDroppedVanillaHead = droppedVanillaHeads.size() > 0;
+            if(hasDroppedVanillaHead){
+                VanillaLivingEntityDropHeadEvent vanillaBeheadEvent = new VanillaLivingEntityDropHeadEvent(event,victim, killer, droppedVanillaHeads);
+                plugin.getServer().getPluginManager().callEvent(vanillaBeheadEvent);
+            }
+        }
+        //end vanilla head event
 
         double lootingrate = 1;
 
@@ -204,16 +222,17 @@ class PlayerHeadsListener implements Listener {
                         return;
                     }
                 }
-                PlayerDeathHelper(event, skullType, droprate, lootingrate,chargedcreeperModifier);
+                PlayerDeathHelper(event, killer, skullType, droprate, lootingrate,chargedcreeperModifier);
                 break;
-            case WITHER_SKELETON:
+            case WITHER_SKELETON: //note: Wither Skeletons are currently the only mob where a player can directly cause their death...
                 String witherskeletonbehavior = plugin.getConfig().getString("witherskeletonbehavior");
+                
                 if(witherskeletonbehavior.equals("block") || witherskeletonbehavior.equals("replace")) 
-                    event.getDrops().removeIf(isVanillaHead);
+                    if(hasDroppedVanillaHead) event.getDrops().removeIf(isVanillaHead);
                 if(witherskeletonbehavior.equals("block") || witherskeletonbehavior.equals("vanilla"))
                     return;
                 
-                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0, chargedcreeperModifier);
+                MobDeathHelper(event, killer, skullType, droprate, lootingrate, 1.0, chargedcreeperModifier);
                 break;
             case SLIME:
             case MAGMA_CUBE:
@@ -223,20 +242,20 @@ class PlayerHeadsListener implements Listener {
                     int slimeSize = ((Slime) entity).getSize();// 1, 2, 3, 4  (1,2,4 natual with 1 the smallest)
                     slimemodifier=plugin.configFile.getDouble("slimemodifier."+slimeSize);
                 }
-                MobDeathHelper(event, skullType, droprate, lootingrate, slimemodifier,chargedcreeperModifier);
+                MobDeathHelper(event, killer, skullType, droprate, lootingrate, slimemodifier,chargedcreeperModifier);
                 break;
             default:
-                MobDeathHelper(event, skullType, droprate, lootingrate, 1.0,chargedcreeperModifier);
+                MobDeathHelper(event, killer, skullType, droprate, lootingrate, 1.0,chargedcreeperModifier);
                 break;
         }
     }
 
-    private void PlayerDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double chargedcreeperModifier) {
+    private void PlayerDeathHelper(EntityDeathEvent event, LivingEntity killerEntity, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double chargedcreeperModifier) {
         Double droprate = droprateOriginal * lootingModifier * chargedcreeperModifier;
         Double dropchanceRand = prng.nextDouble();
         Double dropchance = dropchanceRand;
         Player player = (Player) event.getEntity();
-        Player killer = event.getEntity().getKiller();
+        Player killer = killerEntity instanceof Player ? (Player)killerEntity : event.getEntity().getKiller();
 
         boolean killerAlwaysBeheads = false;
 
@@ -267,7 +286,7 @@ class PlayerHeadsListener implements Listener {
 
         ItemStack drop = plugin.api.getHeadDrop(player);
 
-        PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(event, player, drop);
+        PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(event, player, killerEntity, drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
         if (dropHeadEvent.isCancelled()) {
             return;
@@ -317,12 +336,12 @@ class PlayerHeadsListener implements Listener {
 
     }
 
-    private void MobDeathHelper(EntityDeathEvent event, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double slimeModifier, Double chargedcreeperModifier) {
+    private void MobDeathHelper(EntityDeathEvent event, LivingEntity killerEntity, TexturedSkullType type, Double droprateOriginal, Double lootingModifier, Double slimeModifier, Double chargedcreeperModifier) {
         Double droprate = droprateOriginal * lootingModifier * slimeModifier * chargedcreeperModifier;
         Double dropchanceRand = prng.nextDouble();
         Double dropchance = dropchanceRand;
         Entity entity = event.getEntity();
-        Player killer = event.getEntity().getKiller();
+        Player killer = killerEntity instanceof Player ? (Player)killerEntity : event.getEntity().getKiller();
         
         boolean killerAlwaysBeheads = false;
         if (killer != null) {//mob was PK'd
@@ -348,7 +367,7 @@ class PlayerHeadsListener implements Listener {
 
         ItemStack drop = plugin.api.getHeadDrop(entity);
 
-        MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event, event.getEntity(), drop);
+        MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event, event.getEntity(),killerEntity, drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
         if (dropHeadEvent.isCancelled()) {
             return;

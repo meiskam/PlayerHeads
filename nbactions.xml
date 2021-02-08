@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-clean-compile-notests</actionName>
+            <displayName>clean-compile-notests</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>compile</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-comile-notests</actionName>
+            <displayName>compile-notests</displayName>
+            <goals>
+                <goal>compile</goal>
+            </goals>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
+    </actions>

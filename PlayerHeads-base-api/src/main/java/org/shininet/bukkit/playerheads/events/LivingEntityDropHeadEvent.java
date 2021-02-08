@@ -112,7 +112,7 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      * @since 5.2.14-SNAPSHOT
      */
     @Nullable
-    public LivingEntity getKiller(){
+    public LivingEntity getKillerEntity(){
         return killerEntity;
     }
 

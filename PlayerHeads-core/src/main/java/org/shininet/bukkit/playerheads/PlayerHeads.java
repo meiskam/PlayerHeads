@@ -6,12 +6,7 @@ package org.shininet.bukkit.playerheads;
 
 import com.github.crashdemons.playerheads.CompatibilityLoader;
 import com.github.crashdemons.playerheads.api.ApiProvider;
-import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
-import com.github.crashdemons.playerheads.compatibility.Version;
-import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnavailableException;
-import com.github.crashdemons.playerheads.compatibility.exceptions.CompatibilityUnsupportedException;
-import com.github.crashdemons.playerheads.compatibility.exceptions.UnknownVersionException;
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;

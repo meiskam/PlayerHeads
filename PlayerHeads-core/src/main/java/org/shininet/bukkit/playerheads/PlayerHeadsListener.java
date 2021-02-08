@@ -267,7 +267,7 @@ class PlayerHeadsListener implements Listener {
 
         ItemStack drop = plugin.api.getHeadDrop(player);
 
-        PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(player, drop);
+        PlayerDropHeadEvent dropHeadEvent = new PlayerDropHeadEvent(event, player, drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
         if (dropHeadEvent.isCancelled()) {
             return;
@@ -348,7 +348,7 @@ class PlayerHeadsListener implements Listener {
 
         ItemStack drop = plugin.api.getHeadDrop(entity);
 
-        MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event.getEntity(), drop);
+        MobDropHeadEvent dropHeadEvent = new MobDropHeadEvent(event, event.getEntity(), drop);
         plugin.getServer().getPluginManager().callEvent(dropHeadEvent);
         if (dropHeadEvent.isCancelled()) {
             return;

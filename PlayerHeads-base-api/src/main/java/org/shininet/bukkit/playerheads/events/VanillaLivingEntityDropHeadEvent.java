@@ -7,6 +7,7 @@ package org.shininet.bukkit.playerheads.events;
 
 import java.util.List;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityEvent;
@@ -19,9 +20,9 @@ import org.jetbrains.annotations.Nullable;
  * @author crashdemons (crashenator at gmail.com)
  * @since 5.2.14-SNAPSHOT
  */
-public class VanillaLivingEntityDropHeadEvent extends EntityEvent{
+public class VanillaLivingEntityDropHeadEvent extends EntityEvent implements Cancellable{
     private static final HandlerList HANDLERS = new HandlerList();
-    //private boolean canceled = false;
+    private boolean canceled = false;
     private final List<ItemStack> itemDrops;
     private final Event eventCause;
     private final LivingEntity killerEntity;
@@ -38,6 +39,26 @@ public class VanillaLivingEntityDropHeadEvent extends EntityEvent{
         eventCause = cause;
         itemDrops = drops;
         killerEntity = killer;
+    }
+    
+    /**
+     * Whether the event has been cancelled.
+     *
+     * @return Whether the event has been cancelled.
+     */
+    @Override
+    public boolean isCancelled() {
+        return canceled;
+    }
+
+    /**
+     * Sets whether the event should be cancelled.
+     *
+     * @param cancel whether the event should be cancelled.
+     */
+    @Override
+    public void setCancelled(final boolean cancel) {
+        canceled = cancel;
     }
     
     /**

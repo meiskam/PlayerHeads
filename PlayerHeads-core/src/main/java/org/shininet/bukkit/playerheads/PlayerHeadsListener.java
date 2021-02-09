@@ -297,7 +297,7 @@ class PlayerHeadsListener implements Listener {
         //System.out.println(params);//TODO: debug
         boolean hasDroppedVanillaHead = params.vanillaBeheadEvent!=null;
         boolean doVanillaBehavior = params.vanillaBehavior.allowsVanillaBehavior();
-        boolean doPHbehavior = !params.cancelledEarly && params.vanillaBehavior.allowsPhBehavior();
+        boolean doPHbehavior = (!params.cancelledEarly) && params.vanillaBehavior.allowsPhBehavior();
         //System.out.println("hasDroppedVanillaHead,doVanillaBehavior,doPHbehavior,allowsPHBehavior "+hasDroppedVanillaHead+" "+doVanillaBehavior+" "+doPHbehavior+" "+params.vanillaBehavior.allowsPhBehavior());//TODO: debug
         
         if(hasDroppedVanillaHead){

@@ -40,19 +40,13 @@ import org.shininet.bukkit.playerheads.events.MobDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.PlayerDropHeadEvent;
 
 import java.util.function.Predicate;
-import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Slime;
-import org.bukkit.entity.Tameable;
 import org.bukkit.event.block.BlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.projectiles.ProjectileSource;
 import org.jetbrains.annotations.Nullable;
 import org.shininet.bukkit.playerheads.events.BlockDropHeadEvent;
 import org.shininet.bukkit.playerheads.events.HeadRollEvent;
@@ -183,12 +177,19 @@ class PlayerHeadsListener implements Listener {
             this.slimemodifier = slimemodifier;
             this.chargedcreeperModifier = chargedcreeperModifier;
         }
+
+        @Override
+        public String toString() {
+            return "DeathParameters{" + "cancelledEarly=" + cancelledEarly + ", vanillaBeheadEvent=" + vanillaBeheadEvent + ", vanillaBehavior=" + vanillaBehavior + ", isPlayerDeath=" + isPlayerDeath + ", event=" + event + ", killer=" + killer + ", skullType=" + skullType + ", droprate=" + droprate + ", lootingrate=" + lootingrate + ", slimemodifier=" + slimemodifier + ", chargedcreeperModifier=" + chargedcreeperModifier + '}';
+        }
+        
         
         
     }
     
     private DeathParameters getDeathParameters(EntityDeathEvent event) {
         DeathParameters params = new DeathParameters();
+        params.event=event;
         params.cancelledEarly=false;
         params.vanillaBeheadEvent=null;
         params.vanillaBehavior = VanillDropBehavior.IGNORE;
@@ -291,11 +292,13 @@ class PlayerHeadsListener implements Listener {
      * @param event the event received
      */
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled=true)
-    public void onEntityDeath2(EntityDeathEvent event) {
+    public void onEntityDeath(EntityDeathEvent event) {
         DeathParameters params = getDeathParameters(event);
+        //System.out.println(params);//TODO: debug
         boolean hasDroppedVanillaHead = params.vanillaBeheadEvent!=null;
         boolean doVanillaBehavior = params.vanillaBehavior.allowsVanillaBehavior();
-        boolean doPHbehavior = params.cancelledEarly && params.vanillaBehavior.allowsPhBehavior();
+        boolean doPHbehavior = !params.cancelledEarly && params.vanillaBehavior.allowsPhBehavior();
+        //System.out.println("hasDroppedVanillaHead,doVanillaBehavior,doPHbehavior,allowsPHBehavior "+hasDroppedVanillaHead+" "+doVanillaBehavior+" "+doPHbehavior+" "+params.vanillaBehavior.allowsPhBehavior());//TODO: debug
         
         if(hasDroppedVanillaHead){
             if(doVanillaBehavior){

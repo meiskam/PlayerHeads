@@ -6,6 +6,7 @@
             <goals>
                 <goal>clean</goal>
                 <goal>compile</goal>
+                <goal>package</goal>
             </goals>
             <properties>
                 <skipTests>true</skipTests>
@@ -16,6 +17,7 @@
             <displayName>compile-notests</displayName>
             <goals>
                 <goal>compile</goal>
+                <goal>package</goal>
             </goals>
             <properties>
                 <skipTests>true</skipTests>

@@ -63,6 +63,7 @@
                       <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
                       <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
                     </dependencySourceIncludes>
+                    <source>7</source>
                 </configuration>
                 <executions>
                     <execution>

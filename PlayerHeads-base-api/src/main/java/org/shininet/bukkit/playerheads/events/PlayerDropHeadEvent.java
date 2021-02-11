@@ -32,6 +32,7 @@ public class PlayerDropHeadEvent extends LivingEntityDropHeadEvent {
      *
      * @param cause the event which caused the beheading event, or null.
      * @param player the player that was beheaded
+     * @param killer the killer responsible for the death of the mob. As determined by the plugin (may differ from entity.getKiller())
      * @param drop the head item to be dropped
      * @since 5.2.14-SNAPSHOT
      */

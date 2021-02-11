@@ -97,7 +97,7 @@ permissions:
     description: When update available, can view notice and manually update
     default: op
   playerheads.setblock:
-    description: user can set a block to a specified 
+    description: user can set a block to a specified head
     default: op
   playerheads.alwaysbehead:
     description: Ignore drop rate for player heads and drop 100% of the time

@@ -386,6 +386,10 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             }
         }*/
         String scope = label;
+        if (!sender.hasPermission("playerheads.command")) {
+            formatMsg(sender, scope, Lang.ERROR_PERMISSION);
+            return true;
+        }
 
         if (args.length == 0) {
             formatMsg(sender, scope, Lang.SUBCOMMANDS + Lang.COLON_SPACE

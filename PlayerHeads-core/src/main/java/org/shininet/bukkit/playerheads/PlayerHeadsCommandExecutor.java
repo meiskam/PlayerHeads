@@ -36,13 +36,17 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
         this.plugin = plugin;
     }
     
+    private static String scopeToSyntax(String scope){
+        return scope.replace(Lang.COLON, Lang.SPACE);
+    }
+    
     private boolean onCommandSetblock(CommandSender sender, Command cmd, String label, String[] args, String scope){
         if (!sender.hasPermission("playerheads.setblock")) {
             formatMsg(sender, scope, Lang.ERROR_PERMISSION);
             return true;
         }
         
-        String invalidSyntaxMsg = Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_WORLD_REQUIRED + Lang.SPACE +  Lang.OPT_COORDS_REQUIRED + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_ATTACHMENT_OPTIONAL + Lang.SPACE + Lang.OPT_FACING_OPTIONAL;
+        String invalidSyntaxMsg = Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_WORLD_REQUIRED + Lang.SPACE +  Lang.OPT_COORDS_REQUIRED + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_ATTACHMENT_OPTIONAL + Lang.SPACE + Lang.OPT_FACING_OPTIONAL;
         
         String skullOwner;
         boolean isConsoleSender = !(sender instanceof Player);
@@ -151,7 +155,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             String key = args[2].toLowerCase();
             formatMsg(sender, scope, getConfigDisplay(key));
         } else {
-            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED);//Syntax: ph config get <whatever>
+            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED);//Syntax: ph config get <whatever>
             formatMsg(sender, scope, Lang.CONFIG_VARIABLES + Lang.COLON_SPACE + Config.configKeysString);//Config variables: x, y, z
         }
         return true;
@@ -184,7 +188,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             formatMsg(sender, scope, getConfigDisplay(key));
             return true;
         } else {
-            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED + Lang.SPACE + Lang.OPT_VALUE_OPTIONAL);
+            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_VARIABLE_REQUIRED + Lang.SPACE + Lang.OPT_VALUE_OPTIONAL);
             formatMsg(sender, scope, Lang.CONFIG_VARIABLES + Lang.COLON_SPACE + Config.configKeysString);
             return true;
         }
@@ -237,7 +241,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
 
         if (isConsoleSender) {
             if ((args.length != 3) && (args.length != 4)) {
-                formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_RECEIVER_REQUIRED + Lang.SPACE + Lang.OPT_AMOUNT_OPTIONAL);
+                formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_RECEIVER_REQUIRED + Lang.SPACE + Lang.OPT_AMOUNT_OPTIONAL);
                 return true;
             }
         } else {
@@ -269,7 +273,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
                 haspermission = sender.hasPermission("playerheads.spawn.forother");
             }
         } else {
-            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL + Lang.SPACE + Lang.OPT_RECEIVER_OPTIONAL + Lang.SPACE + Lang.OPT_AMOUNT_OPTIONAL);
+            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL + Lang.SPACE + Lang.OPT_RECEIVER_OPTIONAL + Lang.SPACE + Lang.OPT_AMOUNT_OPTIONAL);
             return true;
         }
         if (!haspermission) {
@@ -304,7 +308,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return true;
         }
         if (!((args.length == 1) || (args.length == 2))) {
-            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
+            formatMsg(sender, scope, Lang.SYNTAX + Lang.COLON_SPACE + scopeToSyntax(scope) + Lang.SPACE + Lang.OPT_HEADNAME_OPTIONAL);
             return true;
         }
 

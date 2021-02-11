@@ -197,8 +197,8 @@ public abstract class Provider_common implements CompatibilityProvider {
     
     @Override
     public boolean isCustomHead(String username, UUID id){
-        if(username==null || username.isEmpty()) return true;
-        if(username.contains(":")) return true;//Invalid char for names, but used by a few large plugins (HeadDB, DropHeads)
+        if(id!=null) if( (username==null || username.isEmpty()) ) return true;//custom head would have a valid ID, but no username (no user+no ID = boring steve head / Player head)
+        if(username!=null) if(username.contains(":")) return true;//Invalid char for names, but used by a few large plugins (HeadDB, DropHeads)
         return false;
     }
     

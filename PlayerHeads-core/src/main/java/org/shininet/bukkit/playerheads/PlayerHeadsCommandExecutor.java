@@ -42,7 +42,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             return true;
         }
         
-        String invalidSyntaxMsg = Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.CMD_SETBLOCK  + Lang.SPACE + Lang.OPT_WORLD_REQUIRED + Lang.SPACE +  Lang.OPT_COORDS_REQUIRED + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_ATTACHMENT_OPTIONAL + Lang.SPACE + Lang.OPT_FACING_OPTIONAL;
+        String invalidSyntaxMsg = Lang.SYNTAX + Lang.COLON_SPACE + scope + Lang.SPACE + Lang.OPT_WORLD_REQUIRED + Lang.SPACE +  Lang.OPT_COORDS_REQUIRED + Lang.SPACE + Lang.OPT_HEADNAME_REQUIRED + Lang.SPACE + Lang.OPT_ATTACHMENT_OPTIONAL + Lang.SPACE + Lang.OPT_FACING_OPTIONAL;
         
         String skullOwner;
         boolean isConsoleSender = !(sender instanceof Player);

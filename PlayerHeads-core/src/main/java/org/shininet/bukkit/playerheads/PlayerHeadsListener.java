@@ -668,7 +668,7 @@ class PlayerHeadsListener implements Listener {
         CompatibleProfile savedProfile = null;
         if(isSkinnable && restoreprofile){
             SkullMeta skull = (SkullMeta) stack.getItemMeta();
-            Compatibility.getProvider().getCompatibleProfile(skull);
+            savedProfile = Compatibility.getProvider().getCompatibleProfile(skull);
         }
         
         ItemStack newstack = null;

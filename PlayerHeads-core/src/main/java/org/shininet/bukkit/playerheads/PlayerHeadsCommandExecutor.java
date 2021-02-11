@@ -391,6 +391,7 @@ class PlayerHeadsCommandExecutor implements CommandExecutor, TabCompleter {
             formatMsg(sender, scope, Lang.SUBCOMMANDS + Lang.COLON_SPACE
                     + Lang.CMD_CONFIG + Lang.COMMA_SPACE
                     + Lang.CMD_SPAWN + Lang.COMMA_SPACE
+                    + Lang.CMD_SETBLOCK + Lang.COMMA_SPACE
                     + Lang.CMD_RENAME
             );
             //[ph] Subcommands: config, spawn, rename

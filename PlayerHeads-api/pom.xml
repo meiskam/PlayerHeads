@@ -50,7 +50,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <quiet>true</quiet>
+                    <quiet>false</quiet>
                     <notimestamp>true</notimestamp>
                     <links>
                       <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
@@ -58,10 +58,15 @@
                       <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/15.0.0/</link>
                     </links>
                     <includeDependencySources>true</includeDependencySources>
+                    <dependencySourceExcludes>
+                      <!-- exclude ONLY commons-cli artifacts -->
+                      <dependencySourceExclude>org.shininet.bukkit:PlayerHeads-compatibility</dependencySourceExclude>
+                      <dependencySourceExclude>org.shininet.bukkit:PlayerHeads-compatibility-api</dependencySourceExclude>
+                    </dependencySourceExcludes>
                     <dependencySourceIncludes>
                       <!-- include ONLY dependencies I control -->
-                      <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
-                      <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
+                      <dependencySourceInclude>org.shininet.bukkit:PlayerHeads-base-api</dependencySourceInclude>
+                      <!--<dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>-->
                     </dependencySourceIncludes>
                     <source>7</source>
                 </configuration>

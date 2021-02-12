@@ -43,7 +43,7 @@
           </execution>
         </executions>
         <configuration>
-          <quiet>true</quiet>
+          <quiet>false</quiet>
           <notimestamp>true</notimestamp>
           <links>
             <link>https://hub.spigotmc.org/javadocs/bukkit/</link>
@@ -51,10 +51,14 @@
             <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/15.0.0/</link>
           </links>
           <includeDependencySources>true</includeDependencySources>
+          <dependencySourceExcludes>
+            <dependencySourceExclude>org.shininet.bukkit:PlayerHeads-compatibility</dependencySourceExclude>
+            <dependencySourceExclude>org.shininet.bukkit:PlayerHeads-compatibility-api</dependencySourceExclude>
+          </dependencySourceExcludes>
           <dependencySourceIncludes>
-            <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
-            <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
+            <dependencySourceInclude>org.shininet.bukkit:PlayerHeads-base-api</dependencySourceInclude>
           </dependencySourceIncludes>
+          <source>7</source>
         </configuration>
       </plugin>
       <plugin>

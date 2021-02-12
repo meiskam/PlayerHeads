@@ -89,6 +89,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <pre>public enum <span class="type-name-label">HeadModificationHandling</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a>&gt;</pre>
+<div class="block">The Handling (or modifiability) that is recommended for a head from another plugin.
+ This currently just indicates whether the head should be treated as a supported player-owned head, or be avoided entirely to prevent plugin conflicts.</div>
 <dl class="notes">
 <dt>Author:</dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -121,11 +123,15 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html" 
 <tbody>
 <tr class="alt-color">
 <th class="col-first" scope="row"><code><span class="member-name-link"><a href="#NO_INTERACTION">NO_INTERACTION</a></span></code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Avoid any interaction or modification of this head to prevent plugin conflicts.</div>
+</td>
 </tr>
 <tr class="row-color">
 <th class="col-first" scope="row"><code><span class="member-name-link"><a href="#NORMAL">NORMAL</a></span></code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Support the head as a normal player-owned or inbuilt head.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -188,12 +194,14 @@ the order they are declared.</div>
 <section class="detail" id="NORMAL">
 <h3>NORMAL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">NORMAL</span></div>
+<div class="block">Support the head as a normal player-owned or inbuilt head.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="NO_INTERACTION">
 <h3>NO_INTERACTION</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">NO_INTERACTION</span></div>
+<div class="block">Avoid any interaction or modification of this head to prevent plugin conflicts.</div>
 </section>
 </li>
 </ul>

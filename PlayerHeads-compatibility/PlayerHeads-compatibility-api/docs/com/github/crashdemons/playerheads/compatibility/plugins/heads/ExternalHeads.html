@@ -83,6 +83,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <pre>public class <span class="type-name-label">ExternalHeads</span>
 extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></pre>
+<div class="block">Maintains a list of recognized custom-heads from other plugins and their recommended handling (modifiability by the current plugin).</div>
 <dl class="notes">
 <dt>Author:</dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -109,26 +110,34 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <tr class="alt-color" id="i0">
 <td class="col-first"><code>static <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getHandling(java.lang.String)">getHandling</a></span>&#8203;(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Retrieves the recommended handling (modifiability) for previously-recorded head username</div>
+</td>
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code>static <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getHandling(java.util.UUID)">getHandling</a></span>&#8203;(<a href="https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Retrieves the recommended handling (modifiability) for previously-recorded head UUID</div>
+</td>
 </tr>
 <tr class="alt-color" id="i2">
 <td class="col-first"><code>static void</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#loadIdsFromConfig(org.bukkit.configuration.ConfigurationSection,java.lang.String,com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling)">loadIdsFromConfig</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;section,
 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
 <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a>&nbsp;handling)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Load a list of UUIDs from a configuration entry and records their recommended handling.</div>
+</td>
 </tr>
 <tr class="row-color" id="i3">
 <td class="col-first"><code>static void</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#loadNamesFromConfig(org.bukkit.configuration.ConfigurationSection,java.lang.String,com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling)">loadNamesFromConfig</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;section,
 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
 <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a>&nbsp;handling)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Load a list of usernames from a configuration entry and records their recommended handling.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -154,6 +163,13 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">loadNamesFromConfig</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;section,
 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
 <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a>&nbsp;handling)</span></div>
+<div class="block">Load a list of usernames from a configuration entry and records their recommended handling.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>section</code> - </dd>
+<dd><code>key</code> - </dd>
+<dd><code>handling</code> - the recommended handling for these head usernames</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -162,6 +178,13 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">loadIdsFromConfig</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;section,
 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
 <a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a>&nbsp;handling)</span></div>
+<div class="block">Load a list of UUIDs from a configuration entry and records their recommended handling.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>section</code> - </dd>
+<dd><code>key</code> - </dd>
+<dd><code>handling</code> - the recommended handling for these head UUIDs</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -169,6 +192,13 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <h3>getHandling</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getHandling</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</span></div>
+<div class="block">Retrieves the recommended handling (modifiability) for previously-recorded head username</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>username</code> - </dd>
+<dt>Returns:</dt>
+<dd>the handling</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -176,6 +206,13 @@ extends <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html
 <h3>getHandling</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 </span><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getHandling</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;id)</span></div>
+<div class="block">Retrieves the recommended handling (modifiability) for previously-recorded head UUID</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - </dd>
+<dt>Returns:</dt>
+<dd>the handling</dd>
+</dl>
 </section>
 </li>
 </ul>

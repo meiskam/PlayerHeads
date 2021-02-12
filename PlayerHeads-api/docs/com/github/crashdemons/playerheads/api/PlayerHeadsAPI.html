@@ -15,7 +15,7 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="class-declaration-page">
-<script type="text/javascript">var data = {"i0":6,"i1":38,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":38,"i10":6,"i11":6};
+<script type="text/javascript">var data = {"i0":6,"i1":38,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":38,"i10":6,"i11":6,"i12":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "alt-color";
 var rowColor = "row-color";
@@ -112,7 +112,7 @@ loadScripts(document, 'script');</script>
 </td>
 </tr>
 <tr class="row-color" id="i1">
-<td class="col-first"><code><a href="../compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></code></td>
+<td class="col-first"><code>com.github.crashdemons.playerheads.compatibility.CompatibilityProvider</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getCompatibilityProvider()">getCompatibilityProvider</a></span>()</code></th>
 <td class="col-last">
 <div class="block"><span class="deprecated-label">Deprecated.</span>
@@ -194,6 +194,13 @@ boolean&nbsp;forceOwner)</code></th>
 </td>
 </tr>
 <tr class="row-color" id="i11">
+<td class="col-first"><code><a href="HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>[]</code></td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getSupportedHeads()">getSupportedHeads</a></span>()</code></th>
+<td class="col-last">
+<div class="block">Gets an array of all heads defined by PlayerHeads</div>
+</td>
+</tr>
+<tr class="alt-color" id="i12">
 <td class="col-first"><code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getVersion()">getVersion</a></span>()</code></th>
 <td class="col-last">
@@ -407,7 +414,7 @@ boolean&nbsp;forceOwner)</span></div>
 <h3>getCompatibilityProvider</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/Nullable.html" title="class or interface in org.jetbrains.annotations" class="external-link">@Nullable</a>
 <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Deprecated.html" title="class or interface in java.lang" class="external-link">@Deprecated</a>
-</span><span class="return-type"><a href="../compatibility/CompatibilityProvider.html" title="interface in com.github.crashdemons.playerheads.compatibility">CompatibilityProvider</a></span>&nbsp;<span class="member-name">getCompatibilityProvider</span>()</div>
+</span><span class="return-type">com.github.crashdemons.playerheads.compatibility.CompatibilityProvider</span>&nbsp;<span class="member-name">getCompatibilityProvider</span>()</div>
 <div class="deprecation-block"><span class="deprecated-label">Deprecated.</span>
 <div class="deprecation-comment">You should use Compatibility.getProvider() from PlayerHeads-compatibility-api. Compatibility packages will be removed from PH-API in the future, but you may still access them if you use PlayerHeads-compatibility-api (or lib) as a dependency.</div>
 </div>
@@ -419,6 +426,19 @@ boolean&nbsp;forceOwner)</span></div>
 <dd>the CompatibilityProvider instance or null if PlayerHeads plugin was not initialized yet.</dd>
 <dt>Since:</dt>
 <dd>5.1.1-SNAPSHOT</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSupportedHeads()">
+<h3>getSupportedHeads</h3>
+<div class="member-signature"><span class="return-type"><a href="HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a>[]</span>&nbsp;<span class="member-name">getSupportedHeads</span>()</div>
+<div class="block">Gets an array of all heads defined by PlayerHeads</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>an array of headtypes</dd>
+<dt>Since:</dt>
+<dd>5.2.14-SNAPSHOT</dd>
 </dl>
 </section>
 </li>

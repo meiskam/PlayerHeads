@@ -160,7 +160,9 @@ int&nbsp;amount)</code></th>
 <tr class="alt-color" id="i6">
 <td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getItemInMainHand(org.bukkit.entity.LivingEntity)">getItemInMainHand</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;p)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Gets the item in the [main] hand of the entity.</div>
+</td>
 </tr>
 <tr class="row-color" id="i7">
 <td class="col-first"><code><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a></code></td>
@@ -979,6 +981,16 @@ boolean&nbsp;considertameowners)</code></th>
 <section class="detail" id="getItemInMainHand(org.bukkit.entity.LivingEntity)">
 <h3>getItemInMainHand</h3>
 <div class="member-signature"><span class="return-type"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a></span>&nbsp;<span class="member-name">getItemInMainHand</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/LivingEntity.html" title="class or interface in org.bukkit.entity" class="external-link">LivingEntity</a>&nbsp;p)</span></div>
+<div class="block">Gets the item in the [main] hand of the entity.
+ In older server versions this should just retrieve the hand item.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>p</code> - the living entity (mob or player)</dd>
+<dt>Returns:</dt>
+<dd>the ItemStack retrieved for the entity's hand.</dd>
+<dt>Since:</dt>
+<dd>5.0.0</dd>
+</dl>
 </section>
 </li>
 <li>

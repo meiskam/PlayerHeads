@@ -87,6 +87,10 @@ public final class CompatiblePlugins {
         ready = true;
     }
     
+    /**
+     * Reloads config for plugin-support modules.
+     * Uses the config specified in init().
+     */
     public static void reloadConfig(){
         nocheatplus.reloadConfig();
         protection.reloadConfig();

@@ -275,6 +275,13 @@ public interface CompatibilityProvider {
     public OfflinePlayer getOfflinePlayerByName(String username);
     
     //----------- 5.0 providers -----------//
+    /**
+     * Gets the item in the [main] hand of the entity.
+     * In older server versions this should just retrieve the hand item.
+     * @param p the living entity (mob or player)
+     * @return the ItemStack retrieved for the entity's hand.
+     * @since 5.0.0
+     */
     public ItemStack getItemInMainHand(LivingEntity p);
     
     

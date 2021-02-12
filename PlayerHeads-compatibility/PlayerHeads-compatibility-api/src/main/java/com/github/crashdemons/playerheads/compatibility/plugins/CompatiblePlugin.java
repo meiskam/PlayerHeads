@@ -20,7 +20,13 @@ public abstract class CompatiblePlugin {
     private String pluginName = "";
     private boolean present = false;
 
+    /**
+     * The parent plugin requesting compatibility
+     */
     protected Plugin parentPlugin = null;
+    /**
+     * The config section to be used by this compatibility class for its settings
+     */
     protected ConfigurationSection config = null;
 
     /**

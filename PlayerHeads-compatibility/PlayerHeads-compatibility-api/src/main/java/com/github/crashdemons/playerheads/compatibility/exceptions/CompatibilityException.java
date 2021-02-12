@@ -11,10 +11,19 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public abstract class CompatibilityException extends IllegalStateException {
 
+    /**
+     * Constructor stub for exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityException(String s, Exception e) {
         super(s, e);
     }
 
+    /**
+     * Constructor stub for exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityException(String s) {
         super(s);
     }

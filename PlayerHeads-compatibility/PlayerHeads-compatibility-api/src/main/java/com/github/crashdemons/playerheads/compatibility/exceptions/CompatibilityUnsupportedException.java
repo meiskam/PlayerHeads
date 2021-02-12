@@ -17,10 +17,19 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class CompatibilityUnsupportedException extends CompatibilityException {
 
+    /**
+     * Constructor for unsupported-compatibility exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityUnsupportedException(String s, Exception e) {
         super(s, e);
     }
 
+    /**
+     * Constructor for unsupported-compatibility exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityUnsupportedException(String s) {
         super(s);
     }

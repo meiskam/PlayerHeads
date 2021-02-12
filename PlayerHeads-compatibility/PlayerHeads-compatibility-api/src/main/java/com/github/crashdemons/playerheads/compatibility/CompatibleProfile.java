@@ -19,20 +19,59 @@ import org.jetbrains.annotations.Nullable;
  * @since 5.2.13-SNAPSHOT
  */
 public abstract class CompatibleProfile{
+    /**
+     * The head/profile owner's UUID.
+     * Can be null if 'name' is not null.
+     */
     protected UUID id;
+    /**
+     * The head/profile owner's username.
+     * Can be null if 'id' is not null.
+     * For custom-textured heads that are not tied to a player - this should be null.
+     */
     protected String name;
+    /**
+     * The Base64-encoded Texture URL tags associated with the profile.
+     * can be null.
+     */
     protected String textures;
-        
-    public static boolean hasField(UUID obj){
+    
+    /**
+     * Utility method for checking if the UUID argument is present
+     * @param obj the UUID object
+     * @return whether it is present
+     */
+    protected static boolean hasField(UUID obj){
         return (obj!=null);
     }
-    public static boolean hasField(String obj){
+    
+    /**
+     * Utility method for checking if the username argument is present
+     * @param obj the username object
+     * @return whether it is present (not null and not empty)
+     */
+    protected static boolean hasField(String obj){
         return (obj!=null && !obj.isEmpty());
     }
-    public static boolean hasRequiredFields(UUID id, String name){
+    
+    /**
+     * Utility method for checking if the required profile fields are filled.
+     * This checks that either an ID, Name, or both are present. At least one is requiired.
+     * @param id the UUID argument for a profile, or null
+     * @param name the username argument for a profile, or null
+     * @return whether the preconditions are filled for a profile.
+     */
+    protected static boolean hasRequiredFields(UUID id, String name){
         return (hasField(id) || hasField(name));
     }
     
+    /**
+     * Determines if a CompatibleProfile is valid.
+     * This checks that the profile is not null and has the required fields (at least a UUID or a username).
+     * If the profile is invalid, it can be considered a dummy profile or empty, similar to being null.
+     * @param profile the profile to check
+     * @return whether the profile is considered valid
+     */
     public static boolean isValid(CompatibleProfile profile){
         return profile!=null && profile.hasRequiredFields();
     }
@@ -109,7 +148,8 @@ public abstract class CompatibleProfile{
     public boolean hasTextures(){ return hasField(textures); }
     
     /**
-     * 
+     * Checks if the required profile fields are filled in this profile
+     * @return whether the required fields are filled for the profile.
      * @since 5.2.14-SNAPSHOT
      */
     public boolean hasRequiredFields(){

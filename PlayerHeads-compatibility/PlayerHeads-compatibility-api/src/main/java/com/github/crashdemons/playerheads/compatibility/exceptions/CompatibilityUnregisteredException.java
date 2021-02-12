@@ -18,10 +18,18 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class CompatibilityUnregisteredException extends CompatibilityException {
 
+    /**
+     * Constructor for unregistered-compatibility exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityUnregisteredException(String s, Exception e) {
         super(s, e);
     }
-
+    /**
+     * Constructor for unregistered-compatibility exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityUnregisteredException(String s) {
         super(s);
     }

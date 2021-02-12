@@ -44,7 +44,7 @@ public class ProfileUtils {
         if(profile==null) return new CompatibleProfilePA();
         return new CompatibleProfilePA(profile);
     }
-    public static boolean setProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
+    public static boolean setInternalProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
         try {
             getProfileField(skull).set(skull, profile);
             return true;
@@ -53,7 +53,7 @@ public class ProfileUtils {
         }
     }
     public static boolean setProfile(Object skull, CompatibleProfile profile) throws IllegalStateException{
-        return setProfile(skull, (PlayerProfile) profile.toInternalObject());
+        return setInternalProfile(skull, (PlayerProfile) profile.toInternalObject());
     }
     
     
@@ -82,4 +82,14 @@ public class ProfileUtils {
     public static boolean setProfile(Skull headBlockState, UUID uuid, String texture) throws IllegalStateException{
         return setProfile((Object)headBlockState, uuid, texture);
     }
+    
+    public static boolean clearProfile(Object skull){
+        if(!(skull instanceof SkullMeta || skull instanceof Skull)) throw new IllegalArgumentException("Object is not a supported type: SkullMeta or Skull (blockstate)");
+        try{
+            return setInternalProfile(skull, null);
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
 }

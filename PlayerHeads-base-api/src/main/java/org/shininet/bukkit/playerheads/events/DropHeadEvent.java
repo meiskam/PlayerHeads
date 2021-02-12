@@ -14,7 +14,10 @@ import org.jetbrains.annotations.Nullable;
  * @author crashdemons (crashenator at gmail.com)
  */
 public interface DropHeadEvent {
-
+    /**
+     * Get the head/item being dropped from this event
+     * @return the itemstack being dropped
+     */
     public ItemStack getDrop();
     
     /**

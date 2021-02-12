@@ -4,47 +4,23 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads-compatibility</artifactId>
-        <version>5.2.13-SNAPSHOT</version>
+        <version>5.2.14-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-compatibility-api</artifactId>
     <packaging>jar</packaging>
-    <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
     
-    
-    <repositories>
-        <repository>
-            <id>crashdemons-repo</id>
-            <url>https://meme.tips/java-repos/</url>
-        </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>md_5-releases</id>
-            <url>http://repo.md-5.net/content/repositories/releases/</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-          <groupId>org.jetbrains</groupId>
-          <artifactId>annotations-java5</artifactId>
-          <version>15.0</version>
-        </dependency>
         
         
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-base-api</artifactId>
-            <version>5.2.11-SNAPSHOT</version>
+            <version>5.2.14-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -68,7 +44,8 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins><!--
+        <plugins>
+        <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -109,6 +86,7 @@
                       <dependencySourceInclude>org.shininet.bukkit:*</dependencySourceInclude>
                       <dependencySourceInclude>com.github.crashdemons:*</dependencySourceInclude>
                     </dependencySourceIncludes>
+                    <source>7</source>
                 </configuration>
                 <executions>
                     <execution>
@@ -120,22 +98,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Built-By>Maven</Built-By>
-                            <Implementation-Title>${project.name}</Implementation-Title>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
-                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        </manifestEntries>
-                        
-                    </archive>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.8</version>

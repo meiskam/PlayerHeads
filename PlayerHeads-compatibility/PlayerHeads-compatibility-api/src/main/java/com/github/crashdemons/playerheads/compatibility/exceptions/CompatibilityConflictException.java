@@ -14,10 +14,19 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class CompatibilityConflictException extends CompatibilityException {
 
+    /**
+     * Constructor for conflict exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityConflictException(String s, Exception e) {
         super(s, e);
     }
 
+    /**
+     * Constructor for conflict exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityConflictException(String s) {
         super(s);
     }

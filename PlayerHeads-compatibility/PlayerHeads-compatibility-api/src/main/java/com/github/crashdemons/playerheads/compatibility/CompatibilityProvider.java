@@ -15,6 +15,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -274,6 +275,13 @@ public interface CompatibilityProvider {
     public OfflinePlayer getOfflinePlayerByName(String username);
     
     //----------- 5.0 providers -----------//
+    /**
+     * Gets the item in the [main] hand of the entity.
+     * In older server versions this should just retrieve the hand item.
+     * @param p the living entity (mob or player)
+     * @return the ItemStack retrieved for the entity's hand.
+     * @since 5.0.0
+     */
     public ItemStack getItemInMainHand(LivingEntity p);
     
     
@@ -347,7 +355,9 @@ public interface CompatibilityProvider {
      * Otherwise, the Optional must be 'empty'.
      * @param skullMeta the meta for a head item
      * @return The optional profile object
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public Optional<Object> getOptionalProfile(ItemMeta skullMeta);
     
     /**
@@ -357,7 +367,9 @@ public interface CompatibilityProvider {
      * NOTE: depending on server implementation, the Profile is not guaranteed to be a GameProfile or even present - you should not act on this object directly, but only get/set it.
      * @param skullState the blockstate for a head item
      * @return The optional profile object
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public Optional<Object> getOptionalProfile(Skull skullState);
     
     /**
@@ -368,7 +380,9 @@ public interface CompatibilityProvider {
      * @param skullState the blockstate for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public boolean setOptionalProfile(Skull skullState, Optional<Object> profile);
     
     /**
@@ -379,7 +393,9 @@ public interface CompatibilityProvider {
      * @param skullMeta the meta for a head item
      * @param profile the Optional profile object to set
      * @return whether setting the profile succeeded. (nothing happening is considered failure).
+     * @deprecated Use CompatibleProfile or profile methods instead. This API may be removed in the future.
      */
+    @Deprecated
     public boolean setOptionalProfile(ItemMeta skullMeta, Optional<Object> profile);
     
     
@@ -433,10 +449,54 @@ public interface CompatibilityProvider {
     
     
     
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
+     * @param username username associated with the head
+     * @param id the UUID associated with the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null
+     */
+    public boolean isCustomHead(String username, UUID id);
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
+     * @param profile the profile information for the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null
+     */
+    public boolean isCustomHead(CompatibleProfile profile);
+    /**
+     * Determine if a head profile is a custom head or not, created by a plugin or for decoration.
+     * This is a best-guess determination based on whether a username is set and possibly other details.
+     * You should check head information further in addition to this step (eg: check plugin-reserved UUIDs and names)
+     * @since 5.2.14-SNAPSHOT
+     * @param skull the profile information for the head
+     * @return whether it is assumed to be a custom head.
+     * @throws IllegalArgumentException if profile is null or not a skull type (SkullMeta, Skull block)
+     */
+    public boolean isCustomHead(Object skull);
     
+    /**
+     * Clears internal profile information from a skull.
+     * @param skull a Skull blockstate or SkullMeta object to clear the profile from
+     * @return false if clearing the profile failed or was unsupported, otherwise true.
+     * @since 5.2.14-SNAPSHOT
+     */
+    public boolean clearProfile(Object skull) throws IllegalArgumentException;
     
-    
-    
-    
+    /**
+     * Attempt to determine the entity/player ultimately responsible for a death.
+     * @param event the entity death event
+     * @param considermobkillers whether to search into non-player killers (projectiles, mobs). If this is false, the behavior must be identical to entity.getKiller()
+     * @param considertameowners whether to include the owner of tamed mobs in the search (requires considermobkillers)
+     * @return the entity ultimately responsible for the death, as well as we could tell.
+     * @since 5.2.14-SNAPSHOT
+     */
+    public LivingEntity getKillerEntity(EntityDeathEvent event, boolean considermobkillers, boolean considertameowners);
 
 }

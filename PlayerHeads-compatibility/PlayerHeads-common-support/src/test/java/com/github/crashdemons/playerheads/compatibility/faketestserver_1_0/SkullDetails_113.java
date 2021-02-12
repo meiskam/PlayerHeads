@@ -6,16 +6,19 @@
 package com.github.crashdemons.playerheads.compatibility.faketestserver_1_0;
 
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
-import com.github.crashdemons.playerheads.compatibility.SkullDetails;
+import com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
+import com.github.crashdemons.playerheads.compatibility.common.SkullDetails_common;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 
 /**
  * SkullDetails implementation for 1.13+ support
  * @author crashdemons (crashenator at gmail.com)
  */
-class SkullDetails_113 implements SkullDetails{
+class SkullDetails_113 extends SkullDetails_common{
     Material material;
     Material materialWall;
     private final SkullType skullType;
@@ -44,4 +47,11 @@ class SkullDetails_113 implements SkullDetails{
     @Override public Material getItemMaterial(){ return material; }
     @Override public Material getFloorMaterial(){ return material; }
     @Override public Material getWallMaterial(){ return materialWall; }
+    @Override protected void setBlockDetails(Block b,BlockFace r, SkullBlockAttachment a){}
+    
+    
+    @Override
+    public Material getBlockMaterial(SkullBlockAttachment attachment){
+        throw new IllegalStateException("Unsupported in tests");
+    }
 }

@@ -5,12 +5,18 @@
  */
 package com.github.crashdemons.playerheads.compatibility.modern;
 
+import com.github.crashdemons.playerheads.compatibility.Compatibility;
 import com.github.crashdemons.playerheads.compatibility.common.SkullDetails_common;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
+import com.github.crashdemons.playerheads.compatibility.SkullBlockAttachment;
 import com.github.crashdemons.playerheads.compatibility.SkullDetails;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
+import playerheads.library.jasperbouwman.util.BlockRotationUtil;
 
 /**
  * SkullDetails implementation for 1.13+ support
@@ -41,6 +47,12 @@ public class SkullDetails_modern extends SkullDetails_common implements SkullDet
         
         
     }
+    
+
+ 
+    
+    
+    
     @Override public boolean isVariant(){ return false; }
     @Override public boolean isBackedByPlayerhead(){ return material==Material.PLAYER_HEAD; }
     //@Override public boolean isSkinnable(){ return isBackedByPlayerhead(); }
@@ -48,4 +60,27 @@ public class SkullDetails_modern extends SkullDetails_common implements SkullDet
     //@Override public Material getItemMaterial(){ return material; }
     @Override public Material getFloorMaterial(){ return material; }
     @Override public Material getWallMaterial(){ return materialWall; }
+    
+    @Override
+    protected void setBlockDetails(Block b, BlockFace rotation, SkullBlockAttachment attachment){
+        BlockState state = b.getState();
+        if(state instanceof org.bukkit.block.Skull){
+            Compatibility.getProvider().clearProfile( (org.bukkit.block.Skull) state);
+            state.update(true);
+        }
+        BlockRotationUtil.setBlockRotation(b, rotation);
+    }
+    
+    
+    @Override
+    public Material getBlockMaterial(SkullBlockAttachment attachment){
+        switch (attachment){
+            case FLOOR:
+                return getFloorMaterial();
+            case WALL:
+                return getWallMaterial();
+            default:
+                return getFloorMaterial();
+        }
+    }
 }

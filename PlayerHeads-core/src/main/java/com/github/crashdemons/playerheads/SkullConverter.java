@@ -2,7 +2,10 @@
 package com.github.crashdemons.playerheads;
 
 import com.github.crashdemons.playerheads.compatibility.Compatibility;
+import com.github.crashdemons.playerheads.compatibility.CompatiblePlugins;
+import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
+import com.github.crashdemons.playerheads.compatibility.plugins.heads.HeadModificationHandling;
 import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.BlockState;
@@ -39,55 +42,34 @@ public final class SkullConverter {
         }
     }
     
-    /**
-     * Gets the owner player from a playerhead.
-     * 
-     * If there is no OwningPlayer result, this infers one from head's "profile" field.
-     * @param skullMeta ItemMeta for a playerhead item
-     * @return the owning player of the skull
-     * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
-     */
-    @Deprecated
-    public static OfflinePlayer getSkullOwningPlayer(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwningPlayer(skullMeta);
-    }
-    /**
-     * Gets the owner username from a playerhead.
-     * 
-     * If there is no OwningPlayer result, this infers one from head's "profile" field.
-     * @param skullBlockState BlockState for a playerhead block
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwningPlayerExtended(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwningPlayer(org.bukkit.block.Skull) 
-     */
-    @Deprecated
-    public static OfflinePlayer getSkullOwningPlayer(Skull skullBlockState){
-        return Compatibility.getProvider().getOwningPlayer(skullBlockState);
+    private static TexturedSkullType determineSkullType(OfflinePlayer op){
+        if(op==null) return TexturedSkullType.PLAYER;
+        UUID owner = op.getUniqueId();
+        if(owner==null) return TexturedSkullType.PLAYER;
+        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
+        if(match==null) return TexturedSkullType.PLAYER;
+        return match;//if match was not null
     }
     
-    /**
-     * Gets the owner username from a playerhead.
-     * @param skullMeta ItemMeta for a playerhead item
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.inventory.meta.SkullMeta) 
-     */
-    @Deprecated
-    public static String getSkullOwner(SkullMeta skullMeta){
-        return Compatibility.getProvider().getOwner(skullMeta);
+    private static TexturedSkullType determineSkullType(OfflinePlayer op, Object skull, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
+        TexturedSkullType type = determineSkullType(op);
+        if(type==TexturedSkullType.PLAYER){//player is the only ambiguous case, since it doesn't require a PH UUID match
+            
+            if(filterCustomPlayerHeads && Compatibility.getProvider().isCustomHead(skull)){
+                return null;
+            }
+            if(filterBlockedHeads && CompatiblePlugins.isReady()){
+                CompatibleProfile profile = Compatibility.getProvider().getCompatibleProfile(skull);
+                if(profile!=null){
+                    if(CompatiblePlugins.heads.getExternalHeadHandling(profile.getName(), profile.getId()) == HeadModificationHandling.NO_INTERACTION){
+                        return null;
+                    }
+                }
+            }
+        }
+        return type;
     }
-    /**
-     * Gets the owner username from a playerhead.
-     * @param skullBlockState BlockState for a playerhead block
-     * @return the username of the head's owner
-     * @deprecated use Compatibility.getProvider().getOwnerExhaustive(...)
-     * @see com.github.crashdemons.playerheads.compatibility.CompatibilityProvider#getOwner(org.bukkit.block.Skull) 
-     */
-    @Deprecated
-    public static String getSkullOwner(Skull skullBlockState){
-        return Compatibility.getProvider().getOwner(skullBlockState);
-    }
+    
     
     /**
      * Attempts to determine a TexturedSkullType from an itemstack's information.
@@ -101,18 +83,14 @@ public final class SkullConverter {
      *         <li>null (if the material is unsupported)</li>
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
-    public static TexturedSkullType skullTypeFromItemStack(ItemStack stack){
+    public static TexturedSkullType skullTypeFromItemStack(ItemStack stack, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
         CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(stack);
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         SkullMeta skullState = (SkullMeta) stack.getItemMeta();
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
-        if(op==null) return TexturedSkullType.PLAYER;
-        UUID owner = op.getUniqueId();
-        if(owner==null) return TexturedSkullType.PLAYER;
-        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
-        if(match==null) return TexturedSkullType.PLAYER;
-        return match;//if match was not null
+        
+        return determineSkullType(op,skullState,filterCustomPlayerHeads,filterBlockedHeads);
     }
     
 
@@ -129,18 +107,13 @@ public final class SkullConverter {
      *         <li>null (if the material is unsupported)</li>
      *         <li>TexturedSkullType.PLAYER (if a playerhead UUID was not associated with any mob)</li></ul>
      */
-    public static TexturedSkullType skullTypeFromBlockState(BlockState state){
+    public static TexturedSkullType skullTypeFromBlockState(BlockState state, boolean filterCustomPlayerHeads, boolean filterBlockedHeads){
         CompatibleSkullMaterial mat = CompatibleSkullMaterial.get(state);
         if(mat==null) return null;
         if(!mat.getDetails().isBackedByPlayerhead()) return TexturedSkullType.get(mat);
         Skull skullState = (Skull) state;
         OfflinePlayer op =Compatibility.getProvider().getOwningPlayer(skullState);//getSkullOwningPlayer(skullState);
-        if(op==null) return TexturedSkullType.PLAYER;
-        UUID owner = op.getUniqueId();
-        if(owner==null) return TexturedSkullType.PLAYER;
-        TexturedSkullType match = TexturedSkullType.get(owner);//check if the UUID matches any in our textured skullState list
-        if(match==null) return TexturedSkullType.PLAYER;
-        return match;//if match was not null
+        return determineSkullType(op,skullState,filterCustomPlayerHeads,filterBlockedHeads);
     }
     
     

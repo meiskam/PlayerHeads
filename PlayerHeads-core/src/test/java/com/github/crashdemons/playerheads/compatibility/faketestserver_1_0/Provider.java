@@ -123,11 +123,23 @@ public class Provider extends Provider_common implements CompatibilityProvider {
     public boolean setCompatibleProfile(Object skull, CompatibleProfile profile) throws IllegalArgumentException{
         throw new IllegalStateException("Not supported by test class");
     }
-    public CompatibleProfile getCompatibleProfile(Object skull) throws IllegalArgumentException{
+    public CompatibleProfile getCompatibleProfile(Object possibleSkull) throws IllegalArgumentException{
+        if(possibleSkull instanceof Skull){
+            Skull skull = (Skull) possibleSkull;
+            OfflinePlayer op = skull.getOwningPlayer();
+            if(op==null) return null;
+            return new CompatibleProfileTEST(skull.getOwningPlayer().getUniqueId(),skull.getOwningPlayer().getName());
+        }
+        
         throw new IllegalStateException("Not supported by test class");
     }
     
     public CompatibleProfile createCompatibleProfile(@Nullable String name, @Nullable UUID id, @Nullable String texture){
+        throw new IllegalStateException("Not supported by test class");
+    }
+    
+    
+    public boolean clearProfile(Object o){
         throw new IllegalStateException("Not supported by test class");
     }
 }

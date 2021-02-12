@@ -16,10 +16,19 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class CompatibilityMisconfiguredException extends CompatibilityException {
 
+    /**
+     * Constructor for misconfiguration exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityMisconfiguredException(String s, Exception e) {
         super(s, e);
     }
 
+    /**
+     * Constructor for misconfiguration exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityMisconfiguredException(String s) {
         super(s);
     }

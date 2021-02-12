@@ -130,4 +130,8 @@ public class Provider extends Provider_common implements CompatibilityProvider {
         throw new IllegalStateException("Not supported by test class");
     }
     
+    public boolean clearProfile(Object o){
+        throw new IllegalStateException("Not supported by test class");
+    }
+    
 }

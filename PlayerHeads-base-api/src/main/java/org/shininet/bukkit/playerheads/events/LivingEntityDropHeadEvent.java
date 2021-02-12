@@ -5,13 +5,14 @@ package org.shininet.bukkit.playerheads.events;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.entity.EntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Event created by the PlayerHeads plugin when a [living] entity is beheaded.
+ * Event created by the PlayerHeads plugin when a [living] entity is beheaded by PlayerHeads itself.
  *
  * This class will usually be instanced as either MobDropHeadEvent (for mobs) or
  * PlayerDropHeadEvent (for a Player).
@@ -28,6 +29,8 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     private static final HandlerList HANDLERS = new HandlerList();
     private boolean canceled = false;
     private ItemStack itemDrop;
+    private final Event eventCause;
+    private final LivingEntity killerEntity;
 
     /**
      * Construct the event
@@ -37,7 +40,33 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
      */
     LivingEntityDropHeadEvent(final LivingEntity entity, final ItemStack drop) {
         super(entity);
+        this.eventCause=null;
         this.itemDrop = drop;
+        this.killerEntity=entity.getKiller();
+    }
+    /**
+     * Construct the event
+     *
+     * @param cause the event which caused the beheading event, or null.
+     * @param entity the [living] entity droping the head
+     * @param drop the head item being dropped
+     * @since 5.2.14-SNAPSHOT
+     */
+    LivingEntityDropHeadEvent(@Nullable final Event cause, final LivingEntity entity, LivingEntity killer, final ItemStack drop) {
+        super(entity);
+        this.eventCause=cause;
+        this.itemDrop = drop;
+        this.killerEntity = killer;
+    }
+    
+    /**
+     * The event which inevitably triggered the beheading event (usually EntityDeathEvent)
+     * @return the event, or null.
+     * @since 5.2.14-SNAPSHOT
+     */
+    @Nullable
+    public Event getCause(){
+        return eventCause;
     }
 
     /**
@@ -71,6 +100,20 @@ public class LivingEntityDropHeadEvent extends EntityEvent implements Cancellabl
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
+    }
+    
+    /**
+     * The entity that is responsible for the beheading, as determined by PlayerHeads.
+     * It is possible that this differs from getEntity().getKiller() because it can identify non-player killers
+     * and search projectile and tame ownership, if configured.
+     * 
+     * Use getEntity().getKiller() if you want the killer as determined by Minecraft.
+     * @return the killerEntity's entity
+     * @since 5.2.14-SNAPSHOT
+     */
+    @Nullable
+    public LivingEntity getKillerEntity(){
+        return killerEntity;
     }
 
     /**

@@ -21,10 +21,19 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class CompatibilityUnavailableException extends CompatibilityException {
 
+    /**
+     * Constructor for unavailable-compatibility exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public CompatibilityUnavailableException(String s, Exception e) {
         super(s, e);
     }
 
+    /**
+     * Constructor for unavailable-compatibility exceptions
+     * @param s the string message for the exception
+     */
     public CompatibilityUnavailableException(String s) {
         super(s);
     }

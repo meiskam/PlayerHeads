@@ -22,6 +22,14 @@ public class SkullTypeTest {
     public SkullTypeTest() {
     }
     
+    
+    @Test
+    public void dummy_print_skulltypes(){
+        for(SkullType st : SkullType.values()){
+            out.println(" compat.SkullType."+st.name()+" -> bukkit.SkullType."+st.legacySkullTypeName);
+        }
+    }
+    
     @Test
     public void test_isSkull_invalid(){
         out.println("isSkull");

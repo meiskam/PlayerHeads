@@ -13,10 +13,18 @@ package com.github.crashdemons.playerheads.compatibility.exceptions;
  */
 public class UnknownVersionException extends VersionException {
 
+    /**
+     * Constructor for unknown-version exceptions
+     * @param s the string message for the exception
+     * @param e the exception cause
+     */
     public UnknownVersionException(String s, Exception e) {
         super(s, e);
     }
-
+    /**
+     * Constructor for unknown-version exceptions
+     * @param s the string message for the exception
+     */
     public UnknownVersionException(String s) {
         super(s);
     }

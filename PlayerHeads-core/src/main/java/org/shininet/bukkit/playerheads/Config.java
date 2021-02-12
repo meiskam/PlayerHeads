@@ -35,8 +35,6 @@ public final class Config {
         LOWERCASE_STRING
         ;
         
-        @Deprecated
-        public static configType LIST = configType.MATERIAL_STRINGLIST;
     }
 
     /**

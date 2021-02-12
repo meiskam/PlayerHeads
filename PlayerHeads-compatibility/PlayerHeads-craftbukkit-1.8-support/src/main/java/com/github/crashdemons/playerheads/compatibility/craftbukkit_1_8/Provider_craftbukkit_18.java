@@ -57,13 +57,13 @@ public abstract class Provider_craftbukkit_18 extends Provider_legacy {
     @Override
     public boolean setProfile(ItemMeta headMeta, Object profile) throws IllegalArgumentException{
         if(!(profile instanceof GameProfile)) throw new IllegalArgumentException("Passed argument was not a GameProfile object");
-        return ProfileUtils.setProfile(headMeta, (GameProfile) profile);
+        return ProfileUtils.setInternalProfile(headMeta, (GameProfile) profile);
     }
     
     @Override
     public boolean setProfile(Skull headBlockState, Object profile) throws IllegalArgumentException{
         if(!(profile instanceof GameProfile)) throw new IllegalArgumentException("Passed argument was not a GameProfile object");
-        return ProfileUtils.setProfile(headBlockState, (GameProfile) profile);
+        return ProfileUtils.setInternalProfile(headBlockState, (GameProfile) profile);
     }
     
     //--------5.2.13 providers -----//
@@ -83,5 +83,11 @@ public abstract class Provider_craftbukkit_18 extends Provider_legacy {
         CompatibleProfile profile = new CompatibleProfileCB(id,name);
         profile.setTextures(texture);
         return profile;
+    }
+    
+    
+    @Override
+    public boolean clearProfile(Object skull) throws IllegalArgumentException{
+        return ProfileUtils.clearProfile(skull);
     }
 }

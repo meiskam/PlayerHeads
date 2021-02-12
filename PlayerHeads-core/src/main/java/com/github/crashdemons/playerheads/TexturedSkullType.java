@@ -62,7 +62,7 @@ public enum TexturedSkullType implements HeadType {
     //1.16.2 entries
     PIGLIN_BRUTE(
             "11eece7d-c455-499b-afa0-7b2972ac149d",
-            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmFmMGEwYTc0M2U2YmM2MzA5MmFjYmZjZDhjOTNiMTdhNDlhYzhiMmY4Njc4NTg4ZDBmMWE1MWU3NTA3NmEzNCJ9fX0="
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2UzMDBlOTAyNzM0OWM0OTA3NDk3NDM4YmFjMjllM2E0Yzg3YTg0OGM1MGIzNGMyMTI0MjcyN2I1N2Y0ZTFjZiJ9fX0="
     ),
 
     //1.16 entries

@@ -5,8 +5,12 @@
  */
 package com.github.crashdemons.playerheads.compatibility;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Defines an interface of implementation-specific details and methods relating
@@ -54,6 +58,29 @@ public interface SkullDetails {
      * @return the itemstack that was created
      */
     public ItemStack createItemStack(int quantity);
+    
+    /**
+     * Sets a block in the world to the specific skull for this implementation.
+     * implementation.
+     *
+     * @param loc the location of the block to set
+     * @param rotation the rotation of the skull block to use
+     * @param attachment whether the block should be attached to the wall or floor
+     * @return the block set, or null if it cannot be set.
+     * @since 5.2.14-SNAPSHOT
+     */
+    public Block setBlock(Location loc, BlockFace rotation, SkullBlockAttachment attachment);
+    
+    /**
+     * Gets the block material for a specific block attachment.
+     * For some older implementations, this will be a constant value.
+     * If there is no type for the given attachment, a default type should be given instead. 
+     * @param attachment how the block should be attached to others
+     * @return The block material
+     * @since 5.2.14-SNAPSHOT
+     */
+    @NotNull
+    public Material getBlockMaterial(SkullBlockAttachment attachment);
 
     /**
      * Gets the bukkit material corresponding to an Item of this skull
@@ -77,4 +104,5 @@ public interface SkullDetails {
      * @return the material requested
      */
     public Material getWallMaterial();
+   
 }

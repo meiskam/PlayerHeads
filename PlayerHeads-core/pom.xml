@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.13-SNAPSHOT</version>
+        <version>5.2.14-SNAPSHOT</version>
     </parent>
     
 
@@ -37,38 +37,19 @@
         <url>https://github.com/crashdemons/PlayerHeads/issues</url>
     </issueManagement>
 
-    <repositories>
-	<repository>
-            <id>mojang</id>
-            <name>Mojang's Repository</name>
-            <url>https://libraries.minecraft.net/</url>
-        </repository>
-        <repository>
-            <id>md_5-releases</id>
-            <url>http://repo.md-5.net/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>crashdemons-repo</id>
-            <url>https://meme.tips/java-repos/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.13-SNAPSHOT</version>
+            <version>5.2.14-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-compatibility-api</artifactId>
-            <version>5.2.13-SNAPSHOT</version>
+            <version>5.2.14-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>fr.neatmonster</groupId>
@@ -81,47 +62,14 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-common-support</artifactId>
-            <version>5.2.13-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>[4.13.1,)</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-  	</dependency>
-        
-  	<dependency>
-  		<groupId>org.powermock</groupId>
-  		<artifactId>powermock-module-junit4</artifactId>
-  		<version>2.0.7</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.powermock</groupId>
-  		<artifactId>powermock-api-mockito2</artifactId>
-  		<version>2.0.7</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.5.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito-common</artifactId>     
-            <version>1.7.4</version>
+            <version>5.2.14-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.4-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -148,24 +96,6 @@
             </exclusions>
         </dependency>
         -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <scope>test</scope>
-            <version>2.44.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.opera</groupId>
-            <artifactId>operadriver</artifactId>
-            <scope>test</scope>
-            <version>1.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-remote-driver</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 
     <build>
@@ -187,24 +117,6 @@
             </testResource>
         </testResources>
         <plugins>
-            <!--<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <excludePackageNames>net.gravitydevelopment.*</excludePackageNames>
-                    <excludePackageNames>org.shininet.bukkit.playerheads.imports.*</excludePackageNames>
-                    <notimestamp>true</notimestamp>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -254,34 +166,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Built-By>Maven</Built-By>
-                            <Implementation-Title>${project.name}</Implementation-Title>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
-                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        </manifestEntries>
-                        
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArgs>
-                        <arg>-Xlint:all</arg>
-                    </compilerArgs>
-                </configuration>
             </plugin>
         </plugins>
         <pluginManagement>

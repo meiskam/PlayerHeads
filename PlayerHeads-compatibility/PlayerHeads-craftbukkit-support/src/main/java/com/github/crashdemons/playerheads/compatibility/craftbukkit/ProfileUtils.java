@@ -8,11 +8,10 @@ package com.github.crashdemons.playerheads.compatibility.craftbukkit;
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import com.mojang.authlib.GameProfile;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.UUID;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Skull;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 /**
@@ -32,6 +31,12 @@ public class ProfileUtils {
         profileField.setAccessible(true);
         return profileField;
     }
+    private static Method getCBProfileMethod(Object skull) throws IllegalArgumentException,NoSuchMethodException,SecurityException,IllegalAccessException{
+        if(!(skull instanceof SkullMeta || skull instanceof Skull)) throw new IllegalArgumentException("Object is not a supported type: SkullMeta or Skull (blockstate)");
+        Method profileMethod = skull.getClass().getDeclaredMethod("setProfile", GameProfile.class);
+        profileMethod.setAccessible(true);
+        return profileMethod;
+    }
     
     //-------------------------------------------------------------------------
     
@@ -47,8 +52,23 @@ public class ProfileUtils {
         if(profile==null) return new CompatibleProfileCB();
         return new CompatibleProfileCB(profile);
     }
+    
+    
+    private static boolean setInternalProfileCB(Object skull, GameProfile profile) throws IllegalStateException{
+        try {
+            getCBProfileMethod(skull).invoke(skull, profile);
+            return true;
+        } catch (NoSuchMethodException | InvocationTargetException | SecurityException | IllegalAccessException error) {
+            return false;
+        }
+    }
+    
     public static boolean setInternalProfile(Object skull, GameProfile profile) throws IllegalStateException{
         try {
+            /* in some version of Spigot after 1.8, a method was added to set the profile, which also sets serialization data
+            we shouuld prefer using the craftbukkit method over directly accessing the profile field in order to serialize correctly.
+            */
+            if(setInternalProfileCB(skull,profile)) return true; 
             getProfileField(skull).set(skull, profile);
             return true;
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {

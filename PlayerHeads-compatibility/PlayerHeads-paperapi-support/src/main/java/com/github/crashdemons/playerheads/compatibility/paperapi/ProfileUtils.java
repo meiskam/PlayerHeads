@@ -8,6 +8,8 @@ package com.github.crashdemons.playerheads.compatibility.paperapi;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.github.crashdemons.playerheads.compatibility.CompatibleProfile;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.UUID;
 import org.bukkit.block.Skull;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -29,6 +31,12 @@ public class ProfileUtils {
         profileField.setAccessible(true);
         return profileField;
     }
+    private static Method getPAProfileMethod(Object skull) throws IllegalArgumentException,NoSuchMethodException,SecurityException,IllegalAccessException{
+        if(!(skull instanceof SkullMeta || skull instanceof Skull)) throw new IllegalArgumentException("Object is not a supported type: SkullMeta or Skull (blockstate)");
+        Method profileMethod = skull.getClass().getDeclaredMethod("setProfile", PlayerProfile.class);
+        profileMethod.setAccessible(true);
+        return profileMethod;
+    }
     
     //-------------------------------------------------------------------------
     
@@ -44,8 +52,22 @@ public class ProfileUtils {
         if(profile==null) return new CompatibleProfilePA();
         return new CompatibleProfilePA(profile);
     }
+    
+    private static boolean setInternalProfilePA(Object skull, PlayerProfile profile) throws IllegalStateException{
+        try {
+            getPAProfileMethod(skull).invoke(skull, profile);
+            return true;
+        } catch (NoSuchMethodException | InvocationTargetException | SecurityException | IllegalAccessException error) {
+            return false;
+        }
+    }
+    
     public static boolean setInternalProfile(Object skull, PlayerProfile profile) throws IllegalStateException{
         try {
+            /* in some version of Spigot after 1.8, a method was added to set the profile, which also sets serialization data
+            we shouuld prefer using the craftbukkit method over directly accessing the profile field in order to serialize correctly.
+            */
+            if(setInternalProfilePA(skull,profile)) return true; 
             getProfileField(skull).set(skull, profile);
             return true;
         } catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException error) {

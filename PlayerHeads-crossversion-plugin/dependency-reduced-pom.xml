@@ -3,7 +3,7 @@
   <parent>
     <artifactId>PlayerHeads</artifactId>
     <groupId>org.shininet.bukkit</groupId>
-    <version>5.2.14-SNAPSHOT</version>
+    <version>5.2.15-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.shininet.bukkit</groupId>
@@ -189,6 +189,14 @@
         <exclusion>
           <artifactId>commons-lang</artifactId>
           <groupId>commons-lang</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>guava</artifactId>
+          <groupId>com.google.guava</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>gson</artifactId>
+          <groupId>com.google.code.gson</groupId>
         </exclusion>
         <exclusion>
           <artifactId>bungeecord-chat</artifactId>

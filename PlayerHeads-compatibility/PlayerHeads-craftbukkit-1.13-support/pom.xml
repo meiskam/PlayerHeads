@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads-compatibility</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.14-SNAPSHOT</version>
+        <version>5.2.15-SNAPSHOT</version>
     </parent>
 
     <organization>
@@ -62,7 +62,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>5.2.14-SNAPSHOT</version>
+            <version>5.2.15-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>

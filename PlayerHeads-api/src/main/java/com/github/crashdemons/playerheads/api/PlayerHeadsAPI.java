@@ -157,4 +157,11 @@ public interface PlayerHeadsAPI {
     @Nullable
     @Deprecated
     public CompatibilityProvider getCompatibilityProvider();
+    
+    /**
+     * Gets an array of all heads defined by PlayerHeads
+     * @return an array of headtypes
+     * @since 5.2.14-SNAPSHOT
+     */
+    public HeadType[] getSupportedHeads();
 }

@@ -146,5 +146,9 @@ public class ApiProvider implements PlayerHeadsAPI {
         return Compatibility.getProvider();
     }
     
+    @Override
+    public HeadType[] getSupportedHeads(){
+        return TexturedSkullType.values();
+    }
     
 }

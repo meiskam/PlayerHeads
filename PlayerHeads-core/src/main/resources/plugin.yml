@@ -14,6 +14,7 @@ commands:
   PlayerHeads:
     description: Spawn a playerhead or edit playerheads config
     aliases: ph
+    permission: playerheads.command
     
 permissions:
   playerheads.*:
@@ -29,6 +30,12 @@ permissions:
       playerheads.canbeheadmob: true
       playerheads.update: true
       playerheads.clickinfo: true
+      playerheads.command: true
+      playerheads.alwaysbehead: false
+      playerheads.alwaysbeheadmob: false
+  playerheads.command:
+    description: Allows user or restricts access to the /PlayerHeads command, but not subcommands
+    default: op
   playerheads.config.*:
     description: Allows user to edit, save, or reload configs
     default: op
@@ -90,7 +97,7 @@ permissions:
     description: When update available, can view notice and manually update
     default: op
   playerheads.setblock:
-    description: user can set a block to a specified 
+    description: user can set a block to a specified head
     default: op
   playerheads.alwaysbehead:
     description: Ignore drop rate for player heads and drop 100% of the time

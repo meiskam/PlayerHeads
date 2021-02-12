@@ -15,7 +15,7 @@ import com.github.crashdemons.playerheads.compatibility.CompatibilityProvider;
 public class Provider extends Provider_craftbukkit_113 implements CompatibilityProvider {
     public Provider(){}
     @Override public String getType(){ return "craftbukkit"; }
-    @Override public String getVersion(){ return "1.13"; }
+    @Override public String getVersion(){ return "1.13+"; }
     
     
 

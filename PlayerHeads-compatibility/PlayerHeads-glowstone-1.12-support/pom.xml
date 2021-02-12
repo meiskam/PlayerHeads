@@ -41,22 +41,25 @@
     </issueManagement>
 
     <repositories>
+        <!--
         <repository>
             <id>crashdemons-repo</id>
             <url>https://meme.tips/java-repos/</url>
         </repository>
         <repository>
-            <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
             <id>destroystokyo-repo</id>
             <url>https://repo.destroystokyo.com/content/repositories/snapshots/</url>
+        </repository>
+    -->
+        <repository>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
         <repository>
             <id>glowstone-repo</id>
             <url>https://repo.glowstone.net/content/repositories/snapshots/</url>
         </repository>
+
     </repositories>
 
     <dependencies>
@@ -89,58 +92,8 @@
             </exclusions>
         </dependency>
         <!--
-        <dependency>
-            <groupId>org.shininet.bukkit</groupId>
-            <artifactId>PlayerHeads-core</artifactId>
-            <version>4.9.3-SNAPSHOT</version>
-            <type>jar</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>craftbukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.mojang</groupId>
-                    <artifactId>authlib</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>5.0-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-module-junit4</artifactId>
-            <version>2.0.9</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-            <version>1.7.4</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito-common</artifactId>
-            <version>1.7.4</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
@@ -156,20 +109,24 @@
         <dependency>
             <groupId>net.glowstone</groupId>
             <artifactId>glowkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <version>1.12.2-R6.0-SNAPSHOT</version>
         </dependency>
+        
         <!-- Glowstone server dependency -->
+        
+        
         <dependency>
             <groupId>net.glowstone</groupId>
             <artifactId>glowstone</artifactId>
             <version>2018.10.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.bukkit</groupId><!-- prefer paper api -->
+                    <groupId>org.bukkit</groupId>
                     <artifactId>bukkit</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+        
     </dependencies>
 
     <build>
@@ -206,33 +163,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Built-By>Maven</Built-By>
-                            <Implementation-Title>${project.name}</Implementation-Title>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                            <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
-                            <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArgs>
-                        <arg>-Xlint:all</arg>
-                    </compilerArgs>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>

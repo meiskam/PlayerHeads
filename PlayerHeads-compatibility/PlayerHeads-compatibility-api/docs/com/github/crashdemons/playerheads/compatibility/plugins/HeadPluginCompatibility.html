@@ -76,7 +76,7 @@ loadScripts(document, 'script');</script>
 <div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">com.github.crashdemons.playerheads.compatibility.plugins</a></div>
 <h1 title="Class HeadPluginCompatibility" class="title">Class HeadPluginCompatibility</h1>
 </div>
-<div class="inheritance" title="Inheritance Tree">java.lang.Object
+<div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="CompatiblePlugin.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">com.github.crashdemons.playerheads.compatibility.plugins.CompatiblePlugin</a>
 <div class="inheritance">com.github.crashdemons.playerheads.compatibility.plugins.HeadPluginCompatibility</div>
 </div>
@@ -85,6 +85,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <pre>public class <span class="type-name-label">HeadPluginCompatibility</span>
 extends <a href="CompatiblePlugin.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">CompatiblePlugin</a></pre>
+<div class="block">Compatibility class providing detection of special-case (configured) custom heads from other plugins.
+ Currently, this only allows detection of blacklisted head names/IDs in plugins.</div>
 <dl class="notes">
 <dt>Author:</dt>
 <dd>crashdemons (crashenator at gmail.com)</dd>
@@ -117,12 +119,16 @@ extends <a href="CompatiblePlugin.html" title="class in com.github.crashdemons.p
 <tbody>
 <tr class="alt-color">
 <th class="col-constructor-name" scope="row"><code><span class="member-name-link"><a href="#%3Cinit%3E(org.bukkit.plugin.Plugin)">HeadPluginCompatibility</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/plugin/Plugin.html" title="class or interface in org.bukkit.plugin" class="external-link">Plugin</a>&nbsp;parentPlugin)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Constructs the head compatibility object</div>
+</td>
 </tr>
 <tr class="row-color">
 <th class="col-constructor-name" scope="row"><code><span class="member-name-link"><a href="#%3Cinit%3E(org.bukkit.plugin.Plugin,org.bukkit.configuration.ConfigurationSection)">HeadPluginCompatibility</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/plugin/Plugin.html" title="class or interface in org.bukkit.plugin" class="external-link">Plugin</a>&nbsp;parentPlugin,
 <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;config)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Constructs the head compatibility object</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -147,19 +153,25 @@ extends <a href="CompatiblePlugin.html" title="class in com.github.crashdemons.p
 <tbody>
 <tr class="alt-color" id="i0">
 <td class="col-first"><code><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getExternalHeadHandling(java.lang.String,java.util.UUID)">getExternalHeadHandling</a></span>&#8203;(java.lang.String&nbsp;ownerName,
-java.util.UUID&nbsp;ownerID)</code></th>
-<td class="col-last">&nbsp;</td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getExternalHeadHandling(java.lang.String,java.util.UUID)">getExternalHeadHandling</a></span>&#8203;(<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;ownerName,
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;ownerID)</code></th>
+<td class="col-last">
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.</div>
+</td>
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getExternalHeadHandling(org.bukkit.block.BlockState)">getExternalHeadHandling</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/BlockState.html" title="class or interface in org.bukkit.block" class="external-link">BlockState</a>&nbsp;state)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.</div>
+</td>
 </tr>
 <tr class="alt-color" id="i2">
 <td class="col-first"><code><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#getExternalHeadHandling(org.bukkit.inventory.ItemStack)">getExternalHeadHandling</a></span>&#8203;(<a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a>&nbsp;stack)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.</div>
+</td>
 </tr>
 <tr class="row-color" id="i3">
 <td class="col-first"><code>void</code></td>
@@ -174,8 +186,8 @@ java.util.UUID&nbsp;ownerID)</code></th>
 <h3 id="methods.inherited.from.class.com.github.crashdemons.playerheads.compatibility.plugins.CompatiblePlugin">Methods inherited from class&nbsp;com.github.crashdemons.playerheads.compatibility.plugins.<a href="CompatiblePlugin.html" title="class in com.github.crashdemons.playerheads.compatibility.plugins">CompatiblePlugin</a></h3>
 <code><a href="CompatiblePlugin.html#get()">get</a>, <a href="CompatiblePlugin.html#getName()">getName</a>, <a href="CompatiblePlugin.html#getPlugin()">getPlugin</a>, <a href="CompatiblePlugin.html#isPresent()">isPresent</a>, <a href="CompatiblePlugin.html#isReady()">isReady</a></code></div>
 <div class="inherited-list">
-<h3 id="methods.inherited.from.class.java.lang.Object">Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></div>
+<h3 id="methods.inherited.from.class.java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
+<code><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -191,6 +203,11 @@ java.util.UUID&nbsp;ownerID)</code></th>
 <section class="detail" id="&lt;init&gt;(org.bukkit.plugin.Plugin)">
 <h3>HeadPluginCompatibility</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="member-name">HeadPluginCompatibility</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/plugin/Plugin.html" title="class or interface in org.bukkit.plugin" class="external-link">Plugin</a>&nbsp;parentPlugin)</span></div>
+<div class="block">Constructs the head compatibility object</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>parentPlugin</code> - the plugin requesting compatibility support</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -198,6 +215,12 @@ java.util.UUID&nbsp;ownerID)</code></th>
 <h3>HeadPluginCompatibility</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="member-name">HeadPluginCompatibility</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/plugin/Plugin.html" title="class or interface in org.bukkit.plugin" class="external-link">Plugin</a>&nbsp;parentPlugin,
 <a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/configuration/ConfigurationSection.html" title="class or interface in org.bukkit.configuration" class="external-link">ConfigurationSection</a>&nbsp;config)</span></div>
+<div class="block">Constructs the head compatibility object</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>parentPlugin</code> - the plugin requesting compatibility support</dd>
+<dd><code>config</code> - the configuration section to use for this class' settings.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -222,8 +245,17 @@ java.util.UUID&nbsp;ownerID)</code></th>
 <section class="detail" id="getExternalHeadHandling(java.lang.String,java.util.UUID)">
 <h3>getExternalHeadHandling</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getExternalHeadHandling</span>&#8203;(<span class="parameters">java.lang.String&nbsp;ownerName,
-java.util.UUID&nbsp;ownerID)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getExternalHeadHandling</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;ownerName,
+<a href="https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a>&nbsp;ownerID)</span></div>
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.
+ In short, this determines whether the head has been blacklisted (NO_INTERACTION) or not (NORMAL).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ownerName</code> - the name associated with the head</dd>
+<dd><code>ownerID</code> - the UUID associated with the head</dd>
+<dt>Returns:</dt>
+<dd>the recommended handling for the head</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -231,6 +263,14 @@ java.util.UUID&nbsp;ownerID)</span></div>
 <h3>getExternalHeadHandling</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getExternalHeadHandling</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/BlockState.html" title="class or interface in org.bukkit.block" class="external-link">BlockState</a>&nbsp;state)</span></div>
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.
+ In short, this determines whether the head has been blacklisted (NO_INTERACTION) or not (NORMAL).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>state</code> - the blockstate of the head to retrieve username/UUID from.</dd>
+<dt>Returns:</dt>
+<dd>the recommended handling for the head</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -238,6 +278,14 @@ java.util.UUID&nbsp;ownerID)</span></div>
 <h3>getExternalHeadHandling</h3>
 <div class="member-signature"><span class="annotations"><a href="https://javadoc.io/doc/org.jetbrains/annotations-java5/20.1.0/org/jetbrains/annotations/NotNull.html" title="class or interface in org.jetbrains.annotations" class="external-link">@NotNull</a>
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="heads/HeadModificationHandling.html" title="enum in com.github.crashdemons.playerheads.compatibility.plugins.heads">HeadModificationHandling</a></span>&nbsp;<span class="member-name">getExternalHeadHandling</span>&#8203;(<span class="parameters"><a href="https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/inventory/ItemStack.html" title="class or interface in org.bukkit.inventory" class="external-link">ItemStack</a>&nbsp;stack)</span></div>
+<div class="block">Gets the acceptable head modifiability of considering the provided name and ID of the head.
+ In short, this determines whether the head has been blacklisted (NO_INTERACTION) or not (NORMAL).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>stack</code> - the itemstack of the head to retrieve username/UUID from.</dd>
+<dt>Returns:</dt>
+<dd>the recommended handling for the head</dd>
+</dl>
 </section>
 </li>
 </ul>

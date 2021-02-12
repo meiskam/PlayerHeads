@@ -53,7 +53,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
 <dt><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="type-name-link">BlockDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
@@ -112,6 +112,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Gets a "boring" playerhead without an owner as if "dropboringplayerheads" was enabled.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getCause()">getCause()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">The event which inevitably triggered the beheading event (usually EntityDeathEvent)</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getCause()">getCause()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">The event which inevitably triggered the beheading event (usually EntityDeathEvent)</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getChargedCreeperModifier()">getChargedCreeperModifier()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
 <dd>
 <div class="block">Gets the charged creeper modifier (multiplier) that modified the effective
@@ -133,10 +141,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets the item that will drop from the mined block.</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html#getDrop()">getDrop()</a></span> - Method in interface org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/DropHeadEvent.html" title="interface in org.shininet.bukkit.playerheads.events">DropHeadEvent</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the head/item being dropped from this event</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getDrop()">getDrop()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
 <dd>
 <div class="block">Gets the item that will drop from the beheading.</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getDrops()">getDrops()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Gets the items that will drop from the beheading.</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getDropSuccess()">getDropSuccess()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
 <dd>
@@ -159,6 +173,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Gets the player that was beheaded.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getEntity()">getEntity()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Gets the entity that was beheaded</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#getHandlerList()">getHandlerList()</a></span> - Static method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
 <dd>
 <div class="block">Get a list of handlers for the event.</div>
@@ -171,6 +189,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Get a list of handlers for the event.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getHandlerList()">getHandlerList()</a></span> - Static method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Get a list of handlers for the event.</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#getHandlers()">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
 <dd>
 <div class="block">Get a list of handlers for the event.</div>
@@ -180,6 +202,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Get a list of handlers for the event.</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getHandlers()">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Get a list of handlers for the event.</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getHandlers()">getHandlers()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
 <dd>
 <div class="block">Get a list of handlers for the event.</div>
 </dd>
@@ -237,6 +263,14 @@ loadScripts(document, 'script');</script>
 <div class="block">Gets whether the killer was configured to always behead this type of
  target.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html#getKillerEntity()">getKillerEntity()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">LivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">The entity that is responsible for the beheading, as determined by PlayerHeads.</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#getKillerEntity()">getKillerEntity()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">The entity that is responsible for the beheading, as determined by PlayerHeads.</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getLootingModifier()">getLootingModifier()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
 <dd>
 <div class="block">Gets the looting modifier (multiplier) that modified the effective
@@ -265,6 +299,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Gets the slime/magmacube size modifier (multiplier) that modified the effective
  droprate.</div>
+</dd>
+<dt><span class="member-name-link"><a href="com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html#getSupportedHeads()">getSupportedHeads()</a></span> - Method in interface com.github.crashdemons.playerheads.api.<a href="com/github/crashdemons/playerheads/api/PlayerHeadsAPI.html" title="interface in com.github.crashdemons.playerheads.api">PlayerHeadsAPI</a></dt>
+<dd>
+<div class="block">Gets an array of all heads defined by PlayerHeads</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html#getTarget()">getTarget()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/HeadRollEvent.html" title="class in org.shininet.bukkit.playerheads.events">HeadRollEvent</a></dt>
 <dd>
@@ -315,6 +353,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Whether the event has been cancelled.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#isCancelled()">isCancelled()</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Whether the event has been cancelled.</div>
+</dd>
 <dt><span class="member-name-link"><a href="com/github/crashdemons/playerheads/api/HeadType.html#isPlayerHead()">isPlayerHead()</a></span> - Method in interface com.github.crashdemons.playerheads.api.<a href="com/github/crashdemons/playerheads/api/HeadType.html" title="interface in com.github.crashdemons.playerheads.api">HeadType</a></dt>
 <dd>
 <div class="block">Checks whether the skulltype uses a playerhead material internally.</div>
@@ -329,7 +371,7 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="org/shininet/bukkit/playerheads/events/LivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="type-name-link">LivingEntityDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
 <dd>
-<div class="block">Event created by the PlayerHeads plugin when a [living] entity is beheaded.</div>
+<div class="block">Event created by the PlayerHeads plugin when a [living] entity is beheaded by PlayerHeads itself.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
@@ -339,6 +381,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Event created by the PlayerHeads plugin when a Mob is beheaded.</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html#%3Cinit%3E(org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack)">MobDropHeadEvent(LivingEntity, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">MobDropHeadEvent</a></dt>
+<dd>
+<div class="block">Constructs the event</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html#%3Cinit%3E(org.bukkit.event.Event,org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack)">MobDropHeadEvent(Event, LivingEntity, LivingEntity, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/MobDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">MobDropHeadEvent</a></dt>
 <dd>
 <div class="block">Constructs the event</div>
 </dd>
@@ -361,6 +407,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Event created by the PlayerHeads plugin when a Player is beheaded.</div>
 </dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html#%3Cinit%3E(org.bukkit.entity.Player,org.bukkit.inventory.ItemStack)">PlayerDropHeadEvent(Player, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">PlayerDropHeadEvent</a></dt>
+<dd>
+<div class="block">Constructs the event</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html#%3Cinit%3E(org.bukkit.event.Event,org.bukkit.entity.Player,org.bukkit.entity.LivingEntity,org.bukkit.inventory.ItemStack)">PlayerDropHeadEvent(Event, Player, LivingEntity, ItemStack)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/PlayerDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">PlayerDropHeadEvent</a></dt>
 <dd>
 <div class="block">Constructs the event</div>
 </dd>
@@ -393,6 +443,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets whether the event should be cancelled.</div>
 </dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#setCancelled(boolean)">setCancelled(boolean)</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Sets whether the event should be cancelled.</div>
+</dd>
 <dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html#setDrop(org.bukkit.inventory.ItemStack)">setDrop(ItemStack)</a></span> - Method in class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/BlockDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">BlockDropHeadEvent</a></dt>
 <dd>
 <div class="block">Sets the item that will drop from the mined block.</div>
@@ -421,7 +475,18 @@ loadScripts(document, 'script');</script>
 <div class="block">Return the associated Enum value for the HeadType</div>
 </dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<h2 class="title" id="I:V">V</h2>
+<dl class="index">
+<dt><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events"><span class="type-name-link">VanillaLivingEntityDropHeadEvent</span></a> - Class in <a href="org/shininet/bukkit/playerheads/events/package-summary.html">org.shininet.bukkit.playerheads.events</a></dt>
+<dd>
+<div class="block">Event created by PlayerHeads when a [living] entity drops a head from a source outside of PlayerHeads.</div>
+</dd>
+<dt><span class="member-name-link"><a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html#%3Cinit%3E(org.bukkit.event.Event,org.bukkit.entity.LivingEntity,org.bukkit.entity.LivingEntity,java.util.List)">VanillaLivingEntityDropHeadEvent(Event, LivingEntity, LivingEntity, List&lt;ItemStack&gt;)</a></span> - Constructor for class org.shininet.bukkit.playerheads.events.<a href="org/shininet/bukkit/playerheads/events/VanillaLivingEntityDropHeadEvent.html" title="class in org.shininet.bukkit.playerheads.events">VanillaLivingEntityDropHeadEvent</a></dt>
+<dd>
+<div class="block">Creates the event</div>
+</dd>
+</dl>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 <footer role="contentinfo">
 <nav role="navigation">
 <!-- ======= START OF BOTTOM NAVBAR ====== -->

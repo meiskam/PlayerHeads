@@ -125,6 +125,17 @@ requireditems: [wooden_axe,stone_axe,golden_axe,iron_axe,diamond_axe]
 considermobkillers: false
 considertameowner: false
 
+#controls whether spawner mobs should be tracked
+trackspawnermobs: false
+
+#spawnermobbehavior can be:
+#   vanilla - don't allow PlayerHeads to modify deaths caused by spawner mobs at all
+#   ignore - don't consider spawner mobs at all, add PlayerHeads drop chances anyway if applicable
+#   block - block all spawner mob caused head drops (including vanilla drops)
+#   replace - remove vanilla spawner mob caused head drops and add PlayerHeads drop chances instead
+# NOTE: requires 'trackspawnermobs' to be enabled.
+spawnermobbehavior: ignore
+
 #prevent PlayerHeads from interacting/modifying third-party heads with these names or UUIDs
 ignoredheadnames: [CSCoreLib,CsCoreLib,CS-CoreLib]
 ignoredheaduuids: []

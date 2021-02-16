@@ -33,6 +33,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -218,6 +219,13 @@ class PlayerHeadsListener implements Listener {
         }
         //end vanilla head event
 
+        if(plugin.getConfig().getBoolean("trackspawnermobs")){
+            if(isSpawnerMob(event.getEntity())){
+                VanillDropBehavior spawnerMobBehavior = VanillDropBehavior.fromString( plugin.configFile.getString("spawnermobbehavior") );
+                params.vanillaBehavior = params.vanillaBehavior.apply(spawnerMobBehavior);
+                if(!params.vanillaBehavior.allowsPhBehavior()) return params.cancel();
+            }
+        }
 
         VanillDropBehavior chargedcreeperBehavior=VanillDropBehavior.IGNORE;
         if (params.killer != null) {
@@ -318,6 +326,28 @@ class PlayerHeadsListener implements Listener {
             }
         }
         
+    }
+    
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled=true)
+    public void onEntitySpawn(CreatureSpawnEvent event){
+        if(!plugin.getConfig().getBoolean("trackspawnermobs")) return;
+        LivingEntity entity = event.getEntity();
+        boolean persistenceSupported = Compatibility.getProvider().supportsEntityTagType(true);
+        Compatibility.getProvider().setEntityTag(entity, plugin, "phspawnreason", event.getSpawnReason().name().toUpperCase(), persistenceSupported);
+    }
+    
+    private CreatureSpawnEvent.SpawnReason getMobSpawnReason(Entity entity){
+        boolean persistenceSupported = Compatibility.getProvider().supportsEntityTagType(true);
+        String reason = Compatibility.getProvider().getEntityTag(entity, plugin, "phspawnreason", persistenceSupported);
+        try{
+            return CreatureSpawnEvent.SpawnReason.valueOf(reason);
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    private boolean isSpawnerMob(Entity entity){
+        return getMobSpawnReason(entity)==CreatureSpawnEvent.SpawnReason.SPAWNER;
     }
     
     

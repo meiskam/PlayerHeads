@@ -99,6 +99,9 @@ public final class Config {
             
             put("restoreprofile",configType.BOOLEAN);
             put("fixbrokenheads",configType.BOOLEAN);
+            
+            put("trackspawnermobs",configType.BOOLEAN);
+            put("spawnermobbehavior",configType.LOWERCASE_STRING);
         }
     };
     /**

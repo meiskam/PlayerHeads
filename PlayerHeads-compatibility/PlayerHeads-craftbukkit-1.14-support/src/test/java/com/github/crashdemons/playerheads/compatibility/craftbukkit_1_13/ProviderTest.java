@@ -24,23 +24,13 @@ public class ProviderTest {
     
     
     @Test
-    public void getEntityTypeFromTypename_TestLegacyPigZombie(){
-        Version.setDetectedServerVersion("craftbukkit", 1, 13);
-        System.out.println("getEntityTypeFromTypenameTest");
+    public void testSupportsEntityTag(){
+        Version.setDetectedServerVersion("craftbukkit", 1, 14);
+        System.out.println("testSupportsEntityTag");
         CompatibilityProvider provider = new com.github.crashdemons.playerheads.compatibility.craftbukkit_1_14.Provider();
-        EntityType expected = EntityType.PIG_ZOMBIE;
-        EntityType actual = provider.getEntityTypeFromTypename("PIG_ZOMBIE");
-        assertEquals(expected,actual);
+        assertEquals(true,provider.supportsEntityTagType(true));
+        assertEquals(true,provider.supportsEntityTagType(false));
         
-    }
-    @Test
-    public void getEntityTypeFromTypename_TestZombifiedPiglin(){
-        Version.setDetectedServerVersion("craftbukkit", 1, 13);
-        System.out.println("getEntityTypeFromTypenameTest");
-        CompatibilityProvider provider = new com.github.crashdemons.playerheads.compatibility.craftbukkit_1_14.Provider();
-        EntityType expected = EntityType.PIG_ZOMBIE;
-        EntityType actual = provider.getEntityTypeFromTypename("ZOMBIFIED_PIGLIN");
-        assertEquals(expected,actual);
     }
     
 }

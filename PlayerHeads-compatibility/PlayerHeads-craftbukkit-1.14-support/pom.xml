@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.shininet.bukkit</groupId>
-    <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
+    <artifactId>PlayerHeads-craftbukkit-1.14-support</artifactId>
     <packaging>jar</packaging>
-    <name>PlayerHeads-craftbukkit-1.13-support</name>
+    <name>PlayerHeads-craftbukkit-1.14-support</name>
 
     <parent>
         <artifactId>PlayerHeads-compatibility</artifactId>
@@ -43,8 +43,26 @@
 
     <dependencies>
         <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-compatibility-api</artifactId>
+            <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
+            <version>5.2.15-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.spigotmc</groupId>
+                    <artifactId>spigot-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-common-support</artifactId>
             <version>5.2.15-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
@@ -53,59 +71,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-modern-support</artifactId>
-            <version>5.2.14-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-craftbukkit-support</artifactId>
-            <version>5.2.15-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <!-- This shouldn't be a dep which is packaging: pom -->
-            <groupId>${project.groupId}</groupId>
-            <artifactId>PlayerHeads-common-support</artifactId>
-            <version>5.2.15-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bukkit</groupId>
-                    <artifactId>bukkit</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.14-R0.1-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

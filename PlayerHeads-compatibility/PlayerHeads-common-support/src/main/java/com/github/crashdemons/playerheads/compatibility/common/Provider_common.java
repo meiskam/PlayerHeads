@@ -12,10 +12,12 @@ import com.github.crashdemons.playerheads.compatibility.CompatibleSkullMaterial;
 import com.github.crashdemons.playerheads.compatibility.RuntimeReferences;
 import com.github.crashdemons.playerheads.compatibility.SkullType;
 import com.github.crashdemons.playerheads.compatibility.Version;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import static org.bukkit.Warning.WarningState.value;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Skull;
 import org.bukkit.entity.AnimalTamer;
@@ -32,6 +34,10 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.metadata.Metadatable;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.projectiles.ProjectileSource;
 
 /**
@@ -260,4 +266,49 @@ public abstract class Provider_common implements CompatibilityProvider {
         //if(killer!=null) System.out.println(" final killer: "+killer.getType().name()+" "+killer.getName());
         return killer;
     }
+    
+    protected boolean setTemporaryTag(Entity ent, Plugin plugin, String key, String value){
+        if(ent instanceof Metadatable){
+            ent.setMetadata(key, new FixedMetadataValue(plugin,value));
+            return true;
+        }
+        return false;
+    }
+    protected String getTemporaryTag(Entity ent, Plugin plugin, String key){
+        if(ent instanceof Metadatable){
+            List<MetadataValue> values = ent.getMetadata(key);
+            for(MetadataValue value : values){
+                Plugin valuePlugin = value.getOwningPlugin();
+                if(valuePlugin==plugin || (valuePlugin!=null && valuePlugin.equals(plugin))){
+                    return value.asString();
+                }
+            }
+        }
+        return null;
+    }
+    
+    protected boolean setPersistentTag(Entity entity, Plugin plugin, String key, String value){
+        return false;
+    }
+    protected String getPersistentTag(Entity entity, Plugin plugin, String key){
+        return null;
+    }
+    
+    @Override
+    public boolean supportsEntityTagType(boolean persistent){
+        return !persistent;
+    }
+    
+    @Override
+    public boolean setEntityTag(Entity entity, Plugin plugin, String key, String value, boolean persistent){
+        if(persistent) return setPersistentTag(entity,plugin,key,value);
+        return setTemporaryTag(entity,plugin,key,value);
+    }
+    
+    @Override
+    public String getEntityTag(Entity entity, Plugin plugin, String key, boolean persistent){
+        if(persistent) return getPersistentTag(entity,plugin,key);
+        return getTemporaryTag(entity,plugin,key);
+    }
+    
 }

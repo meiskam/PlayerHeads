@@ -19,6 +19,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -498,5 +499,42 @@ public interface CompatibilityProvider {
      * @since 5.2.14-SNAPSHOT
      */
     public LivingEntity getKillerEntity(EntityDeathEvent event, boolean considermobkillers, boolean considertameowners);
+
+    
+    /**
+     * Checks whether the compatibility provider supports entity tags of the provided type
+     * @param persistent whether the tag should be persistent (saved through restarts).
+     * @return whether the tags were supported
+     */
+    public boolean supportsEntityTagType(boolean persistent);
+    
+    /**
+     * Sets a custom tag on the entity.
+     * This should only be used for information-tracking purposes (such as spawn-cause).
+     * Not all versions may support setting persistent tags - you must check the result.
+     * Tag support will be different between versions - a tag may not be detected in a different server version.
+     * @param entity the entity to set the tag on.
+     * @param plugin the plugin requesting the tag to be set.
+     * @param key the key or name of the tag to set
+     * @param value the value of the tag to set, or null to remove it.
+     * @param persistent whether the tag should be persistent (saved through restarts).
+     * @return whether the requested tag could be set. Usually this will fail if Persistence is not supported.
+     * @since 5.2.15-SNAPSHOT
+     */
+    public boolean setEntityTag(Entity entity, Plugin plugin, String key, String value, boolean persistent);
+    
+
+    
+    /**
+     * Retrieves a custom tag on an entity.
+     * @param entity the entity containing the tag
+     * @param plugin the plugin which set the tag
+     * @param key the key or name of the tag
+     * @param persistent whether the tag was set as persistent (saved through restarts).
+     * @return the tag's value, or null if it is not present
+     * @since 5.2.15-SNAPSHOT
+     */
+    @Nullable
+    public String getEntityTag(Entity entity, Plugin plugin, String key, boolean persistent);
 
 }

@@ -15,7 +15,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-compatibility-api</artifactId>
-            <version>5.2.14-SNAPSHOT</version>
+            <version>5.2.15-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -79,6 +79,12 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-craftbukkit-1.13-support</artifactId>
+            <version>5.2.15-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <!-- This shouldn't be a dep which is packaging: pom -->
+            <groupId>${project.groupId}</groupId>
+            <artifactId>PlayerHeads-craftbukkit-1.14-support</artifactId>
             <version>5.2.15-SNAPSHOT</version>
         </dependency>
         
@@ -218,7 +224,7 @@
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.8-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-glowstone-1.12-support:jar:</include>
                                     <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.13-support:jar:</include>
-                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.16-support:jar:</include>
+                                    <include>org.shininet.bukkit:PlayerHeads-craftbukkit-1.14-support:jar:</include>
                                 </includes>
                             </artifactSet>
                             <filters>

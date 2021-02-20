@@ -43,7 +43,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-legacy-support</artifactId>
-            <version>5.2.14-SNAPSHOT</version>
+            <version>5.2.15-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>
@@ -55,7 +55,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-modern-support</artifactId>
-            <version>5.2.14-SNAPSHOT</version>
+            <version>5.2.15-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.bukkit</groupId>

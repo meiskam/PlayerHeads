@@ -220,7 +220,7 @@ public enum TexturedSkullType implements HeadType {
     ),
     BLAZE(
             "ca339549-96da-4f39-8cb8-ebd5c27b83a3",
-            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTgzNzI2ZjA1M2U1NzgwZTliYzA5YzkxYzIwYjE0NjI1N2ZiYWUwMzBhNTc3NDQ3MzRkNWJkZDcxNmJlZGMyZCJ9fX0="
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjMwYzE0ZDFhYWRmZmU4ZDkyZjliZDhmOTM4ZTIyMGExNTMyMWVjNWYzOTM0M2Q1ZjYxZTY3MGFhNzk1ODYzMSJ9fX0="
     ),
     MAGMA_CUBE(
             "58014cd9-af29-4ad0-ad62-2e9b16f749bb",

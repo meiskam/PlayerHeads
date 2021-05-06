@@ -7,7 +7,7 @@ Bukkit Plugin - Drops a player's head when s/he dies, also mob heads
 
 All credit goes to meiskam for creating the plugin and zand, Dragoboss, any many others for maintaining it.
 
-# 4.x Branch
+# 5.x Branch
 Same simple plugin, new improvements.
 
 

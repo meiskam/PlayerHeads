@@ -465,9 +465,9 @@ class PlayerHeadsListener implements Listener {
         }
         if (killer != null) {//player was PK'd, so killer permissions apply.
             if (!killer.hasPermission("playerheads.canbehead")) {
-                return;//peronslly, I think canbehead should override alwaysbehead.
+                return;//killer does not have permission to behead players in any case
             }
-            killerAlwaysBeheads = killer.hasPermission("playerheads.alwaysbehead");
+            killerAlwaysBeheads = killer.hasPermission("playerheads.alwaysbehead") && plugin.configFile.getBoolean("allow-perm-alwaysbehead");
             if (killerAlwaysBeheads) {
                 dropchance = 0.0;//alwaysbehead just changes the chance in your favor - 0.0 is within all droprate ranges.
             }
@@ -549,7 +549,7 @@ class PlayerHeadsListener implements Listener {
             if (!killer.hasPermission("playerheads.canbeheadmob")) {
                 return;//killer does not have permission to behead mobs in any case
             }
-            killerAlwaysBeheads = killer.hasPermission("playerheads.alwaysbeheadmob");
+            killerAlwaysBeheads = killer.hasPermission("playerheads.alwaysbeheadmob") && plugin.configFile.getBoolean("allow-perm-alwaysbeheadmob");
             if (killerAlwaysBeheads) {
                 dropchance = 0.0;//alwaysbehead should only modify drop chances
             }

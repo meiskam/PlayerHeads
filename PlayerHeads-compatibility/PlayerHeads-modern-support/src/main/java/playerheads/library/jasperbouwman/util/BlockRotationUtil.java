@@ -47,15 +47,15 @@ public class BlockRotationUtil {
         BlockState state = block.getState();
         BlockData blockData = state.getBlockData();
         if (blockData instanceof Directional) {
-            System.out.println("Directional : "+blockFace);//TODO: DEBUG
+            //System.out.println("Directional : "+blockFace);//TODO: DEBUG
             ((Directional) blockData).setFacing(blockFace);
         }
         if (blockData instanceof Orientable) {
-            System.out.println("Orientable : "+blockFace);//TODO: DEBUG
+            //System.out.println("Orientable : "+blockFace);//TODO: DEBUG
             ((Orientable) blockData).setAxis(convertBlockFaceToAxis(blockFace));
         }
         if (blockData instanceof Rotatable) {
-            System.out.println("Rotable : "+blockFace);//TODO: DEBUG
+            //System.out.println("Rotable : "+blockFace);//TODO: DEBUG
             ((Rotatable) blockData).setRotation(blockFace);
         }
         state.setBlockData(blockData);

@@ -119,6 +119,9 @@ deathspamcount: 5
 deathspamthreshold: 300000
 fixdroppedheads: true
 
+allow-perm-alwaysbehead: false
+allow-perm-alwaysbeheadmob: false
+
 requireitem: false
 requireditems: [wooden_axe,stone_axe,golden_axe,iron_axe,diamond_axe]
 

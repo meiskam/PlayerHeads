@@ -23,6 +23,7 @@ import org.shininet.bukkit.playerheads.events.modifiers.DropRateModifierType;
  * factors considered by PlayerHeads available. If the success of this event is
  * set to false, no head will be dropped. If it is set to true, a head will be
  * dropped.
+  * Changing the droprate here does not impact plugin function, so you should use the apply/recalculate methods to update the success or set the success value yourself.
  *
  * @since 4.9.2-SNAPSHOT
  * @author crashdemons (crashenator at gmail.com)

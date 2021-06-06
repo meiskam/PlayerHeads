@@ -9,7 +9,7 @@
     <parent>
         <artifactId>PlayerHeads</artifactId>
         <groupId>org.shininet.bukkit</groupId>
-        <version>5.2.15-SNAPSHOT</version>
+        <version>5.2.16-SNAPSHOT</version>
     </parent>
     
 
@@ -43,7 +43,7 @@
             <!-- This shouldn't be a dep which is packaging: pom -->
             <groupId>${project.groupId}</groupId>
             <artifactId>PlayerHeads-api</artifactId>
-            <version>5.2.15-SNAPSHOT</version>
+            <version>5.2.16-SNAPSHOT</version>
         </dependency>
         <dependency>
             <!-- This shouldn't be a dep which is packaging: pom -->

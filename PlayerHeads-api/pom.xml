@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.shininet.bukkit</groupId>
         <artifactId>PlayerHeads</artifactId>
-        <version>5.2.15-SNAPSHOT</version>
+        <version>5.2.16-SNAPSHOT</version>
     </parent>
     <artifactId>PlayerHeads-api</artifactId>
     <packaging>jar</packaging>
@@ -13,7 +13,7 @@
         <dependency>
             <groupId>org.shininet.bukkit</groupId>
             <artifactId>PlayerHeads-base-api</artifactId>
-            <version>5.2.15-SNAPSHOT</version>
+            <version>5.2.16-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.shininet.bukkit</groupId>

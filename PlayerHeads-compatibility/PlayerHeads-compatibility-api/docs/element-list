@@ -3,3 +3,4 @@ com.github.crashdemons.playerheads.compatibility.exceptions
 com.github.crashdemons.playerheads.compatibility.plugins
 com.github.crashdemons.playerheads.compatibility.plugins.heads
 org.shininet.bukkit.playerheads.events
+org.shininet.bukkit.playerheads.events.modifiers

@@ -310,7 +310,7 @@ public class HeadRollEvent extends Event {
 
     /**
      * Sets a note about an internal modifier of the effective droprate. Note:
-     * this value does not impact calculations or success unless applyModifiers
+     * this value does not impact calculations or success unless applyModifiers+applyDropRate or recalculateSuccess 
      * is called Note: new modifies are generally applied AFTER other
      * modifiers<br>
      *
@@ -327,7 +327,7 @@ public class HeadRollEvent extends Event {
     /**
      * Replaces notes about an internal modifiers of the effective droprate.
      * Note: this value does not impact calculations or success unless
-     * applyModifiers is called Note: new modifies are generally applied AFTER
+     * applyModifiers+applyDropRate or recalculateSuccess is called Note: new modifies are generally applied AFTER
      * other modifiers; this method will overwrite existing modifiers.<br>
      *
      * @deprecated using this method to modify existing modifiers should be
@@ -355,8 +355,7 @@ public class HeadRollEvent extends Event {
 
     /**
      * Add or change a note about your custom modifier to the head-roll event.
-     * Note: this value does not impact calculations or success unless
-     * applyModifiers is called.<br>
+     * Note: this value does not impact calculations unless applyModifiers+applyDropRate or recalculateSuccess is called.<br>
      * Note: the name of the modifier will be prepended with "PluginName:"
      * depending on your plugin's name.<br>
      * Note: new modifies are generally applied AFTER other modifiers<br>
